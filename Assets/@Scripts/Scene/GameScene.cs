@@ -11,7 +11,7 @@ public class GameScene : BaseScene
     [SerializeField]
     GroundGenerator _groundGenerator;
 
-    GroundController _groundController;
+    GroundController _groundController = new GroundController();
     protected override bool Init()
     {
         if (base.Init() == false)
@@ -37,13 +37,17 @@ public class GameScene : BaseScene
         //Player 생성.
         Managers.Object.Instantiate(StringData.Player, new Vector2(0, 0));
 
-        //차후 Data 불러와서, 바꿔야 함.
+        int condision = 0;
         foreach (var item in _groundGenerator.Grounds)
         {
-            Managers.Object.RegisterObject(item.name, PoolGroundSize);
-            await UniTask.Awaiter();
+          Managers.Object.RegisterObject(item.name, PoolGroundSize,()=> { condision++; });
+
         }
-        //_groundController.Init(_groundGenerator.Grounds);
+
+        //차후 Data 불러와서, 바꿔야 함.
+
+        await UniTask.WaitUntil(() => { return _groundGenerator.Grounds.Count == condision; });
+        _groundController.Init(_groundGenerator.Grounds);
 
     }
 

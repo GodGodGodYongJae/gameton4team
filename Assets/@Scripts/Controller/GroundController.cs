@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-public class GroundController : MonoBehaviour
+public class GroundController
 {
 
     GameObject _PreviousGround;
@@ -19,10 +19,9 @@ public class GroundController : MonoBehaviour
     {
         int idx = Random.Range(0, GroundList.Count);
         BoxCollider2D CurGroundCol;
+        Vector2 pos = new Vector2(0, -5f);
 
-        Vector2 pos = new Vector2(0, 0);
         GameObject _CurrentGround = Managers.Object.Get(GroundList[idx].name);
-
         _CurrentGround.transform.position = pos;
         _CurrentGround.SetActive(true);
         CurGroundCol = _CurrentGround.GetComponent<BoxCollider2D>();
@@ -32,10 +31,12 @@ public class GroundController : MonoBehaviour
 
          idx = Random.Range(0, GroundList.Count);
         _PreviousGround = Managers.Object.Get(GroundList[idx].name);
+        _PreviousGround.SetActive(true);
          CurGroundCol = _PreviousGround.GetComponent<BoxCollider2D>();
 
         Vector3 PrevExtents = CurGroundCol.bounds.extents;
-        pos = ((CurExtents / 2) - PrevExtents) * 0.1f;
+        pos.x -= CurExtents.x +PrevExtents.x;
+        Debug.Log(pos.x);
         _PreviousGround.transform.position = pos;
 
     //    Vector2 pos = new Vector2(GroundList[idx].transform.lo)

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -131,9 +132,9 @@ public class ObjectManager : MonoBehaviour
 
     public void RegisterObject(string AssetName,int ammount, Action callback = null)
     {
-        Managers.Resource.LoadAsync<GameObject>(AssetName,(sucess)=> {
+      Managers.Resource.LoadAsync<GameObject>(AssetName,(success)=> {
             
-            _objectPoolList.Add(AssetName,sucess);
+            _objectPoolList.Add(AssetName, success);
             
             GameObject folder = new GameObject();
             folder.name = "@"+AssetName;
@@ -142,12 +143,13 @@ public class ObjectManager : MonoBehaviour
             
             for (int i = 0; i < ammount; i++)
             {
-                GameObject inst = Instantiate(sucess);
+                GameObject inst = Instantiate(success);
                 inst.SetActive(false);
                 inst.transform.parent = folder.transform;
                 list.Add(inst);
             }
             _poolList.Add(AssetName, list);
+    
             callback?.Invoke();
         });
     
