@@ -18,4 +18,6 @@ public class Define
         TitleScene
     }
 
+    public const int PoolGroundSize = 4;
+
 }

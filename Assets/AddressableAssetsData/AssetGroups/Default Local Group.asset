@@ -21,8 +21,12 @@ MonoBehaviour:
     m_Address: UI_TitleScene
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 3e7d7de9cd3534446805ce3ab3344115
-    m_Address: BG
+  - m_GUID: 1d576b714af1bb040afcf6330aafce47
+    m_Address: UI_TitleScene_BG
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 58bfa227081538b40bc90b0f95fd390c
+    m_Address: UI_GameScene
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
