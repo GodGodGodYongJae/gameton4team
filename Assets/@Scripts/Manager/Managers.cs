@@ -17,7 +17,6 @@ public class Managers : Singleton<Managers>
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static UIManager UI { get { return Instance?._ui; } }
     public static SceneManagerEx Scene { get { return Instance?._scene; } }
-
     public static ObjectManager Object { get { return Instance?._object; } } 
 
     public static Action UpdateAction { get; set; }

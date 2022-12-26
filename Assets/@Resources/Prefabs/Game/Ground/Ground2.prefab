@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 531670560232200418}
   - component: {fileID: 531670560232200419}
   - component: {fileID: 531670560232200444}
-  - component: {fileID: 4792535465841887438}
+  - component: {fileID: 649413589026007338}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Ground2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.5, g: 0.3278302, b: 0.3278302, a: 1}
+  m_Color: {r: 0.10734272, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4792535465841887438
+--- !u!114 &649413589026007338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

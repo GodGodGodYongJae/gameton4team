@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class StringData 
 {
-    
+    public const string Player = "Player";
 
 }
-
-

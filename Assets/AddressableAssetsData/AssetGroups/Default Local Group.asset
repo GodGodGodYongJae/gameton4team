@@ -29,6 +29,18 @@ MonoBehaviour:
     m_Address: UI_GameScene
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1d1836c79bb7e6c44916161b2ee8f8b6
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 910f533a10384604e9e5248a96842992
+    m_Address: Ground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9307d0644de886944bc22d0350efc9ae
+    m_Address: Ground2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

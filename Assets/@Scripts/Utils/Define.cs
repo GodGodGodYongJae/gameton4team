@@ -19,5 +19,6 @@ public class Define
     }
 
     public const int PoolGroundSize = 4;
+    public StringData stringData;
 
 }
