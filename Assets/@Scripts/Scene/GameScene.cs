@@ -20,8 +20,11 @@ public class GameScene : BaseScene
     [SerializeField]
     GameObject[] _wallObjects;
 
+    GameObject _playerGo;
+    Player _player;
     public GameObject[] WallObjects { get { return _wallObjects; } }
-
+    public GameObject PlayerGo { get { return _playerGo; } }
+    public Player Player { get { return _player; } }
     GroundController _groundController;
 
     protected override bool Init()
@@ -49,9 +52,10 @@ public class GameScene : BaseScene
         while (Managers.UI.SceneUI == null)
             await UniTask.NextFrame();
 
-        
+
         //Player 생성.
-        GameObject PlayerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
+        _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
+        _player = _playerGo.GetComponent<Player>();
 
         //지형 등록
         foreach (var item in _groundGenerator.Grounds)

@@ -38,7 +38,7 @@ public class GroundController
         _PreviousGround.transform.position = pos;
         
         GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
-        pos = new Vector2(-SpawnPosMath(_PreviousGround.GetComponent<BoxCollider2D>(), prevWall.GetComponent<BoxCollider2D>()), 0);
+        pos = new Vector2(-SpawnPosMath(_PreviousGround.GetComponent<BoxCollider2D>(), prevWall.GetComponent<BoxCollider2D>(),-1), 0);
         prevWall.transform.position = pos;
 
         _NextGround = await CreateGround(pos, GroundList[idx].name);
@@ -50,12 +50,14 @@ public class GroundController
         frontWall.transform.position = pos;
    
 
-        Managers.UpdateAction += MUpdate;
+    
     }
 
-    float SpawnPosMath(BoxCollider2D a, BoxCollider2D b)
+    float SpawnPosMath(BoxCollider2D a, BoxCollider2D b,float back = 1)
     {
-        float x = a.bounds.extents.x + b.bounds.extents.x;
+
+        float x = a.transform.position.x; 
+        x = (a.bounds.extents.x + b.bounds.extents.x) + ( x * back );
         return x;
     }
 
