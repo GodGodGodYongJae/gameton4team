@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 public class GroundController
@@ -18,9 +19,13 @@ public class GroundController
 
     IReadOnlyList<GameObject> _GroundList;
 
-    public float GetCurrentGroundPos() { return _CurrentGround.transform.position.x; } 
+    public float GetCurrentGroundPos() {
+        if (_CurrentGround == null || _PreviousGround == null || _NextGround == null) return 0;
+        return _CurrentGround.transform.position.x; 
+    } 
     public float GetExtendSize()
     {
+        if (_CurrentGround == null || _PreviousGround == null || _NextGround == null) return 0;
         return ExtendSize(_PreviousGround)+ExtendSize(_CurrentGround)+ExtendSize(_NextGround);
     }
    
@@ -55,10 +60,55 @@ public class GroundController
         GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
         pos = new Vector2(SpawnPosMath(_NextGround.GetComponent<BoxCollider2D>(), frontWall.GetComponent<BoxCollider2D>()), 0);
         frontWall.transform.position = pos;
-   
 
-    
+
+        Managers.FixedUpdateAction += CheckBoundTest;
     }
+
+    void CheckBoundTest()
+    {
+        float extendSize = ExtendSize(_NextGround);
+        float pointCheck = _NextGround.transform.position.x + extendSize - 1;
+        if(pointCheck <= _GameScene.PlayerGo.transform.position.x)
+        {
+            PushNextGround().Forget();    
+        }
+    }
+
+    async UniTaskVoid PushNextGround()
+    {
+        _PreviousGround.SetActive(false);
+        _PreviousGround = _CurrentGround;
+        _CurrentGround = _NextGround;
+        _NextGround = null;
+
+        int idx = Random.Range(0, _GroundList.Count);
+        Vector2 pos = new Vector2(0, GroundPosY);
+
+        _NextGround = await CreateGround(pos, _GroundList[idx].name);
+        pos = new Vector2(SpawnPosMath(_CurrentGround.GetComponent<BoxCollider2D>(), _NextGround.GetComponent<BoxCollider2D>()), Define.GroundPosY);
+        _NextGround.transform.position = pos;
+
+        GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
+        pos = new Vector2(-SpawnPosMath(_PreviousGround.GetComponent<BoxCollider2D>(), prevWall.GetComponent<BoxCollider2D>(), -1), 0);
+        prevWall.transform.position = pos;
+
+        GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
+        pos = new Vector2(SpawnPosMath(_NextGround.GetComponent<BoxCollider2D>(), frontWall.GetComponent<BoxCollider2D>()), 0);
+        frontWall.transform.position = pos;
+
+        //力芭 previous 
+        //temp
+        // 背眉 previous = current
+        // 背眉 current = next
+        //货肺积己
+        // next 货肺积己 
+        //力芭.
+
+    }
+
+
+
 
     #region private
     private float ExtendSize(GameObject go)

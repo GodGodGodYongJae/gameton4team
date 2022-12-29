@@ -60,11 +60,12 @@ public class GameScene : BaseScene
         _player = _playerGo.GetComponent<Player>();
 
         #region DI
+        //지형 DI
+        _groundController = new GroundController(this);
         //카메라 DI
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.Init(this);
-        //지형 DI
-        _groundController = new GroundController(this);
+       
         #endregion
 
         //지형 등록
