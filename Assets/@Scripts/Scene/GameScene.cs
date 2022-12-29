@@ -25,7 +25,10 @@ public class GameScene : BaseScene
     public GameObject[] WallObjects { get { return _wallObjects; } }
     public GameObject PlayerGo { get { return _playerGo; } }
     public Player Player { get { return _player; } }
+    
     GroundController _groundController;
+
+    public GroundController GroundContoroller { get { return _groundController; } }
 
     protected override bool Init()
     {
@@ -41,7 +44,7 @@ public class GameScene : BaseScene
             _gameSceneUI = gameSceneUI;
         });
 
-         _groundController = new GroundController(this);
+      
         WaitLoad().Forget();
         return true;
     }
@@ -52,22 +55,25 @@ public class GameScene : BaseScene
         while (Managers.UI.SceneUI == null)
             await UniTask.NextFrame();
 
-
         //Player 생성.
         _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
         _player = _playerGo.GetComponent<Player>();
 
+        #region DI
+        //카메라 DI
+        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+        cameraController.Init(this);
+        //지형 DI
+        _groundController = new GroundController(this);
+        #endregion
+
         //지형 등록
+        ////차후 Data 불러와서, 바꿔야 함.
         foreach (var item in _groundGenerator.Grounds)
         {
             await Managers.Object.RegisterObject(item.name, PoolGroundSize);
         }
         _groundController.Init(_groundGenerator.Grounds).Forget();
-
-        ////차후 Data 불러와서, 바꿔야 함.
-
-        //await UniTask.WaitUntil(() => { return _groundGenerator.Grounds.Count == condision; });
-      //  _groundController.Init(_groundGenerator.Grounds);
 
     }
 

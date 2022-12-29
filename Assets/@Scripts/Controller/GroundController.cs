@@ -18,6 +18,13 @@ public class GroundController
 
     IReadOnlyList<GameObject> _GroundList;
 
+    public float GetCurrentGroundPos() { return _CurrentGround.transform.position.x; } 
+    public float GetExtendSize()
+    {
+        return ExtendSize(_PreviousGround)+ExtendSize(_CurrentGround)+ExtendSize(_NextGround);
+    }
+   
+
     public GroundController(GameScene gameScene)
     {
         _GameScene = gameScene;
@@ -53,24 +60,30 @@ public class GroundController
     
     }
 
-    float SpawnPosMath(BoxCollider2D a, BoxCollider2D b,float back = 1)
+    #region private
+    private float ExtendSize(GameObject go)
+    {
+        BoxCollider2D box = go.GetComponent<BoxCollider2D>();
+
+        return box.bounds.extents.x;
+    }
+    float SpawnPosMath(BoxCollider2D a, BoxCollider2D b, float back = 1)
     {
 
-        float x = a.transform.position.x; 
-        x = (a.bounds.extents.x + b.bounds.extents.x) + ( x * back );
+        float x = a.transform.position.x;
+        x = (a.bounds.extents.x + b.bounds.extents.x) + (x * back);
         return x;
     }
 
-    async UniTask<GameObject> CreateGround( Vector2 pos, string name,Action<UniTask> callback = null)
+    async UniTask<GameObject> CreateGround(Vector2 pos, string name, Action<UniTask> callback = null)
     {
-        GameObject go = await Managers.Object.InstantiateAsync(name,pos);
+        GameObject go = await Managers.Object.InstantiateAsync(name, pos);
         callback?.Invoke(UniTask.CompletedTask);
         return go;
     }
+    #endregion
 
-    private void MUpdate()
-    {
-       
-    }
+
+
 
 }
