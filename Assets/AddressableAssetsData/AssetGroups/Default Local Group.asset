@@ -41,6 +41,14 @@ MonoBehaviour:
     m_Address: Ground2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 78a1f199aac597847ba695ba20adaa43
+    m_Address: TestMonster
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de6bdcd1a1ae33e4c9c14f85589fb36e
+    m_Address: EffectTest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

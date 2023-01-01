@@ -97,6 +97,8 @@ public class GroundController
         pos = new Vector2(SpawnPosMath(_NextGround.GetComponent<BoxCollider2D>(), frontWall.GetComponent<BoxCollider2D>()), 0);
         frontWall.transform.position = pos;
 
+        await Managers.Object.InstantiateAsync("TestMonster", _NextGround.transform.position);
+
         //제거 previous 
         //temp
         // 교체 previous = current

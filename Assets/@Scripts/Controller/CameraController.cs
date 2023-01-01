@@ -43,6 +43,11 @@ public class CameraController : MonoBehaviour
 
     void LimitCameraArea()
     {
+        //camera 포지션 잡기.
+        _cameraPosition.x = (_player.GetPlayerLeft() > 0) ? 1.5f : -1.5f;
+        _cameraMoveSpeed = _player.Speed * 2;
+        //_cameraPosition.x = _player.GetPlayerLeft() + 0.5f; 
+
         //mapsize 
         _mapSize.x = _scene.GroundContoroller.GetExtendSize();
         //center 잡기.

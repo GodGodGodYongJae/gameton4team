@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="GroundGenerator",fileName ="Stage_")]
+[CreateAssetMenu(menuName = "ScriptableObj/GroundGenerator", fileName ="Stage_")]
 public class GroundGenerator : ScriptableObject
 {
     [SerializeField]
