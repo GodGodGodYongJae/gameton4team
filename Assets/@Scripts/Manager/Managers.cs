@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class Managers : Singleton<Managers>
 {

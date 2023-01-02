@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3988313096164150199}
   - component: {fileID: 4334860397644506969}
   - component: {fileID: 5302700390930225826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 5796851370282336140}
   - component: {fileID: 5796851370282336131}
   - component: {fileID: 5796851370282336130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d0dc43f676fa04c8e58dd3b3b2f9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
+  _creatureData: {fileID: 11400000, guid: 437469d988e6e0342b448c910d1a0dd5, type: 2}
 --- !u!50 &5796851370282336131
 Rigidbody2D:
   serializedVersion: 4

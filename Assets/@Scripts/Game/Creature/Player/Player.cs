@@ -6,13 +6,15 @@ using UnityEngine;
 public class Player : Creature
 {
 
-
     Vector2 _directionVector;
-    private int _hp;
     public float Speed {get{ return _creatureData.Speed; } }
     public float GetPlayerLeft()
     {
         return _directionVector.x;
+    }
+    public int GetPlayerDamage()
+    {
+        return _creatureData.AttackDamage;
     }
     private void Start()
     {
@@ -54,7 +56,8 @@ public class Player : Creature
         if (isDamage == true) return;
 
         invincibilityDealy().Forget();
-
+        blinkObject().Forget();
+        KnockBack(Target.gameObject);
         _hp -= dmg;
         if(_hp <= 0)
         {
@@ -64,20 +67,9 @@ public class Player : Creature
 
     private async UniTaskVoid invincibilityDealy()
     {
-        isDamage = true;
-        blinkPlayer().Forget();
+        isDamage = true;;
         await UniTask.Delay(invinvibilityDuration);
         isDamage = false;
     }
-    private int blinkCount = 3;
-    private async UniTaskVoid blinkPlayer()
-    {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        for (int i = 0; i < blinkCount; i++)
-        {
-            sprite.enabled = false;
-            await UniTask.Delay(300);
-            sprite.enabled = true;
-        }
-    }
+
 }

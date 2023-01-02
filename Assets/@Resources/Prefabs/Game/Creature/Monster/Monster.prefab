@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 426320010229835444}
   - component: {fileID: 1285269882954083775}
   - component: {fileID: 7718723958621333719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da6f3f63abd8e747921a89ff30a217c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _creatureData: {fileID: 11400000, guid: d0166d7a792de864286fd43037bc1b77, type: 2}
 --- !u!50 &1285269882954083775
 Rigidbody2D:
   serializedVersion: 4
