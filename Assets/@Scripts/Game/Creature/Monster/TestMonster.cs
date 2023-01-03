@@ -30,9 +30,12 @@ public class TestMonster : Creature
     {
         //하드 코딩된 부분 추후 바꿔줘야함. 현재는 프로토타입 테스트를 위해 임시적으로 만듬 이거 나중에 CreatureHPBar 에서 관리해야 함.
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-        Vector2 pos = new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
-        _HPCanvas = await Managers.Object.InstantiateSingle(StringData.HealthBar, pos);
-        _HPCanvas.transform.parent = this.transform;
+        Vector2 pos = Vector2.zero;
+        pos +=  new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
+        _HPCanvas = await Managers.Object.InstantiateSingle(StringData.HealthBar, pos,this.gameObject);
+        RectTransform rect = _HPCanvas.GetComponent<RectTransform>();
+        rect.anchoredPosition = Vector2.zero;
+        
         _HPCanvas = _HPCanvas.transform.FindChild("Health Bar Fill").gameObject;
         _hpImg = _HPCanvas.GetComponent<Image>();
 
