@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec28b62ab9b46e45a287d0d4748c171, type: 3}
   m_Name: Creature_Player
   m_EditorClassIdentifier: 
-  _maxhp: 1000
+  _maxhp: 10
   _speed: 2
   _attackDmg: 1

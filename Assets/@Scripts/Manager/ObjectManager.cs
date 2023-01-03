@@ -22,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     /// <param name="AssetName">어드레서블 이름</param>
     /// <param name="pos">생성할 좌표</param>
     /// <returns></returns>
-    public async UniTask<GameObject> InstantiateSingle(string AssetName,Vector2 pos)
+    public async UniTask<GameObject> InstantiateSingle(string AssetName, Vector2 pos)
     {
         GameObject rtngo = null;
         bool isTask = false;
@@ -57,7 +57,7 @@ public class ObjectManager : MonoBehaviour
             _root = new GameObject { name = "@ObjectManager" };
         }
 
-    
+
         //해당 오브젝트가 풀링 리스트에 있는지 체크.
         for (int i = 0; i < ammount; i++)
         {
@@ -80,7 +80,7 @@ public class ObjectManager : MonoBehaviour
             rtnGo[i].transform.position = posList[i];
         }
         return rtnGo;
-        
+
     }
 
     /// <summary>
@@ -98,14 +98,14 @@ public class ObjectManager : MonoBehaviour
             _root = new GameObject { name = "@ObjectManager" };
         }
 
-            var PoolObj = await TaskGet(AssetName);
-            if (PoolObj != null)
-            {
-                PoolObj.SetActive(true);
-                PoolObj.transform.position = pos;
-                rtnGo = PoolObj;
-            }
-       
+        var PoolObj = await TaskGet(AssetName);
+        if (PoolObj != null)
+        {
+            PoolObj.SetActive(true);
+            PoolObj.transform.position = pos;
+            rtnGo = PoolObj;
+        }
+
         //리스트가 1이라도 있다면, 가져왔기 때문에 리턴.
         if (rtnGo != null) return rtnGo;
 
@@ -114,7 +114,7 @@ public class ObjectManager : MonoBehaviour
         rtnGo = listGo[0];
         rtnGo.SetActive(true);
         rtnGo.transform.position = pos;
-        
+
         return rtnGo;
 
     }
@@ -126,16 +126,16 @@ public class ObjectManager : MonoBehaviour
     /// <param name="ammount">갯수</param>
     /// <param name="callback">완료후 콜백</param>
     /// <returns></returns>
-    public async UniTask<List<GameObject>> RegisterObject(string AssetName,int ammount, Action callback = null)
+    public async UniTask<List<GameObject>> RegisterObject(string AssetName, int ammount, Action callback = null)
     {
         bool registered = false;
         List<GameObject> list = new List<GameObject>();
-        Managers.Resource.LoadAsync<GameObject>(AssetName,(success)=> {
-            
+        Managers.Resource.LoadAsync<GameObject>(AssetName, (success) => {
+
             _objectPoolList.Add(AssetName, success);
-            
+
             GameObject folder = new GameObject();
-            folder.name = "@"+AssetName;
+            folder.name = "@" + AssetName;
             folder.transform.parent = _root.transform;
 
             for (int i = 0; i < ammount; i++)
@@ -145,9 +145,9 @@ public class ObjectManager : MonoBehaviour
                 inst.transform.parent = folder.transform;
                 list.Add(inst);
             }
-           _poolList.Add(AssetName, list);
-          registered = true;
-         callback?.Invoke();
+            _poolList.Add(AssetName, list);
+            registered = true;
+            callback?.Invoke();
         });
         //등록될 때 까지 대기.
         await UniTask.WaitUntil(() => { return registered == true; });
@@ -161,7 +161,7 @@ public class ObjectManager : MonoBehaviour
     /// <returns></returns>
     public GameObject GetSingularObjet(string name)
     {
-        if(!_singualrObject.ContainsKey(name))
+        if (!_singualrObject.ContainsKey(name))
         {
             return null;
         }
@@ -175,14 +175,14 @@ public class ObjectManager : MonoBehaviour
     /// <returns></returns>
     public List<GameObject> GetPoolObject(string name)
     {
-        if(!_poolList.ContainsKey(name))
+        if (!_poolList.ContainsKey(name))
         {
             return null;
         }
         return _poolList[name];
     }
-   
-     async UniTask<GameObject> TaskGet(string name)
+
+    async UniTask<GameObject> TaskGet(string name)
     {
         if (!_objectPoolList.ContainsKey(name))
         {

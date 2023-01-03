@@ -61,7 +61,7 @@ public class GameScene : BaseScene
 
         #region DI
         //지형 DI
-        _groundController = new GroundController(this);
+        _groundController = new GroundController(this, _groundGenerator.Grounds);
         //카메라 DI
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.Init(this);
@@ -72,9 +72,9 @@ public class GameScene : BaseScene
         ////차후 Data 불러와서, 바꿔야 함.
         foreach (var item in _groundGenerator.Grounds)
         {
-            await Managers.Object.RegisterObject(item.name, PoolGroundSize);
+            await Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);
         }
-        _groundController.Init(_groundGenerator.Grounds).Forget();
+        _groundController.Init().Forget();
 
     }
 

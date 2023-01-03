@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Sword
   m_EditorClassIdentifier: 
   attackDmg: 1
-  attackDealay: 3000
+  attackDealay: 500
   attackDuration: 500
   skilEffect: {fileID: 5845916061086837785, guid: de6bdcd1a1ae33e4c9c14f85589fb36e, type: 3}
   effectPos: {x: 0.8, y: 0}
