@@ -22,7 +22,7 @@ public class ObjectManager : MonoBehaviour
     /// <param name="AssetName">어드레서블 이름</param>
     /// <param name="pos">생성할 좌표</param>
     /// <returns></returns>
-    public async UniTask<GameObject> InstantiateSingle(string AssetName, Vector2 pos)
+    public async UniTask<GameObject> InstantiateSingle(string AssetName, Vector2 pos,GameObject parent = null)
     {
         GameObject rtngo = null;
         bool isTask = false;
@@ -31,8 +31,8 @@ public class ObjectManager : MonoBehaviour
         {
             _root = new GameObject { name = "@ObjectManager" };
         }
-
-        Managers.Resource.Instantiate(AssetName, _root.transform, (success) => {
+        GameObject Parent = (parent == null) ? _root : parent;
+        Managers.Resource.Instantiate(AssetName, Parent.transform, (success) => {
             success.transform.position = pos;
             _singualrObject.Add(AssetName, success);
             rtngo = success;

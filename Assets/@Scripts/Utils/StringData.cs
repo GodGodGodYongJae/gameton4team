@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StringData 
 {
-    public const string Player = "Player";
-
+    public const string _player = "Player";
+    public static string Player => _player;
+    public const string _healthBar = "Healthbar";
+    public static string HealthBar => _healthBar;
 }
