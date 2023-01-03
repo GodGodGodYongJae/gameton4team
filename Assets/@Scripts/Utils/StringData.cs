@@ -5,5 +5,5 @@ using UnityEngine;
 public class StringData 
 {
     public const string Player = "Player";
-
+    public const string HealthBar = "HealthBarCanvas";
 }
