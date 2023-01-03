@@ -15,9 +15,11 @@ public abstract class Creature : MonoBehaviour, IDamageble
     protected Type _type; 
     protected int _hp;
 
-    private void Awake()
+    
+    protected virtual void Awake()
     {
         _hp = _creatureData.MaxHP;
+
     }
     public virtual Type GetType()
     { return _type; }
@@ -54,7 +56,10 @@ public abstract class Creature : MonoBehaviour, IDamageble
         sprite.enabled = true;
     }
 
-    private int knockBackStrength = 7, knockBackdelay = 150; 
+    private int knockBackStrength = 7, knockBackdelay = 150;
+
+  
+
     protected void KnockBack(GameObject sender)
     {
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();

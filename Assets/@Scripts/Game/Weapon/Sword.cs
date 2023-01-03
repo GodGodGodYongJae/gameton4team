@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,10 @@ public class Sword : Weapon
     {
         //sprite = GetComponent<SpriteRenderer>();
         base.Start();
-      
-
 
     }
+
+
     void FEffectFollow()
     {
 

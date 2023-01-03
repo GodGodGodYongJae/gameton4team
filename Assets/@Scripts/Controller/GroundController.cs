@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 public class GroundController
@@ -16,17 +17,21 @@ public class GroundController
     GameScene _GameScene;
 
     // 생성할 그라운드 리스트.
-    IReadOnlyList<GameObject> _GroundList;
+    IReadOnlyList<GameObject> GroundList;
 
     // 현재 생성된 그라운드 링크드 리스트 처음 끝 삭제가 빈번히 발생하기 때문에 링크드 리스트 활용.
     LinkedList<GameObject> _Grounds = new LinkedList<GameObject>();
     // 이터레이터 같은 역할.
   
     // 생성자 GameScene DI 주입.
-    public GroundController(GameScene gameScene)
+    public GroundController(GameScene gameScene, IReadOnlyList<GameObject> GroundList)
     {
         _GameScene = gameScene;
+        this.GroundList = GroundList;
+
     }
+
+
     //현재 그라운드 포지션. 링크드 리스트의 0 번째는 Prev 이기 때문에, +1 임.
     public float GetCurrentGroundPos() {
         CurrentGroundIdx();
@@ -57,61 +62,28 @@ public class GroundController
  
 
     // 처음 지형 생성.
-    public async UniTaskVoid Init(IReadOnlyList<GameObject> GroundList)
+    public async UniTaskVoid Init()
     {
-
-        //_GroundList = GroundList;
-        ////임의로 idx를 받아온다.
-        //int idx = Random.Range(0, GroundList.Count);
-
-        //Vector2 pos = new Vector2(0, GroundPosY);
-        // _CurrentGround = await CreateGround(pos, GroundList[idx].name);
-
-        //_PreviousGround = await CreateGround(pos, GroundList[idx].name);
-        //pos = new Vector2(-SpawnPosMath(_CurrentGround.GetComponent<BoxCollider2D>(), _PreviousGround.GetComponent<BoxCollider2D>()), Define.GroundPosY);
-        //_PreviousGround.transform.position = pos;
-
-        //GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
-        //pos = new Vector2(-SpawnPosMath(_PreviousGround.GetComponent<BoxCollider2D>(), prevWall.GetComponent<BoxCollider2D>(),-1), 0);
-        //prevWall.transform.position = pos;
-
-        //_NextGround = await CreateGround(pos, GroundList[idx].name);
-        //pos = new Vector2(SpawnPosMath(_CurrentGround.GetComponent<BoxCollider2D>(), _NextGround.GetComponent<BoxCollider2D>()), Define.GroundPosY);
-        //_NextGround.transform.position = pos;
-
-        //GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
-        //pos = new Vector2(SpawnPosMath(_NextGround.GetComponent<BoxCollider2D>(), frontWall.GetComponent<BoxCollider2D>()), 0);
-        //frontWall.transform.position = pos;
         int idx = Random.Range(0, GroundList.Count);
-        for (int i = 0; i < 5; i++)
+        Vector2 pos = new Vector2(0, Define.GroundPosY);
+        await CreateGround(pos, GroundList[idx].name);
+        LinkedListNode<GameObject> iter = _Grounds.First;
+        for (int i = 1; i < Define.PoolGroundSize; i++)
         {
-            GameObject go = await CreateGround(Vector2.zero, GroundList[idx].name);
-            go.SetActive(false);
-            _Grounds.AddLast(go);
-            // 다시 랜덤으로 생성.
+            GameObject go = await CreateGround(pos, GroundList[idx].name);
+
+            pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value),pos.y);
+            go.transform.position = pos;
+
+            iter = iter.Next;
             idx = Random.Range(0, GroundList.Count);
         }
-        //초반 Prev,Current는 그냥 무시함.
-        LinkedListNode<GameObject> iter = _Grounds.First.Next;
-        Vector2 pos = new Vector2(0, GroundPosY);
-        iter.Value.transform.position = pos;
-        iter.Value.SetActive(true);
-
-        //초반 Prev,Current는 그냥 무시함.
-        while (iter.Next != null)
-        {
-            //포스를 먼저 잡아주고, iter를 다음으로 옮기고, iter 다음 값을 실행.
-            pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value), pos.y);
-            iter = iter.Next;
-            iter.Value.transform.position = pos;
-            iter.Value.SetActive(true);
-        }
-
+        WallPosSet();
         // 새로 오브젝트를 할당해주는 액션 트리거.
-        Managers.FixedUpdateAction += CheckBoundTest;
+        Managers.FixedUpdateAction += CheckNextBound;
     }
 
-    void CheckBoundTest()
+    void CheckNextBound()
     {
         float extendSize = ExtendSize(_NextGround);
         float pointCheck = _NextGround.transform.position.x + extendSize - 1;
@@ -123,33 +95,39 @@ public class GroundController
 
     async UniTaskVoid PushNextGround()
     {
-        //_PreviousGround.SetActive(false);
-        //_PreviousGround = _CurrentGround;
-        //_CurrentGround = _NextGround;
-        //_NextGround = null;
+        CurrentGroundIdx();
+        _PreviousGround.SetActive(false);
+        _Grounds.RemoveFirst();
 
-        //int idx = Random.Range(0, _GroundList.Count);
-        //Vector2 pos = new Vector2(0, GroundPosY);
 
-        //_NextGround = await CreateGround(pos, _GroundList[idx].name);
-        //pos = new Vector2(SpawnPosMath(_CurrentGround.GetComponent<BoxCollider2D>(), _NextGround.GetComponent<BoxCollider2D>()), Define.GroundPosY);
-        //_NextGround.transform.position = pos;
+        int idx = Random.Range(0, GroundList.Count);
+        LinkedListNode<GameObject> iter = _Grounds.Last;
+        Vector2 pos = iter.Value.transform.position;
+        GameObject go = await CreateGround(pos, GroundList[idx].name);
+        pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value), pos.y);
+        go.transform.position = pos;
 
-        //GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
-        //pos = new Vector2(-SpawnPosMath(_PreviousGround.GetComponent<BoxCollider2D>(), prevWall.GetComponent<BoxCollider2D>(), -1), 0);
-        //prevWall.transform.position = pos;
 
-        //GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
-        //pos = new Vector2(SpawnPosMath(_NextGround.GetComponent<BoxCollider2D>(), frontWall.GetComponent<BoxCollider2D>()), 0);
-        //frontWall.transform.position = pos;
-
+        WallPosSet();
         //테스트용 몬스터 생성.
-        //await Managers.Object.InstantiateAsync("TestMonster", _NextGround.transform.position);
+        await Managers.Object.InstantiateAsync("TestMonster", _NextGround.transform.position);
 
     }
 
 
+    void WallPosSet()
+    {
+        CurrentGroundIdx();
+        Vector2 pos = Vector2.zero;
+        GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
+        pos = new Vector2(-SpawnPosMath(_PreviousGround, prevWall, -1), pos.y);
+        prevWall.transform.position = pos;
 
+
+        GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
+        pos = new Vector2(SpawnPosMath(_NextGround, frontWall), pos.y);
+        frontWall.transform.position = pos;
+    }
 
     #region private
     private float ExtendSize(GameObject go)
@@ -171,6 +149,7 @@ public class GroundController
     async UniTask<GameObject> CreateGround(Vector2 pos, string name, Action<UniTask> callback = null)
     {
         GameObject go = await Managers.Object.InstantiateAsync(name, pos);
+        _Grounds.AddLast(go);
         callback?.Invoke(UniTask.CompletedTask);
         return go;
     }

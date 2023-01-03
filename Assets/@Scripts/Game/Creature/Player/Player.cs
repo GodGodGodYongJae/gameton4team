@@ -16,24 +16,21 @@ public class Player : Creature
     {
         return _creatureData.AttackDamage;
     }
-    private void Start()
+    protected override void Awake()
     {
-        _hp = _creatureData.MaxHP;
+        base.Awake();
         _type = Type.Player;
         _directionVector = Vector2.right;
+        
+        PostEventHp();
 
         Managers.UpdateAction += MUpdate;
         Managers.FixedUpdateAction += FUpdate;
     }
     // 차후 Move 자체를 Component로 빼야하거나 분리해야함.
 
-    void FUpdate()
-    {
-        transform.Translate(_directionVector * _creatureData.Speed * Time.deltaTime);
-        // _rigidBody.AddForce(_directionVector * _speed);
-        //if (_rigidBody.velocity.x >= _acceleration) _rigidBody.velocity = new Vector2(_acceleration, _rigidBody.velocity.y);
-        //else if (_rigidBody.velocity.x <= -_acceleration) _rigidBody.velocity = new Vector2(-_acceleration, _rigidBody.velocity.y);
-    }
+    void FUpdate() => transform.Translate(_directionVector * _creatureData.Speed * Time.deltaTime);   
+    
     void MUpdate()
     {
         
@@ -54,12 +51,13 @@ public class Player : Creature
     public override void Damage(int dmg, Creature Target)
     {
         if (isDamage == true) return;
-
         invincibilityDealy().Forget();
         blinkObject().Forget();
         KnockBack(Target.gameObject);
         _hp -= dmg;
-        if(_hp <= 0)
+        PostEventHp();
+      
+        if (_hp <= 0)
         {
             Death();
         }
@@ -71,5 +69,11 @@ public class Player : Creature
         await UniTask.Delay(invinvibilityDuration);
         isDamage = false;
     }
-
+    void PostEventHp()
+    {
+        Define.PlayerEvent_HPData data = new Define.PlayerEvent_HPData();
+        data.maxHp = _creatureData.MaxHP;
+        data.curHp = _hp;
+        Managers.Events.PostNotification(Define.GameEvent.playerHealthChange, this, data);
+    }
 }
