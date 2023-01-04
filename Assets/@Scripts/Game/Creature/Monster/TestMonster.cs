@@ -46,11 +46,6 @@ public class TestMonster : Creature
         _hpImg.fillAmount = (float)_hp / (float)_creatureData.MaxHP;
     }
    
-    void FUpdate()
-    {
-        // transform.Translate(_target.transform.position * _speed * Time.deltaTime);
-        //_rigid.MovePosition();
-    }
     private void OnCollisionStay2D(Collision2D collision)
     {
         Creature creature = collision.gameObject.GetComponent<Creature>();

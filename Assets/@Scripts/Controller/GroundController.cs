@@ -17,6 +17,8 @@ public class GroundController
 
     // 생성할 그라운드 리스트.
     IReadOnlyList<GameObject> GroundList;
+    GameObject prevWall;
+    GameObject frontWall;
 
     // 현재 생성된 그라운드 링크드 리스트 처음 끝 삭제가 빈번히 발생하기 때문에 링크드 리스트 활용.
     LinkedList<GameObject> _Grounds = new LinkedList<GameObject>();
@@ -30,6 +32,7 @@ public class GroundController
 
     }
 
+    
 
     //현재 그라운드 포지션. 링크드 리스트의 0 번째는 Prev 이기 때문에, +1 임.
     public float GetCurrentGroundPos() {
@@ -88,7 +91,7 @@ public class GroundController
         float pointCheck = _NextGround.transform.position.x + extendSize - 1;
         if(pointCheck <= _GameScene.PlayerGo.transform.position.x)
         {
-            PushNextGround().Forget();    
+            //PushNextGround().Forget();    
         }
     }
 
@@ -118,12 +121,12 @@ public class GroundController
     {
         CurrentGroundIdx();
         Vector2 pos = Vector2.zero;
-        GameObject prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
-        pos = new Vector2(-SpawnPosMath(_PreviousGround, prevWall, -1), pos.y);
-        prevWall.transform.position = pos;
+        //prevWall = _GameScene.WallObjects[(int)GameScene.Wall.Prev];
+        //pos = new Vector2(-SpawnPosMath(_PreviousGround, prevWall, -1), pos.y);
+        //prevWall.transform.position = pos;
 
 
-        GameObject frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
+       frontWall = _GameScene.WallObjects[(int)GameScene.Wall.Front];
         pos = new Vector2(SpawnPosMath(_NextGround, frontWall), pos.y);
         frontWall.transform.position = pos;
     }

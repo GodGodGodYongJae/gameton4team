@@ -26,7 +26,8 @@ public class CameraController : MonoBehaviour
     Transform _playerTransform;
     #endregion
 
-
+    Transform _prevWall;
+    Transform _nextWall;
     public void Init(GameScene gameScene)
     {
        _cam = this.GetComponent<Camera>();
@@ -36,37 +37,44 @@ public class CameraController : MonoBehaviour
         
        _height = _cam.orthographicSize;
        _width = _height * Screen.width / Screen.height;
+        _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
+        _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
+        Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
 
-        Managers.FixedUpdateAction += LimitCameraArea; 
+    }
+    float moveCenter, minMapSize, maxMapSize = 0;
+    void CameraUpdate()
+    {
+        //camera 포지션 잡기.
+        _cameraPosition.x = (_player.GetPlayerLeft() > 0) ? _player.Speed : -_player.Speed;
+        _cameraMoveSpeed = _player.Speed / 2;
+
+        float lx = -_width + transform.position.x;
+        if (lx > _prevWall.position.x) _prevWall.position = new Vector2(lx, _prevWall.position.y);
+
+        transform.position = Vector3.Lerp(transform.position, _playerTransform.position + _cameraPosition, Time.deltaTime * _cameraMoveSpeed);
+
+        if (moveCenter < _player.transform.position.x) moveCenter = _playerTransform.position.x;
+
+        minMapSize = _prevWall.position.x;
+        maxMapSize = _nextWall.position.x;
+        _mapSize.x = Mathf.Abs(minMapSize - maxMapSize) / 2;
+        _center.x = (Mathf.Abs(maxMapSize) - Mathf.Abs(minMapSize)) / 2 + _prevWall.position.x;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+        LimitCameraArea();
 
     }
 
     void LimitCameraArea()
     {
-        //camera 포지션 잡기.
-        _cameraPosition.x = (_player.GetPlayerLeft() > 0) ? 2 : -2;
-        _cameraMoveSpeed = _player.Speed / 2;
-        //_cameraPosition.x = _player.GetPlayerLeft() + 0.5f; 
-
-        //mapsize 
-        _mapSize.x = _scene.GroundContoroller.GetExtendSize();
-        //center 잡기.
-        _center.x = _scene.GroundContoroller.GetCurrentGroundPos();
-
-
-        transform.position = Vector3.Lerp(transform.position, _playerTransform.position + _cameraPosition, Time.deltaTime * _cameraMoveSpeed);
-
         float lx = _mapSize.x - _width;
         float clampX = Mathf.Clamp(transform.position.x, -lx + _center.x, lx + _center.x);
-        //float clampX = Mathf.Clamp(transform.position.x, _t1 ,_t2 );
 
         float ly = _mapSize.y - _height;
         float clampY = Mathf.Clamp(transform.position.y, -ly + _center.y, ly + _center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);
-      
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
