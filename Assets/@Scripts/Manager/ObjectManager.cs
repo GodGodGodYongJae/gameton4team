@@ -32,6 +32,8 @@ public class ObjectManager : MonoBehaviour
             _root = new GameObject { name = "@ObjectManager" };
         }
         GameObject Parent = (parent == null) ? _root : parent;
+
+
         Managers.Resource.Instantiate(AssetName, Parent.transform, (success) => {
             success.transform.position = pos;
             _singualrObject.Add(AssetName, success);
