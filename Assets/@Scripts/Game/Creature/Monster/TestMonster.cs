@@ -31,8 +31,10 @@ public class TestMonster : Creature
         //하드 코딩된 부분 추후 바꿔줘야함. 현재는 프로토타입 테스트를 위해 임시적으로 만듬 이거 나중에 CreatureHPBar 에서 관리해야 함.
         BoxCollider2D box = GetComponent<BoxCollider2D>();
         Vector2 pos = Vector2.zero;
-        pos +=  new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
-        _HPCanvas = await Managers.Object.InstantiateSingle(StringData.HealthBar, pos,this.gameObject);
+        _HPCanvas = await Managers.Object.InstantiateAsync(StringData.HealthBar, pos);
+        pos += new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
+        _HPCanvas.transform.parent = this.transform;
+        _HPCanvas.transform.position = pos;
         RectTransform rect = _HPCanvas.GetComponent<RectTransform>();
         rect.anchoredPosition = Vector2.zero;
         
@@ -43,14 +45,15 @@ public class TestMonster : Creature
     public override void Damage(int dmg, Creature Target)
     {
         base.Damage(dmg, Target);
+        if (transform.gameObject.activeSelf == false) return;
         _hpImg.fillAmount = (float)_hp / (float)_creatureData.MaxHP;
     }
-   
-    void FUpdate()
+    public override void Death()
     {
-        // transform.Translate(_target.transform.position * _speed * Time.deltaTime);
-        //_rigid.MovePosition();
+        Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
+        base.Death();
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         Creature creature = collision.gameObject.GetComponent<Creature>();
@@ -67,6 +70,7 @@ public class TestMonster : Creature
         float moveTime = 0;
         while (moveTime < 0.8f)
         {
+            if (transform.gameObject.activeSelf == false) return;
             float remainigDistance = (transform.position - _target.gameObject.transform.position).sqrMagnitude;
             Vector3 newPos = Vector3.MoveTowards(_rigid.position, _target.gameObject.transform.position, _creatureData.Speed * Time.deltaTime);
             _rigid.MovePosition(newPos);
@@ -81,6 +85,7 @@ public class TestMonster : Creature
     }
     async UniTaskVoid Move()
     {
+        if (transform.gameObject.activeSelf == false) return;
         float remainigDistance = (transform.position - _target.gameObject.transform.position).sqrMagnitude;
         while(remainigDistance > float.Epsilon)
         {
