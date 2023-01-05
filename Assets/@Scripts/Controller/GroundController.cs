@@ -51,6 +51,7 @@ public class GroundController
     // 처음 지형 생성.
     public async UniTaskVoid Init()
     {
+       
         int idx = 0;
         Vector2 pos = new Vector2(0, Define.GroundPosY);
         await CreateGround(pos, GroundList[idx].name);

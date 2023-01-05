@@ -42,12 +42,18 @@ public class Ground : MonoBehaviour
         SpawnedList.Clear();
         if (CreatureGenerator == null)
             return;
+        List<GameObject> getHealthBarList = Managers.Object.GetPoolObject(StringData.HealthBar);
+        if ( getHealthBarList == null)
+        {
+           await Managers.Object.RegisterObject(StringData.HealthBar, CreatureGenerator.SpawnMonsterList.Count);
+        }
 
         foreach (var item in CreatureGenerator.SpawnMonsterList)
         {
             Vector2 spawnPos = transform.position;
             spawnPos += item.spawnPos;
             GameObject go = await Managers.Object.InstantiateAsync(item.spawnObj.name, spawnPos);
+            Managers.Events.PostNotification(Define.GameEvent.SpawnMonster, this, go.GetComponent<Creature>());
             SpawnedList.AddLast(go.GetComponent<Creature>());
 
         }

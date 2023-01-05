@@ -14,7 +14,6 @@ public abstract class Creature : MonoBehaviour, IDamageble
     protected CreatureData _creatureData;
     protected Type _type; 
     protected int _hp;
-
     
     protected virtual void Awake()
     {
@@ -40,6 +39,7 @@ public abstract class Creature : MonoBehaviour, IDamageble
         
         transform.gameObject.SetActive(false);
         _hp = _creatureData.MaxHP;
+
     }
 
     private int blinkCount = 3;

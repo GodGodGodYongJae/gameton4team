@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestMonster : Creature
+public class TestMonster : Creature, IListener
 {
     Creature _target;
     Rigidbody2D _rigid;
@@ -15,11 +15,8 @@ public class TestMonster : Creature
         _type = Type.Monster;
         _rigid = GetComponent<Rigidbody2D>();
         _target = GameObject.Find(StringData.Player).GetComponent<Player>();
-
-
         CreateHpBar().Forget();
-        //Managers.FixedUpdateAction += FUpdate;
-        MoveDelay().Forget();
+        Managers.Events.AddListener(Define.GameEvent.SpawnMonster, Listene);
     }
 
     GameObject _HPCanvas;
@@ -54,7 +51,7 @@ public class TestMonster : Creature
         base.Death();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Creature creature = collision.gameObject.GetComponent<Creature>();
         if (creature == null) return;
@@ -63,8 +60,9 @@ public class TestMonster : Creature
         {
             creature.Damage(_creatureData.AttackDamage, this);
         }
-    }
 
+    }
+  
     async UniTaskVoid MoveDelay()
     {
         float moveTime = 0;
@@ -96,5 +94,16 @@ public class TestMonster : Creature
             await UniTask.WaitForFixedUpdate();
         }
         Move().Forget();
+    }
+
+
+    public void Listene(Define.GameEvent eventType, Component Sender, object param = null)
+    {
+        if(eventType == Define.GameEvent.SpawnMonster && (Creature)param == this)
+        {
+            MoveDelay().Forget();
+            _hpImg.fillAmount = (float)_hp / (float)_creatureData.MaxHP;
+        }
+
     }
 }
