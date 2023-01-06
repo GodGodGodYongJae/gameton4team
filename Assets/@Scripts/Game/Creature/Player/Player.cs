@@ -13,6 +13,7 @@ public class Player : Creature
         Jump,
         Damage,
         Death,
+        End
     }
 
     Vector2 _directionVector;
@@ -20,7 +21,7 @@ public class Player : Creature
     private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
     public void PlayerActionAdd(PlayerActionKey key, Action action)
     {
-        PlayerAction.Add(key,action);
+        PlayerAction[key] += action;
     }
     public float Speed {get{ return _creatureData.Speed; } }
     public float GetPlayerLeft()
@@ -38,6 +39,11 @@ public class Player : Creature
         _directionVector = Vector2.right;
         SwipeController = new SwipeController();
         PostEventHp();
+        //액션 초기화.
+        for (int i = 0; i < (int)PlayerActionKey.End; i++)
+        {
+            PlayerAction.Add((PlayerActionKey)i, null);
+        }
         PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         
@@ -61,6 +67,7 @@ public class Player : Creature
         _directionVector = _directionVector * -1;
         transform.localScale = new Vector2(_directionVector.x, 1);
     }
+
     float _jumpForce = 7f;
     void Jump()
     {
