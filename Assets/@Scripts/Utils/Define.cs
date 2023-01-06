@@ -34,6 +34,8 @@ public class Define
     private const int _poolGroundSize = 5;
     // 그라운드 생성 y값 위치 
     private const float _groundPosY = -5f;
+
     public static int PoolGroundSize => _poolGroundSize;
     public static float GroundPosY => _groundPosY;
+    
 }
