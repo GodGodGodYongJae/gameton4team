@@ -51,7 +51,7 @@ public class Sword : Weapon
         Creature creature = collision.GetComponent<Creature>();
         if (creature == null) return;
 
-        if(creature.GetType() == Creature.Type.Monster)
+        if(creature.GetType == Creature.Type.Monster)
         {
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);

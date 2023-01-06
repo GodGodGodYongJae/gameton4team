@@ -12,8 +12,9 @@ public class Define
     public enum GameEvent 
     {
         playerHealthChange,
-        playerDead,
         monsterDestroy,
+        SpawnMonster,
+        playerEvents,
     }
 
     public enum SceneType 
@@ -30,9 +31,11 @@ public class Define
     }
 
     // 풀링할 그라운드 숫자.
-    private const int _poolGroundSize = 3;
+    private const int _poolGroundSize = 5;
     // 그라운드 생성 y값 위치 
     private const float _groundPosY = -5f;
+
     public static int PoolGroundSize => _poolGroundSize;
     public static float GroundPosY => _groundPosY;
+    
 }

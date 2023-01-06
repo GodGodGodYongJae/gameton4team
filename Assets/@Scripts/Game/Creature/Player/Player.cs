@@ -1,79 +1,63 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Creature
+public sealed partial class Player : Creature
 {
+    public enum PlayerActionKey
+    { 
+        None,
+        Direction,
+        Jump,
+        Damage,
+        Death,
+        End
+    }
 
-    Vector2 _directionVector;
-    public float Speed {get{ return _creatureData.Speed; } }
-    public float GetPlayerLeft()
+    private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
+    public void PlayerActionAdd(PlayerActionKey key, Action action)
     {
-        return _directionVector.x;
+        PlayerAction[key] += action;
     }
-    public int GetPlayerDamage()
-    {
-        return _creatureData.AttackDamage;
-    }
+
     protected override void Awake()
     {
         base.Awake();
-        _type = Type.Player;
-        _directionVector = Vector2.right;
-        
         PostEventHp();
-
-        Managers.UpdateAction += MUpdate;
-        Managers.FixedUpdateAction += FUpdate;
-    }
-    // 차후 Move 자체를 Component로 빼야하거나 분리해야함.
-
-    void FUpdate() => transform.Translate(_directionVector * _creatureData.Speed * Time.deltaTime);   
-    
-    void MUpdate()
-    {
-        
-        if(Input.touchCount > 0)
+        for (int i = 0; i < (int)PlayerActionKey.End; i++)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                _directionVector = _directionVector * -1;
-                transform.localScale = new Vector2(_directionVector.x, 1);
-            }
-       
+            PlayerAction.Add((PlayerActionKey)i, null);
+        }
+        Managers.Events.AddListener(Define.GameEvent.playerEvents, PlayerActionCall);
+        Init();
+    }
+
+    private void PlayerActionCall(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.playerEvents)
+        {
+            PlayerActionKey key = (PlayerActionKey)param;
+            PlayerAction[key]?.Invoke();
         }
     }
-
-    bool isDamage = false;
-    int invinvibilityDuration = 3000;
-    public override void Damage(int dmg, Creature Target)
-    {
-        if (isDamage == true) return;
-        invincibilityDealy().Forget();
-        blinkObject().Forget();
-        KnockBack(Target.gameObject);
-        _hp -= dmg;
-        PostEventHp();
-      
-        if (_hp <= 0)
-        {
-            Death();
-        }
-    }
-
-    private async UniTaskVoid invincibilityDealy()
-    {
-        isDamage = true;;
-        await UniTask.Delay(invinvibilityDuration);
-        isDamage = false;
-    }
-    void PostEventHp()
+    private void PostEventHp()
     {
         Define.PlayerEvent_HPData data = new Define.PlayerEvent_HPData();
         data.maxHp = _creatureData.MaxHP;
         data.curHp = _hp;
         Managers.Events.PostNotification(Define.GameEvent.playerHealthChange, this, data);
     }
+    #region Getter
+    public float GetPlayerLeft()
+    {
+        return directionVector.x;
+    }
+    public float Speed { get { return _creatureData.Speed; } }
+    public int GetPlayerDamage()
+    {
+        return _creatureData.AttackDamage;
+    }
+    #endregion
 }

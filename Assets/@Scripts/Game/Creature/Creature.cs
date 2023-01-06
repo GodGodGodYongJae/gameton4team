@@ -14,16 +14,16 @@ public abstract class Creature : MonoBehaviour, IDamageble
     protected CreatureData _creatureData;
     protected Type _type; 
     protected int _hp;
-
-    
+    protected Rigidbody2D _rigid;
     protected virtual void Awake()
     {
         _hp = _creatureData.MaxHP;
-
+        _rigid = GetComponent<Rigidbody2D>();
     }
-    public virtual Type GetType()
-    { return _type; }
+    public new Type GetType  => _type;
 
+
+    #region 데미지 처리 공용 함수
     public virtual void Damage(int dmg, Creature Target)
     {
         _hp -= dmg;
@@ -35,12 +35,8 @@ public abstract class Creature : MonoBehaviour, IDamageble
         }
     }
     
-    public virtual void Death()
-    {
-        
-        transform.gameObject.SetActive(false);
-        _hp = _creatureData.MaxHP;
-    }
+    public virtual void Death()=> transform.gameObject.SetActive(false);
+
 
     private int blinkCount = 3;
     protected async UniTaskVoid blinkObject()
@@ -57,8 +53,6 @@ public abstract class Creature : MonoBehaviour, IDamageble
     }
 
     private int knockBackStrength = 7, knockBackdelay = 150;
-
-  
 
     protected void KnockBack(GameObject sender)
     {
@@ -77,4 +71,5 @@ public abstract class Creature : MonoBehaviour, IDamageble
         await UniTask.Delay(knockBackdelay);
         rigid.velocity = Vector2.zero;
     }
+    #endregion
 }
