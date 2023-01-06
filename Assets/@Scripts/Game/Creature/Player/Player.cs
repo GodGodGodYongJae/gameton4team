@@ -1,12 +1,27 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Creature
 {
+    public enum PlayerActionKey
+    { 
+        None,
+        Direction,
+        Jump,
+        Damage,
+        Death,
+    }
 
     Vector2 _directionVector;
+    SwipeController SwipeController;
+    private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
+    public void PlayerActionAdd(PlayerActionKey key, Action action)
+    {
+        PlayerAction.Add(key,action);
+    }
     public float Speed {get{ return _creatureData.Speed; } }
     public float GetPlayerLeft()
     {
@@ -21,29 +36,36 @@ public class Player : Creature
         base.Awake();
         _type = Type.Player;
         _directionVector = Vector2.right;
-        
+        SwipeController = new SwipeController();
         PostEventHp();
-
-        Managers.UpdateAction += MUpdate;
-        Managers.FixedUpdateAction += FUpdate;
-    }
-    // 차후 Move 자체를 Component로 빼야하거나 분리해야함.
-
-    void FUpdate() => transform.Translate(_directionVector * _creatureData.Speed * Time.deltaTime);   
-    
-    void MUpdate()
-    {
+        PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
+        PlayerActionAdd(PlayerActionKey.Jump, Jump);
         
-        if(Input.touchCount > 0)
+        Managers.Events.AddListener(Define.GameEvent.playerEvents, PlayerActionCall);
+        Managers.FixedUpdateAction += Move;
+    }
+
+    private void PlayerActionCall(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.playerEvents)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                _directionVector = _directionVector * -1;
-                transform.localScale = new Vector2(_directionVector.x, 1);
-            }
-       
+            PlayerActionKey key = (PlayerActionKey)param;
+            PlayerAction[key]?.Invoke();
         }
+    }
+
+    void Move() => transform.Translate(_directionVector * _creatureData.Speed * Time.deltaTime);   
+
+    void ChangeDirection()
+    {
+        _directionVector = _directionVector * -1;
+        transform.localScale = new Vector2(_directionVector.x, 1);
+    }
+    float _jumpForce = 7f;
+    void Jump()
+    {
+        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
+        rigid.velocity = new Vector2(rigid.velocity.x, _jumpForce);
     }
 
     bool isDamage = false;

@@ -12,9 +12,9 @@ public class Define
     public enum GameEvent 
     {
         playerHealthChange,
-        playerDead,
         monsterDestroy,
         SpawnMonster,
+        playerEvents,
     }
 
     public enum SceneType 
