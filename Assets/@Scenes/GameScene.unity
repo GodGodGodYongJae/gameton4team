@@ -345,69 +345,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &811859094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 811859096}
-  - component: {fileID: 811859095}
-  m_Layer: 0
-  m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &811859095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811859094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11b11817daa5435f92b04440958b38a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefabObj: {fileID: 2264593362713716666, guid: 4fd99ad1026eb4676b6ed98658f868a9, type: 3}
-  _savedUnitList:
-  - {fileID: 4595164367683578934, guid: 91eca1b0927a8044baa8119c48234785, type: 3}
-  - {fileID: 7779570712083168331, guid: bd989e7caf249274e949663af4a3b991, type: 3}
-  _startPos: {x: 0, y: -2.5}
-  _addPos: {x: 1.5, y: 2.5}
-  _columnNum: 5
-  _playerPool: {fileID: 1886223289}
-  _playerList:
-  - {fileID: 0}
-  - {fileID: 0}
-  _nowObj: {fileID: 0}
-  _playerObjCircle: {fileID: 0}
-  _goalObjCircle: {fileID: 0}
-  _camera: {fileID: 0}
-  _generate: 0
-  _bg: {fileID: 0}
-  _screenShot: 0
-  _screenShotSize: 2
---- !u!4 &811859096
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811859094}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.189668, y: 4.8328905, z: 44.546844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &846737161
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +486,7 @@ Transform:
   m_Children:
   - {fileID: 1886223289}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1174961834
 PrefabInstance:

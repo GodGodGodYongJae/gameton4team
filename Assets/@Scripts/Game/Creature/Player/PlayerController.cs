@@ -25,12 +25,18 @@ public partial class Player
     #region 조작 및 이동관련
     void Move() => transform.Translate(directionVector * _creatureData.Speed * Time.deltaTime);
 
-    void Jump() => _rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce);
+    void Jump() 
+    { 
+        if(_rigid.velocity.y == 0)
+        {
+             _rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce);
+        }
+    }
+
 
     void ChangeDirection()
     {
         directionVector = directionVector * -1;
-        //이쪽 봐야함 
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
     #endregion
