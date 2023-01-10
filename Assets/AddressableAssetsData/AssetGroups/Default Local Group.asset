@@ -30,7 +30,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1d1836c79bb7e6c44916161b2ee8f8b6
-    m_Address: Player
+    m_Address: Players
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 910f533a10384604e9e5248a96842992
@@ -55,6 +55,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 9d274bfef849b7243a952eec68fe9091
     m_Address: Ground3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 995ae8054780199468005f8cc8d3fbc0
+    m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

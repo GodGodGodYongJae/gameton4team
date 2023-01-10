@@ -25,12 +25,19 @@ public partial class Player
     #region 조작 및 이동관련
     void Move() => transform.Translate(directionVector * _creatureData.Speed * Time.deltaTime);
 
-    void Jump() => _rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce);
+    void Jump() 
+    { 
+        if(_rigid.velocity.y == 0)
+        {
+             _rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce);
+        }
+    }
+
 
     void ChangeDirection()
     {
         directionVector = directionVector * -1;
-        transform.localScale = new Vector2(directionVector.x, 1);
+        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
     #endregion
 
@@ -53,12 +60,43 @@ public partial class Player
         }
     }
 
+    //무적시간 
     private async UniTaskVoid invincibilityDealy()
     {
-        isDamage = true; ;
+        isDamage = true; 
         await UniTask.Delay(playerData.InvinvibilityDuration);
         isDamage = false;
     }
 
+
+    /*TODO ---
+    해당 부분 차후 리팩토링 필요함, 
+    */
+    [SerializeField]
+    public SPUM_SpriteList _root;
+    private int _blinkCount = 3;
+
+    bool spriteEnable = true;
+    protected override async UniTaskVoid blinkObject()
+    {
+
+        SPUM_SpriteList spum_List = _root;
+        List<List<SpriteRenderer>> AllSpriteList = spum_List.AllSpriteList;
+        
+        for (int i = 0; i < _blinkCount * 2; i++)
+        {
+            spriteEnable = !spriteEnable;
+            foreach (var item in AllSpriteList)
+            {
+                List<SpriteRenderer> spriteList = item;
+                foreach (var item2 in spriteList)
+                {
+                    item2.enabled = spriteEnable;
+                }
+            }
+            await UniTask.Delay(150);
+        }
+
+    }
     #endregion
 }

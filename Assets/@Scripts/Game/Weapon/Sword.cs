@@ -18,9 +18,8 @@ public class Sword : Weapon
 
     void FEffectFollow()
     {
-
-            effect.transform.position = (Vector2)transform.position + weaponData.EffectPos;
-       
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+         effect.transform.position = (Vector2)box.bounds.center;
     }
 
     public override async UniTaskVoid Attack()

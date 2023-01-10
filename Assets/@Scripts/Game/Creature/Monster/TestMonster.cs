@@ -16,7 +16,7 @@ public class TestMonster : Monster
         base.Damage(dmg, Target);
         creatureHPBar.Damage(_hp, _creatureData.MaxHP);
     }
-    public override void Death()
+    protected override void Death()
     {
         Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
         base.Death();
