@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Creature : MonoBehaviour, IDamageble
+public class Creature : MonoBehaviour, IDamageble
 {
     public enum Type { 
         Player,
@@ -35,11 +35,11 @@ public abstract class Creature : MonoBehaviour, IDamageble
         }
     }
     
-    public virtual void Death()=> transform.gameObject.SetActive(false);
+    protected virtual void Death()=> transform.gameObject.SetActive(false);
 
 
     private int blinkCount = 3;
-    protected async UniTaskVoid blinkObject()
+    protected virtual async UniTaskVoid blinkObject()
     {
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         for (int i = 0; i < blinkCount; i++)

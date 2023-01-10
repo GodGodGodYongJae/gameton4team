@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c30f31c7dcd041bbe46f5e06f6c29, type: 3}
   m_Name: Player_Defalut
   m_EditorClassIdentifier: 
-  _maxhp: 0
-  _speed: 0
-  _attackDmg: 0
-  _jumpForce: 0
-  _invinvibilityDuration: 0
+  _maxhp: 10
+  _speed: 2
+  _attackDmg: 3
+  _jumpForce: 7
+  _invinvibilityDuration: 3000
