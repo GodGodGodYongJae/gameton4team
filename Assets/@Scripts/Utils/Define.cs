@@ -34,8 +34,9 @@ public class Define
     private const int _poolGroundSize = 5;
     // 그라운드 생성 y값 위치 
     private const float _groundPosY = -5f;
-
+    // 풀링할 HPBAR 갯수
+    private const int _poolHpBar = 10;
     public static int PoolGroundSize => _poolGroundSize;
     public static float GroundPosY => _groundPosY;
-    
+    public static int PoolHpBar => _poolHpBar;
 }

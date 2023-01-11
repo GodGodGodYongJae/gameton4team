@@ -9,4 +9,8 @@ public class GroundGenerator : ScriptableObject
     GameObject[] _groundsPrefab;
 
     public IReadOnlyList<GameObject> Grounds => _groundsPrefab;
+    [SerializeField]
+    private float _chatperSize;
+
+    public float ChatperSize => _chatperSize;
 }

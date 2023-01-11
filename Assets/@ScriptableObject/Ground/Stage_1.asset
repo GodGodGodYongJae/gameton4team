@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 531670560232200445, guid: 910f533a10384604e9e5248a96842992, type: 3}
   - {fileID: 531670560232200445, guid: 9307d0644de886944bc22d0350efc9ae, type: 3}
   - {fileID: 531670560232200445, guid: 9d274bfef849b7243a952eec68fe9091, type: 3}
+  _chatperSize: 100
