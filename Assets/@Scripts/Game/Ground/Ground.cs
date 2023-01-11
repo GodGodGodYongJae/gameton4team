@@ -8,15 +8,17 @@ public class Ground : MonoBehaviour
 {
     [SerializeField]
     CreatureGenerator CreatureGenerator;
-
+    [SerializeField]
+    bool bossGround = false;
     LinkedList<Creature> SpawnedList = new LinkedList<Creature>();
 
     bool iscurrentGround = false;
     bool isspawned = false;
 
-    public int MonsterCount => (isSpawned || CreatureGenerator == null) ?SpawnedList.Count:-1;
+    //public int MonsterCount => (isSpawned || CreatureGenerator == null) ?SpawnedList.Count:-1;
     public bool isSpawned => isspawned;
-    public bool isHaveGenerator => CreatureGenerator != null;
+
+    public bool isBossGround => bossGround;
 
     private void Start()
     {
@@ -38,25 +40,19 @@ public class Ground : MonoBehaviour
 
     public async UniTaskVoid SpawnMonster()
     {
-      
+
         SpawnedList.Clear();
         if (CreatureGenerator == null)
             return;
-        List<GameObject> getHealthBarList = Managers.Object.GetPoolObject(StringData.HealthBar);
-        if ( getHealthBarList == null)
-        {
-           await Managers.Object.RegisterObject(StringData.HealthBar, CreatureGenerator.SpawnMonsterList.Count);
-        }
 
         foreach (var item in CreatureGenerator.SpawnMonsterList)
         {
             Vector2 spawnPos = transform.position;
             spawnPos += item.spawnPos;
-            GameObject go = await Managers.Object.InstantiateAsync(item.spawnObj.name, spawnPos);
-            Managers.Events.PostNotification(Define.GameEvent.SpawnMonster, this, go.GetComponent<Creature>());
+            GameObject go = await Managers.Monster.AddMonster(item.spawnObj.name, spawnPos);
             SpawnedList.AddLast(go.GetComponent<Creature>());
-
         }
+
         isspawned = iscurrentGround = true;
     }
 }

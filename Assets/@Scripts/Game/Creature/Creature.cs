@@ -4,15 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour, IDamageble
+public class Creature : MonoBehaviour
 {
-    public enum Type { 
+    public enum Type 
+    { 
         Player,
         Monster
     }
+    protected Type _type;
+    public new Type GetType => _type;
     [SerializeField]
     protected CreatureData _creatureData;
-    protected Type _type; 
+ 
     protected int _hp;
     protected Rigidbody2D _rigid;
     protected virtual void Awake()
@@ -20,7 +23,7 @@ public class Creature : MonoBehaviour, IDamageble
         _hp = _creatureData.MaxHP;
         _rigid = GetComponent<Rigidbody2D>();
     }
-    public new Type GetType  => _type;
+
 
 
     #region 데미지 처리 공용 함수

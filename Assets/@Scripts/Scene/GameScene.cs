@@ -61,7 +61,7 @@ public class GameScene : BaseScene
 
         #region DI
         //지형 DI
-        _groundController = new GroundController(this, _groundGenerator.Grounds);
+        _groundController = new GroundController(this, _groundGenerator);
         //카메라 DI
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.Init(this);
