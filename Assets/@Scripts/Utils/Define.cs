@@ -39,4 +39,6 @@ public class Define
     public static int PoolGroundSize => _poolGroundSize;
     public static float GroundPosY => _groundPosY;
     public static int PoolHpBar => _poolHpBar;
+
+
 }

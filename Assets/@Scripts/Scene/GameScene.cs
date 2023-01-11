@@ -20,6 +20,10 @@ public class GameScene : BaseScene
     [SerializeField]
     GameObject[] _wallObjects;
 
+    // 우선은 하드코딩, Destory 사용해야해서.
+    [SerializeField]
+    WeaponController WeaponController;
+
     GameObject _playerGo;
     Player _player;
     public GameObject[] WallObjects { get { return _wallObjects; } }
@@ -58,7 +62,9 @@ public class GameScene : BaseScene
         //Player 생성.
         _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
         _player = _playerGo.GetComponent<Player>();
-
+        WeaponController.root = _player._root;
+        WeaponController.Init();
+        WeaponController.WeaponChange(WeaponController.WeaponType.Weapon_Sword).Forget();
         #region DI
         //지형 DI
         _groundController = new GroundController(this, _groundGenerator);
@@ -75,7 +81,6 @@ public class GameScene : BaseScene
             await Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);
         }
         _groundController.Init().Forget();
-
     }
 
 }

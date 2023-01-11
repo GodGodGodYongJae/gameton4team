@@ -138,6 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 94005998}
   - component: {fileID: 94005997}
+  - component: {fileID: 94005999}
   m_Layer: 0
   m_Name: '@GameScene'
   m_TagString: Untagged
@@ -162,6 +163,7 @@ MonoBehaviour:
   _wallObjects:
   - {fileID: 8662862121317373236}
   - {fileID: 1455646297452626265}
+  WeaponController: {fileID: 94005999}
 --- !u!4 &94005998
 Transform:
   m_ObjectHideFlags: 0
@@ -177,6 +179,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &94005999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94005996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e511ce42898ccc4b89a284308ee91b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &247675171
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,6 +61,14 @@ MonoBehaviour:
     m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1f978d689b10af14dabe6c3bac7c627e
+    m_Address: Weapon_Sword
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ce823efba2b3b574084b58aa241a6416
+    m_Address: Weapon_Sword__data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:
