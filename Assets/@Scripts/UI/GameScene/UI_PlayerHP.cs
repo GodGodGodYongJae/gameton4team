@@ -20,8 +20,7 @@ public class UI_PlayerHP : MonoBehaviour
     {
         if (eventType == Define.GameEvent.playerHealthChange)
         {
-            Type t = Sender.GetType();
-            if (t == typeof(Player))
+            if (Utils.EqualSender<Player>(Sender))
             {
                 Define.PlayerEvent_HPData data = (Define.PlayerEvent_HPData)param;
                 maxVal = data.maxHp;

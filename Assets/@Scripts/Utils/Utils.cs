@@ -54,6 +54,12 @@ public class Utils
         return null;
     }
 
+
+    public static bool EqualSender<T>(Component Sender)
+    {
+        Type type = Sender.GetType();
+         return (type == typeof(T));
+    }
 	//public static string GetText(string textID)
 	//{
 	//	// TEMP : 일단은 한국어로

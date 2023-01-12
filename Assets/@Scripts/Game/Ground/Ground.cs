@@ -13,10 +13,8 @@ public class Ground : MonoBehaviour
     LinkedList<Creature> SpawnedList = new LinkedList<Creature>();
 
     bool iscurrentGround = false;
-    bool isspawned = false;
 
     //public int MonsterCount => (isSpawned || CreatureGenerator == null) ?SpawnedList.Count:-1;
-    public bool isSpawned => isspawned;
 
     public bool isBossGround => bossGround;
 
@@ -34,6 +32,8 @@ public class Ground : MonoBehaviour
             if (SpawnedList.Contains(creature))
             {
                 SpawnedList.Remove(creature);
+                if (isBossGround == true)
+                    Managers.Events.PostNotification(Define.GameEvent.stageClear, this, null);
             }
         }
     }
@@ -53,7 +53,7 @@ public class Ground : MonoBehaviour
             SpawnedList.AddLast(go.GetComponent<Creature>());
         }
 
-        isspawned = iscurrentGround = true;
+        iscurrentGround = true;
     }
 }
 

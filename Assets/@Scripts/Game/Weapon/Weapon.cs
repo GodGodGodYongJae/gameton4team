@@ -13,7 +13,8 @@ public abstract class Weapon : MonoBehaviour
     protected List<GameObject> damagedMonsterList = new List<GameObject>();
     public virtual void Start()
     {
-        player = this.gameObject.transform.parent.GetComponent<Player>();
+      GameObject pGO = Managers.Object.GetSingularObjet(StringData.Player);
+      player = pGO.GetComponent<Player>();
 
     }
     public abstract UniTaskVoid Attack();

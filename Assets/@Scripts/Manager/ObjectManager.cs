@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.WSA;
+using static UnityEngine.GraphicsBuffer;
+using Object = UnityEngine.Object;
 
-public class ObjectManager : MonoBehaviour
+public class ObjectManager 
 {
 
     private GameObject _root;
@@ -16,6 +19,7 @@ public class ObjectManager : MonoBehaviour
 
     private Dictionary<string, GameObject> _objectPoolList = new Dictionary<string, GameObject>();
 
+    private Dictionary<string, GameObject> _folderObjectList = new Dictionary<string, GameObject>();
     /// <summary>
     /// 단독으로 운영할 오브젝트 생성.
     /// </summary>
@@ -139,10 +143,11 @@ public class ObjectManager : MonoBehaviour
             GameObject folder = new GameObject();
             folder.name = "@" + AssetName;
             folder.transform.parent = _root.transform;
+            _folderObjectList.Add(AssetName,folder);
 
             for (int i = 0; i < ammount; i++)
             {
-                GameObject inst = Instantiate(success);
+                GameObject inst = Object.Instantiate(success);
                 inst.SetActive(false);
                 inst.transform.parent = folder.transform;
                 list.Add(inst);
@@ -206,7 +211,7 @@ public class ObjectManager : MonoBehaviour
         {
             GameObject folder = GameObject.Find("@" + name);
 
-            inst = Instantiate(sucess);
+            inst = Object.Instantiate(sucess);
             inst.SetActive(false);
             inst.transform.parent = folder.transform;
 
@@ -216,5 +221,37 @@ public class ObjectManager : MonoBehaviour
         // 로드할 때 까지 대기.
         await UniTask.WaitUntil(() => { return loadAwait == true; });
         return inst;
+    }
+
+    /// <summary>
+    /// 해당 오브젝트 풀링을 제거 하고 리소스도 해제 함. 
+    /// </summary>
+    /// <param name="AssetName"></param>
+    /// <returns></returns>
+    public void RemoveObjectPool(string AssetName)
+    {
+        GameObject folder;
+        if (_folderObjectList.TryGetValue(AssetName,out folder))
+        {
+            Object.Destroy(folder);
+            _folderObjectList.Remove(AssetName);
+            _objectPoolList.Remove(AssetName);
+            _poolList.Remove(AssetName);
+            Managers.Resource.Release(AssetName);
+        }
+    }
+    /// <summary>
+    /// 부모가 바뀐 Pool Object를 반환하는 코드 
+    /// </summary>
+    /// <param name="rtnGo"></param>
+    public void ReturnToParent(GameObject rtnGo)
+    {
+        GameObject Parentfolder;
+        string rtnGoAddressable = rtnGo.name.Replace("(Clone)", "").Trim();
+        if (_folderObjectList.TryGetValue(rtnGoAddressable, out Parentfolder))
+        {
+            rtnGo.transform.parent = Parentfolder.transform;
+            rtnGo.SetActive(false);
+        }
     }
 }

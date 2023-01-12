@@ -10,49 +10,36 @@ using Random = UnityEngine.Random;
 public class GroundController
 {
 
-    GameObject _PreviousGround;
-    GameObject _CurrentGround;
-    GameObject _NextGround;
+    GameObject previousGround;
+    GameObject currentGround;
+    GameObject nextGround;
 
     GameScene gameScene;
 
-    Ground _ground;
+    Ground ground;
 
     // 생성할 그라운드 리스트.
     IReadOnlyList<GameObject> groundList;
     float chatperSize = 0;
-
     GameObject frontWall;
-
     // 현재 생성된 그라운드 링크드 리스트 처음 끝 삭제가 빈번히 발생하기 때문에 링크드 리스트 활용.
     LinkedList<GameObject> grounds = new LinkedList<GameObject>();
-    // 이터레이터 같은 역할.
-  
+
+    GroundGenerator GroundGenerator;
+    bool isBossSpawned = false;
+
     // 생성자 GameScene DI 주입.
     public GroundController(GameScene gameScene, GroundGenerator GroundGenerator)
     {
         this.gameScene = gameScene;
-        this.groundList = GroundGenerator.Grounds;
-        this.chatperSize = GroundGenerator.ChatperSize;
+        this.GroundGenerator = GroundGenerator;
+        ChangeGroundGenerator(GroundGenerator);
+        Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
     }
-   
-    // Linked List에 등록된 Element들을 각 Ground에 동기화 해주는 메서드.
-    private void CurrentGroundIdx()
-    {
-        if (grounds.Count < 3) return;
-        LinkedListNode<GameObject> _GroundNode = grounds.First;
-        _PreviousGround  = _GroundNode.Value;
 
-        _GroundNode      = _GroundNode.Next;
-        _CurrentGround   = _GroundNode.Value;
-
-        _GroundNode      = _GroundNode.Next;
-        _NextGround      = _GroundNode.Value;
-    }
- 
 
     // 처음 지형 생성.
-    public async UniTaskVoid Init()
+    public async UniTaskVoid Init(Action callback = null)
     {
        
         int idx = 0;
@@ -71,20 +58,21 @@ public class GroundController
         }
         WallPosSet();
         CurrentGroundIdx();
+        callback?.Invoke();
         foreach (var item in grounds)
         {
            chatperSize -= ExtendSize(item);
         }
         Managers.FixedUpdateAction += CheckNextBound;
     }
-    bool isBossSpawned = false;
+ 
     void CheckNextBound()
     {
-        float extendSize = ExtendSize(_NextGround);
-        float pointCheck = _NextGround.transform.position.x + extendSize - 1;
+        float extendSize = ExtendSize(nextGround);
+        float pointCheck = nextGround.transform.position.x + extendSize - 1;
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
-            _ground = _NextGround.GetComponent<Ground>();
+            ground = nextGround.GetComponent<Ground>();
             if (chatperSize > 0)
             {
                 PushNextGround().Forget();
@@ -104,6 +92,7 @@ public class GroundController
                     GameObject go = grounds.Last.Value;
                     go.GetComponent<Ground>().SpawnMonster().Forget();
                     Managers.FixedUpdateAction -= CheckNextBound;
+                    
                 }
 
             }
@@ -114,7 +103,7 @@ public class GroundController
     async UniTaskVoid PushNextGround()
     {
         CurrentGroundIdx();
-        _PreviousGround.SetActive(false);
+        previousGround.SetActive(false);
         grounds.RemoveFirst();
 
         Debug.Log(chatperSize);
@@ -128,8 +117,8 @@ public class GroundController
         chatperSize -= ExtendSize(go);
 
         WallPosSet();
-        _ground = _NextGround.GetComponent<Ground>();
-        _ground.SpawnMonster().Forget();
+        ground = nextGround.GetComponent<Ground>();
+        ground.SpawnMonster().Forget();
     }
 
     void WallPosSet()
@@ -143,6 +132,27 @@ public class GroundController
     }
 
     #region private
+
+    private void ChangeGroundGenerator(GroundGenerator GroundGenerator)
+    {
+        this.groundList = GroundGenerator.Grounds;
+        this.chatperSize = GroundGenerator.ChatperSize;
+    }
+
+    // Linked List에 등록된 Element들을 각 Ground에 동기화 해주는 메서드.
+    private void CurrentGroundIdx()
+    {
+        if (grounds.Count < 3) return;
+        LinkedListNode<GameObject> GroundNode = grounds.First;
+        previousGround = GroundNode.Value;
+
+        GroundNode = GroundNode.Next;
+        currentGround = GroundNode.Value;
+
+        GroundNode = GroundNode.Next;
+        nextGround = GroundNode.Value;
+    }
+
     private float ExtendSize(GameObject go)
     {
         BoxCollider2D box = go.GetComponent<BoxCollider2D>();
@@ -165,7 +175,7 @@ public class GroundController
         Ground ground = null;
         do
         {
-            idx = Random.Range(0, grounds.Count-1);
+            idx = Random.Range(0, groundList.Count - 1);
             ground = groundList[idx].GetComponent<Ground>();
         }
         while (ground.isBossGround.Equals(true));
@@ -191,6 +201,26 @@ public class GroundController
         grounds.AddLast(go);
         callback?.Invoke(UniTask.CompletedTask);
         return go;
+    }
+
+    //스테이지 클리어 리스너
+    private void StageClear(GameEvent eventType, Component Sender, object param)
+    {
+        if (Utils.EqualSender<GameScene>(Sender) && Define.GameEvent.stageClear == eventType)
+        {
+            GroundGenerator groundGenerator = (GroundGenerator)param;
+            this.ChangeGroundGenerator(groundGenerator);
+            grounds.Clear();
+            foreach (var item in this.GroundGenerator.Grounds)
+            {
+                Managers.Object.RemoveObjectPool(item.name);
+                Debug.Log(item.name);
+            }
+            GroundGenerator = groundGenerator;
+            Init(() => gameScene.Player.InitPosition()).Forget();
+
+        }
+        
     }
     #endregion
 

@@ -1,7 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using Object = UnityEngine.Object;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController
 {
     //어드레서블, Weapon 스크립트 이름 enum값에 맞춰서 생성.
     //데이터 enum +_data 이름 값으로 생성.
@@ -13,35 +16,45 @@ public class WeaponController : MonoBehaviour
 
     public SPUM_SpriteList root { get; set; }
     private GameObject rHandGo;
-
-    public void Init()
+    private GameScene gameScene;
+    public WeaponController(GameScene gameScene)
     {
+        this.gameScene = gameScene;
+        root = gameScene.Player._root;
         rHandGo =  root._weaponList[0].gameObject;
-        
+        WeaponChange(WeaponType.Weapon_Sword).Forget();
     }
     //
     public async UniTaskVoid WeaponChange(WeaponType type)
     {
-
-        // await Managers.Object.InstantiateSingle("Sword", Vector2.zero, rHandGo);
         bool registered = false;
         SpriteRenderer spriteRenderer = rHandGo.GetComponent<SpriteRenderer>();
         BoxCollider2D box = rHandGo.GetComponent<BoxCollider2D>();
-        if (box != null) Destroy(box);
+        if (box != null) Object.Destroy(box);
 
         Weapon weapon = rHandGo.GetComponent<Weapon>();
-        if (weapon != null) Destroy(weapon);
+        if (weapon != null)
+        {
+            Managers.Resource.Release(type.ToString());
+            Managers.Resource.Release(type.ToString()+"_data");
+            Object.Destroy(weapon);
+        } 
 
         Managers.Resource.LoadAsync<Sprite>(type.ToString(), (success) =>
         {
             spriteRenderer.sprite = success;
             box = rHandGo.AddComponent<BoxCollider2D>();
+            box.isTrigger = true;
             registered = true;
         });
         await UniTask.WaitUntil(() => { return registered == true; });
         registered = false;
-        //스크립트 이름만 수정 하자... 
-        weapon = rHandGo.AddComponent<Sword>();
+        
+
+        Type t = Type.GetType(type.ToString());
+        rHandGo.AddComponent(t);
+
+        weapon = rHandGo.GetComponent<Weapon>();
 
         Managers.Resource.LoadAsync<ScriptableObject>(type.ToString()+"_data", (succss) =>
         {
