@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Creature : MonoBehaviour
@@ -15,13 +16,14 @@ public class Creature : MonoBehaviour
     public new Type GetType => _type;
     [SerializeField]
     protected CreatureData _creatureData;
- 
+    protected SpriteRenderer _sprite;
     protected int _hp;
     protected Rigidbody2D _rigid;
     protected virtual void Awake()
     {
         _hp = _creatureData.MaxHP;
         _rigid = GetComponent<Rigidbody2D>();
+         _sprite = GetComponent<SpriteRenderer>();
     }
 
 
@@ -40,19 +42,28 @@ public class Creature : MonoBehaviour
     
     protected virtual void Death()=> transform.gameObject.SetActive(false);
 
+    protected CancellationTokenSource cts = new CancellationTokenSource();
+
+    protected void OnEnable()
+    {
+        if (cts != null)
+        {
+            cts.Dispose();
+        }
+        cts = new CancellationTokenSource();
+    }
 
     private int blinkCount = 3;
     protected virtual async UniTaskVoid blinkObject()
     {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         for (int i = 0; i < blinkCount; i++)
         {
-            sprite.enabled = false;
-            await UniTask.Delay(150);
-            sprite.enabled = true;
-            await UniTask.Delay(150);
+            _sprite.enabled = false;
+            await UniTask.Delay(150, cancellationToken: cts.Token);
+            _sprite.enabled = true;
+            await UniTask.Delay(150, cancellationToken: cts.Token);
         }
-        sprite.enabled = true;
+        _sprite.enabled = true;
     }
 
     private int knockBackStrength = 7, knockBackdelay = 150;
@@ -71,7 +82,7 @@ public class Creature : MonoBehaviour
     private async UniTaskVoid ResetKnocback()
     {
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-        await UniTask.Delay(knockBackdelay);
+        await UniTask.Delay(knockBackdelay,cancellationToken: cts.Token);
         rigid.velocity = Vector2.zero;
     }
     #endregion

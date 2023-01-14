@@ -39,6 +39,11 @@ public partial class Player
         directionVector = directionVector * -1;
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
+    // 위치 초기화
+    public void InitPosition(float x = 0)
+    {
+        transform.position = new Vector2(x, transform.position.y);
+    }
     #endregion
 
     #region 데미지 관련

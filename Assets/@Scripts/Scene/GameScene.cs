@@ -15,13 +15,11 @@ public class GameScene : BaseScene
     UI_GameScene _gameSceneUI;
 
     [SerializeField]
-    GroundGenerator _groundGenerator;
+    GroundGenerator[] _groundGenerator;
 
     [SerializeField]
     GameObject[] _wallObjects;
 
-    // 우선은 하드코딩, Destory 사용해야해서.
-    [SerializeField]
     WeaponController WeaponController;
 
     GameObject _playerGo;
@@ -34,11 +32,14 @@ public class GameScene : BaseScene
 
     public GroundController GroundContoroller { get { return _groundController; } }
 
+
+    private int StageIdx = 0;
     protected override bool Init()
     {
 
         if (base.Init() == false)
             return false;
+
 
 
         SceneType = SceneType.GameScene;
@@ -48,9 +49,24 @@ public class GameScene : BaseScene
             _gameSceneUI = gameSceneUI;
         });
 
-      
+        Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
         WaitLoad().Forget();
         return true;
+    }
+
+    private void StageClear(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.stageClear && Utils.EqualSender<Ground>(Sender))
+        {
+            if (_groundGenerator.Length - 1 > StageIdx)
+                StageIdx++;
+
+
+            //TODO UI나 무기 교체 로직 다 진행하면 됨.
+
+            this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx])).Forget();
+        }
+
     }
 
     async UniTaskVoid WaitLoad()
@@ -62,25 +78,32 @@ public class GameScene : BaseScene
         //Player 생성.
         _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
         _player = _playerGo.GetComponent<Player>();
-        WeaponController.root = _player._root;
-        WeaponController.Init();
-        WeaponController.WeaponChange(WeaponController.WeaponType.Weapon_Sword).Forget();
+
+
         #region DI
+        //무기 DI 
+
+        WeaponController = new WeaponController(this); 
         //지형 DI
-        _groundController = new GroundController(this, _groundGenerator);
+        _groundController = new GroundController(this, _groundGenerator[StageIdx]);
         //카메라 DI
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.Init(this);
-       
+
         #endregion
 
         //지형 등록
         ////차후 Data 불러와서, 바꿔야 함.
-        foreach (var item in _groundGenerator.Grounds)
+        WaitLoadGround(() => _groundController.Init().Forget()).Forget();
+
+    }
+
+    async UniTaskVoid WaitLoadGround(Action callback = null)
+    {
+        foreach (var item in _groundGenerator[StageIdx].Grounds)
         {
             await Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);
         }
-        _groundController.Init().Forget();
+        callback?.Invoke();
     }
-
 }

@@ -15,6 +15,7 @@ public class Define
         monsterDestroy,
         SpawnMonster,
         playerEvents,
+        stageClear,
     }
 
     public enum SceneType 
@@ -31,7 +32,7 @@ public class Define
     }
 
     // 풀링할 그라운드 숫자.
-    private const int _poolGroundSize = 5;
+    private const int _poolGroundSize = 4;
     // 그라운드 생성 y값 위치 
     private const float _groundPosY = -5f;
     // 풀링할 HPBAR 갯수

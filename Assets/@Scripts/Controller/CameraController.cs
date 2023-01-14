@@ -1,9 +1,9 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.SceneView;
 
 public class CameraController : MonoBehaviour
 {
@@ -41,15 +41,28 @@ public class CameraController : MonoBehaviour
         
        _height = _cam.orthographicSize;
        _width = _height * Screen.width / Screen.height;
-        _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
-        _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
-        Cambox = this.AddComponent<BoxCollider2D>();
-        Cambox.isTrigger = true;
-        Cambox.size = new Vector2(_width,_height)*2;
-        Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
+       _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
+       _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
 
+       Cambox = this.AddComponent<BoxCollider2D>();
+       Cambox.isTrigger = true;
+       Cambox.size = new Vector2(_width,_height)*2;
+
+       Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
+       Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
 
     }
+
+    private void StageClear(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.stageClear && Utils.EqualSender<GameScene>(Sender))
+        {
+            transform.position = new Vector3(0, 0, -10);
+            float lx = -_width + transform.position.x;
+            _prevWall.position = new Vector2(lx, _prevWall.position.y);
+        }
+    }
+
     float minMapSize, maxMapSize = 0;
     void CameraUpdate()
     {

@@ -66,7 +66,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ce823efba2b3b574084b58aa241a6416
-    m_Address: Weapon_Sword__data
+    m_Address: Weapon_Sword_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b42f341ae18c69a4fa9b5e96717980f1
+    m_Address: Ground3_S2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0236876147630ff49a7781e854d60e9e
+    m_Address: Ground_S2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d733de71873af342ac644ee23f589fc
+    m_Address: Ground2_S2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c9c6e2b33a26574a867a40b724ef467
+    m_Address: Ground_Test
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
