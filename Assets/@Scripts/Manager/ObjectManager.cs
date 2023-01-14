@@ -136,6 +136,7 @@ public class ObjectManager
     {
         bool registered = false;
         List<GameObject> list = new List<GameObject>();
+
         Managers.Resource.LoadAsync<GameObject>(AssetName, (success) => {
 
             _objectPoolList.Add(AssetName, success);

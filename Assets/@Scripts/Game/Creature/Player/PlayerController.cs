@@ -40,9 +40,9 @@ public partial class Player
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
     // 위치 초기화
-    public void InitPosition()
+    public void InitPosition(float x = 0)
     {
-        transform.position = new Vector2(0, transform.position.y);
+        transform.position = new Vector2(x, transform.position.y);
     }
     #endregion
 

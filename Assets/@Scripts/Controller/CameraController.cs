@@ -41,13 +41,15 @@ public class CameraController : MonoBehaviour
         
        _height = _cam.orthographicSize;
        _width = _height * Screen.width / Screen.height;
-        _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
-        _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
-        Cambox = this.AddComponent<BoxCollider2D>();
-        Cambox.isTrigger = true;
-        Cambox.size = new Vector2(_width,_height)*2;
-        Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
-        Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
+       _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
+       _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
+
+       Cambox = this.AddComponent<BoxCollider2D>();
+       Cambox.isTrigger = true;
+       Cambox.size = new Vector2(_width,_height)*2;
+
+       Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
+       Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
 
     }
 

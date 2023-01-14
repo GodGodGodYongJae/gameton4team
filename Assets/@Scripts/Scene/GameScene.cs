@@ -40,7 +40,8 @@ public class GameScene : BaseScene
         if (base.Init() == false)
             return false;
 
-        
+
+
         SceneType = SceneType.GameScene;
 
         Managers.UI.ShowSceneUI<UI_GameScene>(callback: (gameSceneUI) =>
@@ -57,16 +58,13 @@ public class GameScene : BaseScene
     {
         if(eventType == Define.GameEvent.stageClear && Utils.EqualSender<Ground>(Sender))
         {
-            if (_groundGenerator.Length > StageIdx)
+            if (_groundGenerator.Length - 1 > StageIdx)
                 StageIdx++;
 
 
             //TODO UI나 무기 교체 로직 다 진행하면 됨.
 
-
-            this.WaitLoadGround(
-                ()=>Managers.Events.PostNotification(Define.GameEvent.stageClear,this, _groundGenerator[StageIdx]))
-                .Forget();
+            this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx])).Forget();
         }
 
     }

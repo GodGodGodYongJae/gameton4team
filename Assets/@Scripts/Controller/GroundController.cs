@@ -39,7 +39,7 @@ public class GroundController
 
 
     // 처음 지형 생성.
-    public async UniTaskVoid Init(Action callback = null)
+    public async UniTaskVoid Init()
     {
        
         int idx = 0;
@@ -56,16 +56,25 @@ public class GroundController
             iter = iter.Next;
             //idx = Random.Range(0, GroundList.Count);
         }
+        
         WallPosSet();
         CurrentGroundIdx();
-        callback?.Invoke();
         foreach (var item in grounds)
         {
+            MoveToGround(item);
            chatperSize -= ExtendSize(item);
         }
+        gameScene.Player.InitPosition();
+       
         Managers.FixedUpdateAction += CheckNextBound;
     }
  
+    // Pool 시작시 맨 마지막 그라운드에 위치해야 함.
+    // nextGround.x 값을 가져와서.. 포지션을 다 빼줘야 할 것 같음 인자로 받아서 for문.
+    void MoveToGround(GameObject go)
+    {
+
+    }
     void CheckNextBound()
     {
         float extendSize = ExtendSize(nextGround);
@@ -97,8 +106,7 @@ public class GroundController
 
             }
         }
-
-        
+  
     }
     async UniTaskVoid PushNextGround()
     {
@@ -159,6 +167,7 @@ public class GroundController
 
         return box.bounds.extents.x;
     }
+
     float SpawnPosMath(GameObject a, GameObject b, float back = 1)
     {
         BoxCollider2D _a = a.GetComponent<BoxCollider2D>();
@@ -217,7 +226,8 @@ public class GroundController
                 Debug.Log(item.name);
             }
             GroundGenerator = groundGenerator;
-            Init(() => gameScene.Player.InitPosition()).Forget();
+
+            Init().Forget();
 
         }
         

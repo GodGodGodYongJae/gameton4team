@@ -47,13 +47,20 @@ public class TestMonster : Monster
         float moveTime = 0;
         while (moveTime < 0.8f)
         {
-            float remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
-            Vector3 newPos = Vector3.MoveTowards(_rigid.position, target.gameObject.transform.position, _creatureData.Speed * Time.deltaTime);
-            _rigid.MovePosition(newPos);
-            remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
+            try
+            {
+                float remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
+                Vector3 newPos = Vector3.MoveTowards(_rigid.position, target.gameObject.transform.position, _creatureData.Speed * Time.deltaTime);
+                _rigid.MovePosition(newPos);
+                remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
 
-            await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
-            moveTime += Time.deltaTime;
+                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                moveTime += Time.deltaTime;
+            }
+            catch
+            {
+                await UniTask.Yield();
+            }
 
         }
         await UniTask.Delay(1500, cancellationToken: movects.Token);
