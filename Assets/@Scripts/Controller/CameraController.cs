@@ -40,6 +40,9 @@ public class CameraController : MonoBehaviour
        _playerTransform = _player.transform;
         
        _height = _cam.orthographicSize;
+        _mapSize.y = _height;
+        _center.y = _height / 2;
+
        _width = _height * Screen.width / Screen.height;
        _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
        _nextWall = _scene.WallObjects[(int)GameScene.Wall.Front].transform;
@@ -54,7 +57,7 @@ public class CameraController : MonoBehaviour
 
     public void SetPositionX(float x)
     {
-        transform.position = new Vector3(x, 0, -10);
+        transform.position = new Vector3(x, transform.position.y, -10);
         float lx = -_width + transform.position.x;
         _prevWall.position = new Vector2(lx, _prevWall.position.y);
     }
