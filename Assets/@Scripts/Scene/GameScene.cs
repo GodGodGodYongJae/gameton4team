@@ -100,6 +100,9 @@ public class GameScene : BaseScene
 
     async UniTaskVoid WaitLoadGround(Action callback = null)
     {
+
+        _groundController.ClearPrevStageData();
+
         foreach (var item in _groundGenerator[StageIdx].Grounds)
         {
             await Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);

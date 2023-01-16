@@ -49,19 +49,16 @@ public class CameraController : MonoBehaviour
        Cambox.size = new Vector2(_width,_height)*2;
 
        Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
-       Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
 
     }
 
-    private void StageClear(Define.GameEvent eventType, Component Sender, object param)
+    public void SetPositionX(float x)
     {
-        if(eventType == Define.GameEvent.stageClear && Utils.EqualSender<GameScene>(Sender))
-        {
-            transform.position = new Vector3(0, 0, -10);
-            float lx = -_width + transform.position.x;
-            _prevWall.position = new Vector2(lx, _prevWall.position.y);
-        }
+        transform.position = new Vector3(x, 0, -10);
+        float lx = -_width + transform.position.x;
+        _prevWall.position = new Vector2(lx, _prevWall.position.y);
     }
+
 
     float minMapSize, maxMapSize = 0;
     void CameraUpdate()

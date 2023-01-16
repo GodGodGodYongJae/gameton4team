@@ -41,7 +41,7 @@ public class GroundController
     // 처음 지형 생성.
     public async UniTaskVoid Init()
     {
-       
+
         int idx = 0;
         Vector2 pos = new Vector2(0, Define.GroundPosY);
         await CreateGround(pos, groundList[idx].name);
@@ -54,27 +54,22 @@ public class GroundController
             pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value),pos.y);
             go.transform.position = pos;
             iter = iter.Next;
-            //idx = Random.Range(0, GroundList.Count);
         }
         
         WallPosSet();
         CurrentGroundIdx();
         foreach (var item in grounds)
         {
-            MoveToGround(item);
            chatperSize -= ExtendSize(item);
         }
-        gameScene.Player.InitPosition();
-       
+
+        float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
+        gameScene.Player.InitPosition(initPosX);
+        CameraController cam = Camera.main.GetComponent<CameraController>();
+        cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
     }
  
-    // Pool 시작시 맨 마지막 그라운드에 위치해야 함.
-    // nextGround.x 값을 가져와서.. 포지션을 다 빼줘야 할 것 같음 인자로 받아서 for문.
-    void MoveToGround(GameObject go)
-    {
-
-    }
     void CheckNextBound()
     {
         float extendSize = ExtendSize(nextGround);
@@ -138,7 +133,15 @@ public class GroundController
         pos = new Vector2(SpawnPosMath(iter.Value, frontWall), pos.y);
         frontWall.transform.position = pos;
     }
-
+    public void ClearPrevStageData()
+    {
+        grounds.Clear();
+        foreach (var item in this.GroundGenerator.Grounds)
+        {
+            Managers.Object.RemoveObjectPool(item.name);
+            Debug.Log(item.name);
+        }
+    }
     #region private
 
     private void ChangeGroundGenerator(GroundGenerator GroundGenerator)
@@ -215,23 +218,17 @@ public class GroundController
     //스테이지 클리어 리스너
     private void StageClear(GameEvent eventType, Component Sender, object param)
     {
-        if (Utils.EqualSender<GameScene>(Sender) && Define.GameEvent.stageClear == eventType)
+        if (Define.GameEvent.stageClear == eventType && Utils.EqualSender<GameScene>(Sender))
         {
-            GroundGenerator groundGenerator = (GroundGenerator)param;
-            this.ChangeGroundGenerator(groundGenerator);
-            grounds.Clear();
-            foreach (var item in this.GroundGenerator.Grounds)
-            {
-                Managers.Object.RemoveObjectPool(item.name);
-                Debug.Log(item.name);
-            }
-            GroundGenerator = groundGenerator;
-
+            GroundGenerator = (GroundGenerator)param; 
+            this.ChangeGroundGenerator(GroundGenerator);
             Init().Forget();
 
         }
         
     }
+
+ 
     #endregion
 
 
