@@ -42,8 +42,6 @@ public class SwipeController
                 }
                 Managers.Events.PostNotification(Define.GameEvent.playerEvents, null, ActionKey);
             }
-
-           
         }
     }
 }

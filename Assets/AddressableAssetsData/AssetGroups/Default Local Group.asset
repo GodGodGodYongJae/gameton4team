@@ -85,6 +85,50 @@ MonoBehaviour:
     m_Address: Ground_Test
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 8fae86f3c5bd6ff46a00e24a76b3b276
+    m_Address: Weapon_Wand_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 50cec5886e99309488af5032ac672a30
+    m_Address: Weapon_Spear_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 38b1d5768e0021340bf6b8ec90a18fa8
+    m_Address: Weapon_Bow_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8cadc3d77617a3b46bfc2fbe35ff7ba8
+    m_Address: Weapon_Ax_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b4b89f40bb1a9ca46811566c7d879c5f
+    m_Address: Weapon_Ax_n_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb88bbd95760bf646a84043ada8cea01
+    m_Address: Flash_01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1e9744b7414e9845940f6bd20e2bc40
+    m_Address: Weapon_Bow_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 94078d5d52350de44a184f394b478d77
+    m_Address: Weapon_Spear_n_data
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3ba3965967fb2be4196fc5ac147239cc
+    m_Address: Weapon_Wand_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5eef787398b2467448b468463bed56cc
+    m_Address: Flash_02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5637d824b1b28bf47be1b987c3b2e19e
+    m_Address: Flash_06
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

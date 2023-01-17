@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon_Sword : Weapon
+public class Weapon_Spear_n : Weapon
 {
     GameObject effect = null;
     //SpriteRenderer sprite;
@@ -15,12 +15,11 @@ public class Weapon_Sword : Weapon
 
     }
 
-    Vector2 v1 = new Vector2(0.2f, 0f);
+
     void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-        effect.transform.position = (Vector2)box.bounds.center + v1;
-
+        effect.transform.position = (Vector2)box.bounds.center + Vector2.right;
     }
 
     public override async UniTaskVoid Attack()
@@ -56,6 +55,7 @@ public class Weapon_Sword : Weapon
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
+            
 
     }
 }

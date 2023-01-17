@@ -22,9 +22,11 @@ public sealed partial class Player : Creature
         PlayerAction[key] += action;
     }
 
+    private Animator animator;
     protected override void Awake()
     {
         base.Awake();
+        animator = GetComponentInChildren<Animator>();
         PostEventHp();
         for (int i = 0; i < (int)PlayerActionKey.End; i++)
         {

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
-  m_Name: Weapon_Sword
+  m_Name: Weapon_Bow_n
   m_EditorClassIdentifier: 
   attackDmg: 1
   attackDealay: 500
   attackDuration: 500
-  skilEffect: {fileID: 8578447339511797204, guid: 5637d824b1b28bf47be1b987c3b2e19e, type: 3}
+  skilEffect: {fileID: 0}
   effectPos: {x: 0, y: 0}
