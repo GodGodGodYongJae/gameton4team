@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_OrcWarriror
   m_EditorClassIdentifier: 
-  _maxhp: 10
-  _speed: 3
+  _maxhp: 60
+  _speed: 30
   _attackDmg: 1
   _visibility: 3.5
   _attackRange: 3
   _attackDealy: 100
   _moveDealy: 1
-  _moveTime: 1.2
+  _moveTime: 3

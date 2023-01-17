@@ -1,12 +1,20 @@
 ﻿using Cysharp.Threading.Tasks;
+using MonsterLove.StateMachine;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SPUM_Monster : Monster
 {
+   protected enum States
+    {
+        IDLE,
+        MOVE,
+        ATTACK,
+        DEATH
+    }
 
 
-  [SerializeField]
+    [SerializeField]
     public SPUM_SpriteList _root;
     private int _blinkCount = 3;
 
@@ -14,10 +22,18 @@ public class SPUM_Monster : Monster
     List<List<SpriteRenderer>> AllSpriteList;
     bool spriteEnable = true;
 
+    protected StateMachine<States> fsm;
+    protected SPUM_Prefabs sPUM_Prefab;
     protected override void Awake()
     {
         base.Awake();
         AllSpriteList = _root.AllSpriteList;
+        monsterData = (MonsterData)_creatureData;
+        sPUM_Prefab = _root.gameObject.GetComponent<SPUM_Prefabs>();
+    }
+    protected void Update()
+    {
+        fsm.Driver.Update.Invoke();
     }
     protected override async UniTaskVoid blinkObject()
     {
@@ -25,7 +41,7 @@ public class SPUM_Monster : Monster
         {
             spriteEnable = !spriteEnable;
             spriteListEnable(spriteEnable);
-            await UniTask.Delay(150);
+            await UniTask.Delay(150, cancellationToken: cts.Token);
         }
     }
     protected override void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
@@ -36,6 +52,8 @@ public class SPUM_Monster : Monster
             spriteListEnable(true); // blink 때문에 UniTask Cancle 시 Pooling 되었을 시 꺼짐.
             moveAction?.Invoke();
             CreateHpBar(() => { creatureHPBar.Damage(_hp, _creatureData.MaxHP); }).Forget();
+            fsm.ChangeState(States.IDLE);
+            
         }
     }
 

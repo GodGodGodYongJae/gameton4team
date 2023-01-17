@@ -35,6 +35,11 @@ public class SPUM_Prefabs : MonoBehaviour
     }
     private void Awake() {
         InitAnimPair();
+        _spriteOBj.ResyncData();
+        foreach (var item in _nameToHashPair)
+        {
+            Debug.Log(item.Key);
+        }
     }
     private void Start() {
         UnitTypeChanged.AddListener(InitAnimPair);
