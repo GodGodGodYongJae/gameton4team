@@ -85,6 +85,10 @@ MonoBehaviour:
     m_Address: Ground_Test
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 607abc9f1b362ff499eab1eb46315016
+    m_Address: OrcWarrior
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

@@ -14,16 +14,20 @@ public class Monster : Creature
 
     protected  GameObject HPCanvas;
     protected CreatureHPBar creatureHPBar;
+    protected MonsterData monsterData;
     protected override void Awake()
     {
         base.Awake();
         _type = Type.Monster;
         target = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
         Managers.Events.AddListener(Define.GameEvent.SpawnMonster, SpawnListen);
+        monsterData = (MonsterData)_creatureData;
     }
     protected override void Death()
     {
         cts.Cancel();
+        Managers.Object.ReturnToParent(HPCanvas);
+        Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
         base.Death();
     }
     protected virtual void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
@@ -38,7 +42,7 @@ public class Monster : Creature
     }
 
 
-    private async UniTaskVoid CreateHpBar(Action action = null)
+    protected async UniTaskVoid CreateHpBar(Action action = null)
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
         Vector2 pos = Vector2.zero;
