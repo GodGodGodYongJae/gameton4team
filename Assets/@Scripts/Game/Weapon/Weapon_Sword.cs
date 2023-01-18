@@ -7,6 +7,7 @@ using UnityEngine;
 public class Weapon_Sword : Weapon
 {
     GameObject effect = null;
+    WeaponData weapondata;
     //SpriteRenderer sprite;
     public override void Start()
     {
@@ -19,7 +20,7 @@ public class Weapon_Sword : Weapon
     void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-        effect.transform.position = (Vector2)box.bounds.center + v1;
+        effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
 
     }
 

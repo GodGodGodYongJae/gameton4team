@@ -22,14 +22,20 @@ public class Level : MonoBehaviour
 
     public void GetExp()
     {
-        curExp += 3;
+        curExp += 1;
+        SETExp();
         if(curExp >= maxExp)
         {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
             curExp = curExp - maxExp;
             level++;
-            maxExp = maxExp * 2;
-        }
-        SETExp();
+            maxExp = maxExp + 10;
+            SETExp();
     }
 
     public void SETExp()

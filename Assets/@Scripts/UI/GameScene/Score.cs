@@ -9,7 +9,7 @@ public class Score : MonoBehaviour
     BestScore bS;
     public static int score = 0;
     public static int bestScore = 0;
-    //점수로 보상줄 수 있음
+
     public void Start()
     {
         score = 0;
