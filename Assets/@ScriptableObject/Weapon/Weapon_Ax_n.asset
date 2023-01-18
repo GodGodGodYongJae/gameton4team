@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDmg: 1
   attackDealay: 700
-  attackDuration: 700
+  attackDuration: 300
   skilEffect: {fileID: 1063918882999393564, guid: eb88bbd95760bf646a84043ada8cea01, type: 3}
   effectPos: {x: 3, y: 0}

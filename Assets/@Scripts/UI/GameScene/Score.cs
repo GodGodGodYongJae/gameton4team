@@ -21,10 +21,6 @@ public class Score : MonoBehaviour
     public void GetKillScore()
     {
         score += 10;
-        if (score > bestScore)
-        {
-            bestScore = score;
-        }
         SetScore();
         bS.SetBestScore();
     }
@@ -32,16 +28,16 @@ public class Score : MonoBehaviour
     public void GetDistanceScore()
     {
         score += (int)GroundController.chatperSize;
-        if (score > bestScore)
-        {
-            bestScore = score;
-        }
         SetScore();
         bS.SetBestScore();
     }
 
     public void SetScore()
     {
+        if (score > bestScore)
+        {
+            bestScore = score;
+        }
         text.text = score.ToString();
     }
 }

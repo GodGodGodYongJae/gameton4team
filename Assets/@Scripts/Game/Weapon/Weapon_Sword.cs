@@ -16,7 +16,6 @@ public class Weapon_Sword : Weapon
 
     }
 
-    Vector2 v1 = new Vector2(0.2f, 0f);
     void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
@@ -57,6 +56,5 @@ public class Weapon_Sword : Weapon
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-
     }
 }
