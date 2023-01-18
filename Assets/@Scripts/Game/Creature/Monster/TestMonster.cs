@@ -22,12 +22,6 @@ public class TestMonster : Monster
         MoveDelay().Forget();
         creatureHPBar.Damage(_hp, _creatureData.MaxHP);
     }
-    protected override void Death()
-    {
-        base.Death();
-        Managers.Object.ReturnToParent(HPCanvas);
-        Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
