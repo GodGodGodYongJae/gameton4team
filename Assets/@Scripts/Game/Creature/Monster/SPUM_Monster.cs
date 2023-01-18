@@ -58,7 +58,7 @@ public class SPUM_Monster : Monster
         }
     }
 
-    private void spriteListEnable(bool enable)
+    protected void spriteListEnable(bool enable)
     {
         foreach (var item in AllSpriteList)
         {
