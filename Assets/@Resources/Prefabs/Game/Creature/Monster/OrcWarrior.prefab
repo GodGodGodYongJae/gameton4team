@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creatureData: {fileID: 11400000, guid: ff08604e6a0d51d4bbcdf4e1b9668566, type: 2}
-  _root: {fileID: 5092643062243597501}
+  sPUM_Prefab: {fileID: 8161726656686998952}
   AttackBox: {fileID: 7202434286156352108}
   attackAnimSync: 1
 --- !u!70 &6045233594650145758
@@ -167,6 +167,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4236022436352110011}
     m_Modifications:
+    - target: {fileID: 2810119578989947782, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
+      propertyPath: _hairListString.Array.data[0]
+      value: UM/SPUM_Sprites/Packages/Ver300/0_Hair/New_Hair_06.pngair/New_Hair_06.png
+      objectReference: {fileID: 0}
     - target: {fileID: 4616374800602248245, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -259,6 +263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5646278456742214979, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 8217110281079600167, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
       propertyPath: m_Name
       value: Until000
@@ -270,14 +278,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4616374800602248245, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
   m_PrefabInstance: {fileID: 6940960978829047611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5092643062243597501 stripped
+--- !u!114 &8161726656686998952 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2810119578989947782, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1231585078511514259, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
   m_PrefabInstance: {fileID: 6940960978829047611}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baea2e9758e554909b2367e396d9c5a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 28ac21711b0ec40a0812d33a586eb7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -15,7 +15,8 @@ public class SPUM_Monster : Monster
 
 
     [SerializeField]
-    public SPUM_SpriteList _root;
+    protected SPUM_Prefabs sPUM_Prefab;
+    private SPUM_SpriteList _root;
     private int _blinkCount = 3;
 
 
@@ -23,13 +24,13 @@ public class SPUM_Monster : Monster
     bool spriteEnable = true;
 
     protected StateMachine<States> fsm;
-    protected SPUM_Prefabs sPUM_Prefab;
     protected override void Awake()
     {
         base.Awake();
-        AllSpriteList = _root.AllSpriteList;
         monsterData = (MonsterData)_creatureData;
-        sPUM_Prefab = _root.gameObject.GetComponent<SPUM_Prefabs>();
+        _root = sPUM_Prefab._spriteOBj;
+        AllSpriteList = _root.AllSpriteList;
+   
     }
     protected void Update()
     {

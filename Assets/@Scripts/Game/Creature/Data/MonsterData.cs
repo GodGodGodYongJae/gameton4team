@@ -11,7 +11,7 @@ public class MonsterData : CreatureData
     private float _visibility;
     [SerializeField]
     [Tooltip("사정거리")]
-    private int _attackRange;
+    private float _attackRange;
     [SerializeField]
     [Tooltip("공격 재사용 시간 ms 단위")]
     private int _attackDealy;
@@ -22,7 +22,7 @@ public class MonsterData : CreatureData
     [Tooltip("이동시간")]
     private float _moveTime;
     public float Visibility => _visibility;
-    public int AttackRange => _attackRange;
+    public float AttackRange => _attackRange;
     public int AttackDealy => _attackDealy;
     public int MoveDealy => _moveDealy;
 

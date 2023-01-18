@@ -20,7 +20,7 @@ public class OrcWarrior : SPUM_Monster
     BoxCollider2D AttackBox;
 
     [SerializeField]
-    private float attackAnimSync = 1.0f;
+    private float attackAnimSync = 0.5f;
     protected override void Awake()
     {
         base.Awake();
@@ -50,6 +50,7 @@ public class OrcWarrior : SPUM_Monster
     {
         float distance = Vector2.Distance(transform.position, target.transform.position);
         attackDealy -= Time.deltaTime;
+        Debug.Log(distance + "," + attackDealy);
         if (distance <= monsterData.AttackRange && 
             attackDealy <= 0)
         {
@@ -69,7 +70,7 @@ public class OrcWarrior : SPUM_Monster
     void MOVE_Enter()
     {
         sPUM_Prefab.PlayAnimation("1_Run");
-        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(-transform.localScale.x);
+        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2( direction, transform.localScale.y);
     }
     //이동가능한 시간 
@@ -82,7 +83,10 @@ public class OrcWarrior : SPUM_Monster
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)
             {
-                fsm.ChangeState(States.ATTACK);
+                if(attackDealy <= 0)
+                    fsm.ChangeState(States.ATTACK);
+                else
+                    fsm.ChangeState(States.IDLE);
             }
 
             float remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
@@ -100,11 +104,11 @@ public class OrcWarrior : SPUM_Monster
     }
     IEnumerator ATTACK_Enter()
     {
+        sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         //TODO
         AttackBox.enabled = true;
         yield return new WaitForSeconds(attackAnimSync);
         AttackBox.enabled = false;
-        sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }
