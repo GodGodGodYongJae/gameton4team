@@ -89,6 +89,14 @@ MonoBehaviour:
     m_Address: OrcWarrior
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: d26fc7993567f5741b76fbf4e15c00f5
+    m_Address: SkeletonSpearman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff178e3fda90e1e45bba320ecbb7bc43
+    m_Address: Berserk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

@@ -18,7 +18,6 @@ public class ScarceAssasin : SPUM_Monster
     [Tooltip("보여질 거리")]
     float showDistance = 1.0f;
 
-    bool isHide = false;
     [SerializeField]
     private float attackAnimSync = 0.5f;
     protected override void Awake()
@@ -77,19 +76,16 @@ public class ScarceAssasin : SPUM_Monster
     float moveTime = 0;
     void MOVE_Update()
     {
-
         if (moveTime < monsterData.MoveTime)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
-           if(distance <= showDistance && isHide == true)
+            if (distance <= showDistance)
             {
-                isHide = false;
-                spriteListEnable(!isHide);
+                spriteListEnable(true);
             }
-           else if(distance > showDistance && isHide == false)
+           else
             {
-                isHide = true;
-                spriteListEnable(!isHide);
+                spriteListEnable(false);
             }
 
             if (distance <= monsterData.AttackRange)

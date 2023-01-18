@@ -45,12 +45,12 @@ public class Berserk : SPUM_Monster
     void IDLE_Update()
     {
         float distance = Vector2.Distance(transform.position, target.transform.position);
-        attackDealy -= Time.deltaTime;
+        attackDealy += Time.deltaTime;
 
-        if (distance <= monsterData.AttackRange &&
-            attackDealy <= 0)
+        if (attackDealy >= monsterData.AttackDealy)
         {
-            fsm.ChangeState(States.ATTACK);
+            Observable.Timer(TimeSpan.FromMilliseconds(1000))
+             .Subscribe(_ => fsm.ChangeState(States.ATTACK));
         }
         else
         {
@@ -100,28 +100,33 @@ public class Berserk : SPUM_Monster
         }
 
     }
-    private float attackTime = 3.0f;
-    IEnumerator ATTACK_Enter()
+    private float attackTime = 4f;
+    Vector2 pos;
+    void ATTACK_Enter()
     {
-        attackTime = 3.0f;
-        yield return new WaitForSeconds(1);
+        attackTime = 4f;
+        pos = target.gameObject.transform.position;
+        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+        transform.localScale = new Vector2(direction, transform.localScale.y);
+    }
+    void ATTACK_Update()
+    {
         sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         //TODO
         AttackBox.enabled = true;
-        Vector2 pos = target.gameObject.transform.position * 2;
 
-        while (attackTime <= 0)
+        Vector3 newPos = Vector3.MoveTowards(_rigid.position, pos, monsterData.Speed * Time.deltaTime * 2.5f);
+        newPos.y = transform.position.y;
+        _rigid.MovePosition(newPos);
+        attackTime -= Time.deltaTime;
+
+        if (attackTime <= 0 || _rigid.position == pos)
         {
-            Vector3 newPos = Vector3.MoveTowards(_rigid.position, pos , monsterData.Speed * Time.deltaTime * 10);
-            newPos.y = transform.position.y;
-            _rigid.MovePosition(newPos);
-            attackTime -= Time.deltaTime;
-            yield return new WaitForFixedUpdate();
+            this.attackDealy = 0;
+            AttackBox.enabled = false;
+            fsm.ChangeState(States.IDLE);
+            
         }
-
-        AttackBox.enabled = false;
-        this.attackDealy = monsterData.AttackDealy;
-        fsm.ChangeState(States.IDLE);
     }
     #endregion
 
