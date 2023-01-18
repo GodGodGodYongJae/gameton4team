@@ -15,7 +15,6 @@ public sealed partial class Player : Creature
         Death,
         End
     }
-
     private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
     public void PlayerActionAdd(PlayerActionKey key, Action action)
     {

@@ -20,7 +20,7 @@ public class Weapon_Ax_n : Weapon
     void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-         effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos; ;
+        effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
     }
 
     public override async UniTaskVoid Attack()
