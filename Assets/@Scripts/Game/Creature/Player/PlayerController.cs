@@ -61,7 +61,7 @@ public partial class Player
 
         if (_hp <= 0)
         {
-            Death();
+            animator.SetBool("Death", true);
         }
     }
 

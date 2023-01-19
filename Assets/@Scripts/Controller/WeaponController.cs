@@ -11,7 +11,10 @@ public class WeaponController
     public enum WeaponType
     {
         Weapon_Sword,
-        Weapon_Aex
+        Weapon_Ax_n,
+        Weapon_Spear_n,
+        Weapon_Bow_n,
+        Weapon_Wand_n
     }
 
     public SPUM_SpriteList root { get; set; }
@@ -21,10 +24,11 @@ public class WeaponController
     {
         this.gameScene = gameScene;
         root = gameScene.Player._root;
-        rHandGo =  root._weaponList[0].gameObject;
+        rHandGo =  root._weaponList[2].gameObject;
         WeaponChange(WeaponType.Weapon_Sword).Forget();
     }
-    //
+
+   
     public async UniTaskVoid WeaponChange(WeaponType type)
     {
         bool registered = false;

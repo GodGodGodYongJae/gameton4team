@@ -16,6 +16,7 @@ public class WeaponData : ScriptableObject
     GameObject skilEffect;
     [SerializeField]
     Vector2 effectPos;
+
     public Vector2 EffectPos { get { return effectPos; } }
     public int AttackDamge { get { return attackDmg; } }
     public int AttackDealay { get { return attackDealay; } }

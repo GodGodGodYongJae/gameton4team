@@ -4630,7 +4630,7 @@ Animator:
   m_GameObject: {fileID: 2739969051454638901}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 26ffa10eafef1de43b955c9ca29ca1f6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5334,7 +5334,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2739969051687733187}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.5, z: -0.024999999}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6231,7 +6231,7 @@ GameObject:
   - component: {fileID: 4993487991063847406}
   - component: {fileID: 7205115877988797418}
   - component: {fileID: 6886048371330377679}
-  - component: {fileID: 651809870030645391}
+  - component: {fileID: 2117903148}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -6319,7 +6319,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7329086, y: -0.0000003874302}
+  m_Offset: {x: 1.3551532, y: -0.0000003874302}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.061386757, y: 0.5000008}
@@ -6330,9 +6330,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6709678, y: 0.516129}
+  m_Size: {x: 2.915457, y: 0.516129}
   m_EdgeRadius: 0
---- !u!114 &651809870030645391
+--- !u!114 &2117903148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

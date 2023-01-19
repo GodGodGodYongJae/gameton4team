@@ -14,6 +14,8 @@ public class Monster : Creature
 
     protected  GameObject HPCanvas;
     protected CreatureHPBar creatureHPBar;
+    Score score;
+    Level level;
     protected MonsterData monsterData;
     public MonsterData MonsterData => monsterData; 
     protected override void Awake()
@@ -22,15 +24,21 @@ public class Monster : Creature
         _type = Type.Monster;
         target = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
         Managers.Events.AddListener(Define.GameEvent.SpawnMonster, SpawnListen);
+        score = FindObjectOfType<Score>();
+        level = FindObjectOfType<Level>();  
         
     }
+
     protected override void Death()
     {
+        score.GetKillScore();
+        level.GetExp();
         cts.Cancel();
         Managers.Object.ReturnToParent(HPCanvas);
         Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
         base.Death();
     }
+
     protected virtual void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
     {
         if (eventType == Define.GameEvent.SpawnMonster && (Creature)param == this)

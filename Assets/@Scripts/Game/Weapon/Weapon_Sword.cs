@@ -7,6 +7,7 @@ using UnityEngine;
 public class Weapon_Sword : Weapon
 {
     GameObject effect = null;
+    WeaponData weapondata;
     //SpriteRenderer sprite;
     public override void Start()
     {
@@ -15,11 +16,11 @@ public class Weapon_Sword : Weapon
 
     }
 
-
     void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-         effect.transform.position = (Vector2)box.bounds.center;
+        effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
+
     }
 
     public override async UniTaskVoid Attack()
@@ -55,7 +56,5 @@ public class Weapon_Sword : Weapon
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-            
-
     }
 }
