@@ -50,7 +50,7 @@ public class SkeletonSpearman : SPUM_Monster
     {
         float distance = Vector2.Distance(transform.position, target.transform.position);
         attackDealy -= Time.deltaTime;
-        Debug.Log(distance + "," + attackDealy);
+
         if (distance <= monsterData.AttackRange &&
             attackDealy <= 0)
         {
@@ -74,6 +74,8 @@ public class SkeletonSpearman : SPUM_Monster
         transform.localScale = new Vector2(direction, transform.localScale.y);
         MoveSync().Forget();
     }
+
+
 
     async UniTaskVoid MoveSync()
     {
@@ -105,12 +107,18 @@ public class SkeletonSpearman : SPUM_Monster
         }
         fsm.ChangeState(States.IDLE);
     }
-    IEnumerator ATTACK_Enter()
+
+    void ATTACK_Enter()
+    {
+        AttackAsync().Forget();
+    }
+
+    async UniTaskVoid AttackAsync()
     {
         sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         //TODO
         AttackBox.enabled = true;
-        yield return new WaitForSeconds(attackAnimSync);
+        await UniTask.Delay(1000, cancellationToken: cts.Token);
         AttackBox.enabled = false;
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_Slime
+  m_Name: Monster_Berserk02
   m_EditorClassIdentifier: 
-  _maxhp: 10
-  _speed: 7
-  _attackDmg: 3
-  _visibility: 0
-  _attackRange: 1.2
-  _attackDealy: 0
-  _moveDealy: 0
-  _moveTime: 0
+  _maxhp: 500
+  _speed: 10
+  _attackDmg: 15
+  _visibility: 1
+  _attackRange: 0
+  _attackDealy: 2
+  _moveDealy: 1
+  _moveTime: 1

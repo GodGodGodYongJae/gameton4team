@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_Slime2
+  m_Name: Monster_OrcWarriror02
   m_EditorClassIdentifier: 
-  _maxhp: 0
-  _speed: 0
-  _attackDmg: 0
-  _visibility: 0
-  _attackRange: 0
-  _attackDealy: 0
-  _moveDealy: 0
-  _moveTime: 1
+  _maxhp: 40
+  _speed: 3
+  _attackDmg: 12
+  _visibility: 3.5
+  _attackRange: 1.2
+  _attackDealy: 2
+  _moveDealy: 1
+  _moveTime: 3

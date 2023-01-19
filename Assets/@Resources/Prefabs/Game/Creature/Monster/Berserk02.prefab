@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8970345744777262597}
   - component: {fileID: 3919148836934502864}
   m_Layer: 7
-  m_Name: Berserk
+  m_Name: Berserk02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a5b023b050b48949afa16ea440b1e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureData: {fileID: 11400000, guid: c0dae7122169f7a418893ffc17534157, type: 2}
+  _creatureData: {fileID: 11400000, guid: afe3643c5864ed642924b5253f9392bc, type: 2}
   sPUM_Prefab: {fileID: 4507140910919961344}
   AttackBox: {fileID: 5507275432945389495}
   attackAnimSync: 0.5

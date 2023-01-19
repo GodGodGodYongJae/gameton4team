@@ -47,6 +47,7 @@ public class SPUM_Monster : Monster
             spriteListEnable(spriteEnable);
             await UniTask.Delay(150, cancellationToken: cts.Token);
         }
+        spriteListEnable(true);
     }
     protected override void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
     {

@@ -109,12 +109,17 @@ public class OrcWarrior : SPUM_Monster
         fsm.ChangeState(States.IDLE);
     }
 
-    IEnumerator ATTACK_Enter()
+    void ATTACK_Enter()
+    {
+        AttackAsync().Forget();
+    }
+
+    async UniTaskVoid AttackAsync()
     {
         sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         //TODO
         AttackBox.enabled = true;
-        yield return new WaitForSeconds(attackAnimSync);
+        await UniTask.Delay(1000, cancellationToken: cts.Token);
         AttackBox.enabled = false;
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);

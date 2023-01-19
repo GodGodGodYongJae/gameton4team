@@ -68,6 +68,7 @@ public class Berserk : SPUM_Monster
         sPUM_Prefab.PlayAnimation("1_Run");
         float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
+        MoveSync().Forget();
     }
     async UniTaskVoid MoveSync()
     {

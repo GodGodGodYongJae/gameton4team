@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e42c30f31c7dcd041bbe46f5e06f6c29, type: 3}
-  m_Name: Player_Defalut
+  m_Script: {fileID: 11500000, guid: 734a154a4f348d84bac953144acbaf68, type: 3}
+  m_Name: CreatureGenerator_test_boss02
   m_EditorClassIdentifier: 
-  _maxhp: 100
-  _speed: 2
-  _attackDmg: 15
-  _jumpForce: 7
-  _invinvibilityDuration: 3000
+  spawnMonsterList:
+  - spawnObj: {fileID: 1888443899762554797, guid: ff178e3fda90e1e45bba320ecbb7bc43, type: 3}
+    spawnPos: {x: 0, y: 5}

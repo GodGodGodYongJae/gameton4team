@@ -33,12 +33,8 @@ MonoBehaviour:
     m_Address: Players
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 910f533a10384604e9e5248a96842992
-    m_Address: Ground
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9307d0644de886944bc22d0350efc9ae
-    m_Address: Ground2
+  - m_GUID: 55b45a36c1e7cf945a75070a9e916269
+    m_Address: SkeletonSpearman2
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 78a1f199aac597847ba695ba20adaa43
@@ -53,10 +49,6 @@ MonoBehaviour:
     m_Address: Healthbar
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 9d274bfef849b7243a952eec68fe9091
-    m_Address: Ground3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 995ae8054780199468005f8cc8d3fbc0
     m_Address: Player
     m_ReadOnly: 0
@@ -69,20 +61,8 @@ MonoBehaviour:
     m_Address: Weapon_Sword_data
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: b42f341ae18c69a4fa9b5e96717980f1
-    m_Address: Ground3_S2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0236876147630ff49a7781e854d60e9e
-    m_Address: Ground_S2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6d733de71873af342ac644ee23f589fc
-    m_Address: Ground2_S2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8c9c6e2b33a26574a867a40b724ef467
-    m_Address: Ground_Test
+  - m_GUID: 9f90f933e0860264f80bb6d39e1819e0
+    m_Address: Berserk02
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8fae86f3c5bd6ff46a00e24a76b3b276
@@ -127,6 +107,8 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5637d824b1b28bf47be1b987c3b2e19e
     m_Address: Flash_06
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 607abc9f1b362ff499eab1eb46315016
     m_Address: OrcWarrior
     m_ReadOnly: 0
@@ -139,8 +121,8 @@ MonoBehaviour:
     m_Address: Berserk
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
-    m_Address: Ground_test2
+  - m_GUID: dcc570d48c00a424db7a9386d0140f82
+    m_Address: OrcWarrior2
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
