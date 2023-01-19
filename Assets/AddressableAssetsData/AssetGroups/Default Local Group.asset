@@ -97,6 +97,10 @@ MonoBehaviour:
     m_Address: Berserk
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
+    m_Address: Ground_test2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

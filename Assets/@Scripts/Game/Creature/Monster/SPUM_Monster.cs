@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using MonsterLove.StateMachine;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SPUM_Monster : Monster
@@ -19,7 +20,7 @@ public class SPUM_Monster : Monster
     private SPUM_SpriteList _root;
     private int _blinkCount = 3;
 
-
+    protected CancellationTokenSource movects = new CancellationTokenSource();
     List<List<SpriteRenderer>> AllSpriteList;
     bool spriteEnable = true;
 
@@ -36,6 +37,8 @@ public class SPUM_Monster : Monster
     {
         fsm.Driver.Update.Invoke();
     }
+
+
     protected override async UniTaskVoid blinkObject()
     {
         for (int i = 0; i < _blinkCount * 2; i++)
@@ -51,7 +54,6 @@ public class SPUM_Monster : Monster
         {
             _hp = _creatureData.MaxHP;
             spriteListEnable(true); // blink 때문에 UniTask Cancle 시 Pooling 되었을 시 꺼짐.
-            moveAction?.Invoke();
             CreateHpBar(() => { creatureHPBar.Damage(_hp, _creatureData.MaxHP); }).Forget();
             fsm.ChangeState(States.IDLE);
             
