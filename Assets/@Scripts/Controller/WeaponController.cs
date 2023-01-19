@@ -25,7 +25,7 @@ public class WeaponController
         this.gameScene = gameScene;
         root = gameScene.Player._root;
         rHandGo =  root._weaponList[2].gameObject;
-        WeaponChange(WeaponType.Weapon_Spear_n).Forget();
+        WeaponChange(WeaponType.Weapon_Sword).Forget();
     }
 
    

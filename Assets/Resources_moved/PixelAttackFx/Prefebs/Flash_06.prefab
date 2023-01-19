@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 8578447339511797207}
   - component: {fileID: 8578447339511797209}
   - component: {fileID: 8578447339511797206}
+  - component: {fileID: -3194806407012735322}
   m_Layer: 0
   m_Name: Flash_06
   m_TagString: Untagged
@@ -212,6 +213,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!210 &-3194806407012735322
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578447339511797204}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 7
 --- !u!1 &8578447341043283403
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,10 +14,13 @@ public class Level : MonoBehaviour
     public float level = 1;
     public float curExp = 0;
     public float maxExp = 10;
+    public Text Lv;
+    public Text Exp;
 
     private void Start()
     {
         expbar.value = (float)curExp;
+        SETExp();
     }
 
     public void GetExp()
@@ -41,6 +44,8 @@ public class Level : MonoBehaviour
     public void SETExp()
     {
         expbar.value = (float)curExp / (float)maxExp;
+        Lv.text = "LV." + level.ToString();
+        Exp.text = curExp.ToString() + " / " + maxExp.ToString();
     }
 }
 
