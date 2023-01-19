@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cba46329d72e84d919e6dcc86d0a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureData: {fileID: 11400000, guid: ff08604e6a0d51d4bbcdf4e1b9668566, type: 2}
+  _creatureData: {fileID: 11400000, guid: fd8875bc71b13454c947f9a1ee8d9bb0, type: 2}
   sPUM_Prefab: {fileID: 6001852041602879847}
   AttackBox: {fileID: 466923702627423601}
   attackAnimSync: 1
