@@ -69,15 +69,12 @@ public class Berserk : SPUM_Monster
         float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
     }
-    //이동가능한 시간 
-    float moveTime = 0;
-    void MOVE_Update()
+    async UniTaskVoid MoveSync()
     {
-
-        if (moveTime < monsterData.MoveTime)
+        float moveTime = 0;
+        while (moveTime < 0.8f && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
-
             if (distance <= monsterData.AttackRange)
             {
                 if (attackDealy <= 0)
@@ -86,20 +83,23 @@ public class Berserk : SPUM_Monster
                     fsm.ChangeState(States.IDLE);
             }
 
-            float remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
-            Vector3 newPos = Vector3.MoveTowards(_rigid.position, target.gameObject.transform.position, monsterData.Speed * Time.deltaTime);
-            newPos.y = transform.position.y;
-            _rigid.MovePosition(newPos);
-            remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
-            moveTime += Time.deltaTime;
-        }
-        if (moveTime > monsterData.MoveTime)
-        {
-            moveTime = 0;
-            fsm.ChangeState(States.IDLE);
-        }
+            try
+            {
+                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
+                Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+                _rigid.MovePosition(newPos);
+                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                moveTime += Time.deltaTime;
+            }
+            catch
+            {
+                await UniTask.Yield();
+            }
 
+        }
+        fsm.ChangeState(States.IDLE);
     }
+
     private float attackTime = 4f;
     Vector2 pos;
     void ATTACK_Enter()

@@ -23,7 +23,7 @@ public class Creature : MonoBehaviour
     {
         _hp = _creatureData.MaxHP;
         _rigid = GetComponent<Rigidbody2D>();
-         _sprite = GetComponent<SpriteRenderer>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
 
