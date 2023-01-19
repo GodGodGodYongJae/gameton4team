@@ -22,12 +22,6 @@ public class TestMonster : Monster
         MoveDelay().Forget();
         creatureHPBar.Damage(_hp, _creatureData.MaxHP);
     }
-    protected override void Death()
-    {
-        base.Death();
-        Managers.Object.ReturnToParent(HPCanvas);
-        Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,7 +39,7 @@ public class TestMonster : Monster
     {
       
         float moveTime = 0;
-        while (moveTime < 0.8f)
+        while (moveTime < 0.8f && _rigid.velocity.y == 0)
         {
             try
             {
@@ -73,7 +67,7 @@ public class TestMonster : Monster
         while(remainigDistance > float.Epsilon)
         {
             Vector3 newPos = Vector3.MoveTowards(_rigid.position,target.gameObject.transform.position, _creatureData.Speed * Time.deltaTime);
-            _rigid.MovePosition(newPos);
+            _rigid.AddForceAtPosition(newPos,transform.position);
             remainigDistance = (transform.position - target.gameObject.transform.position).sqrMagnitude;
 
             await UniTask.WaitForFixedUpdate();

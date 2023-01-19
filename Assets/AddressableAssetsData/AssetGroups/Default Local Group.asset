@@ -127,6 +127,20 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5637d824b1b28bf47be1b987c3b2e19e
     m_Address: Flash_06
+  - m_GUID: 607abc9f1b362ff499eab1eb46315016
+    m_Address: OrcWarrior
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d26fc7993567f5741b76fbf4e15c00f5
+    m_Address: SkeletonSpearman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ff178e3fda90e1e45bba320ecbb7bc43
+    m_Address: Berserk
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
+    m_Address: Ground_test2
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
