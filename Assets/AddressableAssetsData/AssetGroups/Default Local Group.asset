@@ -22,7 +22,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1d576b714af1bb040afcf6330aafce47
-    m_Address: UI_TitleScene_BG
+    m_Address: UI_TitleScene_BG2
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1bd7676ae6aa053468793bf86d81e303
@@ -123,6 +123,34 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: dcc570d48c00a424db7a9386d0140f82
     m_Address: OrcWarrior2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
+    m_Address: Ground_test01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bec2dc799139e1248afbb502f90823e9
+    m_Address: Ground_test02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0aa378a5500d2444ab62a0fe8b7b48ab
+    m_Address: Ground_test_boss01
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2665544aac5606c4a8ef8e83ddaca2bd
+    m_Address: Ground_test03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52c21aebaf07d554787c274e41b1fd15
+    m_Address: Ground_test04
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: edda85a8b9a43094ca564eeecb704179
+    m_Address: Ground_test_boss02
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75d158c58a9594647962e84602ba7180
+    m_Address: UI_TitleScene_BG
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

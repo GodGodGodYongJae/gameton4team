@@ -107,12 +107,19 @@ public class Berserk : SPUM_Monster
     {
         attackTime = 2f;
         pos = target.gameObject.transform.position;
-        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
-        transform.localScale = new Vector2(direction, transform.localScale.y);
-        AttackAsync().Forget();
+        Observable.Timer(TimeSpan.FromMilliseconds(1000)).
+            Subscribe(_ =>
+            {
+                float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+                transform.localScale = new Vector2(direction, transform.localScale.y);
+                AttackAsync().Forget();
+            }
+         );
+
     }
     async UniTaskVoid AttackAsync()
     {
+
         sPUM_Prefab.PlayAnimation("2_Attack_Normal");
         //TODO
         AttackBox.enabled = true;
@@ -121,14 +128,14 @@ public class Berserk : SPUM_Monster
 
         while(_rigid.position != targetPos)
         {
-            Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+            Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, (_creatureData.Speed*1.5f) * Time.deltaTime);
             _rigid.MovePosition(newPos);
             await UniTask.WaitForFixedUpdate(cancellationToken: cts.Token);
             attackTime -= Time.deltaTime;
             if (attackTime <= 0) break;
             Debug.Log(_rigid.position == targetPos);
         }
-        Debug.Log("222223131231");
+
         this.attackDealy = 0;
             AttackBox.enabled = false;
             fsm.ChangeState(States.IDLE);

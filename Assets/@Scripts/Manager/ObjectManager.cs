@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.WSA;
-using static UnityEngine.GraphicsBuffer;
 using Object = UnityEngine.Object;
 
 public class ObjectManager 

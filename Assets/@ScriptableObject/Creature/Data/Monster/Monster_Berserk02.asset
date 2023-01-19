@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Berserk02
   m_EditorClassIdentifier: 
   _maxhp: 500
-  _speed: 10
+  _speed: 5
   _attackDmg: 15
   _visibility: 1
   _attackRange: 0
