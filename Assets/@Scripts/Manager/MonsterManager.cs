@@ -60,4 +60,9 @@ public class MonsterManager
         }
        
     }
+    public void Clear()
+    {
+        spawndMonsterAddressable.Clear();
+        SpawnedList.Clear();
+    }
 }

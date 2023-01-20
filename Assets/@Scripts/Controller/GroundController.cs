@@ -79,11 +79,13 @@ public class GroundController
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
             ground = nextGround.GetComponent<Ground>();
+            Debug.Log(Managers.Monster.GetSpawnMonsterCount);
             if (chatperSize > 0)
             {
                 PushNextGround().Forget();
                 return;
             }
+  
             else if (Managers.Monster.GetSpawnMonsterCount == 0 )
             {
                 if(isBossSpawned == false)
