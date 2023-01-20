@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Weapon_Spear_n : Weapon
@@ -15,28 +16,37 @@ public class Weapon_Spear_n : Weapon
         base.Start();
 
     }
-
-
-    void FEffectFollow()
+    private void FixedUpdate()
     {
-        BoxCollider2D box = GetComponent<BoxCollider2D>();
-        effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
+        FEffectFollow();
     }
 
+    protected override void FEffectFollow()
+    {
+        BoxCollider2D box = GetComponent<BoxCollider2D>();
+        if (box == null) return;
+        try
+        {
+            effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
+        }
+        catch
+        {
+            return;
+        }
+
+    }
     public override async UniTaskVoid Attack()
     {
         damagedMonsterList.Clear();
         isAttack = true;
         effect = await weaponData.Effect();
-        Managers.FixedUpdateAction += FEffectFollow;
-        await UniTask.Delay(weaponData.AttackDuration);
-        Managers.FixedUpdateAction -= FEffectFollow;
+        await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
         effect.SetActive(false);
         effect = null;
 
         isAttack = false;
-        
-        await UniTask.Delay(weaponData.AttackDealay);
+
+        await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         Attack().Forget();
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -51,12 +61,17 @@ public class Weapon_Spear_n : Weapon
         Creature creature = collision.GetComponent<Creature>();
         if (creature == null) return;
 
-        if(creature.GetType == Creature.Type.Monster)
+        if (creature.GetType == Creature.Type.Monster)
         {
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-            
 
+
+    }
+    public override void ChangeWeaponFixedUpdateDelete()
+    {
+        cts.Dispose();
+        cts = new CancellationTokenSource();
     }
 }

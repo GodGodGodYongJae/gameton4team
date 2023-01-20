@@ -25,9 +25,19 @@ public class WeaponController
         root = gameScene.Player._root;
         rHandGo =  root._weaponList[2].gameObject;
         WeaponChange(WeaponType.Weapon_Sword).Forget();
+        Managers.Events.AddListener(Define.GameEvent.ChangeWeapon, ChangeWeapon);
     }
 
-   
+    private void ChangeWeapon(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.ChangeWeapon)
+        {
+            int weaponParam = (int)param;
+            WeaponChange((WeaponType)weaponParam).Forget();
+        }
+
+    }
+
     public async UniTaskVoid WeaponChange(WeaponType type)
     {
         bool registered = false;
@@ -38,6 +48,7 @@ public class WeaponController
         Weapon weapon = rHandGo.GetComponent<Weapon>();
         if (weapon != null)
         {
+            weapon.ChangeWeaponFixedUpdateDelete();
             Managers.Resource.Release(type.ToString());
             Managers.Resource.Release(type.ToString()+"_data");
             Object.Destroy(weapon);

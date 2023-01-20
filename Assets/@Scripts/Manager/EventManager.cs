@@ -31,5 +31,8 @@ public class EventManager
         }
     }
     public void RemoveEvent(Define.GameEvent eventType) => Listeners.Remove(eventType);
-
+    public void RemoveAll()
+    {
+        Listeners.Clear();
+    }
 }

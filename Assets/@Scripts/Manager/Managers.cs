@@ -23,6 +23,15 @@ public class Managers : Singleton<Managers>
     public static Action UpdateAction { get; set; }
     public static Action FixedUpdateAction { get; set; }
 
+    public static void OnDestorys() 
+    {
+        FixedUpdateAction = null;
+        UpdateAction = null;
+        Object.RemoveAll();
+        Events.RemoveAll();
+        Resource.Clear();
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -42,4 +51,5 @@ public class Managers : Singleton<Managers>
     {
         FixedUpdateAction?.Invoke();
     }
+
 }

@@ -43,12 +43,13 @@ public class Singleton<T> : MonoBehaviour where T : Component
                 DontDestroyOnLoad(gameObject);
             else
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
     }
     protected virtual void OnDestory()
     {
         instance = null;
+        Destroy(this.gameObject);
     }
 }

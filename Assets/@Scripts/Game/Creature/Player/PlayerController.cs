@@ -61,6 +61,8 @@ public partial class Player
 
         if (_hp <= 0)
         {
+            Time.timeScale = 0;
+            Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
             animator.SetBool("Death", true);
         }
     }

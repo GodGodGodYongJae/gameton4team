@@ -17,6 +17,7 @@ public class Define
         SpawnMonster,
         playerEvents,
         stageClear,
+        ChangeWeapon,
     }
 
     public enum SceneType

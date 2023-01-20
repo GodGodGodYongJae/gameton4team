@@ -222,6 +222,14 @@ public class ObjectManager
         return inst;
     }
 
+    public void RemoveAll()
+    {
+        this._folderObjectList.Clear();
+        this._objectPoolList.Clear();
+        this._poolList.Clear();
+        this._singualrObject.Clear();
+    }
+
     /// <summary>
     /// 해당 오브젝트 풀링을 제거 하고 리소스도 해제 함. 
     /// </summary>
