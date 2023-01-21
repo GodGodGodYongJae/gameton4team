@@ -21,10 +21,14 @@ public class MonsterData : CreatureData
     [SerializeField]
     [Tooltip("이동시간")]
     private float _moveTime;
+    [SerializeField]
+    private int _exp;
     public float Visibility => _visibility;
     public float AttackRange => _attackRange;
     public int AttackDealy => _attackDealy;
     public int MoveDealy => _moveDealy;
 
     public float MoveTime => _moveTime;
+
+    public int Exp => _exp;
 }
