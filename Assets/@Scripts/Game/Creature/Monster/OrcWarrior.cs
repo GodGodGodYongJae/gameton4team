@@ -34,11 +34,6 @@ public class OrcWarrior : SPUM_Monster
         creatureHPBar.Damage(_hp, _creatureData.MaxHP);
     }
 
-    protected override void Death()
-    {
-        base.Death();
-        level.GetExp(MonsterData.Exp);
-    }
     // 리플렉션으로 구현됨 MonsterLove ( FSM 플러그인 사용 ) 
     #region FSM
 

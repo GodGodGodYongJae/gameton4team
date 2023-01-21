@@ -38,6 +38,7 @@ public class Monster : Creature
         Managers.Object.ReturnToParent(HPCanvas);
         Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
         base.Death();
+        level.GetExp(MonsterData.Exp);
     }
 
     protected virtual void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
