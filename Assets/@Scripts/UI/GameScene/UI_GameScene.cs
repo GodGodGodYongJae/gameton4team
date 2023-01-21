@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 public class UI_GameScene : UI_Scene
 {
-
+    public GameObject RewardPopups; 
     [SerializeField]
     GameObject btnMain;
+
+
     private Canvas canvas;
     public override bool Init()
     {
@@ -24,12 +26,10 @@ public class UI_GameScene : UI_Scene
         return true;
     }
 
-    //나중에 없애야 함.
-    public void OnClickWeapon(int weaponNum)
+    public void Reward()
     {
-        Managers.Events.PostNotification(Define.GameEvent.ChangeWeapon, null, weaponNum);
+        RewardPopups.SetActive(true);
     }
-
     private void UIEvent(Define.GameEvent eventType, Component Sender, object param)
     {
         if(eventType == Define.GameEvent.playerEvents && param != null)

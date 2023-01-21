@@ -18,6 +18,8 @@ public class GroundController
 
     Ground ground;
 
+    UI_GameScene rewardPopups;
+
     // 생성할 그라운드 리스트.
     IReadOnlyList<GameObject> groundList;
     public static float chatperSize = 0;
@@ -141,6 +143,7 @@ public class GroundController
     }
     public void ClearPrevStageData()
     {
+        GameObject.Find("UI_GameScene").GetComponent<UI_GameScene>().Reward();
         grounds.Clear();
         foreach (var item in this.GroundGenerator.Grounds)
         {
