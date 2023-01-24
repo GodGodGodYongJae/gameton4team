@@ -6,9 +6,9 @@ public class MonsterAttackCol : MonoBehaviour
 {
 
     Monster monster;
-    private void Awake()
+    public void CreateAttackCol(Monster monster)
     {
-        monster = transform.parent.GetComponent<Monster>();
+        this.monster = monster;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -79,7 +79,6 @@ public class GroundController
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
             ground = nextGround.GetComponent<Ground>();
-            Debug.Log(Managers.Monster.GetSpawnMonsterCount);
             if (chatperSize > 0)
             {
                 PushNextGround().Forget();
@@ -113,7 +112,6 @@ public class GroundController
         previousGround.SetActive(false);
         grounds.RemoveFirst();
 
-        Debug.Log(chatperSize);
         GameObject.Find("ScoreText").GetComponent<Score>().GetDistanceScore();
 
         int idx = (isBossSpawned == false) ?RandomGroundIdx() : FindBossGroundIdx();
@@ -145,7 +143,6 @@ public class GroundController
         foreach (var item in this.GroundGenerator.Grounds)
         {
             Managers.Object.RemoveObjectPool(item.name);
-            Debug.Log(item.name);
         }
     }
     #region private

@@ -18,8 +18,6 @@ public class ScarceAssasin : SPUM_Monster
     [Tooltip("보여질 거리")]
     float showDistance = 1.0f;
 
-    [SerializeField]
-    private float attackAnimSync = 0.5f;
     protected override void Awake()
     {
         base.Awake();

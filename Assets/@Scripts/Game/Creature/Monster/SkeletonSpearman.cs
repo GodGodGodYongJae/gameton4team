@@ -8,23 +8,21 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
-
-
 //요구조건,
 //3초마다 창을 찔러 공격 
 public class SkeletonSpearman : SPUM_Monster
 {
 
-    [SerializeField]
-
-    BoxCollider2D AttackBox;
-
-    [SerializeField]
-    private float attackAnimSync = 0.5f;
     protected override void Awake()
     {
         base.Awake();
         fsm = new StateMachine<States>(this);
+        GameObject WeaponHandGo = _root._weaponList[2].gameObject;
+        MonsterAttackCol col = WeaponHandGo.AddComponent<MonsterAttackCol>();
+        col.CreateAttackCol(this);
+        Attackbox = WeaponHandGo.AddComponent<BoxCollider2D>();
+        Attackbox.isTrigger = true;
+        Attackbox.enabled = false;
     }
 
     public override void Damage(int dmg, Creature Target)
@@ -113,13 +111,17 @@ public class SkeletonSpearman : SPUM_Monster
         AttackAsync().Forget();
     }
 
+
     async UniTaskVoid AttackAsync()
     {
-        sPUM_Prefab.PlayAnimation("2_Attack_Normal");
-        //TODO
-        AttackBox.enabled = true;
-        await UniTask.Delay(1000, cancellationToken: cts.Token);
-        AttackBox.enabled = false;
+        string attackString = "2_Attack_Normal";
+        sPUM_Prefab.PlayAnimation(attackString);
+        float frameTime = (attackAnimSync / 60f) * 1000;
+        float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
+        await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+        Attackbox.enabled = true;
+        await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+        Attackbox.enabled = false;
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }
