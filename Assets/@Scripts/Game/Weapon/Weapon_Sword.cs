@@ -2,11 +2,13 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Weapon_Sword : Weapon
 {
     GameObject effect = null;
+    WeaponData weapondata;
     //SpriteRenderer sprite;
     public override void Start()
     {
@@ -14,12 +16,24 @@ public class Weapon_Sword : Weapon
         base.Start();
 
     }
+    private void FixedUpdate()
+    {
+        FEffectFollow();
+    }
 
-
-    void FEffectFollow()
+    protected override void FEffectFollow()
     {
         BoxCollider2D box = GetComponent<BoxCollider2D>();
-         effect.transform.position = (Vector2)box.bounds.center;
+        if (box == null) return;
+        try
+        {
+            effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
+        }
+        catch
+        {
+            return;
+        }
+      
     }
 
     public override async UniTaskVoid Attack()
@@ -27,15 +41,13 @@ public class Weapon_Sword : Weapon
         damagedMonsterList.Clear();
         isAttack = true;
         effect = await weaponData.Effect();
-        Managers.FixedUpdateAction += FEffectFollow;
-        await UniTask.Delay(weaponData.AttackDuration);
-        Managers.FixedUpdateAction -= FEffectFollow;
+        await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
         effect.SetActive(false);
         effect = null;
 
         isAttack = false;
-        
-        await UniTask.Delay(weaponData.AttackDealay);
+
+        await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         Attack().Forget();
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -50,12 +62,17 @@ public class Weapon_Sword : Weapon
         Creature creature = collision.GetComponent<Creature>();
         if (creature == null) return;
 
-        if(creature.GetType == Creature.Type.Monster)
+        if (creature.GetType == Creature.Type.Monster)
         {
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-            
 
+
+    }
+    public override void ChangeWeaponFixedUpdateDelete()
+    {
+        cts.Dispose();
+        cts = new CancellationTokenSource();
     }
 }

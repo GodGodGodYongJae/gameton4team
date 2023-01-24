@@ -74,7 +74,4 @@ public class TestMonster : Monster
         }
         Move().Forget();
     }
-
-
-
 }

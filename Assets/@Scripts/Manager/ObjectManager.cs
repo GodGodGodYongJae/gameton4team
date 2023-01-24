@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.WSA;
-using static UnityEngine.GraphicsBuffer;
 using Object = UnityEngine.Object;
 
 public class ObjectManager 
@@ -222,6 +220,14 @@ public class ObjectManager
         // 로드할 때 까지 대기.
         await UniTask.WaitUntil(() => { return loadAwait == true; });
         return inst;
+    }
+
+    public void RemoveAll()
+    {
+        this._folderObjectList.Clear();
+        this._objectPoolList.Clear();
+        this._poolList.Clear();
+        this._singualrObject.Clear();
     }
 
     /// <summary>

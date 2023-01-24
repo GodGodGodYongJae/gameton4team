@@ -17,7 +17,14 @@ public class SPUM_Monster : Monster
 
     [SerializeField]
     protected SPUM_Prefabs sPUM_Prefab;
-    private SPUM_SpriteList _root;
+
+
+    [SerializeField]
+    //ms 단위,
+    protected int attackAnimSync = 0;
+
+
+    protected SPUM_SpriteList _root;
     private int _blinkCount = 3;
 
     protected CancellationTokenSource movects = new CancellationTokenSource();
@@ -25,6 +32,8 @@ public class SPUM_Monster : Monster
     bool spriteEnable = true;
 
     protected StateMachine<States> fsm;
+
+    protected BoxCollider2D Attackbox;
     protected override void Awake()
     {
         base.Awake();
@@ -47,6 +56,7 @@ public class SPUM_Monster : Monster
             spriteListEnable(spriteEnable);
             await UniTask.Delay(150, cancellationToken: cts.Token);
         }
+        spriteListEnable(true);
     }
     protected override void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)
     {
@@ -54,6 +64,10 @@ public class SPUM_Monster : Monster
         {
             _hp = _creatureData.MaxHP;
             spriteListEnable(true); // blink 때문에 UniTask Cancle 시 Pooling 되었을 시 꺼짐.
+            
+            if(Attackbox != null)
+                Attackbox.enabled = false;
+            
             CreateHpBar(() => { creatureHPBar.Damage(_hp, _creatureData.MaxHP); }).Forget();
             fsm.ChangeState(States.IDLE);
             

@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Define
 {
-    public enum UIEvent 
-    { 
+    public enum UIEvent
+    {
         Click,
         Press
     }
-    public enum GameEvent 
+    public enum GameEvent
     {
         playerHealthChange,
+        playerLevelChange,
         monsterDestroy,
         SpawnMonster,
         playerEvents,
         stageClear,
+        ChangeWeapon,
     }
 
-    public enum SceneType 
+    public enum SceneType
     {
         Unknown,
         GameScene,
@@ -30,6 +32,13 @@ public class Define
         public int maxHp;
         public int curHp;
     }
+
+    public struct PlayerEvent_LevelData
+    {
+        public int maxExp;
+        public int curExp;
+    }
+
 
     // 풀링할 그라운드 숫자.
     private const int _poolGroundSize = 4;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage_1
   m_EditorClassIdentifier: 
   _groundsPrefab:
-  - {fileID: 531670560232200445, guid: 910f533a10384604e9e5248a96842992, type: 3}
-  - {fileID: 531670560232200445, guid: 9307d0644de886944bc22d0350efc9ae, type: 3}
-  - {fileID: 531670560232200445, guid: 9d274bfef849b7243a952eec68fe9091, type: 3}
-  _chatperSize: 10
+  - {fileID: 531670560232200445, guid: 1cd1631ea588a134899ef46b76d933b6, type: 3}
+  - {fileID: 531670560232200445, guid: bec2dc799139e1248afbb502f90823e9, type: 3}
+  - {fileID: 531670560232200445, guid: 0aa378a5500d2444ab62a0fe8b7b48ab, type: 3}
+  _chatperSize: 35

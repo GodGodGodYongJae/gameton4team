@@ -20,7 +20,7 @@ public class GroundController
 
     // 생성할 그라운드 리스트.
     IReadOnlyList<GameObject> groundList;
-    float chatperSize = 0;
+    public static float chatperSize = 0;
     GameObject frontWall;
     // 현재 생성된 그라운드 링크드 리스트 처음 끝 삭제가 빈번히 발생하기 때문에 링크드 리스트 활용.
     LinkedList<GameObject> grounds = new LinkedList<GameObject>();
@@ -69,7 +69,9 @@ public class GroundController
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
     }
- 
+
+
+
     void CheckNextBound()
     {
         float extendSize = ExtendSize(nextGround);
@@ -82,6 +84,7 @@ public class GroundController
                 PushNextGround().Forget();
                 return;
             }
+  
             else if (Managers.Monster.GetSpawnMonsterCount == 0 )
             {
                 if(isBossSpawned == false)
@@ -109,7 +112,8 @@ public class GroundController
         previousGround.SetActive(false);
         grounds.RemoveFirst();
 
-        Debug.Log(chatperSize);
+        GameObject.Find("ScoreText").GetComponent<Score>().GetDistanceScore();
+
         int idx = (isBossSpawned == false) ?RandomGroundIdx() : FindBossGroundIdx();
 
         LinkedListNode<GameObject> iter = grounds.Last;
@@ -139,7 +143,6 @@ public class GroundController
         foreach (var item in this.GroundGenerator.Grounds)
         {
             Managers.Object.RemoveObjectPool(item.name);
-            Debug.Log(item.name);
         }
     }
     #region private
@@ -147,7 +150,7 @@ public class GroundController
     private void ChangeGroundGenerator(GroundGenerator GroundGenerator)
     {
         this.groundList = GroundGenerator.Grounds;
-        this.chatperSize = GroundGenerator.ChatperSize;
+        chatperSize = GroundGenerator.ChatperSize;
     }
 
     // Linked List에 등록된 Element들을 각 Ground에 동기화 해주는 메서드.
