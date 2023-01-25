@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Ax_n
   m_EditorClassIdentifier: 
-  attackDmg: 1
+  attackDmg: 10
   attackDealay: 700
   attackDuration: 300
   skilEffect: {fileID: 1063918882999393564, guid: eb88bbd95760bf646a84043ada8cea01, type: 3}
-  effectPos: {x: 0, y: 0}
+  effectPos: {x: 0.5, y: 0}

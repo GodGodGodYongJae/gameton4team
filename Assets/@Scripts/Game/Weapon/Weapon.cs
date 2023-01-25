@@ -11,7 +11,6 @@ public abstract class Weapon : MonoBehaviour
     protected bool isAttack = false;
     protected Player player;
     protected CancellationTokenSource cts = new CancellationTokenSource();
-    //�̹� ���ظ� ���� ���� ����Ʈ * �ߺ� ������ �Ͼ�� �ȵǱ� ������.
     protected List<GameObject> damagedMonsterList = new List<GameObject>();
     public virtual void Start()
     {

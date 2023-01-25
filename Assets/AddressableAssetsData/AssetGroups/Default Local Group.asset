@@ -98,7 +98,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 3ba3965967fb2be4196fc5ac147239cc
-    m_Address: Weapon_Wand_n
+    m_Address: Weapon_Wand_n_data
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 5eef787398b2467448b468463bed56cc
@@ -155,6 +155,14 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 8d9e6d8869b518346aaa2330fca7d469
     m_Address: SkeletonArcher
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2ae6c2b8d7c2afc4a85506df18177a52
+    m_Address: Skill_19
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16bf956cf6263db48a288225a1e8a86b
+    m_Address: Flash_16
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
