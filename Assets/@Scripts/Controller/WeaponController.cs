@@ -77,6 +77,6 @@ public class WeaponController
             
         });
         await UniTask.WaitUntil(() => { return registered == true; });
-        weapon.Attack().Forget();
+         weapon.RegsiterEffect().Forget();
     }
 }
