@@ -14,8 +14,10 @@ public class Monster : Creature
 
     protected  GameObject HPCanvas;
     protected CreatureHPBar creatureHPBar;
-    Score score;
-    Level level;
+
+    protected Score score;
+    protected Level level;
+
     protected MonsterData monsterData;
     public MonsterData MonsterData => monsterData; 
     protected override void Awake()
@@ -32,11 +34,11 @@ public class Monster : Creature
     protected override void Death()
     {
         score.GetKillScore();
-        level.GetExp();
         cts.Cancel();
         Managers.Object.ReturnToParent(HPCanvas);
         Managers.Events.PostNotification(Define.GameEvent.monsterDestroy, this);
         base.Death();
+        level.GetExp(MonsterData.Exp);
     }
 
     protected virtual void SpawnListen(Define.GameEvent eventType, Component Sender, object param = null)

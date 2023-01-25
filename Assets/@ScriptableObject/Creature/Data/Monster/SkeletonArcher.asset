@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_OrcWarriror01
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  _maxhp: 30
-  _speed: 3
-  _attackDmg: 10
-  _visibility: 3.5
-  _attackRange: 1.2
-  _attackDealy: 2
+  _maxhp: 1000
+  _speed: 5
+  _attackDmg: 4
+  _visibility: 1
+  _attackRange: 7
+  _attackDealy: 3
   _moveDealy: 1
-  _moveTime: 3
-  _exp: 3
+  _moveTime: 1
+  _exp: 0

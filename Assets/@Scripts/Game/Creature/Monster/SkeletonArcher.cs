@@ -11,11 +11,12 @@ using UnityEngine;
 
 
 //요구조건, 캐릭터가 시야거리안에 들어오면 뛰어서 다가가고 사정거리안에 들면 공격
-//2초마다 도끼를 휘두름
-// 나중에 스크립트 싹다 수정해야함 ... 
-public class OrcWarrior : SPUM_Monster
+//3초마다 화살을 쏜다
+//화살은 포물선을 그리며 떨어진다.
+public class SkeletonArcher: SPUM_Monster
 {
-
+    public GameObject arrow;
+    public Transform pos;
     protected override void Awake()
     {
         base.Awake();
@@ -116,11 +117,12 @@ public class OrcWarrior : SPUM_Monster
 
     async UniTaskVoid AttackAsync()
     {
-        string attackString = "2_Attack_Normal";
+        string attackString = "2_Attack_Bow";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+        GameObject arrowcopy = Instantiate(arrow, pos.transform.position, transform.rotation);
         Attackbox.enabled = true;
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
         Attackbox.enabled = false;

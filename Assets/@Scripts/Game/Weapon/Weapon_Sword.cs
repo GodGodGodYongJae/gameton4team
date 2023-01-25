@@ -14,9 +14,11 @@ public class Weapon_Sword : Weapon
         base.Start();
         boxCollider = GetComponent<BoxCollider2D>();
     }
+    
 
     public override async UniTaskVoid Attack()
     {
+       
         damagedMonsterList.Clear();
         //isAttack = true;
         //effect = await weaponData.Effect();
@@ -37,10 +39,10 @@ public class Weapon_Sword : Weapon
     }
     //private void OnTriggerStay2D(Collider2D collision)
     //{
-    //    //°ø°ÝÀÌ ³¡³­ ÄðÅ¸ÀÓ ÁßÀÌ¶ó¸é ¸®ÅÏ.
+    //    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     //    if (isAttack == false) return;
 
-    //    //ÀÌ¹Ì ÇØ´ç ¸ó½ºÅÍ°¡ ÇÑ¹ø °ø°ÝÀ» ¹Þ¾ÒÀ¸¸é ¸®ÅÏ
+    //    //ï¿½Ì¹ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     //    if (damagedMonsterList.Contains(collision.gameObject))
     //        return;
 

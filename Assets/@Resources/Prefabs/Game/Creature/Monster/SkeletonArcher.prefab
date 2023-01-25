@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535927545660811360}
-  - component: {fileID: -3525391985323330327}
+  - component: {fileID: 6962166922345090694}
   - component: {fileID: 8970345744777262597}
   - component: {fileID: 3919148836934502864}
   m_Layer: 7
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3525391985323330327
+--- !u!114 &6962166922345090694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,13 +45,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1888443899762554797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a5b023b050b48949afa16ea440b1e36, type: 3}
+  m_Script: {fileID: 11500000, guid: b947324a7224e9240bb46abb50075bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureData: {fileID: 11400000, guid: c0dae7122169f7a418893ffc17534157, type: 2}
+  _creatureData: {fileID: 11400000, guid: 41914f661b20b7a488d7fc91cb9b1b4a, type: 2}
   sPUM_Prefab: {fileID: 3746301217428120823}
-  AttackBox: {fileID: 5507275432945389495}
-  attackAnimSync: 0.5
+  attackAnimSync: 0
+  arrow: {fileID: 7634983040467695695, guid: 1d7ac3e2a3ffaaf4db6ccada4bbab8fd, type: 3}
+  pos: {fileID: 0}
 --- !u!70 &8970345744777262597
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

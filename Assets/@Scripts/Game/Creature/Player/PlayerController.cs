@@ -7,8 +7,10 @@ using UnityEngine;
 public partial class Player
 {
     SwipeController SwipeController;
-    Vector2 directionVector;
+    public Vector2 directionVector;
     PlayerData playerData;
+   
+    
     void Init()
     {
         _type = Type.Player;
@@ -19,7 +21,7 @@ public partial class Player
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
     }
-
+    
  
 
     #region 조작 및 이동관련

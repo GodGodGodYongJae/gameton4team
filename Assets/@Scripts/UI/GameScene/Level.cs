@@ -23,9 +23,9 @@ public class Level : MonoBehaviour
         SETExp();
     }
 
-    public void GetExp()
+    public void GetExp(int exp)
     {
-        curExp += 1;
+        curExp += exp;
         SETExp();
         if(curExp >= maxExp)
         {

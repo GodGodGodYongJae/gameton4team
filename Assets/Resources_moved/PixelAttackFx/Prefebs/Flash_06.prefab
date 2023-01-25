@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 8578447339511797209}
   - component: {fileID: 8578447339511797206}
   - component: {fileID: -3194806407012735322}
+  - component: {fileID: -7693534798810437591}
   m_Layer: 0
   m_Name: Flash_06
   m_TagString: Untagged
@@ -133,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 8578447339511797204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8578447341043283402}
@@ -224,6 +225,27 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
+--- !u!50 &-7693534798810437591
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578447339511797204}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8578447341043283403
 GameObject:
   m_ObjectHideFlags: 0

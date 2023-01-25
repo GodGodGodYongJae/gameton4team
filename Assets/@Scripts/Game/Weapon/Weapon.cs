@@ -11,7 +11,7 @@ public abstract class Weapon : MonoBehaviour
     protected bool isAttack = false;
     protected Player player;
     protected CancellationTokenSource cts = new CancellationTokenSource();
-    //ÀÌ¹Ì ÇÇÇØ¸¦ ÀÔÀº ¸ó½ºÅÍ ¸®½ºÆ® * Áßº¹ °ø°ÝÀÌ ÀÏ¾î³ª¸é ¾ÈµÇ±â ¶§¹®¿¡.
+    //ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® * ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ÈµÇ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     protected List<GameObject> damagedMonsterList = new List<GameObject>();
     public virtual void Start()
     {
@@ -32,6 +32,5 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void ChangeWeaponFixedUpdateDelete();
     public abstract UniTaskVoid Attack();
-
 
 }
