@@ -15,7 +15,7 @@ public class SwipeController
         touchBeganPos = Vector2.zero;
         touchEndPos = Vector2.zero;
         touchDif = Vector2.zero; ;
-        swipeSensitivity = 2.0f;
+        swipeSensitivity = 3.0f;
         Managers.UpdateAction += MUpdate;
     }
     void MUpdate()
@@ -33,6 +33,7 @@ public class SwipeController
                 touchDif = (touchEndPos - touchBeganPos);
                 if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x) && Mathf.Abs(touchDif.y) > swipeSensitivity)
                 {
+                    Debug.Log(Mathf.Abs(touchDif.y));
                     ActionKey = Player.PlayerActionKey.Jump;
                 }
                 else

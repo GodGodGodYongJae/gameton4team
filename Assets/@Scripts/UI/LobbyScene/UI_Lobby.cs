@@ -94,11 +94,11 @@ namespace Assets._Scripts.UI.LobbyScene
             float currentAspectRatio = (float)Screen.width / (float)Screen.height;
             if (currentAspectRatio > fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 0;
+                _canvas.matchWidthOrHeight = 1;
             }
             else if (currentAspectRatio < fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 1;
+                _canvas.matchWidthOrHeight = 0;
             }
         }
     }
