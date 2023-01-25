@@ -1,10 +1,17 @@
-﻿using System.Collections;
+﻿using Assets._Scripts.UI.LobbyScene;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets._Scripts.Scene
 {
     public class LobbyScene : BaseScene
     {
+
+        enum LoadAssetGameOBjects
+        {
+            BG,
+
+        }
 
         UI_Lobby _lobbySceneUI;
         protected override bool Init()

@@ -41,7 +41,9 @@ namespace Assets._Scripts.Manager
                 FunctionName = "SetVirtualCurrency",
                 FunctionParameter = new { Amount = num, type = ID },
                 GeneratePlayStreamEvent = true
-            }, cloudResult => { callback?.Invoke(); }, 
+            }, cloudResult => {
+
+                callback?.Invoke(); }, 
             error => { ErrorLog(error); }
             );
         }
