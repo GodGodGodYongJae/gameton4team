@@ -153,6 +153,10 @@ MonoBehaviour:
     m_Address: UI_TitleScene_BG
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 8d9e6d8869b518346aaa2330fca7d469
+    m_Address: SkeletonArcher
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

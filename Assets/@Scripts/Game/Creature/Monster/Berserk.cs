@@ -12,11 +12,8 @@ public class Berserk : SPUM_Monster
 {
 
     [SerializeField]
-
     BoxCollider2D AttackBox;
-  
-    [SerializeField]
-    private float attackAnimSync = 0.5f;
+
     protected override void Awake()
     {
         base.Awake();

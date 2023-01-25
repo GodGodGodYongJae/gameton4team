@@ -36,7 +36,7 @@ public class Managers : Singleton<Managers>
     protected override void Awake()
     {
         base.Awake();
-        this._monster.Init();
+
     }
 
     public static void Init()

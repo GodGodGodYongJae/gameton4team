@@ -16,16 +16,16 @@ using UnityEngine;
 public class OrcWarrior : SPUM_Monster
 {
 
-    [SerializeField]
-
-    BoxCollider2D AttackBox;
-
-    [SerializeField]
-    private float attackAnimSync = 0.5f;
     protected override void Awake()
     {
         base.Awake();
         fsm = new StateMachine<States>(this);
+        GameObject WeaponHandGo = _root._weaponList[2].gameObject;
+        MonsterAttackCol col = WeaponHandGo.AddComponent<MonsterAttackCol>();
+        col.CreateAttackCol(this);
+        Attackbox = WeaponHandGo.AddComponent<BoxCollider2D>();
+        Attackbox.isTrigger = true;
+        Attackbox.enabled = false;
     }
 
     public override void Damage(int dmg, Creature Target)
@@ -51,7 +51,7 @@ public class OrcWarrior : SPUM_Monster
         float distance = Vector2.Distance(transform.position, target.transform.position);
         attackDealy -= Time.deltaTime;
 
-        if (distance <= monsterData.AttackRange && 
+        if (distance <= monsterData.AttackRange &&
             attackDealy <= 0)
         {
             fsm.ChangeState(States.ATTACK);
@@ -71,7 +71,7 @@ public class OrcWarrior : SPUM_Monster
     {
         sPUM_Prefab.PlayAnimation("1_Run");
         float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
-        transform.localScale = new Vector2( direction, transform.localScale.y);
+        transform.localScale = new Vector2(direction, transform.localScale.y);
         MoveSync().Forget();
     }
 
@@ -113,13 +113,17 @@ public class OrcWarrior : SPUM_Monster
         AttackAsync().Forget();
     }
 
+
     async UniTaskVoid AttackAsync()
     {
-        sPUM_Prefab.PlayAnimation("2_Attack_Normal");
-        //TODO
-        AttackBox.enabled = true;
-        await UniTask.Delay(1000, cancellationToken: cts.Token);
-        AttackBox.enabled = false;
+        string attackString = "2_Attack_Normal";
+        sPUM_Prefab.PlayAnimation(attackString);
+        float frameTime = (attackAnimSync / 60f) * 1000;
+        float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
+        await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+        Attackbox.enabled = true;
+        await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+        Attackbox.enabled = false;
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }

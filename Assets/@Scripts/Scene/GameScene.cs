@@ -40,7 +40,7 @@ public class GameScene : BaseScene
         if (base.Init() == false)
             return false;
 
-
+        Managers.Monster.Init();
 
         SceneType = SceneType.GameScene;
 

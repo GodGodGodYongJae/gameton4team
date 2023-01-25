@@ -24,6 +24,7 @@ public class SPUM_Prefabs : MonoBehaviour
     private AnimationClip[] _animationClips;
     public AnimationClip[] AnimationClips => _animationClips;
     private Dictionary<string, int> _nameToHashPair = new Dictionary<string, int>();
+    private Dictionary<string, AnimationClip> _nameToClipPair = new Dictionary<string, AnimationClip>();
     private void InitAnimPair(){
         _nameToHashPair.Clear();
         _animationClips = _anim.runtimeAnimatorController.animationClips;
@@ -31,15 +32,12 @@ public class SPUM_Prefabs : MonoBehaviour
         {
             int hash = Animator.StringToHash(clip.name);
             _nameToHashPair.Add(clip.name, hash);
+            _nameToClipPair.Add(clip.name, clip);
         }
     }
     private void Awake() {
         InitAnimPair();
         _spriteOBj.ResyncData();
-        foreach (var item in _nameToHashPair)
-        {
-            Debug.Log(item.Key);
-        }
     }
     private void Start() {
         UnitTypeChanged.AddListener(InitAnimPair);
@@ -57,4 +55,20 @@ public class SPUM_Prefabs : MonoBehaviour
             }
         }
     }
+
+    public int GetAnimFrmae(string name)
+    {
+        foreach (var animationName in _nameToClipPair)
+        {
+            if (animationName.Key.ToLower().Contains(name.ToLower()))
+            {
+                AnimatorClipInfo[] animationClip = _anim.GetCurrentAnimatorClipInfo(0);
+                int currentFrame = (int)(animationClip[0].weight*(animationName.Value.length * animationName.Value.frameRate));
+                return currentFrame;
+            }
+        }
+        return 0;
+    }
+
+    
 }
