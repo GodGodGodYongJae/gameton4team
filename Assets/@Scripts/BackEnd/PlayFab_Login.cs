@@ -20,14 +20,12 @@ public class PlayFab_Login : MonoBehaviour
 
     void OnLoginSuccess(LoginResult result)
     {
-        //PlayFabManager.Instance.GetStats();
-        print("로그인성공");
         isLogin = true;
     }
 
 
     void OnLoginFailure(PlayFabError error)
     {
-        print("로그인실패");
+
     }
 }
