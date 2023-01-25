@@ -39,7 +39,7 @@ public class Weapon_Spear_n : Weapon
     {
         damagedMonsterList.Clear();
         isAttack = true;
-        effect = await weaponData.Effect();
+        effect = await weaponData.EffectSpawnAsync(Vector2.zero);
         await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
         effect.SetActive(false);
         effect = null;

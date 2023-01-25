@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObj/Data/Weapon", fileName = "Weapon_")]
@@ -11,6 +12,7 @@ public class WeaponData : ScriptableObject
     [SerializeField]
     int attackDealay;
     [SerializeField]
+    [Tooltip("이펙트 에니메이션 시간 넣기")]
     int attackDuration;
     [SerializeField]
     GameObject skilEffect;
@@ -21,12 +23,11 @@ public class WeaponData : ScriptableObject
     public int AttackDamge { get { return attackDmg; } }
     public int AttackDealay { get { return attackDealay; } }
     public int AttackDuration { get { return attackDuration; } }
+    public GameObject Effect => skilEffect;
 
-    public async UniTask<GameObject> Effect()
+    public async UniTask<GameObject> EffectSpawnAsync(Vector2 pos)
     {
-        GameObject effect = await Managers.Object.InstantiateAsync(skilEffect.name, effectPos);
-        //effect가 검에 계속 따라가야하는데 어떻게 해야할까? 
-        //effect가 검에 계속 따라가는 건 해결 했는데, 방향을 틀어버리면 어떻게 해야할까?
+        GameObject effect = await Managers.Object.InstantiateAsync(skilEffect.name, pos);
         return effect;
     }
 }

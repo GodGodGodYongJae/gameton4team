@@ -1,3 +1,4 @@
+using Assets._Scripts.Game.Weapon;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
@@ -7,69 +8,53 @@ using UnityEngine;
 
 public class Weapon_Sword : Weapon
 {
-    GameObject effect = null;
-    WeaponData weapondata;
-    //SpriteRenderer sprite;
+    BoxCollider2D boxCollider;
     public override void Start()
     {
-        //sprite = GetComponent<SpriteRenderer>();
         base.Start();
-
-    }
-    private void FixedUpdate()
-    {
-        FEffectFollow();
-    }
-
-    protected override void FEffectFollow()
-    {
-        BoxCollider2D box = GetComponent<BoxCollider2D>();
-        if (box == null) return;
-        try
-        {
-            effect.transform.position = (Vector2)box.bounds.center + weaponData.EffectPos;
-        }
-        catch
-        {
-            return;
-        }
-      
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public override async UniTaskVoid Attack()
     {
         damagedMonsterList.Clear();
-        isAttack = true;
-        effect = await weaponData.Effect();
-        await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
-        effect.SetActive(false);
-        effect = null;
+        //isAttack = true;
+        //effect = await weaponData.Effect();
+        float direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
+        Vector2 effectPos = (Vector2)boxCollider.bounds.center + (weaponData.EffectPos * direction);
+        GameObject effectGo =  await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
+        effectGo.transform.localScale = new Vector2(effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
+        Bullet bullet =  effectGo.GetOrAddComponent<Bullet>();
+        bullet.InitBulletData(weaponData, player);
+        //await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
+        
+        //effect.SetActive(false);
+        //effect = null;
 
-        isAttack = false;
-
+        //isAttack = false;
         await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         Attack().Forget();
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //공격이 끝난 쿨타임 중이라면 리턴.
-        if (isAttack == false) return;
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    //공격이 끝난 쿨타임 중이라면 리턴.
+    //    if (isAttack == false) return;
 
-        //이미 해당 몬스터가 한번 공격을 받았으면 리턴
-        if (damagedMonsterList.Contains(collision.gameObject))
-            return;
+    //    //이미 해당 몬스터가 한번 공격을 받았으면 리턴
+    //    if (damagedMonsterList.Contains(collision.gameObject))
+    //        return;
 
-        Creature creature = collision.GetComponent<Creature>();
-        if (creature == null) return;
+    //    Creature creature = collision.GetComponent<Creature>();
+    //    if (creature == null) return;
 
-        if (creature.GetType == Creature.Type.Monster)
-        {
-            damagedMonsterList.Add(collision.gameObject);
-            creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
-        }
+    //    if (creature.GetType == Creature.Type.Monster)
+    //    {
+    //        damagedMonsterList.Add(collision.gameObject);
+    //        creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
+    //    }
 
 
-    }
+    //}
     public override void ChangeWeaponFixedUpdateDelete()
     {
         cts.Dispose();
