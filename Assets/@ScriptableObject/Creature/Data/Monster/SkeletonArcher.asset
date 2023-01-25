@@ -9,11 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
-  m_Name: Weapon_Ax_n
+  m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
+  m_Name: SkeletonArcher
   m_EditorClassIdentifier: 
-  attackDmg: 1
-  attackDealay: 700
-  attackDuration: 300
-  skilEffect: {fileID: 1063918882999393564, guid: eb88bbd95760bf646a84043ada8cea01, type: 3}
-  effectPos: {x: 0, y: 0}
+  _maxhp: 1000
+  _speed: 5
+  _attackDmg: 4
+  _visibility: 1
+  _attackRange: 7
+  _attackDealy: 3
+  _moveDealy: 1
+  _moveTime: 1
+  _exp: 0

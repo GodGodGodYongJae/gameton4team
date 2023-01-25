@@ -33,8 +33,8 @@ public class Weapon_Spear_n : Weapon
         {
             return;
         }
-
     }
+
     public override async UniTaskVoid Attack()
     {
         damagedMonsterList.Clear();
@@ -66,9 +66,8 @@ public class Weapon_Spear_n : Weapon
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-
-
     }
+
     public override void ChangeWeaponFixedUpdateDelete()
     {
         cts.Dispose();

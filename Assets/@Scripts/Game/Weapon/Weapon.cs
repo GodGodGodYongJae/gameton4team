@@ -17,12 +17,10 @@ public abstract class Weapon : MonoBehaviour
     {
       GameObject pGO = Managers.Object.GetSingularObjet(StringData.Player);
       player = pGO.GetComponent<Player>();
-
     }
 
     protected abstract void FEffectFollow();
     public abstract void ChangeWeaponFixedUpdateDelete();
     public abstract UniTaskVoid Attack();
-
 
 }

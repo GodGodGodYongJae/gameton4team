@@ -9,17 +9,20 @@ public class Weapon_Sword : Weapon
 {
     GameObject effect = null;
     WeaponData weapondata;
+    
+    
     //SpriteRenderer sprite;
     public override void Start()
     {
         //sprite = GetComponent<SpriteRenderer>();
         base.Start();
-
     }
+
     private void FixedUpdate()
     {
         FEffectFollow();
     }
+    
 
     protected override void FEffectFollow()
     {
@@ -33,11 +36,12 @@ public class Weapon_Sword : Weapon
         {
             return;
         }
-      
     }
+    
 
     public override async UniTaskVoid Attack()
     {
+       
         damagedMonsterList.Clear();
         isAttack = true;
         effect = await weaponData.Effect();
@@ -67,8 +71,6 @@ public class Weapon_Sword : Weapon
             damagedMonsterList.Add(collision.gameObject);
             creature.Damage(weaponData.AttackDamge + player.GetPlayerDamage(), player);
         }
-
-
     }
     public override void ChangeWeaponFixedUpdateDelete()
     {
