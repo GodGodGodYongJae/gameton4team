@@ -17,10 +17,19 @@ public abstract class Weapon : MonoBehaviour
     {
       GameObject pGO = Managers.Object.GetSingularObjet(StringData.Player);
       player = pGO.GetComponent<Player>();
-
+     
     }
 
-    protected abstract void FEffectFollow();
+    protected virtual void FEffectFollow()
+    {
+
+    }
+    public virtual async UniTaskVoid RegsiterEffect()
+    {
+        await Managers.Object.RegisterObject(weaponData.Effect.name, 5);
+        Attack().Forget();
+    }
+
     public abstract void ChangeWeaponFixedUpdateDelete();
     public abstract UniTaskVoid Attack();
 

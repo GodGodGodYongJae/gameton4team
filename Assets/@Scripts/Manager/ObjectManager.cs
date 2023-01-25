@@ -135,6 +135,12 @@ public class ObjectManager
         bool registered = false;
         List<GameObject> list = new List<GameObject>();
 
+        //이미 등록되었다면?
+        if (_poolList.ContainsKey(AssetName))
+        {
+            return _poolList[AssetName];
+        }
+
         Managers.Resource.LoadAsync<GameObject>(AssetName, (success) => {
 
             _objectPoolList.Add(AssetName, success);
