@@ -14,6 +14,8 @@ namespace Assets._Scripts.Game.Weapon
         private Player player;
         private bool isInit = false;
         private BoxCollider2D box;
+
+
         private void Awake()
         {
             // 자식한테 보통 이펙트가 있음 만약 해당 이펙트에 자식이 없거나 이상하다면
@@ -25,6 +27,7 @@ namespace Assets._Scripts.Game.Weapon
             this.box.size = childBox.size;
             this.box.isTrigger = true;
         }
+
         public void InitBulletData(WeaponData weaponData, Player player)
         {
             damagedMonsterList.Clear();
@@ -48,6 +51,9 @@ namespace Assets._Scripts.Game.Weapon
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             this.gameObject.SetActive(false);
         }
+
+
+
         private void OnTriggerStay2D(Collider2D collision)
         {
             //이닛이 이루어졌을 때만
@@ -64,8 +70,6 @@ namespace Assets._Scripts.Game.Weapon
                 damagedMonsterList.Add(collision.gameObject);
                 creature.Damage(Damage, player);
             }
-
-
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Spear_n_data
   m_EditorClassIdentifier: 
-  attackDmg: 1
+  attackDmg: 100
   attackDealay: 1000
   attackDuration: 400
   skilEffect: {fileID: 7896262495618836898, guid: 5eef787398b2467448b468463bed56cc, type: 3}

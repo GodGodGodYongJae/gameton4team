@@ -25,7 +25,7 @@ public class Weapon_Sword : Weapon
         float direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
         Vector2 effectPos = (Vector2)boxCollider.bounds.center + (weaponData.EffectPos * direction);
         GameObject effectGo =  await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
-        effectGo.transform.localScale = new Vector2(effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
+        effectGo.transform.localScale = new Vector2(-1 * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
         Bullet bullet =  effectGo.GetOrAddComponent<Bullet>();
         bullet.InitBulletData(weaponData, player);
         //await UniTask.Delay(weaponData.AttackDuration, cancellationToken: cts.Token);
