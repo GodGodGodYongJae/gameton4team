@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BackGroundController : MonoBehaviour
 {
-    public bool Camera_Move;
-    public float Camera_MoveSpeed = 3f;
     public float[] Layer_Speed = new float[7];
     public GameObject[] Layer_Objects = new GameObject[7];
 
@@ -13,7 +11,6 @@ public class BackGroundController : MonoBehaviour
     private float[] startPos = new float[7];
     private float boundSizeX;
     private float sizeX;
-    private GameObject Layer_0;
 
     void Start()
     {
@@ -28,10 +25,6 @@ public class BackGroundController : MonoBehaviour
 
     void Update()
     {
-        if (Camera_Move)
-        {
-            _camera.position += Vector3.right * Time.deltaTime * Camera_MoveSpeed;
-        }
         for (int i = 0; i < 5; i++)
         {
             float temp = (_camera.position.x * (1 - Layer_Speed[i]));

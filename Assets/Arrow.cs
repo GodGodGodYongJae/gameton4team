@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public float speed;
+
     void Start()
     {
-        
+        Invoke("DestoryArrow", 3);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(transform.right * -1f * speed * Time.deltaTime);
     }
+
 }
