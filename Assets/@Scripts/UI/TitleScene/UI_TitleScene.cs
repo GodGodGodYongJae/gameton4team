@@ -21,6 +21,7 @@ public class UI_TitleScene : UI_Scene
     bool _isLoaded = false;
 
     private CanvasScaler _canvas;
+    private PlayFab_Login login;
     public override bool Init()
     {
         _canvas = this.GetComponent<CanvasScaler>();
@@ -29,6 +30,7 @@ public class UI_TitleScene : UI_Scene
 
         BindObject(typeof(LoadAssetGameObjects));
         BindText(typeof(Texts));
+        login = gameObject.GetOrAddComponent<PlayFab_Login>();
 
         GetObject((int)LoadAssetGameObjects.BG).BindEvent(OnClickBG);
 
@@ -73,9 +75,8 @@ public class UI_TitleScene : UI_Scene
     #region EventHandler
     void OnClickBG()
     {
-        Debug.Log("클릭했음!"+ _isLoaded);
-        if(_isLoaded)
-            Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+        if(_isLoaded && login.Login)
+            Managers.Scene.ChangeScene(Define.SceneType.Lobby);
 
         //Managers.Sound.Play(Sound.Effect, "Sound_ButtonMain");
     }
