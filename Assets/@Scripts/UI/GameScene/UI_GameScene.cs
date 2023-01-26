@@ -59,6 +59,8 @@ public class UI_GameScene : UI_Scene
 
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClearEvent);
+
+        OpenWeaponSelectBox().Forget();
         return true;
     }
 
@@ -68,6 +70,8 @@ public class UI_GameScene : UI_Scene
         public Sprite image;
         public string name;
         public string Explanation;
+        public WeaponSlotController.WeaponSlot weaponSlot;
+        public WeaponData.UpgradeType UpgradeType;
     }
 
 
@@ -82,43 +86,58 @@ public class UI_GameScene : UI_Scene
             int RandomSlotWeapon = Random.Range((int)Define.WeaponType.None + 1, (int)Define.WeaponType.End - 1);
             WeaponSlotController.WeaponSlot slot = WeaponSlotController.GetWeapon((Define.WeaponType)RandomSlotWeapon);
             WeaponCard card = new WeaponCard();
+            Debug.Log(slot.Type+","+ (Define.WeaponType)RandomSlotWeapon);
+            bool Lock = false;
             if ( slot == null)
             {
-                slot = new WeaponSlotController.WeaponSlot((Define.WeaponType)RandomSlotWeapon);
-                await UniTask.WaitUntil(() => { return slot.weaponData != null; });
-                card.image = slot.weaponData.UIImage;
-                card.name = slot.weaponData.DisplayName;
-                card.Explanation = "무기 선택하기!";
+                Lock = true;
+                Managers.Resource.LoadAsync<ScriptableObject>(((Define.WeaponType)RandomSlotWeapon).ToString() + "_data", (succss) =>
+                {
+                    slot = new WeaponSlotController.WeaponSlot((WeaponData)succss);
+                    slot.Type =(Define.WeaponType)RandomSlotWeapon;
 
+                    card.image = slot.weaponData.UIImage;
+                    card.name = slot.weaponData.DisplayName;
+                    card.Explanation = "무기 선택하기!";
+                    card.UpgradeType = WeaponData.UpgradeType.NewWeapon;
+                    Lock = false;
+                });
             }
             else
             {
                 card.image = slot.weaponData.UIImage;
                 card.name = slot.weaponData.DisplayName;
-                int randomUpgrade = Random.Range(0, (int)WeaponData.UpgradeType.end -1);
+                int randomUpgrade = Random.Range(1, (int)WeaponData.UpgradeType.end -1);
                 string discriptions = "";
                 int NextUpgradeNum = 0;
                 int CurrentUpgradeNum = 0;
+                WeaponData.UpgradeType upgradetype = WeaponData.UpgradeType.end;
                 switch ((WeaponData.UpgradeType)randomUpgrade)
                 {
                     case WeaponData.UpgradeType.AttackDamage:
                         NextUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackDamage, slot.atklevel + 1);
                         CurrentUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackDamage, slot.atklevel);
                         discriptions = " 공격력 증가 :" + (NextUpgradeNum - CurrentUpgradeNum).ToString() + "\n" + " 현재 공격력 : " + CurrentUpgradeNum;
+                        upgradetype = WeaponData.UpgradeType.AttackDamage;
                         break;
                     case WeaponData.UpgradeType.AttackSpeed:
                         NextUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackSpeed, slot.atklevel + 1);
                         CurrentUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackSpeed, slot.atklevel);
                         discriptions = " 공격속도 증가 :" + (NextUpgradeNum - CurrentUpgradeNum).ToString() + "\n" + " 현재 공격속도 : " + CurrentUpgradeNum;
+                        upgradetype = WeaponData.UpgradeType.AttackSpeed;
                         break;
 
                 }
+                card.UpgradeType = upgradetype;
                 card.Explanation = discriptions;
             }
+            await UniTask.WaitUntil(() => { return Lock == false; });
+            card.weaponSlot = slot;
             SlotCardUISet((WeaponSelectSlot)i, card);
         }
     }
 
+    private WeaponCard ChooseSlotWeapon;
     private void SlotCardUISet(WeaponSelectSlot slot, WeaponCard card)
     {
        GameObject SlotGo = GetRectTransform((int)slot).gameObject;
@@ -129,12 +148,23 @@ public class UI_GameScene : UI_Scene
         NameTxt.text = card.name;
         image.sprite = card.image;
         ExplanationTxt.text = card.Explanation;
-        SlotGo.BindEvent(ResetTest);
+        ChooseSlotWeapon = card;
+        SlotGo.BindEvent(SelectCard);
     }
 
-    private void ResetTest()
+    private void SelectCard()
     {
+        //closeSelectBox
+
+            Time.timeScale = 1;
+        //GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
+        //selectObj.SetActive(false);
         OpenWeaponSelectBox().Forget();
+
+        if (ChooseSlotWeapon.UpgradeType == WeaponData.UpgradeType.NewWeapon) WeaponSlotController.NewWeapon(ChooseSlotWeapon.weaponSlot);
+        else ChooseSlotWeapon.weaponSlot.LevelUp(ChooseSlotWeapon.UpgradeType);
+
+
     }
     private void StageClearEvent(Define.GameEvent eventType, Component Sender, object param)
     {

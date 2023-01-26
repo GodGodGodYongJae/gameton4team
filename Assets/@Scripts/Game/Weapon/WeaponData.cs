@@ -18,6 +18,8 @@ public class WeaponData : ScriptableObject
     [SerializeField]
     [Tooltip("UI에서 보여질 이름")]
     private string displayName;
+
+
     [SerializeField]
     int attackDmg;
     [SerializeField]
@@ -37,7 +39,6 @@ public class WeaponData : ScriptableObject
 
     public Sprite UIImage => uiImage;
     public string DisplayName => displayName;
-
     public async UniTask<GameObject> EffectSpawnAsync(Vector2 pos)
     {
         GameObject effect = await Managers.Object.InstantiateAsync(skilEffect.name, pos);
@@ -50,7 +51,7 @@ public class WeaponData : ScriptableObject
     #region DataLoad
 
 
-    public enum UpgradeType { AttackDamage, AttackSpeed, end }
+    public enum UpgradeType { NewWeapon,AttackDamage, AttackSpeed, end }
 
     public void LevelUpData(UpgradeType type, int level)
     {
@@ -91,7 +92,7 @@ public class WeaponData : ScriptableObject
         public int AttackDamage;
         public int AttackSpeed;
     }
-    private List<Dictionary<string, object>> data;
+    public List<Dictionary<string, object>> data;
     private Dictionary<int, WeaponCSVDATA> CSVData = new Dictionary<int, WeaponCSVDATA>();
     public void AssetLoad()
     {

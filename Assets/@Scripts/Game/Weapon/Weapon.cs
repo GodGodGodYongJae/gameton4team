@@ -25,8 +25,8 @@ public abstract class Weapon : MonoBehaviour
     }
     public virtual async UniTaskVoid InitWeapon()
     {
-        await Managers.Object.RegisterObject(weaponData.Effect.name, 5);
         weaponData.DataInit();
+        await Managers.Object.RegisterObject(weaponData.Effect.name, 5);
         Attack().Forget();
     }
 

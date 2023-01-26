@@ -97,8 +97,9 @@ public class GameScene : BaseScene
         #endregion
 
         //플레이어 무기 슬롯 & 실제 등록.
-        weaponController.WeaponChange(WeaponType.Weapon_Sword).Forget();
-        WeaponSlotController.WeaponSlot weaponSlot = new WeaponSlotController.WeaponSlot(WeaponType.Weapon_Sword);
+        Weapon weapon = await weaponController.WeaponChange(WeaponType.Weapon_Sword);
+        WeaponSlotController.WeaponSlot weaponSlot = new WeaponSlotController.WeaponSlot(weapon.weaponData);
+        weaponSlot.Type = WeaponType.Weapon_Sword;
         WeaponSlotController.NewWeapon(weaponSlot);
 
         //지형 등록

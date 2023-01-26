@@ -20,7 +20,7 @@ public class WeaponController
     }
 
 
-    public async UniTaskVoid WeaponChange(Define.WeaponType type)
+    public async UniTask<Weapon> WeaponChange(Define.WeaponType type)
     {
         bool registered = false;
         SpriteRenderer spriteRenderer = rHandGo.GetComponent<SpriteRenderer>();
@@ -60,6 +60,6 @@ public class WeaponController
         });
         await UniTask.WaitUntil(() => { return registered == true; });
          weapon.InitWeapon().Forget();
-        
+        return weapon;
     }
 }
