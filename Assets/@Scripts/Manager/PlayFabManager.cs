@@ -8,6 +8,13 @@ namespace Assets._Scripts.Manager
 {
     public class PlayFabManager
     {
+        private PlayFabAuthService authSerivce;
+        public PlayFabAuthService AuthService => authSerivce;
+        public PlayFabManager()
+        {
+            authSerivce = new PlayFabAuthService();
+        }
+
         /// <summary>
         /// 가져올 재화
         /// </summary>
