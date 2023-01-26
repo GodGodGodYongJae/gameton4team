@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Spear_n_data
   m_EditorClassIdentifier: 
+  asset: {fileID: 4900000, guid: 806c994b91bd23a43bbd5a39e39f0722, type: 3}
+  uiImage: {fileID: 21300000, guid: 50cec5886e99309488af5032ac672a30, type: 3}
+  displayName: "\uCC3D"
   attackDmg: 1
   attackDealay: 1000
   attackDuration: 400

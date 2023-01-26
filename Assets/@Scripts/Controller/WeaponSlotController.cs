@@ -40,6 +40,8 @@ namespace Assets._Scripts.Controller
 
 
         List<WeaponSlot> Slot = new List<WeaponSlot>();
+        public IReadOnlyList<WeaponSlot> SlotList => Slot;
+
         private int SlotSize = 3;
         private int CurrentWeaponSlot = 0;
         public void NewWeapon(WeaponSlot slot)
@@ -47,10 +49,16 @@ namespace Assets._Scripts.Controller
             if (Slot.Count < SlotSize)
                Slot.Add(slot);
             else
-               ChangeSlotWeapon(CurrentWeaponSlot, slot);
-
+                ChangeSlotWeapon(CurrentWeaponSlot, slot);
+            Debug.Log(Slot.Count + "SLot Count");
         }
-
+        public void testFunc()
+        {
+            for (int i = 0; i < Slot.Count; i++)
+            {
+                Debug.Log(Slot[i].Type+"CurrentSlot ");
+            }
+        }
         /// <summary>
         /// 해당 슬롯에 해당 Type의 무기로 교체
         /// </summary>
