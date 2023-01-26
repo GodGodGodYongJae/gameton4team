@@ -49,6 +49,7 @@ public abstract class UI_Base : MonoBehaviour
 
 
     protected void BindObject(Type type) { Bind<GameObject>(type); }
+    protected void BindRectTrans(Type type) { Bind<RectTransform>(type); }
     protected void BindImage(Type type) { Bind<Image>(type); }
     protected void BindText(Type type) { Bind<TextMeshProUGUI>(type); }
     protected void BindButton(Type type) { Bind<Button>(type); }
@@ -64,6 +65,7 @@ public abstract class UI_Base : MonoBehaviour
     }
 
     protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
+    protected RectTransform GetRectTransform(int idx) { return Get<RectTransform>(idx); }
     protected TextMeshProUGUI GetText(int idx) { return Get<TextMeshProUGUI>(idx); }
     protected Button GetButton(int idx) { return Get<Button>(idx); }
     protected Image GetImage(int idx) { return Get<Image>(idx); }

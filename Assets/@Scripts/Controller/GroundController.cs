@@ -223,7 +223,7 @@ public class GroundController
     //스테이지 클리어 리스너
     private void StageClear(GameEvent eventType, Component Sender, object param)
     {
-        GameObject.Find("UI_GameScene").GetComponent<UI_GameScene>().Reward();
+        //GameObject.Find("UI_GameScene").GetComponent<UI_GameScene>().Reward();
         if (Define.GameEvent.stageClear == eventType && Utils.EqualSender<GameScene>(Sender))
         {
             GroundGenerator = (GroundGenerator)param; 

@@ -17,7 +17,6 @@ public class Define
         SpawnMonster,
         playerEvents,
         stageClear,
-        ChangeWeapon,
     }
 
     public enum SceneType
@@ -26,6 +25,17 @@ public class Define
         GameScene,
         Lobby,
         TitleScene
+    }
+
+    public enum WeaponType
+    {
+        None,
+        Weapon_Sword,
+        Weapon_Ax_n,
+        Weapon_Spear_n,
+        Weapon_Bow_n,
+        Weapon_Wand_n,
+        End
     }
     public struct PlayerEvent_HPData
     {

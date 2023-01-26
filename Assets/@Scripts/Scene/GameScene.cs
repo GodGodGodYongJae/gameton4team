@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using static Define;
+using Assets._Scripts.Controller;
 
 public class GameScene : BaseScene
 {
@@ -20,7 +21,8 @@ public class GameScene : BaseScene
     [SerializeField]
     GameObject[] _wallObjects;
 
-    WeaponController WeaponController;
+    WeaponController weaponController;
+    WeaponSlotController weaponSlotController = new WeaponSlotController();
 
     GameObject _playerGo;
     Player _player;
@@ -30,8 +32,9 @@ public class GameScene : BaseScene
     
     GroundController _groundController;
 
-    public GroundController GroundContoroller { get { return _groundController; } }
-
+    public GroundController GroundContoroller => _groundController;
+    public WeaponSlotController WeaponSlotController => weaponSlotController;
+    public WeaponController WeaponController => weaponController;
 
     private int StageIdx = 0;
     protected override bool Init()
@@ -47,6 +50,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_GameScene>(callback: (gameSceneUI) =>
         {
             _gameSceneUI = gameSceneUI;
+            _gameSceneUI.InitGameScene(this);
         });
 
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
@@ -83,7 +87,7 @@ public class GameScene : BaseScene
         #region DI
         //무기 DI 
 
-        WeaponController = new WeaponController(this); 
+        weaponController = new WeaponController(this); 
         //지형 DI
         _groundController = new GroundController(this, _groundGenerator[StageIdx]);
         //카메라 DI
@@ -91,6 +95,12 @@ public class GameScene : BaseScene
         cameraController.Init(this);
 
         #endregion
+
+        //플레이어 무기 슬롯 & 실제 등록.
+        Weapon weapon = await weaponController.WeaponChange(WeaponType.Weapon_Sword);
+        WeaponSlotController.WeaponSlot weaponSlot = new WeaponSlotController.WeaponSlot(weapon.weaponData);
+        weaponSlot.Type = WeaponType.Weapon_Sword;
+        WeaponSlotController.NewWeapon(weaponSlot);
 
         //지형 등록
         ////차후 Data 불러와서, 바꿔야 함.
