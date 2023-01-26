@@ -18,6 +18,8 @@ public class Berserk : SPUM_Monster
     {
         base.Awake();
         fsm = new StateMachine<States>(this);
+        MonsterAttackCol col = AttackBox.gameObject.GetOrAddComponent<MonsterAttackCol>();
+        col.CreateAttackCol(this);
     }
 
     public override void Damage(int dmg, Creature Target)
@@ -44,7 +46,7 @@ public class Berserk : SPUM_Monster
         float distance = Vector2.Distance(transform.position, target.transform.position);
         attackDealy += Time.deltaTime;
 
-        if (attackDealy >= monsterData.AttackDealy)
+        if (attackDealy >= monsterData.AttackDealy && _rigid.velocity.y == 0)
         {
             Observable.Timer(TimeSpan.FromMilliseconds(1000))
              .Subscribe(_ => fsm.ChangeState(States.ATTACK));
@@ -130,7 +132,6 @@ public class Berserk : SPUM_Monster
             await UniTask.WaitForFixedUpdate(cancellationToken: cts.Token);
             attackTime -= Time.deltaTime;
             if (attackTime <= 0) break;
-            Debug.Log(_rigid.position == targetPos);
         }
 
         this.attackDealy = 0;

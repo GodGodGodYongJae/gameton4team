@@ -27,6 +27,17 @@ public class Define
         Lobby,
         TitleScene
     }
+
+    public enum WeaponType
+    {
+        None,
+        Weapon_Sword,
+        Weapon_Ax_n,
+        Weapon_Spear_n,
+        Weapon_Bow_n,
+        Weapon_Wand_n,
+        End
+    }
     public struct PlayerEvent_HPData
     {
         public int maxHp;

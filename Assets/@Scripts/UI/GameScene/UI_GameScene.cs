@@ -1,17 +1,34 @@
+using Assets._Scripts.Controller;
+using Assets._Scripts.Game.Weapon;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class UI_GameScene : UI_Scene
 {
-    public GameObject RewardPopups; 
+
+    enum LoadAssetGameObjects
+    {
+        WeaponSelect,
+        CharacterStatusSelect
+    }
+
+    enum WeaponSelectSlot 
+    {
+        Slot1,
+        Slot2,
+        Slot3,
+    }
+ 
+
     [SerializeField]
     GameObject btnMain;
 
-
+    public WeaponSlotController WeaponSlotController;
     private Canvas canvas;
     public override bool Init()
     {
@@ -21,14 +38,31 @@ public class UI_GameScene : UI_Scene
 
         canvas.worldCamera = Camera.main;
 
+        #region Bind
+        BindObject(typeof(LoadAssetGameObjects));
+        BindObject(typeof(WeaponSelectSlot));
+        #endregion
+
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
 
         return true;
     }
-
-    public void Reward()
+    private const int SelectCardNum = 3;
+    private void OpenWeaponSelectBox()
     {
-        RewardPopups.SetActive(true);
+        Time.timeScale = 0;
+        GameObject selectObj =  GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
+        selectObj.SetActive(true);
+        for (int i = 0; i < SelectCardNum; i++)
+        {
+            int RandomSlotWeapon = Random.Range((int)Define.WeaponType.None + 1, (int)Define.WeaponType.End - 1);
+            WeaponSlot slot = WeaponSlotController.GetWeapon((Define.WeaponType)RandomSlotWeapon);
+            if ( slot == null)
+            {
+                
+                break;
+            }
+        }
     }
     private void UIEvent(Define.GameEvent eventType, Component Sender, object param)
     {
@@ -42,7 +76,7 @@ public class UI_GameScene : UI_Scene
             btn.onClick.AddListener(() => {
               
                 Time.timeScale = 1;
-                Managers.Scene.ChangeScene(Define.SceneType.TitleScene);
+                Managers.Scene.ChangeScene(Define.SceneType.Lobby);
                Managers.OnDestorys();
             });
         }

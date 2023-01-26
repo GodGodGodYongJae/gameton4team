@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using static Define;
+using Assets._Scripts.Controller;
 
 public class GameScene : BaseScene
 {
@@ -21,6 +22,7 @@ public class GameScene : BaseScene
     GameObject[] _wallObjects;
 
     WeaponController WeaponController;
+    WeaponSlotController weaponSlotController = new WeaponSlotController();
 
     GameObject _playerGo;
     Player _player;
@@ -30,8 +32,8 @@ public class GameScene : BaseScene
     
     GroundController _groundController;
 
-    public GroundController GroundContoroller { get { return _groundController; } }
-
+    public GroundController GroundContoroller => _groundController;
+    public WeaponSlotController WeaponSlotController => weaponSlotController;
 
     private int StageIdx = 0;
     protected override bool Init()
@@ -47,6 +49,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_GameScene>(callback: (gameSceneUI) =>
         {
             _gameSceneUI = gameSceneUI;
+            _gameSceneUI.WeaponSlotController = WeaponSlotController;
         });
 
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);

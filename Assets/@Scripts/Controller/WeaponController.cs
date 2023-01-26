@@ -7,14 +7,7 @@ public class WeaponController
 {
     //어드레서블, Weapon 스크립트 이름 enum값에 맞춰서 생성.
     //데이터 enum +_data 이름 값으로 생성.
-    public enum WeaponType
-    {
-        Weapon_Sword,
-        Weapon_Ax_n,
-        Weapon_Spear_n,
-        Weapon_Bow_n,
-        Weapon_Wand_n
-    }
+    // 2023-01-26 WeaponType은 Define으로 빠짐.
 
     public SPUM_SpriteList root { get; set; }
     private GameObject rHandGo;
@@ -24,7 +17,7 @@ public class WeaponController
         this.gameScene = gameScene;
         root = gameScene.Player._root;
         rHandGo =  root._weaponList[2].gameObject;
-        WeaponChange(WeaponType.Weapon_Sword).Forget();
+        WeaponChange(Define.WeaponType.Weapon_Sword).Forget();
         Managers.Events.AddListener(Define.GameEvent.ChangeWeapon, ChangeWeapon);
     }
 
@@ -33,12 +26,12 @@ public class WeaponController
         if(eventType == Define.GameEvent.ChangeWeapon)
         {
             int weaponParam = (int)param;
-            WeaponChange((WeaponType)weaponParam).Forget();
+            WeaponChange((Define.WeaponType)weaponParam).Forget();
         }
 
     }
 
-    public async UniTaskVoid WeaponChange(WeaponType type)
+    public async UniTaskVoid WeaponChange(Define.WeaponType type)
     {
         bool registered = false;
         SpriteRenderer spriteRenderer = rHandGo.GetComponent<SpriteRenderer>();
