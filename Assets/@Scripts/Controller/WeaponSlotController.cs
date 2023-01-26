@@ -7,15 +7,33 @@ namespace Assets._Scripts.Controller
 {
     public class WeaponSlotController
     {
+        public class WeaponSlot 
+        {
+            public WeaponSlot(Define.WeaponType Type)
+            {
+                this.Type = Type;
+                Managers.Resource.LoadAsync<ScriptableObject>(Type.ToString() + "_data", (succss) =>
+                {
+                  weaponData = (WeaponData)succss;
+                });
+            }
+            public Define.WeaponType Type;
+            public int level = 1;
+            public int atklevel = 1;
+            public int atkspeedlevel = 1;
+            public WeaponData weaponData;
+        }
+
+
         List<WeaponSlot> Slot = new List<WeaponSlot>();
         private int SlotSize = 3;
-
+        private int CurrentWeaponSlot = 0;
         public void NewWeapon(WeaponSlot slot)
         {
             if (Slot.Count < SlotSize)
                Slot.Add(slot);
             else
-               ChangeSlotWeapon(0, slot);
+               ChangeSlotWeapon(CurrentWeaponSlot, slot);
             
                 
         }
@@ -38,7 +56,7 @@ namespace Assets._Scripts.Controller
         /// <returns></returns>
         public bool isHaveWeapon(Define.WeaponType type)
         {
-            for (int i = 0; i < SlotSize; i++)
+            for (int i = 0; i < Slot.Count; i++)
             {
                 if (Slot[i].Type == type)
                     return true;    
@@ -47,7 +65,7 @@ namespace Assets._Scripts.Controller
         }
         public WeaponSlot GetWeapon(Define.WeaponType type)
         {
-            for (int i = 0; i < SlotSize; i++)
+            for (int i = 0; i < Slot.Count; i++)
             {
                 if (Slot[i].Type == type)
                     return Slot[i];

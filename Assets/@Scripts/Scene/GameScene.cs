@@ -21,7 +21,7 @@ public class GameScene : BaseScene
     [SerializeField]
     GameObject[] _wallObjects;
 
-    WeaponController WeaponController;
+    WeaponController weaponController;
     WeaponSlotController weaponSlotController = new WeaponSlotController();
 
     GameObject _playerGo;
@@ -34,6 +34,7 @@ public class GameScene : BaseScene
 
     public GroundController GroundContoroller => _groundController;
     public WeaponSlotController WeaponSlotController => weaponSlotController;
+    public WeaponController WeaponController => weaponController;
 
     private int StageIdx = 0;
     protected override bool Init()
@@ -49,7 +50,7 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_GameScene>(callback: (gameSceneUI) =>
         {
             _gameSceneUI = gameSceneUI;
-            _gameSceneUI.WeaponSlotController = WeaponSlotController;
+            _gameSceneUI.InitGameScene(this);
         });
 
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
@@ -86,7 +87,7 @@ public class GameScene : BaseScene
         #region DI
         //무기 DI 
 
-        WeaponController = new WeaponController(this); 
+        weaponController = new WeaponController(this); 
         //지형 DI
         _groundController = new GroundController(this, _groundGenerator[StageIdx]);
         //카메라 DI
@@ -94,6 +95,11 @@ public class GameScene : BaseScene
         cameraController.Init(this);
 
         #endregion
+
+        //플레이어 무기 슬롯 & 실제 등록.
+        weaponController.WeaponChange(WeaponType.Weapon_Sword).Forget();
+        WeaponSlotController.WeaponSlot weaponSlot = new WeaponSlotController.WeaponSlot(WeaponType.Weapon_Sword);
+        WeaponSlotController.NewWeapon(weaponSlot);
 
         //지형 등록
         ////차후 Data 불러와서, 바꿔야 함.

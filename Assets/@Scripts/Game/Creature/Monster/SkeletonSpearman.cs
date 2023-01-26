@@ -117,13 +117,20 @@ public class SkeletonSpearman : SPUM_Monster
         string attackString = "2_Attack_Normal";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
-        float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
-        await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
-        Attackbox.enabled = true;
-        await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
-        Attackbox.enabled = false;
-        this.attackDealy = monsterData.AttackDealy;
-        fsm.ChangeState(States.IDLE);
+        try {
+            float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
+            await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+            Attackbox.enabled = true;
+            await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+            Attackbox.enabled = false;
+            this.attackDealy = monsterData.AttackDealy;
+            fsm.ChangeState(States.IDLE);
+        }
+        catch
+        {
+           await UniTask.Yield();
+        }
+
     }
     #endregion
 
