@@ -79,6 +79,7 @@ public class WeaponData : ScriptableObject
     }
     public void DataInit()
     {
+        if (data != null) return;
         AssetLoad();
         for (int i = 0; i < (int)UpgradeType.end; i++)
         {

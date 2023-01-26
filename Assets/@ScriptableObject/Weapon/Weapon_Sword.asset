@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Weapon_Sword
   m_EditorClassIdentifier: 
   asset: {fileID: 4900000, guid: 806c994b91bd23a43bbd5a39e39f0722, type: 3}
-  uiImage: {fileID: 0}
-  displayName: 
-  attackDmg: 9
+  uiImage: {fileID: 21300000, guid: 4e9b1629ba3709d4cbfea1a7160e71ed, type: 3}
+  displayName: "\uCE7C"
+  attackDmg: 5
   attackDealay: 800
   attackDuration: 500
   skilEffect: {fileID: 8578447339511797204, guid: 5637d824b1b28bf47be1b987c3b2e19e, type: 3}

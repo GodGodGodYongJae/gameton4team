@@ -19,8 +19,8 @@ public class WeaponController
         rHandGo =  root._weaponList[2].gameObject;
     }
 
-
-    public async UniTask<Weapon> WeaponChange(Define.WeaponType type)
+    
+    public async UniTask<Weapon> WeaponChange(Define.WeaponType type,WeaponData weaponDatas = null)
     {
         bool registered = false;
         SpriteRenderer spriteRenderer = rHandGo.GetComponent<SpriteRenderer>();
@@ -51,13 +51,20 @@ public class WeaponController
         rHandGo.AddComponent(t);
 
         weapon = rHandGo.GetComponent<Weapon>();
-
-        Managers.Resource.LoadAsync<ScriptableObject>(type.ToString()+"_data", (succss) =>
+        if(weaponDatas == null)
         {
-            weapon.weaponData = (WeaponData)succss;
+            Managers.Resource.LoadAsync<ScriptableObject>(type.ToString() + "_data", (succss) =>
+            {
+                weapon.weaponData = (WeaponData)succss;
+                registered = true;
+            });
+        }
+        else
+        {
+            weapon.weaponData = weaponDatas;
             registered = true;
-            
-        });
+        }
+       
         await UniTask.WaitUntil(() => { return registered == true; });
          weapon.InitWeapon().Forget();
         return weapon;

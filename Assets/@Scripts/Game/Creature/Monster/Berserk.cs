@@ -109,9 +109,17 @@ public class Berserk : SPUM_Monster
         Observable.Timer(TimeSpan.FromMilliseconds(1000)).
             Subscribe(_ =>
             {
-                float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
-                transform.localScale = new Vector2(direction, transform.localScale.y);
-                AttackAsync().Forget();
+                try
+                {
+                    float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+                    transform.localScale = new Vector2(direction, transform.localScale.y);
+                    AttackAsync().Forget();
+                }
+                catch
+                {
+
+                }
+                
             }
          );
 

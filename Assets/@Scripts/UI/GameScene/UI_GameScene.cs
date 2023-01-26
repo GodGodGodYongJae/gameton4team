@@ -1,5 +1,6 @@
 using Assets._Scripts.Controller;
 using Assets._Scripts.Game.Weapon;
+using Assets._Scripts.UI.GameScene;
 using Assets._Scripts.UI.LobbyScene;
 using Cysharp.Threading.Tasks;
 using System;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+using Random = System.Random;
 
 public class UI_GameScene : UI_Scene
 {
@@ -24,6 +25,13 @@ public class UI_GameScene : UI_Scene
         Weapon_Slot1,
         Weapon_Slot2,
         Weapon_Slot3,
+    }
+
+    enum WeaponInventory
+    {
+        Inventory_Slot1,
+        Inventory_Slot2,
+        Inventory_Slot3,
     }
  
 
@@ -53,6 +61,8 @@ public class UI_GameScene : UI_Scene
         #region Bind
         BindObject(typeof(LoadAssetGameObjects));
         BindRectTrans(typeof(WeaponSelectSlot));
+        BindButton(typeof(WeaponInventory));
+
         GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
         selectObj.SetActive(false);
         #endregion
@@ -60,10 +70,44 @@ public class UI_GameScene : UI_Scene
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClearEvent);
 
-        OpenWeaponSelectBox().Forget();
+        // for 문이 안먹어서 btn을 배열로 빼야할듯
+
+        Button btn1 = GetButton(0).GetComponent<Button>();
+        btn1.onClick.AddListener(() => { OnChangeWeapon(btn1).Forget(); });
+
+        Button btn2 = GetButton(1).GetComponent<Button>();
+        btn2.onClick.AddListener(() => { OnChangeWeapon(btn2).Forget(); });
+
+        Button btn3 = GetButton(2).GetComponent<Button>();
+        btn3.onClick.AddListener(() => { OnChangeWeapon(btn3).Forget(); });
         return true;
     }
 
+   
+
+    public void SyncInventoryInfo()
+    {
+        for (int i = 0; i < WeaponSlotController.SlotList.Count; i++)
+        {
+            GameObject invenSlot = GetButton(i).gameObject;
+            Text Level = invenSlot.transform.Find("Level").GetComponent<Text>();
+            Image image = invenSlot.transform.Find("Image").GetComponent<Image>();
+            image.sprite = WeaponSlotController.SlotList[i].weaponData.UIImage;
+            string levelTxt = "LV. " + WeaponSlotController.SlotList[i].level.ToString();
+            Level.text = levelTxt;
+            InventoryButton invenBtn = GetButton(i).gameObject.GetOrAddComponent<InventoryButton>();
+            invenBtn.Slot = WeaponSlotController.SlotList[i];
+        }
+    }
+ 
+    public async UniTaskVoid OnChangeWeapon(Button button)
+    {
+        WeaponSlotController.WeaponSlot slot = button.gameObject.GetOrAddComponent<InventoryButton>().Slot;
+        if (slot == null) return;
+        await GameScene.WeaponController.WeaponChange(slot.Type, slot.weaponData);
+       
+    }
+    #region SelectCard
 
     struct WeaponCard
     {
@@ -76,17 +120,19 @@ public class UI_GameScene : UI_Scene
 
 
     private const int SelectCardNum = 3;
-    private async UniTaskVoid OpenWeaponSelectBox()
+    public async UniTaskVoid OpenWeaponSelectBox()
     {
         Time.timeScale = 0;
-        GameObject selectObj =  GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
+        GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
         selectObj.SetActive(true);
+        Random typeOverlab = new Random();
+        Random upgradeOverlab = new Random();
         for (int i = 0; i < SelectCardNum; i++)
         {
-            int RandomSlotWeapon = Random.Range((int)Define.WeaponType.None + 1, (int)Define.WeaponType.End - 1);
+            int RandomSlotWeapon = typeOverlab.Next((int)Define.WeaponType.None + 1, (int)Define.WeaponType.End);
             WeaponSlotController.WeaponSlot slot = WeaponSlotController.GetWeapon((Define.WeaponType)RandomSlotWeapon);
             WeaponCard card = new WeaponCard();
-            Debug.Log(slot.Type+","+ (Define.WeaponType)RandomSlotWeapon);
+
             bool Lock = false;
             if ( slot == null)
             {
@@ -107,7 +153,7 @@ public class UI_GameScene : UI_Scene
             {
                 card.image = slot.weaponData.UIImage;
                 card.name = slot.weaponData.DisplayName;
-                int randomUpgrade = Random.Range(1, (int)WeaponData.UpgradeType.end -1);
+                int randomUpgrade = upgradeOverlab.Next(1, (int)WeaponData.UpgradeType.end);
                 string discriptions = "";
                 int NextUpgradeNum = 0;
                 int CurrentUpgradeNum = 0;
@@ -137,35 +183,41 @@ public class UI_GameScene : UI_Scene
         }
     }
 
-    private WeaponCard ChooseSlotWeapon;
     private void SlotCardUISet(WeaponSelectSlot slot, WeaponCard card)
     {
-       GameObject SlotGo = GetRectTransform((int)slot).gameObject;
+        GameObject SlotGo = GetRectTransform((int)slot).gameObject;
         Text NameTxt = SlotGo.transform.Find("Name").GetComponent<Text>();
         Image image = SlotGo.transform.Find("Image").GetComponent<Image>();
         Text ExplanationTxt = SlotGo.transform.Find("Explanation").GetComponent<Text>();
-       
+
         NameTxt.text = card.name;
         image.sprite = card.image;
         ExplanationTxt.text = card.Explanation;
-        ChooseSlotWeapon = card;
-        SlotGo.BindEvent(SelectCard);
+        Button btn = SlotGo.GetOrAddComponent<Button>();
+        btn.onClick.RemoveAllListeners();
+        btn.onClick.AddListener(() => { SelectCard(card); });
     }
 
-    private void SelectCard()
+    private void SelectCard(WeaponCard ChooseSlotWeapon)
     {
         //closeSelectBox
 
             Time.timeScale = 1;
-        //GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
-        //selectObj.SetActive(false);
-        OpenWeaponSelectBox().Forget();
+        GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
+        selectObj.SetActive(false);
 
-        if (ChooseSlotWeapon.UpgradeType == WeaponData.UpgradeType.NewWeapon) WeaponSlotController.NewWeapon(ChooseSlotWeapon.weaponSlot);
-        else ChooseSlotWeapon.weaponSlot.LevelUp(ChooseSlotWeapon.UpgradeType);
-
-
+        if (ChooseSlotWeapon.UpgradeType == WeaponData.UpgradeType.NewWeapon)
+        {
+            WeaponSlotController.NewWeapon(ChooseSlotWeapon.weaponSlot);
+        }
+        else
+        {
+            ChooseSlotWeapon.weaponSlot.LevelUp(ChooseSlotWeapon.UpgradeType);
+        }
+        SyncInventoryInfo();
+        //OpenWeaponSelectBox().Forget();
     }
+    #endregion
     private void StageClearEvent(Define.GameEvent eventType, Component Sender, object param)
     {
         if(eventType == Define.GameEvent.stageClear)

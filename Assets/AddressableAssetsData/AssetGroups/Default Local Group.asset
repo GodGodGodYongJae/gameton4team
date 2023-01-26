@@ -90,7 +90,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f1e9744b7414e9845940f6bd20e2bc40
-    m_Address: Weapon_Bow_n
+    m_Address: Weapon_Bow_n_data
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 94078d5d52350de44a184f394b478d77
