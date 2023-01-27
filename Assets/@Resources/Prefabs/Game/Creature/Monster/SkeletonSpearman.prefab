@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6865641454245180070}
-  - component: {fileID: 3003427624643619633}
   - component: {fileID: 3920960291365579971}
   - component: {fileID: 8967933957936943894}
+  - component: {fileID: -2599587883713468471}
   m_Layer: 7
   m_Name: SkeletonSpearman
   m_TagString: Untagged
@@ -35,21 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3003427624643619633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5774182934705270123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f75a986e5984804f8a90723f7d602be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _creatureData: {fileID: 11400000, guid: fd8875bc71b13454c947f9a1ee8d9bb0, type: 2}
-  sPUM_Prefab: {fileID: 2988042251515808982}
-  attackAnimSync: 15
 --- !u!70 &3920960291365579971
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -87,6 +72,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2599587883713468471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774182934705270123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cba46329d72e84d919e6dcc86d0a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _creatureData: {fileID: 11400000, guid: c0dae7122169f7a418893ffc17534157, type: 2}
+  sPUM_Prefab: {fileID: 2988042251515808982}
+  attackAnimSync: 0
+  arrow: {fileID: 3391895794129409543, guid: a3af1c8ccba17634d8b20c581685a315, type: 3}
+  direction: 0
 --- !u!1001 &2284313788753978961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: bdafe39dbac3f9841a64e986defd68f2, type: 3}
     - target: {fileID: 75604561653665403, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 672760899308261757, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_Sprite
@@ -108,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 8522194497926649313, guid: 80fc61793dcbbbf428853c6c2d5576f7, type: 3}
     - target: {fileID: 672760899308261757, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1086723841078901462, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_Pivot.x
@@ -208,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1cf19366ac025c34492f822eb20c8ecd, type: 3}
     - target: {fileID: 1918562997939169304, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3987739392598276145, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_Controller
@@ -224,7 +226,7 @@ PrefabInstance:
       objectReference: {fileID: 3972871922154001853, guid: 80fc61793dcbbbf428853c6c2d5576f7, type: 3}
     - target: {fileID: 5270261811480356337, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6533775683105736553, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_Sprite
@@ -232,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 5530570116592791311, guid: 80fc61793dcbbbf428853c6c2d5576f7, type: 3}
     - target: {fileID: 6533775683105736553, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9df1216e8daf66243a562f2fe461f84e, type: 3}

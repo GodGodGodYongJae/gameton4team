@@ -23,7 +23,7 @@ public class Weapon_Ax_n : Weapon
         Vector2 effectPos = (Vector2)boxCollider.bounds.center + (weaponData.EffectPos * direction);
         GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
         effectGo.transform.localScale = new Vector2(effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
-        Bullet bullet = effectGo.GetOrAddComponent<Bullet>();
+        PlayerBullet bullet = effectGo.GetOrAddComponent<PlayerBullet>();
         bullet.InitBulletData(weaponData, player);
 
         await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);

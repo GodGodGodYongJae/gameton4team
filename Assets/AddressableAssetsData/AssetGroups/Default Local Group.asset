@@ -169,6 +169,38 @@ MonoBehaviour:
     m_Address: UI_Lobby
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f33903436373b214c9c99579291181af
+    m_Address: Goblin_Archer 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dadbbdfb8e2bf7f4897d47699566d892
+    m_Address: Goblin_Boss2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc4d2d0f004928c4fb64df5719a7af10
+    m_Address: Goblin_mineworker2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c491120c34bf4b468d104c74c21f8fa
+    m_Address: Goblin_thief2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 64c85a842f4d11241ac006c180d513d5
+    m_Address: Zombie1_bonethrower 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d1d98437471995e4db8379193f3476d5
+    m_Address: Zombie1_Boss 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6abe662e9d612f74daa384a53174b65f
+    m_Address: Zombie1_farmer 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: df6ee29b7bf859a42856dcaad0facd19
+    m_Address: Zombie1_walker 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

@@ -12,14 +12,16 @@ public class Monster : Creature
     protected MoveAction moveAction;
 
 
-    protected  GameObject HPCanvas;
+    protected GameObject HPCanvas;
     protected CreatureHPBar creatureHPBar;
 
     protected Score score;
     protected Level level;
 
     protected MonsterData monsterData;
-    public MonsterData MonsterData => monsterData; 
+    public MonsterData MonsterData => monsterData;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -27,8 +29,7 @@ public class Monster : Creature
         target = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
         Managers.Events.AddListener(Define.GameEvent.SpawnMonster, SpawnListen);
         score = FindObjectOfType<Score>();
-        level = FindObjectOfType<Level>();  
-        
+        level = FindObjectOfType<Level>();
     }
 
     protected override void Death()
@@ -57,14 +58,13 @@ public class Monster : Creature
     {
         Collider2D box = GetComponent<Collider2D>();
         Vector2 pos = Vector2.zero;
-         HPCanvas = await Managers.Object.InstantiateAsync(StringData.HealthBar, pos);
+        HPCanvas = await Managers.Object.InstantiateAsync(StringData.HealthBar, pos);
         //pos += new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
         HPCanvas.transform.parent = this.transform;
         HPCanvas.transform.position = pos;
         RectTransform rect = HPCanvas.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(0,pos.y + box.bounds.extents.y);
+        rect.anchoredPosition = new Vector2(0, pos.y + box.bounds.extents.y);
         creatureHPBar = HPCanvas.GetComponent<CreatureHPBar>();
         action?.Invoke();
     }
 }
-

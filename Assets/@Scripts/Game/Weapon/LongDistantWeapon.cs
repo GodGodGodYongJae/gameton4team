@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Weapon_Wand_n : LongDistanceWeapon
+public class LongDistanceWeapon : Weapon
 {
     BoxCollider2D boxCollider;
+    public float direction;
+    public Vector2 effectPos;
     public override void Start()
     {
         base.Start();

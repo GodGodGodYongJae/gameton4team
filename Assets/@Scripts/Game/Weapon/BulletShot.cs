@@ -5,19 +5,25 @@ using UnityEngine;
 
 namespace Assets._Scripts.Game.Weapon
 {
-    public class BulletShot : Bullet
+    public class BulletShot : PlayerBullet
     {
-        Weapon_Wand_n wand;
-        public float speed = 10;
-        void Awake()
+        LongDistanceWeapon longDistance;
+        int range = 0;
+
+        protected override void Awake()
         {
-            wand = GameObject.Find("L_Weapon").GetComponent<Weapon_Wand_n>();
+            base.Awake();
+        }
+        public override void InitBulletData(WeaponData weaponData, Player player, object obj)
+        {
+            base.InitBulletData(weaponData, player, obj);
+            longDistance = (LongDistanceWeapon)obj;
+            range = weaponData.Range;
         }
         void Update()
         {
-            float moveX = speed * Time.deltaTime;
-            Debug.Log(wand.direction);
-            transform.Translate(wand.direction * moveX, 0, 0);
+            float moveX = range * Time.deltaTime;
+            transform.Translate(longDistance.direction * moveX, 0, 0);
         }
 
     }

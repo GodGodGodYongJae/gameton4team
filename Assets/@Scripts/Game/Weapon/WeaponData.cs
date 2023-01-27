@@ -28,6 +28,8 @@ public class WeaponData : ScriptableObject
     [Tooltip("이펙트 에니메이션 시간 넣기")]
     int attackDuration;
     [SerializeField]
+    int range;
+    [SerializeField]
     GameObject skilEffect;
     [SerializeField]
     Vector2 effectPos;
@@ -35,6 +37,7 @@ public class WeaponData : ScriptableObject
     public int AttackDamge { get { return attackDmg; } }
     public int AttackDealay { get { return attackDealay; } }
     public int AttackDuration { get { return attackDuration; } }
+    public int Range { get { return range; } }
     public GameObject Effect => skilEffect;
 
     public Sprite UIImage => uiImage;

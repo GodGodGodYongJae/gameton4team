@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour
 {
-    public enum Type 
-    { 
+    public enum Type
+    {
         Player,
         Monster
     }
@@ -19,6 +19,8 @@ public class Creature : MonoBehaviour
     protected SpriteRenderer _sprite;
     protected int _hp;
     protected Rigidbody2D _rigid;
+
+    public CreatureData CreatureData => _creatureData;
     protected virtual void Awake()
     {
         _hp = _creatureData.MaxHP;
@@ -28,19 +30,19 @@ public class Creature : MonoBehaviour
 
 
 
-    #region 데미지 처리 공용 함수
+    #region 
     public virtual void Damage(int dmg, Creature Target)
     {
         _hp -= dmg;
         blinkObject().Forget();
         KnockBack(Target.gameObject);
-        if(_hp <= 0)
+        if (_hp <= 0)
         {
             Death();
         }
     }
-    
-    protected virtual void Death()=> transform.gameObject.SetActive(false);
+
+    protected virtual void Death() => transform.gameObject.SetActive(false);
 
     protected CancellationTokenSource cts = new CancellationTokenSource();
 
@@ -82,7 +84,7 @@ public class Creature : MonoBehaviour
     private async UniTaskVoid ResetKnocback()
     {
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-        await UniTask.Delay(knockBackdelay,cancellationToken: cts.Token);
+        await UniTask.Delay(knockBackdelay, cancellationToken: cts.Token);
         rigid.velocity = Vector2.zero;
     }
     #endregion
