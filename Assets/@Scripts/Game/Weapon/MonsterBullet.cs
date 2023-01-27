@@ -11,7 +11,7 @@ namespace Assets._Scripts.Game.Weapon
     public class MonsterBullet : Bullet
     {
         private Monster monster;
-        private int Damage = 0;
+        private float Damage = 0;
         private int AttackDuration = 500;
         private float direction = 0;
         public void InitBulletData(Monster monster)

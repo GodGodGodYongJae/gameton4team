@@ -73,6 +73,11 @@ public class SPUM_Monster : Monster
             
         }
     }
+    public override void Damage(float dmg, Creature Target)
+    {
+        base.Damage(dmg, Target);
+        creatureHPBar.Damage(_hp, _creatureData.MaxHP);
+    }
 
     protected void spriteListEnable(bool enable)
     {

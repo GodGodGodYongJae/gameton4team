@@ -24,11 +24,6 @@ public class ScarceAssasin : SPUM_Monster
         fsm = new StateMachine<States>(this);
     }
 
-    public override void Damage(int dmg, Creature Target)
-    {
-        base.Damage(dmg, Target);
-        creatureHPBar.Damage(_hp, _creatureData.MaxHP);
-    }
 
 
     // 리플렉션으로 구현됨 MonsterLove ( FSM 플러그인 사용 ) 

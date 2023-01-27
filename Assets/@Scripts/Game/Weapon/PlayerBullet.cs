@@ -12,14 +12,14 @@ namespace Assets._Scripts.Game.Weapon
     {
         private List<GameObject> damagedMonsterList = new List<GameObject>();
         private Player player;
-        private int Damage = 0;
+        private float Damage = 0;
         private int AttackDuration = 0;
 
 
         public virtual void InitBulletData(WeaponData weaponData, Player player, object obj = null)
         {
             damagedMonsterList.Clear();
-            this.Damage = weaponData.AttackDamge + player.GetPlayerDamage();
+            this.Damage = player.GetPlayerDamage(weaponData.AttackDamge );
             this.player = player;
             this.AttackDuration = weaponData.AttackDuration;
             this.isInit = true;

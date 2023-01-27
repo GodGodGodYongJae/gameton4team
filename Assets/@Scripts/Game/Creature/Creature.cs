@@ -17,7 +17,7 @@ public class Creature : MonoBehaviour
     [SerializeField]
     protected CreatureData _creatureData;
     protected SpriteRenderer _sprite;
-    protected int _hp;
+    protected float _hp;
     protected Rigidbody2D _rigid;
 
     public CreatureData CreatureData => _creatureData;
@@ -31,7 +31,7 @@ public class Creature : MonoBehaviour
 
 
     #region 
-    public virtual void Damage(int dmg, Creature Target)
+    public virtual void Damage(float dmg, Creature Target)
     {
         _hp -= dmg;
         blinkObject().Forget();

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public sealed partial class Player : Creature
 {
@@ -55,10 +56,14 @@ public sealed partial class Player : Creature
     {
         return directionVector.x;
     }
-    public float Speed { get { return _creatureData.Speed; } }
-    public int GetPlayerDamage()
+    public float Speed { get { return playerData.Speed; } }
+    public float GetPlayerDamage(int weaponDamage)
     {
-        return _creatureData.AttackDamage;
+        float CriticalSuccess = Random.Range(0.0f, 100.0f);
+        float CriticalDmg = 1;  
+        if (CriticalSuccess <= playerData.CriticalProbaility)
+                CriticalDmg = 1.75f;
+            return (playerData.AttackDamage + weaponDamage) * CriticalDmg;
     }
     #endregion
 }

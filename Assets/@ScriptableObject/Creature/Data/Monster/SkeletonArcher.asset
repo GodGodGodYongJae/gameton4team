@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 1000
   _speed: 5
-  _attackDmg: 4
+  attackDamage: 4
   _visibility: 1
   _attackRange: 7
   _attackDealy: 3

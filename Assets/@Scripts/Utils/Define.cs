@@ -12,7 +12,7 @@ public class Define
     public enum GameEvent
     {
         playerHealthChange,
-        playerLevelChange,
+        playerExpChange,
         monsterDestroy,
         SpawnMonster,
         playerEvents,
@@ -38,8 +38,8 @@ public class Define
     }
     public struct PlayerEvent_HPData
     {
-        public int maxHp;
-        public int curHp;
+        public float maxHp;
+        public float curHp;
     }
 
     public struct PlayerEvent_LevelData

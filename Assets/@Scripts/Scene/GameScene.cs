@@ -102,7 +102,7 @@ public class GameScene : BaseScene
         weaponSlot.Type = WeaponType.Weapon_Sword;
         WeaponSlotController.NewWeapon(weaponSlot);
         _gameSceneUI.SyncInventoryInfo();
-        _gameSceneUI.OpenWeaponSelectBox().Forget();
+        //_gameSceneUI.OpenWeaponSelectBox().Forget();
         //지형 등록
         ////차후 Data 불러와서, 바꿔야 함.
         WaitLoadGround(() => _groundController.Init().Forget()).Forget();

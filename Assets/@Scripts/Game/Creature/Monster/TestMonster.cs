@@ -14,7 +14,7 @@ public class TestMonster : Monster
         moveAction += MoveDelay;
         base.Awake();
     }
-    public override void Damage(int dmg, Creature Target)
+    public override void Damage(float dmg, Creature Target)
     {
         base.Damage(dmg, Target);
         movects.Dispose();

@@ -12,12 +12,11 @@ public class CreatureData : ScriptableObject
     [SerializeField]
 
     protected float _speed;
-    [SerializeField]
 
-    protected int _attackDmg;
-
+    [SerializeField] 
+    protected float attackDamage;
     public int MaxHP => _maxhp;
     public float Speed => _speed;
-    public int AttackDamage => _attackDmg;
+    public float AttackDamage => attackDamage;
 
 }

@@ -58,6 +58,7 @@ public class WeaponData : ScriptableObject
 
     public void LevelUpData(UpgradeType type, int level)
     {
+        if (level > maxLevel) return;
         switch (type)
         {
             case UpgradeType.AttackDamage:
@@ -70,6 +71,7 @@ public class WeaponData : ScriptableObject
     }
     public int GetLevelData(UpgradeType type, int level)
     {
+        if (level > maxLevel) level = maxLevel;
         switch (type)
         {
             case UpgradeType.AttackDamage:
@@ -91,11 +93,12 @@ public class WeaponData : ScriptableObject
     }
 
 
-    public struct WeaponCSVDATA
+    private struct WeaponCSVDATA
     {
         public int AttackDamage;
         public int AttackSpeed;
     }
+    private int maxLevel = 0;
     public List<Dictionary<string, object>> data;
     private Dictionary<int, WeaponCSVDATA> CSVData = new Dictionary<int, WeaponCSVDATA>();
     public void AssetLoad()
@@ -103,12 +106,14 @@ public class WeaponData : ScriptableObject
         data = CSVReader.Read(asset);
         for (int i = 0; i < data.Count; i++)
         {
+          
             WeaponCSVDATA weaponData = new WeaponCSVDATA();
             weaponData.AttackDamage = (int)data[i]["Item_Attack_Point"];
             weaponData.AttackSpeed = (int)data[i]["Item_Attack_Speed"];
 
             CSVData.Add(i + 1, weaponData);
         }
+        maxLevel = (int)data[data.Count - 1]["Item_Level"];
     }
     #endregion
 }

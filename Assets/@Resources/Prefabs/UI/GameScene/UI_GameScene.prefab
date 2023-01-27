@@ -53,9 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expbar: {fileID: 1158016011}
-  level: 1
-  curExp: 0
-  maxExp: 10
   Lv: {fileID: 388624431}
   Exp: {fileID: 1656433751}
 --- !u!1 &323437866

@@ -8,5 +8,5 @@ public class CreatureHPBar : MonoBehaviour
     [SerializeField]
     Image HpImg;
     
-    public void Damage(int curhp, int maxhp) => HpImg.fillAmount = (float)curhp / (float)maxhp;
+    public void Damage(float curhp, float maxhp) => HpImg.fillAmount = curhp / maxhp;
 }

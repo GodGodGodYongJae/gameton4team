@@ -25,12 +25,6 @@ public class SkeletonArcher : SPUM_Monster
     }
 
 
-    public override void Damage(int dmg, Creature Target)
-    {
-        base.Damage(dmg, Target);
-        creatureHPBar.Damage(_hp, _creatureData.MaxHP);
-    }
-
     #region FSM
 
     float moveDealy = 0;
@@ -64,6 +58,7 @@ public class SkeletonArcher : SPUM_Monster
     void MOVE_Enter()
     {
         sPUM_Prefab.PlayAnimation("1_Run");
+        sPUM_Prefab._anim.StartRecording(10);
         direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
         MoveSync().Forget();
@@ -73,6 +68,7 @@ public class SkeletonArcher : SPUM_Monster
 
     async UniTaskVoid MoveSync()
     {
+
         float moveTime = 0;
         while (moveTime < 0.8f && _rigid.velocity.y == 0)
         {
@@ -87,7 +83,7 @@ public class SkeletonArcher : SPUM_Monster
 
             try
             {
-                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
+                Vector2 targetPos = new Vector2(transform.position.x + (direction*2.5f), transform.position.y);
                 Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
                 _rigid.MovePosition(newPos);
                 await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
@@ -104,6 +100,7 @@ public class SkeletonArcher : SPUM_Monster
 
     void ATTACK_Enter()
     {
+
         AttackAsync().Forget();
     }
 

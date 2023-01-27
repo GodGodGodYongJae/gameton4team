@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public partial class Player
@@ -9,20 +10,55 @@ public partial class Player
     SwipeController SwipeController;
     public Vector2 directionVector;
     PlayerData playerData;
-   
-    
+
+    public PlayerData PlayerData => playerData;
+
+    public int CurrentExp;
     void Init()
     {
         _type = Type.Player;
+        // DataLoad
         playerData = (PlayerData)_creatureData;
+        playerData.AssetLoad();
+        LevelUP();       
+        //End
         SwipeController = new SwipeController();
         directionVector = Vector2.right;
         PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
+        Managers.Events.AddListener(Define.GameEvent.monsterDestroy, MonsterKill);
     }
-    
- 
+
+
+    private void MonsterKill(Define.GameEvent eventType, Component Sender, object param)
+    {
+        if(eventType == Define.GameEvent.monsterDestroy)
+        {
+            Monster monster = (Monster)Sender;
+            CurrentExp += monster.MonsterData.Exp;
+            if(CurrentExp >= playerData.ExperiencePoint && playerData.ExperiencePoint != int.MaxValue)
+            {
+                LevelUP();
+            }
+            PostChangeExp();
+        }
+    }
+
+
+    #region 레벨업/경험치 관련
+    void PostChangeExp()
+    {
+        Managers.Events.PostNotification(Define.GameEvent.playerExpChange, this);
+    }
+    void LevelUP()
+    {
+        playerData.LevelUp();
+        _hp = playerData.MaxHP;
+        CurrentExp = 0;
+        PostEventHp();
+    }
+    #endregion
 
     #region 조작 및 이동관련
     void Move() => transform.Translate(directionVector * _creatureData.Speed * Time.deltaTime);
@@ -51,7 +87,7 @@ public partial class Player
     #region 데미지 관련
 
     bool isDamage = false;
-    public override void Damage(int dmg, Creature Target)
+    public override void Damage(float dmg, Creature Target)
     {
         if (isDamage == true) return;
         Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Damage);

@@ -25,11 +25,6 @@ public class OrcWarrior : SPUM_Monster
     }
 
 
-    public override void Damage(int dmg, Creature Target)
-    {
-        base.Damage(dmg, Target);
-        creatureHPBar.Damage(_hp, _creatureData.MaxHP);
-    }
 
     #region FSM
 
@@ -110,7 +105,7 @@ public class OrcWarrior : SPUM_Monster
 
     async UniTaskVoid AttackAsync()
     {
-        string attackString = "2_Attack_Bow";
+        string attackString = "2_Attack_Normal";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
