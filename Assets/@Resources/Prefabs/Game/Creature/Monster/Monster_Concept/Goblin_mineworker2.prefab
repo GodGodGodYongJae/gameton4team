@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3955058459605595852
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 3413002917237955950, guid: 39b4ac86a04eb2c48b38eb92ebc75343, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 3902034503352574076, guid: 39b4ac86a04eb2c48b38eb92ebc75343, type: 3}
       propertyPath: m_Name
       value: Goblin_mineworker

@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &422337771598486885
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,6 +164,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1927891951887716910, guid: c6db0ff3672b29e4da8668292e77625b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 1985809666868483226, guid: c6db0ff3672b29e4da8668292e77625b, type: 3}
       propertyPath: m_Layer
       value: 7
