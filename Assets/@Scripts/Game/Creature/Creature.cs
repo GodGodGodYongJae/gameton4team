@@ -68,7 +68,7 @@ public class Creature : MonoBehaviour
         _sprite.enabled = true;
     }
 
-    private int knockBackStrength = 7, knockBackdelay = 150;
+    private int knockBackStrength = 6, knockBackdelay = 150;
 
     protected void KnockBack(GameObject sender)
     {
@@ -76,7 +76,7 @@ public class Creature : MonoBehaviour
         if (rigid == null) Debug.LogError("해당 Object에, rigid body가 없습니다." + gameObject.name);
         ResetKnocback().Forget();
         Vector2 knockBackPos = (transform.position - sender.transform.position).normalized;
-        knockBackPos.y += 1;
+        knockBackPos.y += 0.6f;
         rigid.AddForce(knockBackPos * knockBackStrength, ForceMode2D.Impulse);
         ResetKnocback().Forget();
 

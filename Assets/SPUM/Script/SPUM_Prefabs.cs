@@ -43,7 +43,7 @@ public class SPUM_Prefabs : MonoBehaviour
         UnitTypeChanged.AddListener(InitAnimPair);
     }
     // 이름으로 애니메이션 실행
-    public void PlayAnimation(string name){
+    public void PlayAnimation(string name, Action callback = null){
 
        // Debug.Log("CODE RUN : "+name);
         
@@ -51,9 +51,11 @@ public class SPUM_Prefabs : MonoBehaviour
         {
             if(animationName.Key.ToLower().Contains(name.ToLower()) ){
                 _anim.Play(animationName.Value, 0);
+                callback?.Invoke();
                 break;
             }
         }
+
     }
 
     public int GetAnimFrmae(string name)
