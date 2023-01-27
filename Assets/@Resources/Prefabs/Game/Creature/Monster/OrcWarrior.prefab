@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creatureData: {fileID: 11400000, guid: ff08604e6a0d51d4bbcdf4e1b9668566, type: 2}
-  sPUM_Prefab: {fileID: 8161726656686998952}
+  sPUM_Prefab: {fileID: 5992268590462411521, guid: 9b9aafba21dbbb64d9a7231d22bb8aa2, type: 3}
   attackAnimSync: 15
   arrow: {fileID: 3391895794129409543, guid: a3af1c8ccba17634d8b20c581685a315, type: 3}
   direction: 0
@@ -223,14 +223,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4616374800602248245, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
   m_PrefabInstance: {fileID: 6940960978829047611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8161726656686998952 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1231585078511514259, guid: e4ed814cbf8714c49befee5dc50033c6, type: 3}
-  m_PrefabInstance: {fileID: 6940960978829047611}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28ac21711b0ec40a0812d33a586eb7ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

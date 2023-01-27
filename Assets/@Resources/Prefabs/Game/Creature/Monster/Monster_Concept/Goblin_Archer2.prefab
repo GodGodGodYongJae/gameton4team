@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b947324a7224e9240bb46abb50075bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creatureData: {fileID: 11400000, guid: c0dae7122169f7a418893ffc17534157, type: 2}
+  _creatureData: {fileID: 11400000, guid: 7f38e6a426cc35e4da5d4e6ea3232291, type: 2}
   sPUM_Prefab: {fileID: 5278958034530754837}
-  attackAnimSync: 0
+  attackAnimSync: 15
   arrow: {fileID: 3391895794129409543, guid: 2ae6c2b8d7c2afc4a85506df18177a52, type: 3}
   direction: 0
 --- !u!70 &8260022256711629120

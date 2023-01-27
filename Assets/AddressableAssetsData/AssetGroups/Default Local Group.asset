@@ -201,6 +201,82 @@ MonoBehaviour:
     m_Address: Zombie1_walker 1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 009c26ed87cc3044594f2562a76e7862
+    m_Address: Ground_Stage01_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c95b046bbb8fc7143b841381b9e31dac
+    m_Address: Ground_Stage01_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88f78f68a9e799a4c950c89dd515e02c
+    m_Address: Ground_Stage01_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f1a91ce66e4a654294e87d27f4f61b1
+    m_Address: Ground_Stage02_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 039c8a7e4f45c27418c7d69f48ecbea3
+    m_Address: Ground_Stage02_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c13d5e1611cff714083a8aa076900963
+    m_Address: Ground_Stage02_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b28c09c9c4d32545b998a35a61a29bd
+    m_Address: Goblin_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8dbee05683e03a240ae822af331676af
+    m_Address: Goblin_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39b4ac86a04eb2c48b38eb92ebc75343
+    m_Address: Goblin_mineworker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6db0ff3672b29e4da8668292e77625b
+    m_Address: Goblin_thief
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 941b272e82c49694ea0e40c375971d38
+    m_Address: Ork_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 81c931b789307fe48ab465c35329a825
+    m_Address: Ork_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9b9aafba21dbbb64d9a7231d22bb8aa2
+    m_Address: Ork_thief
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c71e559c9dcfb848ba1495f2ec7d08f
+    m_Address: Ork_warrior
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc9082a9f61efc545858b4870caae563
+    m_Address: Zombie1_bonethrower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cc96afb69b41f484286da0847aeec88a
+    m_Address: Zombie1_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 787c44ac49884aa45bd30d41db27881c
+    m_Address: Zombie1_farmer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b915e67e4c90b0543b4a1f23cd4e6b6a
+    m_Address: Zombie1_walker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab937231d0600440fb0d8757568d78d7
+    m_Address: SPUM_MonsterAnimation
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

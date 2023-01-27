@@ -17,9 +17,6 @@ public class GroundController
     GameScene gameScene;
 
     Ground ground;
-
-    UI_GameScene rewardPopups;
-
     // 생성할 그라운드 리스트.
     IReadOnlyList<GameObject> groundList;
     public static float chatperSize = 0;
