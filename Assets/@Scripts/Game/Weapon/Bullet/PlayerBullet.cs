@@ -14,6 +14,7 @@ namespace Assets._Scripts.Game.Weapon
         private Player player;
         private float Damage = 0;
         private int AttackDuration = 0;
+        private int MaxTargets = 0;
 
 
         public virtual void InitBulletData(WeaponData weaponData, Player player, object obj = null)
@@ -22,6 +23,7 @@ namespace Assets._Scripts.Game.Weapon
             this.Damage = player.GetPlayerDamage(weaponData.AttackDamge );
             this.player = player;
             this.AttackDuration = weaponData.AttackDuration;
+            this.MaxTargets = weaponData.MaxTargets;
             this.isInit = true;
             Duration().Forget();
         }
@@ -44,7 +46,7 @@ namespace Assets._Scripts.Game.Weapon
         private void OnTriggerStay2D(Collider2D collision)
         {
             //이닛이 이루어졌을 때만
-            if (isInit == false) return;
+            if (isInit == false || damagedMonsterList.Count >= MaxTargets ) return;
             //이미 해당 몬스터가 한번 공격을 받았으면 리턴
             if (damagedMonsterList.Contains(collision.gameObject))
                 return;

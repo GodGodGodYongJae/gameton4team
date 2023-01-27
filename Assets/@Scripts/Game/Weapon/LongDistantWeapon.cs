@@ -21,6 +21,7 @@ public class LongDistanceWeapon : Weapon
     public override async UniTaskVoid Attack()
     {
 
+        await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         damagedMonsterList.Clear();
         direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
         effectPos = (Vector2)boxCollider.bounds.center + (weaponData.EffectPos * direction);
@@ -29,7 +30,6 @@ public class LongDistanceWeapon : Weapon
         BulletShot bulletshot = effectGo.GetOrAddComponent<BulletShot>();
         bulletshot.InitBulletData(weaponData, player, this);
 
-        await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         Attack().Forget();
     }
 

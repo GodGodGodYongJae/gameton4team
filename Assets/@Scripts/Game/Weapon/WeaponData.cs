@@ -101,6 +101,8 @@ public class WeaponData : ScriptableObject
     private int maxLevel = 0;
     public List<Dictionary<string, object>> data;
     private Dictionary<int, WeaponCSVDATA> CSVData = new Dictionary<int, WeaponCSVDATA>();
+    private int maxTagets = 0;
+    public int MaxTargets => maxTagets;
     public void AssetLoad()
     {
         data = CSVReader.Read(asset);
@@ -114,6 +116,7 @@ public class WeaponData : ScriptableObject
             CSVData.Add(i + 1, weaponData);
         }
         maxLevel = (int)data[data.Count - 1]["Item_Level"];
+        maxTagets = (int)data[0]["Item_targets"];
     }
     #endregion
 }

@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Bow_n_data
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: 806c994b91bd23a43bbd5a39e39f0722, type: 3}
+  asset: {fileID: 4900000, guid: 6bd35e1e573d90f4aa537e58fb3903a4, type: 3}
   uiImage: {fileID: 21300000, guid: b92c786def55a124e84490965ca1ac7e, type: 3}
   displayName: "\uD65C"
   attackDmg: 1
   attackDealay: 10000
   attackDuration: 500
-skilEffect: {fileID: 5318645611535818453, guid: 16bf956cf6263db48a288225a1e8a86b, type: 3}
+  range: 0
+  skilEffect: {fileID: 0}
   effectPos: {x: 0, y: 0}

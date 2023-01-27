@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SwipeController
 {
@@ -23,7 +24,13 @@ public class SwipeController
         if(Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
+
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            if (touch.phase == TouchPhase.Began)
             {
                 touchBeganPos = touch.position;
             }
