@@ -73,13 +73,13 @@ public class UI_GameScene : UI_Scene
         // for 문이 안먹어서 btn을 배열로 빼야할듯
 
         Button btn1 = GetButton(0).GetComponent<Button>();
-        btn1.onClick.AddListener(() => { OnChangeWeapon(btn1).Forget(); });
+        btn1.onClick.AddListener(() => { OnChangeWeapon(btn1,0).Forget(); });
 
         Button btn2 = GetButton(1).GetComponent<Button>();
-        btn2.onClick.AddListener(() => { OnChangeWeapon(btn2).Forget(); });
+        btn2.onClick.AddListener(() => { OnChangeWeapon(btn2,1).Forget(); });
 
         Button btn3 = GetButton(2).GetComponent<Button>();
-        btn3.onClick.AddListener(() => { OnChangeWeapon(btn3).Forget(); });
+        btn3.onClick.AddListener(() => { OnChangeWeapon(btn3,2).Forget(); });
         return true;
     }
 
@@ -100,12 +100,12 @@ public class UI_GameScene : UI_Scene
         }
     }
  
-    public async UniTaskVoid OnChangeWeapon(Button button)
+    public async UniTaskVoid OnChangeWeapon(Button button,int slotNum)
     {
         WeaponSlotController.WeaponSlot slot = button.gameObject.GetOrAddComponent<InventoryButton>().Slot;
         if (slot == null) return;
         await GameScene.WeaponController.WeaponChange(slot.Type, slot.weaponData);
-       
+        WeaponSlotController.CurrentWeaponSlot = slotNum;
     }
     #region SelectCard
 

@@ -43,7 +43,7 @@ namespace Assets._Scripts.Controller
         public IReadOnlyList<WeaponSlot> SlotList => Slot;
 
         private int SlotSize = 3;
-        private int CurrentWeaponSlot = 0;
+        public int CurrentWeaponSlot = 0;
         public void NewWeapon(WeaponSlot slot)
         {
             if (Slot.Count < SlotSize)
@@ -66,7 +66,7 @@ namespace Assets._Scripts.Controller
         /// <param name="slot"></param>
         public void ChangeSlotWeapon(int slotNum,WeaponSlot slot)
         {
-            Slot[slotNum] = slot;
+            Slot[CurrentWeaponSlot] = slot;
             // UI Change Todo
         }
 

@@ -104,7 +104,6 @@ public class WeaponData : ScriptableObject
         for (int i = 0; i < data.Count; i++)
         {
             WeaponCSVDATA weaponData = new WeaponCSVDATA();
-
             weaponData.AttackDamage = (int)data[i]["Item_Attack_Point"];
             weaponData.AttackSpeed = (int)data[i]["Item_Attack_Speed"];
 
