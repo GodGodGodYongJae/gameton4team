@@ -57,6 +57,7 @@ public partial class Player
         _hp = playerData.MaxHP;
         CurrentExp = 0;
         PostEventHp();
+        PostChangeExp();
     }
     #endregion
 
