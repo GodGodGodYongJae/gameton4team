@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CreatureGenerator_Stage03_2
   m_EditorClassIdentifier: 
   spawnMonsterList:
-  - spawnObj: {fileID: 485699622578822847, guid: 6c491120c34bf4b468d104c74c21f8fa, type: 3}
+  - spawnObj: {fileID: 5871340976641936254, guid: 64c85a842f4d11241ac006c180d513d5, type: 3}
     spawnPos: {x: -2, y: 3}
   - spawnObj: {fileID: 2726986422982442067, guid: bc4d2d0f004928c4fb64df5719a7af10, type: 3}
     spawnPos: {x: 5, y: 3}

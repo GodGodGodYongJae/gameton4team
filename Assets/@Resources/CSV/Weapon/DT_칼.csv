@@ -1,5 +1,5 @@
 No,dev_name,Item_Name,Item_Level,Item_Attack_Point,Item_Attack_Speed,Item_Range,Item_targets,Item_Up_Stat,Item_Delimit,Item_Type
-1,Item_Weapon_Sword_n_01,Weapon_Sword_n,1,999,800,0,1,,Nomal,Weapon
+1,Item_Weapon_Sword_n_01,Weapon_Sword_n,1,8,800,0,1,,Nomal,Weapon
 2,Item_Weapon_Sword_n_02,Weapon_Sword_n,2,9,780,0,1,1,Nomal,Weapon
 3,Item_Weapon_Sword_n_03,Weapon_Sword_n,3,10,760,0,1,1,Nomal,Weapon
 4,Item_Weapon_Sword_n_04,Weapon_Sword_n,4,11,740,0,1,1,Nomal,Weapon
