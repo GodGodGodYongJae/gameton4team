@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Weapon_Wand_n : LongDistanceWeapon
+public class Weapon_Bow_n : LongDistanceWeapon
 {
     int range = 10;
     //BoxCollider2D boxCollider;

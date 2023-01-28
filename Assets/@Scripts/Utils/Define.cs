@@ -34,6 +34,7 @@ public class Define
         Weapon_Ax_n,
         Weapon_Spear_n,
         Weapon_Wand_n,
+        Weapon_Bow_n,
         End
     }
     public struct PlayerEvent_HPData

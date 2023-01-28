@@ -10,6 +10,6 @@ public class Weapon_Ax_n : WeaponMelee
     public override void Start()
     {
         base.Start();
-        effectoDir = 1;
+        effectoDir = -1;
     }
 }

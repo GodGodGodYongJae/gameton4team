@@ -19,5 +19,5 @@ MonoBehaviour:
   attackDealay: 900
   attackDuration: 300
   range: 0
-  skilEffect: {fileID: 1063918882999393564, guid: eb88bbd95760bf646a84043ada8cea01, type: 3}
-  effectPos: {x: 0.5, y: 0}
+  skilEffect: {fileID: 2471051896196794196, guid: d9c79e2e6e1a94e469e2c880c59353c8, type: 3}
+  effectPos: {x: -0.5, y: 0}

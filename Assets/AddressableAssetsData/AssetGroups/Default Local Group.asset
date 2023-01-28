@@ -289,6 +289,14 @@ MonoBehaviour:
     m_Address: Ground_Stage03_2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 4601cbdcd4cae1744b5caafe702f347a
+    m_Address: Skill_14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9c79e2e6e1a94e469e2c880c59353c8
+    m_Address: Flash_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:
