@@ -21,6 +21,14 @@ MonoBehaviour:
     m_Address: Skill_19 1
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 2183660e1cd51bd4fa5ce6e970f84739
+    m_Address: Bone_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e20ebf4a5fa52c343a60418a6d21e32c
+    m_Address: Arrow_n
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:
