@@ -62,7 +62,8 @@ public class GroundController
         }
 
         float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
-        gameScene.Player.InitPosition(initPosX);
+        float initPosY = this.grounds.First.Next.Next.Value.transform.position.y;
+        gameScene.Player.InitPosition(initPosX,initPosY+2);
         CameraController cam = Camera.main.GetComponent<CameraController>();
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;

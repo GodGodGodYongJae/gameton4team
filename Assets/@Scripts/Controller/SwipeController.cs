@@ -19,13 +19,23 @@ public class SwipeController
         swipeSensitivity = 150.0f;
         Managers.UpdateAction += MUpdate;
     }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+
+    }
     void MUpdate()
     {
         if(Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (IsPointerOverUIObject())
             {
                 return;
             }
