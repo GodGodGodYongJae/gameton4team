@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Zombie_bonethrower
   m_EditorClassIdentifier: 
-  _maxhp: 45
+  _maxhp: 28
   _speed: 1
-  attackDamage: 12
+  attackDamage: 10
   _visibility: 0
   _attackRange: 4
   _attackDealy: 1
