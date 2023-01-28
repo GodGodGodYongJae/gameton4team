@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Zombie_Boss
   m_EditorClassIdentifier: 
-  _maxhp: 120
+  _maxhp: 75
   _speed: 1
-  attackDamage: 20
+  attackDamage: 17
   _visibility: 0
-  _attackRange: 2
-  _attackDealy: 1
+  _attackRange: 2.5
+  _attackDealy: 1.1
   _moveDealy: 1
   _moveTime: 1
-  _exp: 10
+  _exp: 8

@@ -277,6 +277,18 @@ MonoBehaviour:
     m_Address: SPUM_MonsterAnimation
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 890b35b7516a87a4c9d4459feb3667ab
+    m_Address: Ground_Stage03_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4643ace6d8df68e41b03ecd37037be8b
+    m_Address: Ground_Stage03_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 76032ffd0f23efe4d9bf2549e9d64f3a
+    m_Address: Ground_Stage03_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

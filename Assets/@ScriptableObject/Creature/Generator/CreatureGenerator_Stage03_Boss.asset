@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_Goblin_archer
+  m_Script: {fileID: 11500000, guid: 734a154a4f348d84bac953144acbaf68, type: 3}
+  m_Name: CreatureGenerator_Stage03_Boss
   m_EditorClassIdentifier: 
-  _maxhp: 25
-  _speed: 2
-  attackDamage: 8
-  _visibility: 0
-  _attackRange: 7
-  _attackDealy: 1.5
-  _moveDealy: 1
-  _moveTime: 1
-  _exp: 1
+  spawnMonsterList:
+  - spawnObj: {fileID: 4476450596835047236, guid: dadbbdfb8e2bf7f4897d47699566d892, type: 3}
+    spawnPos: {x: 0, y: 3}
