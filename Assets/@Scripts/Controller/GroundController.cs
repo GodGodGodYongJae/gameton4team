@@ -74,7 +74,7 @@ public class GroundController
     void CheckNextBound()
     {
         float extendSize = ExtendSize(nextGround);
-        float pointCheck = nextGround.transform.position.x + extendSize - 1;
+        float pointCheck = nextGround.transform.position.x + extendSize - Define.NextWallSence;
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
             if (chatperSize > 0)
