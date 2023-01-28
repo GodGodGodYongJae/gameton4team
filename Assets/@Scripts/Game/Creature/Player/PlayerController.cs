@@ -28,6 +28,7 @@ public partial class Player
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
         Managers.Events.AddListener(Define.GameEvent.monsterDestroy, MonsterKill);
+
     }
 
 
@@ -39,10 +40,16 @@ public partial class Player
             CurrentExp += monster.MonsterData.Exp;
             if(CurrentExp >= playerData.ExperiencePoint && playerData.ExperiencePoint != int.MaxValue)
             {
+
+                LevelUpText().Forget();
                 LevelUP();
             }
             PostChangeExp();
         }
+    }
+    private async UniTaskVoid LevelUpText()
+    {
+        await Managers.Object.InstantiateAsync("LevelUpText", transform.position);
     }
 
 
