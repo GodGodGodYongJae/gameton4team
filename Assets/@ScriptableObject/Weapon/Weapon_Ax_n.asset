@@ -16,7 +16,7 @@ MonoBehaviour:
   uiImage: {fileID: 21300000, guid: 2c0912b2d92953a47b4002daa89127e5, type: 3}
   displayName: "\uB3C4\uB07C"
   attackDmg: 10
-  attackDealay: 700
+  attackDealay: 900
   attackDuration: 300
   range: 0
   skilEffect: {fileID: 1063918882999393564, guid: eb88bbd95760bf646a84043ada8cea01, type: 3}
