@@ -224,6 +224,7 @@ MonoBehaviour:
   _groundGenerator:
   - {fileID: 11400000, guid: 0fe498218005a104aa1b0920ec29357d, type: 2}
   - {fileID: 11400000, guid: 7a22032ecb9be1f41a40b88bb9ad0dd9, type: 2}
+  - {fileID: 11400000, guid: 5df7ea60a02543148acb1e96cb41672a, type: 2}
   _wallObjects:
   - {fileID: 8662862121317373236}
   - {fileID: 1455646297452626265}
