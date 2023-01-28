@@ -40,7 +40,6 @@ public class SwipeController
                 touchDif = (touchEndPos - touchBeganPos);
                 if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x) && Mathf.Abs(touchDif.y) > swipeSensitivity)
                 {
-                    Debug.Log(Mathf.Abs(touchDif.y));
                     ActionKey = Player.PlayerActionKey.Jump;
                 }
                 else
