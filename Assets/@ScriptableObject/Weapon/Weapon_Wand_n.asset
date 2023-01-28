@@ -20,4 +20,4 @@ MonoBehaviour:
   attackDuration: 500
   range: 7
   skilEffect: {fileID: 951399195817685442, guid: 4601cbdcd4cae1744b5caafe702f347a, type: 3}
-  effectPos: {x: 0, y: 0}
+  effectPos: {x: 2, y: 0}
