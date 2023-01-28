@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Goblin_mineworker
   m_EditorClassIdentifier: 
-  _maxhp: 50
+  _maxhp: 42
   _speed: 2
-  attackDamage: 12
+  attackDamage: 11
   _visibility: 0
-  _attackRange: 2
-  _attackDealy: 1
-  _moveDealy: 1
+  _attackRange: 1.2
+  _attackDealy: 1.1
+  _moveDealy: 1.5
   _moveTime: 1
   _exp: 2

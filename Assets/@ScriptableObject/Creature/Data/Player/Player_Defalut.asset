@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42c30f31c7dcd041bbe46f5e06f6c29, type: 3}
   m_Name: Player_Defalut
   m_EditorClassIdentifier: 
-  _maxhp: 100
+  _maxhp: 104
   _speed: 2
-  attackDamage: 3
+  attackDamage: 12
   asset: {fileID: 4900000, guid: b869e98e6fb55594e81173f015635945, type: 3}
   _jumpForce: 7
   _invinvibilityDuration: 1500

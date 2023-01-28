@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Goblin_archer
   m_EditorClassIdentifier: 
-  _maxhp: 40
+  _maxhp: 25
   _speed: 2
-  attackDamage: 10
+  attackDamage: 9
   _visibility: 0
   _attackRange: 7
-  _attackDealy: 2
+  _attackDealy: 1.7
   _moveDealy: 1
   _moveTime: 1
   _exp: 1

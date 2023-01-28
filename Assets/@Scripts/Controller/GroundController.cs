@@ -40,7 +40,6 @@ public class GroundController
     // 처음 지형 생성.
     public async UniTaskVoid Init()
     {
-        Time.timeScale = 0;
         int idx = 0;
         Vector2 pos = new Vector2(0, Define.GroundPosY);
         await CreateGround(pos, groundList[idx].name);
@@ -63,11 +62,11 @@ public class GroundController
         }
 
         float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
-        gameScene.Player.InitPosition(initPosX);
+        float initPosY = this.grounds.First.Next.Next.Value.transform.position.y;
+        gameScene.Player.InitPosition(initPosX,initPosY+2);
         CameraController cam = Camera.main.GetComponent<CameraController>();
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
-        Time.timeScale = 1;
     }
 
 
@@ -78,7 +77,6 @@ public class GroundController
         float pointCheck = nextGround.transform.position.x + extendSize - 1;
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
-            ground = nextGround.GetComponent<Ground>();
             if (chatperSize > 0)
             {
                 PushNextGround().Forget();
@@ -124,7 +122,7 @@ public class GroundController
         chatperSize -= ExtendSize(go);
 
         WallPosSet();
-        ground = nextGround.GetComponent<Ground>();
+        ground = grounds.Last.Previous.Value.GetComponent<Ground>();
         ground.SpawnMonster().Forget();
     }
 

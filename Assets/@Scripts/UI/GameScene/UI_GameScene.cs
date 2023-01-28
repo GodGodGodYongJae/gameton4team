@@ -17,6 +17,7 @@ public class UI_GameScene : UI_Scene
     enum LoadAssetGameObjects
     {
         WeaponSelect,
+        WeaponSelectSkip
         //CharacterStatusSelect
     }
 
@@ -65,6 +66,9 @@ public class UI_GameScene : UI_Scene
 
         GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
         selectObj.SetActive(false);
+
+        GameObject selectSkipObj = GetObject((int)LoadAssetGameObjects.WeaponSelectSkip).gameObject;
+        selectSkipObj.BindEvent(OnWeaponSelectSkip);
         #endregion
 
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
@@ -84,6 +88,12 @@ public class UI_GameScene : UI_Scene
     }
 
    
+    public void OnWeaponSelectSkip()
+    {
+        Time.timeScale = 1;
+        GameObject selectObj = GetObject((int)LoadAssetGameObjects.WeaponSelect).gameObject;
+        selectObj.SetActive(false);
+    }
 
     public void SyncInventoryInfo()
     {
@@ -127,6 +137,8 @@ public class UI_GameScene : UI_Scene
         selectObj.SetActive(true);
         Random typeOverlab = new Random();
         Random upgradeOverlab = new Random();
+        int NextUpgradeNum = 0;
+        int CurrentUpgradeNum = 0;
         for (int i = 0; i < SelectCardNum; i++)
         {
             int RandomSlotWeapon = typeOverlab.Next((int)Define.WeaponType.None + 1, (int)Define.WeaponType.End);
@@ -139,12 +151,15 @@ public class UI_GameScene : UI_Scene
                 Lock = true;
                 Managers.Resource.LoadAsync<ScriptableObject>(((Define.WeaponType)RandomSlotWeapon).ToString() + "_data", (succss) =>
                 {
+
                     slot = new WeaponSlotController.WeaponSlot((WeaponData)succss);
                     slot.Type =(Define.WeaponType)RandomSlotWeapon;
-
+                    CurrentUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackDamage, 1);
+                    int CurrentUpgradeDealay = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackSpeed, 1);
+                    int maxTargets = slot.weaponData.MaxTargets;
                     card.image = slot.weaponData.UIImage;
                     card.name = slot.weaponData.DisplayName;
-                    card.Explanation = "무기 선택하기!";
+                    card.Explanation = "무기 선택하기!" + "\n" + "공격력 : " + CurrentUpgradeNum + "\n" + "공격 딜레이 : " + CurrentUpgradeDealay + "\n" + "피격 가능수 : " + maxTargets;
                     card.UpgradeType = WeaponData.UpgradeType.NewWeapon;
                     Lock = false;
                 });
@@ -155,8 +170,7 @@ public class UI_GameScene : UI_Scene
                 card.name = slot.weaponData.DisplayName;
                 int randomUpgrade = upgradeOverlab.Next(1, (int)WeaponData.UpgradeType.end);
                 string discriptions = "";
-                int NextUpgradeNum = 0;
-                int CurrentUpgradeNum = 0;
+
                 WeaponData.UpgradeType upgradetype = WeaponData.UpgradeType.end;
                 switch ((WeaponData.UpgradeType)randomUpgrade)
                 {
@@ -169,7 +183,7 @@ public class UI_GameScene : UI_Scene
                     case WeaponData.UpgradeType.AttackSpeed:
                         NextUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackSpeed, slot.atklevel + 1);
                         CurrentUpgradeNum = slot.weaponData.GetLevelData(WeaponData.UpgradeType.AttackSpeed, slot.atklevel);
-                        discriptions = " 공격속도 증가 :" + (NextUpgradeNum - CurrentUpgradeNum).ToString() + "\n" + " 현재 공격속도 : " + CurrentUpgradeNum;
+                        discriptions = " 공격딜레이 감소 :" + (NextUpgradeNum - CurrentUpgradeNum).ToString() + "\n" + " 현재 딜레이 : " + CurrentUpgradeNum;
                         upgradetype = WeaponData.UpgradeType.AttackSpeed;
                         break;
 

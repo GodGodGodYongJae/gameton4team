@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de2f1d3d0afda1248a680631cfa17b00, type: 3}
-  m_Name: Stage_1
+  m_Name: Stage_3
   m_EditorClassIdentifier: 
   _groundsPrefab:
-  - {fileID: 531670560232200445, guid: 009c26ed87cc3044594f2562a76e7862, type: 3}
-  - {fileID: 531670560232200445, guid: c95b046bbb8fc7143b841381b9e31dac, type: 3}
-  - {fileID: 531670560232200445, guid: 88f78f68a9e799a4c950c89dd515e02c, type: 3}
-  _chatperSize: 30
+  - {fileID: 531670560232200445, guid: 890b35b7516a87a4c9d4459feb3667ab, type: 3}
+  - {fileID: 531670560232200445, guid: 76032ffd0f23efe4d9bf2549e9d64f3a, type: 3}
+  - {fileID: 531670560232200445, guid: 4643ace6d8df68e41b03ecd37037be8b, type: 3}
+  _chatperSize: 40
