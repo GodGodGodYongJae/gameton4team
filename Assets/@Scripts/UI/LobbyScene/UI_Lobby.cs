@@ -18,7 +18,7 @@ namespace Assets._Scripts.UI.LobbyScene
     enum Texts
     {
         EnergyText,
-        DiamondText,
+        //DiamondText,
         CoinText
     }
     public class UI_Lobby : UI_Scene
@@ -46,11 +46,9 @@ namespace Assets._Scripts.UI.LobbyScene
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
             int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
             energyText.text = data.ToString();
-            Debug.Log(data);
-
-            TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
-             data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
-            DiamondText.text = data.ToString();
+            //TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
+            // data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
+            //DiamondText.text = data.ToString();
 
             TextMeshProUGUI CoinText = GetText((int)Texts.CoinText);
              data = await Managers.PlayFab.GetCurrencyData(StringData.Coin);
