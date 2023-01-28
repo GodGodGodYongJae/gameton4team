@@ -83,7 +83,7 @@ public class CameraController : MonoBehaviour
         CameraMove();
 
         minMapSize = _prevWall.position.x;
-        maxMapSize = _nextWall.position.x;
+        maxMapSize = _nextWall.position.x - Define.NextWallSence;
         _mapSize.x = Mathf.Abs(minMapSize - maxMapSize) / 2;
         _center.x = (Mathf.Abs(maxMapSize) - Mathf.Abs(minMapSize)) / 2 + _prevWall.position.x;
         transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
