@@ -63,29 +63,49 @@ namespace Assets._Scripts.UI.LobbyScene
 
         #region ButtonCallback
 
+ 
         bool isClickStart = false;
-         async void OnStartButton()
+
+        async void OnStartButton()
         {
-            if (isClickStart == true) return;
+            if (isClickStart) return;
             isClickStart = true;
-            int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
-            if (data >= 5)
+
+            try
             {
-                Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
-                     () =>
-                    {
-                        Managers.Scene.ChangeScene(Define.SceneType.GameScene);
-                    
-                    });
+                int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
+
+                if (data >= 5)
+                {
+                    Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
+                         () =>
+                        {
+                            Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+
+                        });
+                }
+                else
+                {
+                    ShowNotEnoughEnergyMessage();
+                }
             }
-            else
+            catch (Exception ex)
+            {
+                Debug.LogError("Failed to get or set currency data: " + ex.Message);
+            }
+            finally
             {
                 isClickStart = false;
             }
-          
         }
 
-         void OnEnergyPlus()
+        private void ShowNotEnoughEnergyMessage()
+        {
+            Debug.Log("Not enough energy to start game");
+
+        }
+
+        void OnEnergyPlus()
         {
             Managers.PlayFab.SetCurrecy(StringData.Energy, 5,()=> {
                 LoadCurrecyData();
