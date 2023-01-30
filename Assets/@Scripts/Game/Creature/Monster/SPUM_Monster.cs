@@ -33,7 +33,7 @@ public class SPUM_Monster : Monster
 
     protected StateMachine<States> fsm;
 
-    protected BoxCollider2D Attackbox;
+    protected Collider2D Attackbox;
     protected override void Awake()
     {
         base.Awake();
