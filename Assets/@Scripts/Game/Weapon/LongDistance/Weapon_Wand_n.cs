@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class Weapon_Wand_n : LongDistanceWeapon
 {
+    int range = 10;
     //BoxCollider2D boxCollider;
     //public override void Start()
     //{

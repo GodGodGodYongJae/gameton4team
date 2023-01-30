@@ -42,7 +42,7 @@ public class PlayerData : CreatureData
         this.criticalProbaility = CSVData[level].CriticalProbaility;
         this.experiencePoint = CSVData[level].ExperiencePoint;
         // 최대 경험치 예외처리 필요
-        if (level + 1 > maxLevel)
+        if (experiencePoint == -1)
         {
             this.experiencePoint = int.MaxValue;
         }

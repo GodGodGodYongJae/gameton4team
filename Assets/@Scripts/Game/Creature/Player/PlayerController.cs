@@ -28,6 +28,7 @@ public partial class Player
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
         Managers.Events.AddListener(Define.GameEvent.monsterDestroy, MonsterKill);
+
     }
 
 
@@ -39,10 +40,16 @@ public partial class Player
             CurrentExp += monster.MonsterData.Exp;
             if(CurrentExp >= playerData.ExperiencePoint && playerData.ExperiencePoint != int.MaxValue)
             {
+
+                LevelUpText().Forget();
                 LevelUP();
             }
             PostChangeExp();
         }
+    }
+    private async UniTaskVoid LevelUpText()
+    {
+        await Managers.Object.InstantiateAsync("LevelUpText", transform.position);
     }
 
 
@@ -57,6 +64,7 @@ public partial class Player
         _hp = playerData.MaxHP;
         CurrentExp = 0;
         PostEventHp();
+        PostChangeExp();
     }
     #endregion
 
@@ -78,9 +86,9 @@ public partial class Player
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
     // 위치 초기화
-    public void InitPosition(float x = 0)
+    public void InitPosition(float x = 0,float y = 0)
     {
-        transform.position = new Vector2(x, transform.position.y);
+        transform.position = new Vector2(x, y);
     }
     #endregion
 

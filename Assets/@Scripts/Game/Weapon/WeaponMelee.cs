@@ -25,7 +25,8 @@ public class WeaponMelee : Weapon
         float direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
         try
         {
-            Vector2 effectPos = (Vector2)boxCollider.bounds.center + (weaponData.EffectPos * direction);
+            //(Vector2)boxCollider.bounds.center
+            Vector2 effectPos =  (Vector2)player.transform.position + new Vector2(weaponData.EffectPos.x * direction, weaponData.EffectPos.y);
             GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
             effectGo.transform.localScale = new Vector2(effectoDir * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
             PlayerBullet bullet = effectGo.GetOrAddComponent<PlayerBullet>();
@@ -36,7 +37,7 @@ public class WeaponMelee : Weapon
         {
 
         }
-     
+
     }
 
     public override void ChangeWeaponFixedUpdateDelete()

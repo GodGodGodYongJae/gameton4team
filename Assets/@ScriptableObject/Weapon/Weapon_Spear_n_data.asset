@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Spear_n_data
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: 275a3013a2bf9814e83394d2352b146c, type: 3}
+  asset: {fileID: 4900000, guid: bafb804e98a77a84ebe8355df0bfe5a7, type: 3}
   uiImage: {fileID: 21300000, guid: bb7aa23100c6d8643aaba8317ff8b66a, type: 3}
   displayName: "\uCC3D"
   attackDmg: 6
   attackDealay: 1500
-  attackDuration: 400
-  range: 5
+  attackDuration: 350
+  range: 2
   skilEffect: {fileID: 7896262495618836898, guid: 5eef787398b2467448b468463bed56cc, type: 3}
-  effectPos: {x: 2, y: 0}
+  effectPos: {x: 1.5, y: 0}

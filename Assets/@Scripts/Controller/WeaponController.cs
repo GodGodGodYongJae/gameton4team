@@ -45,8 +45,8 @@ public class WeaponController
         });
         await UniTask.WaitUntil(() => { return registered == true; });
         registered = false;
-        
 
+      
         Type t = Type.GetType(type.ToString());
         rHandGo.AddComponent(t);
 

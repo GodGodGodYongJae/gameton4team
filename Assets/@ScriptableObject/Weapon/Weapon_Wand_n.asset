@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Wand_n
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: 830fa2e9003d5f247bae9462b2b742d8, type: 3}
+  asset: {fileID: 4900000, guid: 2bd6913b11d7dd74987be926c866edaf, type: 3}
   uiImage: {fileID: 21300000, guid: 8fae86f3c5bd6ff46a00e24a76b3b276, type: 3}
   displayName: "\uC9C0\uD321\uC774"
   attackDmg: 6
-  attackDealay: 1500
-  attackDuration: 500
-  range: 7
-  skilEffect: {fileID: 5318645611535818453, guid: 16bf956cf6263db48a288225a1e8a86b, type: 3}
-  effectPos: {x: 0, y: 0}
+  attackDealay: 1800
+  attackDuration: 1200
+  range: 3
+  skilEffect: {fileID: 951399195817685442, guid: 4601cbdcd4cae1744b5caafe702f347a, type: 3}
+  effectPos: {x: 1, y: 0}

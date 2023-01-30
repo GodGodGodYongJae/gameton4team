@@ -109,7 +109,6 @@ public class SkeletonArcher : SPUM_Monster
         AttackAsync().Forget();
     }
 
-
     async UniTaskVoid AttackAsync()
     {
         string attackString = "2_Attack_Bow";
@@ -118,8 +117,8 @@ public class SkeletonArcher : SPUM_Monster
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, transform.position);
-        bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
+        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x,transform.position.y + 0.5f));
+        bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
         bullet.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);

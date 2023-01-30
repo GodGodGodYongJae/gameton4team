@@ -62,7 +62,8 @@ public class GroundController
         }
 
         float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
-        gameScene.Player.InitPosition(initPosX);
+        float initPosY = this.grounds.First.Next.Next.Value.transform.position.y;
+        gameScene.Player.InitPosition(initPosX,initPosY+2);
         CameraController cam = Camera.main.GetComponent<CameraController>();
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
@@ -73,7 +74,7 @@ public class GroundController
     void CheckNextBound()
     {
         float extendSize = ExtendSize(nextGround);
-        float pointCheck = nextGround.transform.position.x + extendSize - 1;
+        float pointCheck = nextGround.transform.position.x + extendSize - Define.NextWallSence;
         if (pointCheck <= gameScene.PlayerGo.transform.position.x)
         {
             if (chatperSize > 0)

@@ -18,7 +18,7 @@ namespace Assets._Scripts.UI.LobbyScene
     enum Texts
     {
         EnergyText,
-        DiamondText,
+        //DiamondText,
         CoinText
     }
     public class UI_Lobby : UI_Scene
@@ -46,11 +46,9 @@ namespace Assets._Scripts.UI.LobbyScene
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
             int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
             energyText.text = data.ToString();
-            Debug.Log(data);
-
-            TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
-             data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
-            DiamondText.text = data.ToString();
+            //TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
+            // data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
+            //DiamondText.text = data.ToString();
 
             TextMeshProUGUI CoinText = GetText((int)Texts.CoinText);
              data = await Managers.PlayFab.GetCurrencyData(StringData.Coin);
@@ -64,21 +62,50 @@ namespace Assets._Scripts.UI.LobbyScene
         }
 
         #region ButtonCallback
-         async void OnStartButton()
+
+ 
+        bool isClickStart = false;
+
+        async void OnStartButton()
         {
-          
-            int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
-            if (data >= 5)
+            if (isClickStart) return;
+            isClickStart = true;
+
+            try
             {
-                Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
-                     () =>
-                    {
-                        Managers.Scene.ChangeScene(Define.SceneType.GameScene);
-                    });
+                int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
+
+                if (data >= 5)
+                {
+                    Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
+                         () =>
+                        {
+                            Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+
+                        });
+                }
+                else
+                {
+                    ShowNotEnoughEnergyMessage();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("Failed to get or set currency data: " + ex.Message);
+            }
+            finally
+            {
+                isClickStart = false;
             }
         }
 
-         void OnEnergyPlus()
+        private void ShowNotEnoughEnergyMessage()
+        {
+            Debug.Log("Not enough energy to start game");
+
+        }
+
+        void OnEnergyPlus()
         {
             Managers.PlayFab.SetCurrecy(StringData.Energy, 5,()=> {
                 LoadCurrecyData();

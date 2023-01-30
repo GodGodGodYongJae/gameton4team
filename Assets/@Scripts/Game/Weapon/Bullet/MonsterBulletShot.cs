@@ -14,12 +14,15 @@ namespace Assets._Scripts.Game.Weapon
         private float Damage = 0;
         private int AttackDuration = 3000;
         private float direction = 0;
+        float range = 5;
         public void InitBulletData(Monster monster)
         {
             this.monster = monster;
             this.Damage = monster.MonsterData.AttackDamage;
             this.isInit = true;
             this.direction = Mathf.Clamp(monster.transform.localScale.x, 1, -1);
+            if (monster.MonsterData.Duration != 0) AttackDuration = (int)this.monster.MonsterData.Duration * 1000;
+            if (monster.MonsterData.ProjectileSpeed != 0) this.range = monster.MonsterData.ProjectileSpeed;
             Duration().Forget();
 
         }
@@ -52,7 +55,7 @@ namespace Assets._Scripts.Game.Weapon
                 creature.Damage(Damage, monster);
             }
         }
-        float range = 5;
+
         void Update()
         {
             float moveX = range * Time.deltaTime;
