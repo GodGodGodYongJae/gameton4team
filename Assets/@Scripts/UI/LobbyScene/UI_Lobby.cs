@@ -62,9 +62,12 @@ namespace Assets._Scripts.UI.LobbyScene
         }
 
         #region ButtonCallback
+
+        bool isClickStart = false;
          async void OnStartButton()
         {
-          
+            if (isClickStart == true) return;
+            isClickStart = true;
             int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
             if (data >= 5)
             {
@@ -72,8 +75,14 @@ namespace Assets._Scripts.UI.LobbyScene
                      () =>
                     {
                         Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+                    
                     });
             }
+            else
+            {
+                isClickStart = false;
+            }
+          
         }
 
          void OnEnergyPlus()
