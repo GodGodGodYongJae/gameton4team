@@ -14,22 +14,27 @@ using UnityEngine;
 
 public class OrcWarrior : SPUM_Monster
 {
-    public GameObject arrow;
-    public float direction;
     protected override void Awake()
     {
-        //arrow = GetComponent<GameObject>();
         base.Awake();
         fsm = new StateMachine<States>(this);
-
+        GameObject WeaponHandGo = _root._weaponList[2].gameObject;
+        MonsterAttackCol col = WeaponHandGo.AddComponent<MonsterAttackCol>();
+        col.CreateAttackCol(this);
+        Attackbox = WeaponHandGo.AddComponent<BoxCollider2D>();
+        Attackbox.isTrigger = true;
+        Attackbox.enabled = false;
     }
 
 
 
+    // 리플렉션으로 구현됨 MonsterLove ( FSM 플러그인 사용 ) 
     #region FSM
 
+    //이동 후 다음 이동 쿨타임
     float moveDealy = 0;
 
+    //공격 쿨타임
     float attackDealy = 0;
     void IDLE_Enter()
     {
@@ -59,7 +64,7 @@ public class OrcWarrior : SPUM_Monster
     void MOVE_Enter()
     {
         sPUM_Prefab.PlayAnimation("1_Run");
-        direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
         MoveSync().Forget();
     }
@@ -108,19 +113,24 @@ public class OrcWarrior : SPUM_Monster
         string attackString = "2_Attack_Normal";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
-        float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
-        await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
-        float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, transform.position);
-        bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
-        MonsterBullet bullet = bulletGo.GetOrAddComponent<MonsterBullet>();
-        bullet.InitBulletData(this);
-        await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+        try
+        {
+            float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
+            await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+            Attackbox.enabled = true;
+            await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+            Attackbox.enabled = false;
+            this.attackDealy = monsterData.AttackDealy;
+            fsm.ChangeState(States.IDLE);
+        }
+        catch
+        {
+            await UniTask.Yield();
+        }
 
-        this.attackDealy = monsterData.AttackDealy;
-        fsm.ChangeState(States.IDLE);
     }
 
     #endregion
+    //        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x + (direction * -0.5f), transform.position.y));
 
 }
