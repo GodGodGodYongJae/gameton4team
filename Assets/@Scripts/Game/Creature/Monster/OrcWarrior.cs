@@ -28,13 +28,13 @@ public class OrcWarrior : SPUM_Monster
 
 
 
-    // ¸®ÇÃ·º¼ÇÀ¸·Î ±¸ÇöµÊ MonsterLove ( FSM ÇÃ·¯±×ÀÎ »ç¿ë ) 
+    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MonsterLove ( FSM ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ) 
     #region FSM
 
-    //ÀÌµ¿ ÈÄ ´ÙÀ½ ÀÌµ¿ ÄðÅ¸ÀÓ
+    //ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
     float moveDealy = 0;
 
-    //°ø°Ý ÄðÅ¸ÀÓ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
     float attackDealy = 0;
     void IDLE_Enter()
     {
@@ -110,6 +110,22 @@ public class OrcWarrior : SPUM_Monster
 
     async UniTaskVoid AttackAsync()
     {
+        #region ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //string attackString = "2_Attack_Normal";
+        //sPUM_Prefab.PlayAnimation(attackString);
+        //float frameTime = (attackAnimSync / 60f) * 1000;
+        //float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
+        //await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
+        //float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
+        //GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, transform.position);
+        //bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
+        //MonsterBullet bullet = bulletGo.GetOrAddComponent<MonsterBullet>();
+        //bullet.InitBulletData(this);
+        //await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
+
+        //this.attackDealy = monsterData.AttackDealy;
+        //fsm.ChangeState(States.IDLE);
+        #endregion
         string attackString = "2_Attack_Normal";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
@@ -127,7 +143,6 @@ public class OrcWarrior : SPUM_Monster
         {
             await UniTask.Yield();
         }
-
     }
 
     #endregion

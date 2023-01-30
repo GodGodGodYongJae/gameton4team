@@ -58,7 +58,7 @@ public class GroundController
         CurrentGroundIdx();
         foreach (var item in grounds)
         {
-           chatperSize -= ExtendSize(item);
+           chatperSize -= ExtendSize(item) * 2;
         }
 
         float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
