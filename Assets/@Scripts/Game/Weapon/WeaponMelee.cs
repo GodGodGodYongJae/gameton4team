@@ -23,20 +23,16 @@ public class WeaponMelee : Weapon
         await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         damagedMonsterList.Clear();
         float direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
-        try
-        {
-            //(Vector2)boxCollider.bounds.center
-            Vector2 effectPos =  (Vector2)player.transform.position + new Vector2(weaponData.EffectPos.x * direction, weaponData.EffectPos.y);
+        Vector2 playerPos = player.transform.position;
+        
+            if (this == null) return;
+            Vector2 effectPos = playerPos + new Vector2(weaponData.EffectPos.x * direction, weaponData.EffectPos.y);
             GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
             effectGo.transform.localScale = new Vector2(effectoDir * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
             PlayerBullet bullet = effectGo.GetOrAddComponent<PlayerBullet>();
             bullet.InitBulletData(weaponData, player);
             Attack().Forget();
-        }
-        catch
-        {
-
-        }
+        
 
     }
 

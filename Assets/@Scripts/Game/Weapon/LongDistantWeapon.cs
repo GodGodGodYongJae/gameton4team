@@ -24,6 +24,9 @@ public class LongDistanceWeapon : Weapon
         await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
         damagedMonsterList.Clear();
         direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
+
+        if (this == null) return;
+
         effectPos = (Vector2)player.transform.position + (weaponData.EffectPos * direction);
         GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
         effectGo.transform.localScale = new Vector2(-1 * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
