@@ -15,7 +15,7 @@ MonoBehaviour:
   asset: {fileID: 4900000, guid: 1a1aa125cf7db254389256bc0142cc0e, type: 3}
   uiImage: {fileID: 21300000, guid: 4e9b1629ba3709d4cbfea1a7160e71ed, type: 3}
   displayName: "\uCE7C"
-  attackDmg: 8
+  attackDmg: 10
   attackDealay: 800
   attackDuration: 250
   range: 0
