@@ -107,9 +107,8 @@ namespace Assets._Scripts.UI.GameScene
                 while (!_upgradSlotList.Contains((T)(object)randomNumber))
                 {
                     randomNumber = _random.Next(_End);
-                    return (T)(object)randomNumber;
                 }
-                return default(T);
+                return (T)(object)randomNumber;
             }
         }
 
