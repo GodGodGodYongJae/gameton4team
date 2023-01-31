@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Spear_n_data
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: bafb804e98a77a84ebe8355df0bfe5a7, type: 3}
+  asset: {fileID: 4900000, guid: 1f3dbc302a6a257498f0abd80d28370d, type: 3}
   uiImage: {fileID: 21300000, guid: bb7aa23100c6d8643aaba8317ff8b66a, type: 3}
   displayName: "\uCC3D"
   attackDmg: 6

@@ -17,4 +17,4 @@ MonoBehaviour:
   attackDamage: 10
   asset: {fileID: 4900000, guid: b869e98e6fb55594e81173f015635945, type: 3}
   _jumpForce: 7
-  _invinvibilityDuration: 1500
+  _invinvibilityDuration: 150000
