@@ -42,7 +42,7 @@ namespace Assets._Scripts.Controller
         List<WeaponSlot> Slot = new List<WeaponSlot>();
         public IReadOnlyList<WeaponSlot> SlotList => Slot;
 
-        private int SlotSize = 3;
+        public readonly int SlotSize = 3;
         public int CurrentWeaponSlot = 0;
         public void NewWeapon(WeaponSlot slot)
         {
