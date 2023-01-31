@@ -89,17 +89,11 @@ public class UI_GameScene : UI_Scene
         Button btn3 = GetButton(2).GetComponent<Button>();
         btn3.onClick.AddListener(() => { OnChangeWeapon(btn3,2).Forget(); });
 
-        
-      
+
+        SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
         return true;
     }
 
-
-    public void Test()
-    {
-        SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
-        selectWeaponUI.Test();
-    }
    
     public void OnWeaponSelectSkip()
     {
