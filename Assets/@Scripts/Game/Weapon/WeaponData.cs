@@ -28,6 +28,7 @@ public class WeaponData : ScriptableObject
     [Tooltip("이펙트 에니메이션 시간 넣기")]
     int attackDuration;
     [SerializeField]
+    [Tooltip("사거리")]
     int range;
     [SerializeField]
     GameObject skilEffect;
