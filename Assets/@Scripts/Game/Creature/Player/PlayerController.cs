@@ -97,11 +97,13 @@ public partial class Player
     bool isDamage = false;
     public override void Damage(float dmg, Creature Target)
     {
+        Debug.Log("test!");
         if (isDamage == true) return;
         Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Damage);
         invincibilityDealy().Forget();
         blinkObject().Forget();
         KnockBack(Target.gameObject);
+        Debug.Log("test!@@");
         _hp -= dmg;
         PostEventHp();
 

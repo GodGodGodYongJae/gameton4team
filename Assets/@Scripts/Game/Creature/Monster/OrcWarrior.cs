@@ -21,7 +21,7 @@ public class OrcWarrior : SPUM_Monster
         GameObject WeaponHandGo = _root._weaponList[2].gameObject;
         MonsterAttackCol col = WeaponHandGo.AddComponent<MonsterAttackCol>();
         col.CreateAttackCol(this);
-        Attackbox = WeaponHandGo.AddComponent<BoxCollider2D>();
+        Attackbox = WeaponHandGo.AddComponent<PolygonCollider2D>();
         Attackbox.isTrigger = true;
         Attackbox.enabled = false;
     }
