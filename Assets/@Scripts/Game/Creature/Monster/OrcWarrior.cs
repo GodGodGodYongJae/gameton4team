@@ -28,13 +28,13 @@ public class OrcWarrior : SPUM_Monster
 
 
 
-    // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MonsterLove ( FSM ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ) 
+    // ¸®ÇÃ·º¼ÇÀ¸·Î ±¸ÇöµÊ MonsterLove ( FSM ÇÃ·¯±×ÀÎ »ç¿ë ) 
     #region FSM
 
-    //ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
+    //ÀÌµ¿ ÈÄ ´ÙÀ½ ÀÌµ¿ ÄðÅ¸ÀÓ
     float moveDealy = 0;
 
-    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
+    //°ø°Ý ÄðÅ¸ÀÓ
     float attackDealy = 0;
     void IDLE_Enter()
     {
@@ -110,7 +110,7 @@ public class OrcWarrior : SPUM_Monster
 
     async UniTaskVoid AttackAsync()
     {
-        #region ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        #region ºÒ·¿Çü½ÄÀ¸·Î »ý»ê
         //string attackString = "2_Attack_Normal";
         //sPUM_Prefab.PlayAnimation(attackString);
         //float frameTime = (attackAnimSync / 60f) * 1000;
@@ -143,6 +143,7 @@ public class OrcWarrior : SPUM_Monster
         {
             await UniTask.Yield();
         }
+
     }
 
     #endregion
