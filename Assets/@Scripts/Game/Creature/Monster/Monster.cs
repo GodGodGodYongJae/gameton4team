@@ -56,7 +56,7 @@ public class Monster : Creature
         HPCanvas.transform.parent = this.transform;
         HPCanvas.transform.position = pos;
         RectTransform rect = HPCanvas.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(0, pos.y + box.bounds.extents.y);
+        rect.anchoredPosition = new Vector2(0, pos.y + (box.bounds.extents.y*2));
         creatureHPBar = HPCanvas.GetComponent<CreatureHPBar>();
         action?.Invoke();
     }

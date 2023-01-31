@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485699622578822847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3408108, y: 2.029101, z: 0.034212537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87,8 +87,6 @@ MonoBehaviour:
   _creatureData: {fileID: 11400000, guid: 0b2f4b863aa77b545b23ba13a037de7a, type: 2}
   sPUM_Prefab: {fileID: 7275155481907367698}
   attackAnimSync: 15
-  arrow: {fileID: 3391895794129409543, guid: a3af1c8ccba17634d8b20c581685a315, type: 3}
-  direction: 0
 --- !u!1001 &4248179907619714983
 PrefabInstance:
   m_ObjectHideFlags: 0

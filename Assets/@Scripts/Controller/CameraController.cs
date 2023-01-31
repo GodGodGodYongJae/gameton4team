@@ -41,7 +41,7 @@ public class CameraController : MonoBehaviour
         
        _height = _cam.orthographicSize;
         _mapSize.y = _height;
-        _center.y = _height / 2;
+        _center.y = 0.5f;//_height / 2;
 
        _width = _height * Screen.width / Screen.height;
        _prevWall = _scene.WallObjects[(int)GameScene.Wall.Prev].transform;
