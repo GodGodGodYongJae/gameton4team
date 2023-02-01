@@ -25,4 +25,10 @@ public class StringData
     public static string Diamond => _dia;
 
     #endregion
+
+    public class AdMob
+    {
+        private const string _respwan = "ca-app-pub-8904224703245079/8096563976";
+        public static string Respawn => _respwan; 
+    }
 }

@@ -107,7 +107,7 @@ public class GoogleAdMobController : MonoBehaviour
 
         // These ad units are configured to always serve test ads.
 #if UNITY_EDITOR
-        string adUnitId = "unused";
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
 #elif UNITY_ANDROID
         string adUnitId = "ca-app-pub-3940256099942544/6300978111";
 #elif UNITY_IPHONE
@@ -154,9 +154,9 @@ public class GoogleAdMobController : MonoBehaviour
                                         adValue.Value);
             PrintStatus(msg);
         };
-
+        AdRequest request = new AdRequest.Builder().Build();
         // Load a banner ad
-        bannerView.LoadAd(CreateAdRequest());
+        bannerView.LoadAd(request);
     }
 
     public void DestroyBannerAd()
@@ -276,11 +276,10 @@ public class GoogleAdMobController : MonoBehaviour
 #elif UNITY_ANDROID
         string adUnitId = "ca-app-pub-8904224703245079/8096563976";
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-8904224703245079/8096563976";
+          string adUnitId = "ca-app-pub-3940256099942544/1712485313";
 #else
         string adUnitId = "unexpected_platform";
 #endif
-
         // create new rewarded ad instance
         RewardedAd.Load(adUnitId, CreateAdRequest(),
             (RewardedAd ad, LoadAdError loadError) =>
@@ -331,7 +330,8 @@ public class GoogleAdMobController : MonoBehaviour
                                                adValue.CurrencyCode,
                                                adValue.Value);
                     PrintStatus(msg);
-                    Debug.Log("��菜ц橫塭222!");
+                    Debug.Log("元元之元之元之");
+                    Debug.Log(adValue.Precision);
                     Debug.Log(adValue.CurrencyCode);
                     Debug.Log(adValue.Value);
                 };
@@ -345,6 +345,7 @@ public class GoogleAdMobController : MonoBehaviour
             rewardedAd.Show((Reward reward) =>
             {
                 PrintStatus("Rewarded ad granted a reward: " + reward.Amount);
+                PrintStatus("Rewarded ad granted a Type: " + reward.Type);
             });
         }
         else

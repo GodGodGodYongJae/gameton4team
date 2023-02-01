@@ -16,6 +16,7 @@ public class Managers : Singleton<Managers>
     EventManager _event = new EventManager();
     MonsterManager _monster = new MonsterManager();
     PlayFabManager _playfab = new PlayFabManager();
+    AdmobManager _admob = new AdmobManager();
     SoundManager _sound;
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static UIManager UI { get { return Instance?._ui; } }
@@ -27,7 +28,7 @@ public class Managers : Singleton<Managers>
     public static Action UpdateAction { get; set; }
     public static Action FixedUpdateAction { get; set; }
     public static SoundManager Sound { get { return Instance?._sound; } }
-    
+    public static AdmobManager Admob { get { return Instance?._admob; } }
     public static void OnDestorys() 
     {
         FixedUpdateAction = null;
