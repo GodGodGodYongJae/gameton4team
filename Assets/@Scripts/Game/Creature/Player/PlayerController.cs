@@ -75,7 +75,10 @@ public partial class Player
     { 
         if(_rigid.velocity.y == 0)
         {
-             _rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce);
+            //Vector2 pos = transform.position;
+            //pos.y += 0.6f;
+            _rigid.AddForce(Vector2.up * playerData.JumpForce);
+             //_rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce );
         }
     }
 

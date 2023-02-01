@@ -103,7 +103,7 @@ public class UI_GameScene : UI_Scene
         {
             int temp = i;
             buttonList.Add(GetButton(temp).GetComponent<Button>());
-            buttonList[temp].onClick.AddListener(() => { OnInventoryClick(temp); });
+            buttonList[temp].onClick.AddListener(() => { OnInventoryClick(buttonList[temp]); });
         }
     }
    
@@ -131,16 +131,17 @@ public class UI_GameScene : UI_Scene
  
     public async UniTaskVoid OnChangeWeapon(Button button,int slotNum)
     {
-        Debug.Log("CL"+slotNum);
         WeaponSlotController.WeaponSlot slot = button.gameObject.GetOrAddComponent<InventoryButton>().Slot;
-        if (slot == null) return;
+        if (slot == null || slotNum == WeaponSlotController.CurrentWeaponSlot) return;
         await GameScene.WeaponController.WeaponChange(slot.Type, slot.weaponData);
         WeaponSlotController.CurrentWeaponSlot = slotNum;
     }
     
-    public void OnInventoryClick(int i)
+    public void OnInventoryClick(Button button)
     {
-        Debug.Log(i);
+        ItemSlotController.ItemSlot slot = button.gameObject.GetOrAddComponent<ItemInventoryButton>().Slot;
+        if (slot == null) return;
+        slot.Run();
     }
     
     private void UIEvent(Define.GameEvent eventType, Component Sender, object param)

@@ -16,7 +16,7 @@ public class SwipeController
         touchBeganPos = Vector2.zero;
         touchEndPos = Vector2.zero;
         touchDif = Vector2.zero; ;
-        swipeSensitivity = 150.0f;
+        swipeSensitivity = 120.0f;
         Managers.UpdateAction += MUpdate;
     }
 

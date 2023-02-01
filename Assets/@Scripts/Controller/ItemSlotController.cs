@@ -32,9 +32,6 @@ namespace Assets._Scripts.Controller
         {
             _slots.Add(slot);
         }
-        public bool UseItem(int idx)
-        {
-           return _slots[idx].Run();
-        }
+
     }
 }

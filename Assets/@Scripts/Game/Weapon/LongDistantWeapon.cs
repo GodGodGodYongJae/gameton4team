@@ -22,6 +22,12 @@ public class LongDistanceWeapon : Weapon
     {
 
         await UniTask.Delay(weaponData.AttackDealay, cancellationToken: cts.Token);
+        Rigidbody2D pRigid = player.gameObject.GetComponent<Rigidbody2D>();
+        await UniTask.WaitUntil(() =>
+        {
+            return pRigid.velocity.y == 0;
+        }, cancellationToken: cts.Token);
+
         damagedMonsterList.Clear();
         direction = Mathf.Clamp(player.transform.localScale.x, -1, 1);
 
