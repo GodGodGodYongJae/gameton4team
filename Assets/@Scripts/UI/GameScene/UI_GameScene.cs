@@ -81,42 +81,31 @@ public class UI_GameScene : UI_Scene
 
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
 
-        // for 문이 안먹어서 btn을 배열로 빼야할듯
-
+        ButtonSet();
+        SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
+        return true;
+    }
+    private void ButtonSet()
+    {
+        //Closure Problem 주의 할 것.
         List<Button> buttonList = new List<Button>();
         for (int i = 0; i <= (int)Buttons.Inventory_Slot3; i++)
         {
-            buttonList.Add(GetButton(i).GetComponent<Button>());
-            bool isWait = true;
-            while (isWait)
-            {
-                buttonList[i].onClick.AddListener(() => {
-                    OnChangeWeapon(buttonList[i], i).Forget();
-                    isWait = false;
+            int temp = i;
+            buttonList.Add(GetButton(temp).GetComponent<Button>());
+
+                buttonList[temp].onClick.AddListener(() => {
+                    OnChangeWeapon(buttonList[temp], temp).Forget();
                 });
-            }
-           
         }
 
         for (int i = buttonList.Count; i <= (int)Buttons.Item_Inventory_Slot2; i++)
         {
-            buttonList.Add(GetButton(i).GetComponent<Button>());
-            buttonList[i].onClick.AddListener(() => { });
+            int temp = i;
+            buttonList.Add(GetButton(temp).GetComponent<Button>());
+            buttonList[temp].onClick.AddListener(() => { OnInventoryClick(temp); });
         }
-        //Button btn1 = GetButton((int)Buttons.Inventory_Slot1).GetComponent<Button>();
-        //btn1.onClick.AddListener(() => { OnChangeWeapon(btn1,0).Forget(); });
-
-        //Button btn2 = GetButton(1).GetComponent<Button>();
-        //btn2.onClick.AddListener(() => { OnChangeWeapon(btn2,1).Forget(); });
-
-        //Button btn3 = GetButton(2).GetComponent<Button>();
-        //btn3.onClick.AddListener(() => { OnChangeWeapon(btn3,2).Forget(); });
-
-
-        SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
-        return true;
     }
-
    
     public void OnWeaponSelectSkip()
     {
@@ -149,9 +138,9 @@ public class UI_GameScene : UI_Scene
         WeaponSlotController.CurrentWeaponSlot = slotNum;
     }
     
-    public void OnInventoryClick()
+    public void OnInventoryClick(int i)
     {
-
+        Debug.Log(i);
     }
     
     private void UIEvent(Define.GameEvent eventType, Component Sender, object param)
