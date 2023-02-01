@@ -9,6 +9,9 @@ public class StringData
     private const string _healthBar = "Healthbar";
     public static string HealthBar => _healthBar;
 
+    private const string _sound = "SoundData";
+    public static string Sound=> _sound;
+
     #region BackEnd
     
     private const string _energy = "EN";

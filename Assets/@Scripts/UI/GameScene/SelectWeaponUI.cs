@@ -23,6 +23,10 @@ namespace Assets._Scripts.UI.GameScene
          
         }
 
+        public void Test()
+        {
+            OpenWeaponSelectBox().Forget();
+        }
         #region Listener
         private void StageClearEvent(Define.GameEvent eventType, Component Sender, object param)
         {
@@ -103,6 +107,7 @@ namespace Assets._Scripts.UI.GameScene
                 while (!_upgradSlotList.Contains((T)(object)randomNumber))
                 {
                     randomNumber = _random.Next(_End);
+                    return (T)(object)randomNumber;
                 }
                 return (T)(object)randomNumber;
             }
@@ -121,6 +126,13 @@ namespace Assets._Scripts.UI.GameScene
             RandomNumberGenerator<Define.WeaponType> WeaponRandom = new RandomNumberGenerator<Define.WeaponType>((int)Define.WeaponType.End);
             WeaponRandom.AddException(Define.WeaponType.None);
 
+            //if(WeaponSlotController.SlotList.Count == WeaponSlotController.SlotSize)
+            //{
+            //    for (int i = 0; i < WeaponSlotController.SlotList.Count; i++)
+            //    {
+            //        WeaponRandom.AddException(WeaponSlotController.SlotList[i].Type);
+            //    }
+            //}
             bool isMaxSlot = (WeaponSlotController.SlotList.Count >= WeaponSlotController.SlotSize) ? true : false;
 
             if(isMaxSlot)
@@ -256,6 +268,7 @@ namespace Assets._Scripts.UI.GameScene
             }
 
            gameScene.SyncInventoryInfo();
+            OpenWeaponSelectBox().Forget();
         }
         #endregion
     }

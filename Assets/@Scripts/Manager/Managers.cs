@@ -16,6 +16,7 @@ public class Managers : Singleton<Managers>
     EventManager _event = new EventManager();
     MonsterManager _monster = new MonsterManager();
     PlayFabManager _playfab = new PlayFabManager();
+    SoundManager _sound;
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static UIManager UI { get { return Instance?._ui; } }
     public static SceneManagerEx Scene { get { return Instance?._scene; } }
@@ -25,6 +26,7 @@ public class Managers : Singleton<Managers>
     public static PlayFabManager PlayFab { get { return Instance?._playfab; } }
     public static Action UpdateAction { get; set; }
     public static Action FixedUpdateAction { get; set; }
+    public static SoundManager Sound { get { return Instance?._sound; } }
     
     public static void OnDestorys() 
     {
@@ -39,7 +41,8 @@ public class Managers : Singleton<Managers>
     protected override void Awake()
     {
         base.Awake();
-
+        //사운드 매니저 할당 Mono로 만들어졌기 때문에.
+        _sound = gameObject.GetOrAddComponent<SoundManager>();
     }
 
     public static void Init()
