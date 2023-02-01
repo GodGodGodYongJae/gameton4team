@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Assets._Scripts.Manager
 {
-    public class AdmobManager
+    public class AdmobManager : MonoBehaviour
     {
         public UnityEvent OnAdLoadedEvent;
         public UnityEvent OnAdFailedToLoadEvent;
@@ -19,7 +19,7 @@ namespace Assets._Scripts.Manager
 
         private RewardedAd rewardedAd;
 
-        public AdmobManager()
+        public void Start()
         {
             MobileAds.SetiOSAppPauseOnBackground(true);
             List<String> deviceIds = new List<String>() { AdRequest.TestDeviceSimulator };

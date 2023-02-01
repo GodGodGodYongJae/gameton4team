@@ -97,13 +97,11 @@ public partial class Player
     bool isDamage = false;
     public override void Damage(float dmg, Creature Target)
     {
-        Debug.Log("test!");
         if (isDamage == true) return;
         Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Damage);
         invincibilityDealy().Forget();
         blinkObject().Forget();
         KnockBack(Target.gameObject);
-        Debug.Log("test!@@");
         _hp -= dmg;
         PostEventHp();
 
@@ -113,6 +111,11 @@ public partial class Player
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
             animator.SetBool("Death", true);
         }
+    }
+    public void AddHp(float add)
+    {
+        _hp = (_hp + add >= playerData.MaxHP) ? _hp : _hp + add;
+        PostEventHp();
     }
 
     //무적시간 

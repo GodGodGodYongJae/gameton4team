@@ -258,7 +258,6 @@ namespace Assets._Scripts.UI.GameScene
             }
 
            gameScene.SyncInventoryInfo();
-            OpenWeaponSelectBox().Forget();
         }
         #endregion
     }

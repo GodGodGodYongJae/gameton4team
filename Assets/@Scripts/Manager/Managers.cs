@@ -16,7 +16,7 @@ public class Managers : Singleton<Managers>
     EventManager _event = new EventManager();
     MonsterManager _monster = new MonsterManager();
     PlayFabManager _playfab = new PlayFabManager();
-    AdmobManager _admob = new AdmobManager();
+    AdmobManager _admob;
     SoundManager _sound;
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static UIManager UI { get { return Instance?._ui; } }
@@ -42,8 +42,9 @@ public class Managers : Singleton<Managers>
     protected override void Awake()
     {
         base.Awake();
-        //사운드 매니저 할당 Mono로 만들어졌기 때문에.
+        //사운드 매니저 할당 & Admob은 Mono로 만들어졌기 때문에.
         _sound = gameObject.GetOrAddComponent<SoundManager>();
+        _admob = gameObject.GetOrAddComponent<AdmobManager>();
     }
 
     public static void Init()
