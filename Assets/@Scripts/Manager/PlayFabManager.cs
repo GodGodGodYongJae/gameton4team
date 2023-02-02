@@ -2,14 +2,14 @@
 using Newtonsoft.Json.Linq;
 using PlayFab;
 using PlayFab.ClientModels;
-using PlayFab.Json;
-using PlayFab.PfEditor.Json;
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
-using JsonObject = PlayFab.Json.JsonObject;
+
+#if UNITY_EDITOR
+using PlayFab.PfEditor.Json;
+#endif
 
 namespace Assets._Scripts.Manager
 {
@@ -178,6 +178,7 @@ namespace Assets._Scripts.Manager
         }
 
         #region SampleCode
+            #if UNITY_EDITOR
         private static void TestDebugLog(ExecuteCloudScriptResult result)
         {
             // CloudScript (Legacy) returns arbitrary results, so you have to evaluate them one step and one parameter at a time
@@ -200,6 +201,8 @@ namespace Assets._Scripts.Manager
             //jsonResult.TryGetValue("test", out messageValue3); // note how "messageValue" directly corresponds to the JSON values set in CloudScript (Legacy)
             //Debug.Log((string)messageValue3);
         }
+
+            #endif
         #endregion
     }
 }
