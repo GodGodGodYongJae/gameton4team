@@ -69,7 +69,7 @@ namespace Assets._Scripts.Manager
 
        
         #region REWARD ADS
-        public async UniTask<bool> RequestAndLoadRewardedAd(string id)
+        public async UniTask<bool> RequestAndLoadRewardedAd(string id,Action callback = null)
         {
             bool isRegister = false;
             RewardedAd.Load(id, CreateAdRequest(), 
@@ -105,11 +105,11 @@ namespace Assets._Scripts.Manager
                     isRegister = true;
                 });
             await UniTask.WaitUntil(() => { return isRegister == true; });
-            ShowRewardedAd();
+            ShowRewardedAd(callback);
             return true;
         }
 
-        private void ShowRewardedAd()
+        private void ShowRewardedAd(Action callback = null)
         {
             if (rewardedAd != null)
             {
@@ -117,6 +117,7 @@ namespace Assets._Scripts.Manager
                 {
                     Debug.Log("Rewarded ad granted a reward: " + reward.Amount);
                     Debug.Log("Rewarded ad granted a Type: " + reward.Type);
+                    callback?.Invoke();
                 });
             }
             else

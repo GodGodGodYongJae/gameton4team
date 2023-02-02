@@ -87,7 +87,6 @@ public class UI_GameScene : UI_Scene
         GameObject selectSkipObj = GetObject((int)LoadAssetGameObjects.WeaponSelectSkip).gameObject;
         selectSkipObj.BindEvent(OnWeaponSelectSkip);
 
-        GetObject((int)LoadAssetGameObjects.GameOver).gameObject.SetActive(false);
         #endregion
 
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
@@ -133,7 +132,10 @@ public class UI_GameScene : UI_Scene
         image.sprite = portionData.IconSprite;
         Text text = invenSlot.transform.Find("Quantity").GetComponent<Text>();
             text.text = Quantity.ToString();
-    }
+
+
+
+    }       
    
     public void OnWeaponSelectSkip()
     {
@@ -184,7 +186,8 @@ public class UI_GameScene : UI_Scene
         {
             Player.PlayerActionKey key = (Player.PlayerActionKey)param;
             if (key != Player.PlayerActionKey.Death) return;
-            GameObject go = GetObject((int)LoadAssetGameObjects.GameOver).transform.Find("Button").gameObject;
+            GetObject((int)LoadAssetGameObjects.GameOver).SetActive(true);
+            GameObject go = GetObject((int)LoadAssetGameObjects.GameOver).transform.Find("HomeButton").gameObject;
             go.SetActive(true);
             Button btn = go.GetOrAddComponent<Button>();
             btn.onClick.RemoveAllListeners();

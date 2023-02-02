@@ -112,8 +112,14 @@ public partial class Player
         {
             Time.timeScale = 0;
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
-            animator.SetBool("Death", true);
+            //animator.SetBool("Death", true);
         }
+    }
+
+    public void Respawn()
+    {
+        Time.timeScale = 1;
+        AddHp(playerData.MaxHP);
     }
     public void AddHp(float add)
     {

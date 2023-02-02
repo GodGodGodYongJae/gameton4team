@@ -5410,6 +5410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creatureData: {fileID: 11400000, guid: 294159585ad6afc449300646ffdfa891, type: 2}
+  directionVector: {x: 0, y: 0}
+  CurrentExp: 0
   _root: {fileID: 2739969051067191764}
 --- !u!1 &2739969051697801702
 GameObject:
