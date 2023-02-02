@@ -105,7 +105,7 @@ public partial class Player
         invincibilityDealy().Forget();
         blinkObject().Forget();
         KnockBack(Target.gameObject);
-        _hp -= dmg;
+        _hp = (_hp - dmg < 0)? 0: _hp-dmg;
         PostEventHp();
 
         if (_hp <= 0)

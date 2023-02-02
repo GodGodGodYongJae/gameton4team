@@ -11,11 +11,12 @@ using UnityEngine.UI;
 
 namespace Assets._Scripts.UI.LobbyScene
 {
-    enum ButtonObject 
+    enum GameObjeects 
     {
         StartButton,
         EnergyPlus,
-        InventoryUI
+        InventoryUI,
+        ShopUI,
     }
 
     enum Buttons
@@ -42,12 +43,15 @@ namespace Assets._Scripts.UI.LobbyScene
             //Bind
             BindText(typeof(Texts));
             BindButton(typeof(Buttons));
-            BindObject(typeof(ButtonObject));
+            BindObject(typeof(GameObjeects));
             //Bind End 
-            invenUI = GetObject((int)ButtonObject.InventoryUI).GetComponent<Rito.InventorySystem.InventoryUI>();
-            GetObject((int)ButtonObject.InventoryUI).SetActive(false);
+            invenUI = GetObject((int)GameObjeects.InventoryUI).GetComponent<Rito.InventorySystem.InventoryUI>();
+            GetObject((int)GameObjeects.InventoryUI).SetActive(false);
             LoadCurrecyData();
             ButtonInit();
+
+            GetObject((int)GameObjeects.ShopUI).GetComponent<UI_Shop>().Lobby = this;
+            GetObject((int)GameObjeects.ShopUI).SetActive(false);
 
             InitItemServer initItemServer = new InitItemServer(this);
 
@@ -55,7 +59,7 @@ namespace Assets._Scripts.UI.LobbyScene
             return true;
         }
 
-        async void LoadCurrecyData()
+       public async void LoadCurrecyData()
         {
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
             int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
@@ -71,10 +75,10 @@ namespace Assets._Scripts.UI.LobbyScene
 
         void ButtonInit()
         {
-            GetObject((int)ButtonObject.StartButton).BindEvent(OnStartButton);
-            GetObject((int)ButtonObject.EnergyPlus).BindEvent(OnEnergyPlus);
+            GetObject((int)GameObjeects.StartButton).BindEvent(OnStartButton);
+            GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
             GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
-                GetObject((int)ButtonObject.InventoryUI).SetActive(true);
+                GetObject((int)GameObjeects.InventoryUI).SetActive(true);
             });
         }
 
