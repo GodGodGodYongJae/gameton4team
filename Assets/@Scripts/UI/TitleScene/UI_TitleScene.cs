@@ -44,7 +44,12 @@ public class UI_TitleScene : UI_Scene
                 Go.GetComponent<Image>().sprite = success;
             });
         }
-       
+
+        login.OnLogin(() =>
+        {
+            GetText((int)Texts.StartText).text = "Tap To Start!";
+
+        });
         
         //Managers.Sound.Play(Sound.Effect, "Sound_Opening");
         //Screen.SetResolution(Screen.width, (Screen.width / 9) * 16, true);
