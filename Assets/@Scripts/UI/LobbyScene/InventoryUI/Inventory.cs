@@ -96,6 +96,7 @@ namespace Rito.InventorySystem
         private readonly static Dictionary<Type, int> _sortWeightDict = new Dictionary<Type, int>
         {
             { typeof(PortionItemData), 10000 },
+            
             //{ typeof(WeaponItemData),  20000 },
             //{ typeof(ArmorItemData),   30000 },
         };
@@ -309,6 +310,15 @@ namespace Rito.InventorySystem
         {
             _inventoryUI = inventoryUI;
             _inventoryUI.SetInventoryReference(this);
+        }
+
+
+        public void ClearItem()
+        {
+            for (int i = 0; i < _items.Length; i++)
+            {
+                _items[i] = null;
+            }
         }
 
         /// <summary> 인벤토리에 아이템 추가

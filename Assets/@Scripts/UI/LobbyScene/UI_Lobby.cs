@@ -53,12 +53,12 @@ namespace Assets._Scripts.UI.LobbyScene
             GetObject((int)GameObjeects.ShopUI).GetComponent<UI_Shop>().Lobby = this;
             GetObject((int)GameObjeects.ShopUI).SetActive(false);
 
-            InitItemServer initItemServer = new InitItemServer(this);
+             initItemServer = new InitItemServer(this);
 
             MatchDisplay();
             return true;
         }
-
+        InitItemServer initItemServer;
        public async void LoadCurrecyData()
         {
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
@@ -79,6 +79,7 @@ namespace Assets._Scripts.UI.LobbyScene
             GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
             GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
                 GetObject((int)GameObjeects.InventoryUI).SetActive(true);
+                initItemServer.InitItemSet();
             });
         }
 

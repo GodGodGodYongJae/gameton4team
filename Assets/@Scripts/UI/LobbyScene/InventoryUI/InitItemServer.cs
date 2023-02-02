@@ -14,15 +14,17 @@ namespace Assets._Scripts.UI.LobbyScene.InventoryUI
         public InitItemServer(UI_Lobby lobby)
         {
             _inventory = lobby.invenUI.Inventory;
-            userInventory = Managers.PlayFab.userInventory;
-            InitItemSet();
+           
+            //InitItemSet();
         }
       
         /// <summary>
         /// 아이템을 초기에 서버에 불러와서 배치.
         /// </summary>
-        void InitItemSet()
+       public void InitItemSet()
         {
+            _inventory.ClearItem();
+            userInventory = Managers.PlayFab.userInventory;
             Debug.Log(userInventory.Count);
             for (int i = 0; i < userInventory.Count; i++)
             {
