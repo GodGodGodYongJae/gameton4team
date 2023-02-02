@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cysharp.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets._Scripts.Game.Items
@@ -55,6 +56,11 @@ namespace Assets._Scripts.Game.Items
             return Clone(amount);
         }
 
+        //아이템 사용 후 백엔드 통신
+        protected void BackEnd()
+        {
+            Managers.PlayFab.ConsumItem(Data.Key, 1);
+        }
         protected abstract CountableItem Clone(int amount);
     }
 }

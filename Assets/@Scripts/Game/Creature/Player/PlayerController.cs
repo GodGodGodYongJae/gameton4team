@@ -117,7 +117,7 @@ public partial class Player
     }
     public void AddHp(float add)
     {
-        _hp = (_hp + add >= playerData.MaxHP) ? _hp : _hp + add;
+        _hp = (_hp + add >= playerData.MaxHP) ? playerData.MaxHP : _hp + add;
         PostEventHp();
     }
 

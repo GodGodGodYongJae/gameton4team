@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Portion_Normal
   m_EditorClassIdentifier: 
   _id: 0
-  _key: NormalPortion
+  _key: Item_Portion_Normal
   _name: "\uB178\uBA40\uD3EC\uC158"
   _tooltip: "\uD604\uC7AC \uCCB4\uB825\uC758 70%\uB97C \uC989\uC2DC \uD68C\uBCF5
     \uC2DC\uCF1C\uC900\uB2E4."

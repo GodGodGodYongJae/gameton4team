@@ -88,8 +88,6 @@ namespace Assets._Scripts.UI.LobbyScene
             if (isClickStart) return;
             isClickStart = true;
 
-            try
-            {
                 int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
 
                 if (data >= 5)
@@ -103,17 +101,10 @@ namespace Assets._Scripts.UI.LobbyScene
                 }
                 else
                 {
+                    isClickStart = false;
                     ShowNotEnoughEnergyMessage();
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError("Failed to get or set currency data: " + ex.Message);
-            }
-            finally
-            {
-                isClickStart = false;
-            }
+          
         }
 
         private void ShowNotEnoughEnergyMessage()

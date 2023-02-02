@@ -120,12 +120,19 @@ public class UI_GameScene : UI_Scene
         }
         // 일단 나중에 고쳐야 함.
         ItemInventoryButton invenSlot1 = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject.GetComponent<ItemInventoryButton>();
-        invenSlot1.Slot = new ItemSlotController.ItemSlot(PotionData, 
-            Managers.PlayFab.FindItemQuantity(PotionData.Key)
-            );
+        PortionItemData portionData = (PortionItemData)PotionData;
+        portionData.CreateItem();
+
+        int Quantity = Managers.PlayFab.FindItemQuantity(portionData.Key);
+    
+        PortionItem portionItem = new PortionItem(portionData, Quantity);
+        invenSlot1.Slot = new ItemSlotController.ItemSlot(portionItem);
         ItemSlotController.CreateSlotItem(invenSlot1.Slot);
-
-
+        GameObject invenSlot = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject;
+        Image image = invenSlot.transform.Find("Image").GetComponent<Image>();
+        image.sprite = portionData.IconSprite;
+        Text text = invenSlot.transform.Find("Quantity").GetComponent<Text>();
+            text.text = Quantity.ToString();
     }
    
     public void OnWeaponSelectSkip()
@@ -160,10 +167,14 @@ public class UI_GameScene : UI_Scene
     
     public void OnInventoryClick()
     {
-        //ItemSlotController.ItemSlot slot = button.gameObject.GetComponent<ItemInventoryButton>().Slot;
-        //if (slot == null) return;
-        if(ItemSlotController.Slots.Count == 0) return;
-        ItemSlotController.Use(0);
+        ItemInventoryButton slot = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject.GetComponent<ItemInventoryButton>();
+        if (slot.IsCoolTime) return;
+        if(ItemSlotController.Slots.Count == 0 || ItemSlotController.Use(0) == false) return;
+        GameObject invenSlot = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject;
+        Text text = invenSlot.transform.Find("Quantity").GetComponent<Text>();
+        PortionItem portionItem = (PortionItem)ItemSlotController.Slots[0].item;
+        text.text = portionItem.Amount.ToString();
+        slot.ItemUse();
         //TODO
     }
     

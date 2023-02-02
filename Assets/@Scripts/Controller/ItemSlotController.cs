@@ -11,17 +11,12 @@ namespace Assets._Scripts.Controller
     {
         public class ItemSlot
         {
-            public ItemSlot(ItemData itemData, int ammount)
+            public ItemSlot(Item itemData)
             {
-                ItemData = itemData;
-                Ammount = ammount;
-                ItemData.CreateItem();
-                item = ItemData;
+                item = itemData;
             }
-            public ItemData ItemData;
-            public CountableItem item;
-            public int Ammount = 0;
-            
+            public Item item;
+
         }
 
         List<ItemSlot> _slots = new List<ItemSlot>();
@@ -31,23 +26,25 @@ namespace Assets._Scripts.Controller
         /// 아이템 사용할 슬롯 index 
         /// </summary>
         /// <param name="index"></param>
-        public void Use(int index)
+        public bool Use(int index)
         {
-            if (_slots[index] == null) return;
+            if (_slots[index] == null) return false;
             //사용 가능한 아이템인 경우 
             if (_slots[index].item is IUsableItem uItem)
             {
-                bool successded = uItem.Use();
+                return uItem.Use();
                 //if(successded)
                 //{
                 //    UpdateSlot();
                 //}
             }
+            return false;
         }
 
         public readonly int SlotSize = 2;
         public void CreateSlotItem(ItemSlot slot)
         {
+            slot.item.Data.CreateItem();
             _slots.Add(slot);
         }
 

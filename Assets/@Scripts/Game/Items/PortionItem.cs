@@ -7,13 +7,24 @@ namespace Assets._Scripts.Game.Items
     /// <summary> 수량 아이템 - 포션 아이템 </summary>
     public class PortionItem : CountableItem, IUsableItem
     {
-        public PortionItem(PortionItemData data, int amount = 1) : base(data, amount) { }
+        float HealValue = 0;
+        public PortionItem(PortionItemData data, int amount = 1) : base(data, amount) 
+        {
+            HealValue = data.Value;
+        }
 
         public bool Use()
         {
+            if (Amount <= 0) return false;
             // 임시 : 개수 하나 감소
             Amount--;
-            Debug.Log("포션사용!");
+            BackEnd();
+
+            GameObject playerObj = Managers.Object.GetSingularObjet(StringData.Player);
+            Player player = playerObj.GetComponent<Player>();
+            float heal = player.PlayerData.MaxHP * (HealValue * 0.01f);
+
+            player.AddHp(heal);
             return true;
         }
 
