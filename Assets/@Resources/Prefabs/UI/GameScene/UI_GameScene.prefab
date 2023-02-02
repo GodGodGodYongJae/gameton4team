@@ -4778,3 +4778,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponSelectObj: {fileID: 0}
   CardSlotList: []
+  PotionData: {fileID: 11400000, guid: 897024395e0a9ac42a9ecf30a030bdd6, type: 2}

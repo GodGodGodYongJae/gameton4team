@@ -20,8 +20,13 @@ public class PlayFab_Login : MonoBehaviour
     {
         Managers.PlayFab.AuthService.Authenticate(Authtypes.Silent);
         await UniTask.WaitUntil(() => { return Managers.PlayFab.AuthService.SessionTicket != null; });
-        Debug.Log("Login Success");
-        isLogin = true;
+
+        Managers.PlayFab.GetUserInventory(() => {
+            Debug.Log("Login Success");
+            isLogin = true;
+        });
+
+
     }
 
 }

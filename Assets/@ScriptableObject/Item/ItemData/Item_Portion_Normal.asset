@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 391bfb7f8ccbdeb43a1516df67311eb2, type: 3}
+  m_Name: Item_Portion_Normal
+  m_EditorClassIdentifier: 
+  _id: 0
+  _key: NormalPortion
+  _name: "\uB178\uBA40\uD3EC\uC158"
+  _tooltip: "\uD604\uC7AC \uCCB4\uB825\uC758 70%\uB97C \uC989\uC2DC \uD68C\uBCF5
+    \uC2DC\uCF1C\uC900\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 8a48d37b36401284ab682c6f4001638d, type: 3}
+  _maxAmount: 60
+  _value: 70

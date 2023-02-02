@@ -1,10 +1,12 @@
 using Assets._Scripts.Controller;
+using Assets._Scripts.Game.Items;
 using Assets._Scripts.UI.GameScene;
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class UI_GameScene : UI_Scene
 {
@@ -38,13 +40,22 @@ public class UI_GameScene : UI_Scene
     private GameScene GameScene;
     public WeaponSlotController WeaponSlotController;
     private WeaponController WeaponController;
+    private ItemSlotController ItemSlotController;
     public void InitGameScene(GameScene gameScene)
     {
         GameScene = gameScene;
         WeaponSlotController = gameScene.WeaponSlotController;
         WeaponController = gameScene.WeaponController;
-      
+        ItemSlotController = new ItemSlotController();
+        // Test 
+        //ItemSlotController.ItemSlot slotTest = new ItemSlotController.ItemSlot(new PortionItem(),);
+        //ItemSlotController.CreateSlotItem();
     }
+
+    //async UniTaskVoid testItem()
+    //{
+    //    Managers.Resource.
+    //}
 
 
     private Canvas canvas;
@@ -85,6 +96,8 @@ public class UI_GameScene : UI_Scene
         SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
         return true;
     }
+    //임시 데이터 넣기. 나중에 PlayFab 에서 아이템 이나 Equip Manager가 만들어지면 삭제 
+    public ItemData PotionData;
     private void ButtonSet()
     {
         //Closure Problem 주의 할 것.
@@ -103,8 +116,16 @@ public class UI_GameScene : UI_Scene
         {
             int temp = i;
             buttonList.Add(GetButton(temp).GetComponent<Button>());
-            buttonList[temp].onClick.AddListener(() => { OnInventoryClick(buttonList[temp]); });
+            buttonList[temp].onClick.AddListener(() => { OnInventoryClick(); });
         }
+        // 일단 나중에 고쳐야 함.
+        ItemInventoryButton invenSlot1 = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject.GetComponent<ItemInventoryButton>();
+        invenSlot1.Slot = new ItemSlotController.ItemSlot(PotionData, 
+            Managers.PlayFab.FindItemQuantity(PotionData.Key)
+            );
+        ItemSlotController.CreateSlotItem(invenSlot1.Slot);
+
+
     }
    
     public void OnWeaponSelectSkip()
@@ -137,11 +158,13 @@ public class UI_GameScene : UI_Scene
         WeaponSlotController.CurrentWeaponSlot = slotNum;
     }
     
-    public void OnInventoryClick(Button button)
+    public void OnInventoryClick()
     {
-        ItemSlotController.ItemSlot slot = button.gameObject.GetOrAddComponent<ItemInventoryButton>().Slot;
-        if (slot == null) return;
-        slot.Run();
+        //ItemSlotController.ItemSlot slot = button.gameObject.GetComponent<ItemInventoryButton>().Slot;
+        //if (slot == null) return;
+        if(ItemSlotController.Slots.Count == 0) return;
+        ItemSlotController.Use(0);
+        //TODO
     }
     
     private void UIEvent(Define.GameEvent eventType, Component Sender, object param)

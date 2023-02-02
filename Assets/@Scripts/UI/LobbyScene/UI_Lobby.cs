@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets._Scripts.UI.LobbyScene.InventoryUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace Assets._Scripts.UI.LobbyScene
 {
     enum ButtonObject 
     {
         StartButton,
-        EnergyPlus
+        EnergyPlus,
+        InventoryUI
+    }
+
+    enum Buttons
+    {
+        InventoryBtn
     }
 
     enum Texts
@@ -21,8 +29,10 @@ namespace Assets._Scripts.UI.LobbyScene
         //DiamondText,
         CoinText
     }
+
     public class UI_Lobby : UI_Scene
     {
+        public Rito.InventorySystem.InventoryUI invenUI;
         private CanvasScaler _canvas;
         public override bool Init()
         {
@@ -31,11 +41,15 @@ namespace Assets._Scripts.UI.LobbyScene
                 return false;
             //Bind
             BindText(typeof(Texts));
+            BindButton(typeof(Buttons));
             BindObject(typeof(ButtonObject));
             //Bind End 
-    
+            invenUI = GetObject((int)ButtonObject.InventoryUI).GetComponent<Rito.InventorySystem.InventoryUI>();
+            GetObject((int)ButtonObject.InventoryUI).SetActive(false);
             LoadCurrecyData();
             ButtonInit();
+
+            InitItemServer initItemServer = new InitItemServer(this);
 
             MatchDisplay();
             return true;
@@ -59,6 +73,9 @@ namespace Assets._Scripts.UI.LobbyScene
         {
             GetObject((int)ButtonObject.StartButton).BindEvent(OnStartButton);
             GetObject((int)ButtonObject.EnergyPlus).BindEvent(OnEnergyPlus);
+            GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
+                GetObject((int)ButtonObject.InventoryUI).SetActive(true);
+            });
         }
 
         #region ButtonCallback
@@ -121,11 +138,11 @@ namespace Assets._Scripts.UI.LobbyScene
             float currentAspectRatio = (float)Screen.width / (float)Screen.height;
             if (currentAspectRatio > fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 1;
+                _canvas.matchWidthOrHeight = 0;
             }
             else if (currentAspectRatio < fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 0;
+                _canvas.matchWidthOrHeight = 1;
             }
         }
     }

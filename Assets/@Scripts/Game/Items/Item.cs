@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class Item : ScriptableObject
+public abstract class Item
 {
-    public abstract void Run(); 
+    public ItemData Data { get; private set; }
+
+    public Item(ItemData data) => Data = data;
 }
