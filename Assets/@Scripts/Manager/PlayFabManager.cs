@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using Rito.InventorySystem;
+using UniRx;
+using UnityEditor.PackageManager;
 
 #if UNITY_EDITOR
 using PlayFab.PfEditor.Json;
@@ -24,6 +26,7 @@ namespace Assets._Scripts.Manager
         {
             authSerivce = new PlayFabAuthService();
             InitCurrencyData();
+            InitPlayerDatas();
         }
 
         // ==================== Client Currecy Data =================
@@ -38,6 +41,7 @@ namespace Assets._Scripts.Manager
             _userCurrecy.Add( StringData.Coin , 0 );
             _userCurrecy.Add( StringData.Energy, 0 );
             _userCurrecy.Add( StringData.DailyAdmob, 0 );
+            _userCurrecy.Add(StringData.DailyReward, 0);
         }
         /// <summary>
         /// 서버에서 데이터를 동기화 해야할 때.
@@ -212,6 +216,12 @@ namespace Assets._Scripts.Manager
 
         // ============ Server Inventory Data ===================
         #region .
+
+        /// <summary>
+        /// 상점의 아이템 불러오기
+        /// </summary>
+        /// <param name="storeId">상점 ID </param>
+        /// <returns></returns>
        public async UniTask<List<StoreItem>> GetStoreItems(string storeId)
         {
             List<StoreItem> storeItems = new List<StoreItem>();
@@ -272,11 +282,177 @@ namespace Assets._Scripts.Manager
         #endregion
         // ======================================================
 
+        //*************** Get Player Data **************************
+        #region.
+
+        //------- Public Methods --------------
+         #region.
+        /// <summary>
+        /// 현재 PlayerData Key값
+        /// </summary>
+        public enum PlayerData { maxScore,dailyReward,end }
+        /// <summary>
+        /// Client에 저장해둔 PlayerData정보들
+        /// </summary>
+        public Dictionary<PlayerData,string> PlayerDatas = new Dictionary<PlayerData, string>();
+        /// <summary>
+        /// 플레이어 정보를 Server에서 받아온다.
+        /// </summary>
+        public void GetServerUserData(Action callback = null)
+        {
+            PlayFabClientAPI.GetUserData(new GetUserDataRequest() { 
+            PlayFabId = PlayFabAuthService.PlayFabId,
+            Keys = null
+            }, result => {
+                PlayerData pdata;
+                //Result 정보가 현재 Client Data 갯수와 다르다면 없는 Data가 존재하므로 서버에 추가해줘야 한다.
+                if (result.Data.Count != (int)PlayerData.end)
+                {
+                    for (int i = 0; i < (int)PlayerData.end; i++)
+                    {
+                        pdata = (PlayerData)i;
+                        UserDataRecord ResultData = null;
+                        if (result.Data.TryGetValue(pdata.ToString(), out ResultData))
+                        {
+                            //해당 데이터가 있으면,클라이언트에 등록해준다.
+                            SetPlayerData((PlayerData)i, ResultData.Value);
+                        }
+                        else
+                        {
+                            SetData.Enqueue(new Tuple<PlayerData, string>(pdata, "0"));
+                        }
+                    }
+                    //해당 분별이 다 끝나면, Deqeue를 사용해준다. SetServerPlayerData 메서드를 사용하지 않고 직접적으로 SetData에 박는 이유는
+                    // SetServer Player Data는 Deqeue를 내부적으로 호출하기 때문에 불필요한 중복호출을 막기 위해서이다.
+                    DataFromServer();
+                }
+                else
+                {
+                    //데이터가 모두 있을 경우 그냥 Client에 모두 박아주면 된다.
+                    for (int i = 0; i < (int)PlayerData.end; i++)
+                    {
+                        pdata = (PlayerData)i;
+                        SetPlayerData(pdata, result.Data[pdata.ToString()].Value);
+                    }
+                    /// 아마 해당 로직은 초기, 벨류값을 정해주는 것 같다. 
+                    //if (events != null)
+                    //{
+                    //    bool isCreate = (result.Data[Stat.Name.ToString()].Value != "0");
+                    //    events.Invoke(isCreate);
+                    //}
+                }
+            callback?.Invoke();
+            }, error => ErrorLog(error));;
+        }
+
+        /// <summary>
+        /// Client에 저장된 플레이어의 데이터를 받아온다. string으로 받아오기 때문에 차후 형변환 필요.
+        /// </summary>
+        public string GetUserData(PlayerData Getdata)
+        {
+            return PlayerDatas[Getdata];
+        }
+
+        Queue<Tuple<PlayerData, string>> SetData = new Queue<Tuple<PlayerData, string>>();
+        /// <summary>
+        /// 우선 서버에 데이터를 바꿔줄려면  먼저 Server에 담아준다. 한 번에 전송할 수 있는 양이 10개 이하로 조정되어있기 때문에. 큐에만 담아준다. 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="value"></param>
+        public void SetServerPlayerData(PlayerData data, string value)
+        {
+            Tuple<PlayerData, string> enqeueData = new Tuple<PlayerData, string>(data, value);
+            SetData.Enqueue(enqeueData);
+            DataFromServer();
+        }
 
 
-     
+        #endregion
+        //----------------------------------
+        //-------- Private Methods -------------
+        #region.
+        private void InitPlayerDatas()
+        {
+            for (int i = 0; i < (int)PlayerData.end; i++)
+            {
+                PlayerDatas.Add((PlayerData)i, null);
+            }
+        }
 
-        private void ErrorLog(PlayFabError error)
+   
+        Dictionary<string, string> QueueDataDictionary = new Dictionary<string, string>();
+
+        private void DataFromServer()
+        {
+            var item = SetData.Dequeue();
+            //만약에 전송전 해당 데이터가 있다면.
+            if(QueueDataDictionary.ContainsKey(item.Item1.ToString()))
+            {
+                //우선 정수 = Float으로 받아서 합쳐주고, Try 해서 안되면 String으로 받아서 덮어씌어준다.
+                try
+                {
+                    float sumData = float.Parse(QueueDataDictionary[item.Item1.ToString()]) + float.Parse(item.Item2);
+                    QueueDataDictionary[item.Item1.ToString()] = sumData.ToString();
+                }
+                catch
+                {
+                    QueueDataDictionary[item.Item1.ToString()] = item.Item2;
+                }
+                
+            }
+            else
+            {
+                QueueDataDictionary.Add(item.Item1.ToString(), item.Item2);
+            }
+            //큐가 한 번에 9개 이상이 되면, DataFromServer를 돌면서 중복되는 값들은 빼준다.
+            if(QueueDataDictionary.Count < 9)
+            {
+                //해당 큐가 마지막이라면 서버로 보내준다. 
+                if (SetData.Count == 0) SetUserData();
+                else DataFromServer(); // 아니라면, 다시 재귀를 돌아서 Queue가 모두 돌기 까지 기다린다. 겹치는게 있으면 더해주거나, String인 경우 덮어씌워줌.
+
+            }
+            else
+            {
+                //큐가 9개 이하라면 그냥 바로 서버로 보내준뒤, Queue를 비워준다.
+                SetUserData();
+                QueueDataDictionary.Clear();
+            }
+
+        }
+
+        /// <summary>
+        /// 최종적으로 해당 메소드에서 서버에 데이터를 등록해준다.
+        /// </summary>
+        private void SetUserData()
+        {
+            
+            PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest()
+            {
+                Data = QueueDataDictionary
+
+            }, result => {
+                GetServerUserData(); //
+                if (SetData.Count != 0) DataFromServer();
+            },
+            error => { ErrorLog(error); });
+        }
+    
+        /// <summary>
+        /// Client쪽에 데이터를 바꿔준다.
+        /// </summary>
+        private void SetPlayerData(PlayerData data, string value)
+        {
+            PlayerDatas[data] = value;
+        }
+        #endregion
+    //--------------------------------------
+
+    #endregion
+        //**********************************************************
+
+
+    private void ErrorLog(PlayFabError error)
         {
             Debug.LogError(error.GenerateErrorReport());
         }

@@ -25,6 +25,9 @@ public class StringData
 
     public static string DailyAdmob = _dailyRespawnAdmob;
 
+    //출석체크
+    private const string _dailyReward = "DR";
+    public static string DailyReward = _dailyReward; 
 
     private const string _dia = "DI";
     public static string Diamond => _dia;

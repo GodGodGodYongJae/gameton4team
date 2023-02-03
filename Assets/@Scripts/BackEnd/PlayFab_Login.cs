@@ -27,10 +27,12 @@ public class PlayFab_Login : MonoBehaviour
         //최초 1회, 현재 서버에 있는 CurrencyData 받아옴.
         Managers.PlayFab.SyncCurrencyDataFromServer();
 
-        Managers.PlayFab.GetUserInventory(() => {
+        Managers.PlayFab.GetUserInventory();
+
+        Managers.PlayFab.GetServerUserData(() => { 
             Debug.Log("Login Success");
             isLogin = true;
-           //StartCoroutine(Test());
+            //StartCoroutine(Test());
             callback?.Invoke();
         });
 

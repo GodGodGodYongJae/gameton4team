@@ -99,7 +99,11 @@ namespace Assets._Scripts.UI.LobbyScene
                     Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
                          () =>
                         {
-                            Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+                            // 일단 게임 진입 전 서버에서 Inventory를 새로 받아주고 진입.
+                            Managers.PlayFab.GetUserInventory(() => {
+                                Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+                            });
+                          
 
                         });
                 }
