@@ -20,6 +20,11 @@ public class StringData
     private const string _coin = "CO";
     public static string Coin => _coin;
 
+    // 매일 3회 광고 시청 가능.
+    private const string _dailyRespawnAdmob = "RS";
+
+    public static string DailyAdmob = _dailyRespawnAdmob;
+
 
     private const string _dia = "DI";
     public static string Diamond => _dia;
