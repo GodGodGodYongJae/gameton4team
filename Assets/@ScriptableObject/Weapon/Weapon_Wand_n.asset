@@ -15,9 +15,9 @@ MonoBehaviour:
   asset: {fileID: 4900000, guid: 1ce4649c433724740a0fa81f359e6196, type: 3}
   uiImage: {fileID: 21300000, guid: 8fae86f3c5bd6ff46a00e24a76b3b276, type: 3}
   displayName: "\uC9C0\uD321\uC774"
-  attackDmg: 4
+  attackDmg: 12
   attackDealay: 2500
   attackDuration: 1200
-  range: 2
+  range: 3
   skilEffect: {fileID: 951399195817685442, guid: 4601cbdcd4cae1744b5caafe702f347a, type: 3}
   effectPos: {x: 1, y: 0.5}
