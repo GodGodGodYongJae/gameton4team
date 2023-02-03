@@ -21,8 +21,10 @@ public class MonsterData : CreatureData
     [SerializeField]
     [Tooltip("이동시간")]
     private float _moveTime;
+    [SerializeField]
     [Tooltip("원거리 무기 지속시간 ")]
     private float _duration;
+    [SerializeField]
     [Tooltip("원거리 무기 투사체 속도 ")]
     private float _projectileSpeed;
     [SerializeField]

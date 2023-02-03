@@ -7,8 +7,7 @@ using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
-namespace Assets._Scripts.UI.GameScene
-{
+
     public class SelectWeaponUI
     {
         UI_GameScene gameScene;
@@ -27,7 +26,7 @@ namespace Assets._Scripts.UI.GameScene
         #region Listener
         private void StageClearEvent(Define.GameEvent eventType, Component Sender, object param)
         {
-            if (eventType == Define.GameEvent.stageClear)
+            if (eventType == Define.GameEvent.stageClear && Utils.EqualSender<GameScene>(Sender))
             {
                 OpenWeaponSelectBox().Forget();
             }
@@ -262,4 +261,3 @@ namespace Assets._Scripts.UI.GameScene
         #endregion
     }
 
-}

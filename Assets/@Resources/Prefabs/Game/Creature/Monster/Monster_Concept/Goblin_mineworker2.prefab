@@ -87,8 +87,8 @@ MonoBehaviour:
   _creatureData: {fileID: 11400000, guid: 8d36a2bfdd4a44048952a85bbc611464, type: 2}
   sPUM_Prefab: {fileID: 3670600915887176946}
   attackAnimSync: 15
-  arrow: {fileID: 3391895794129409543, guid: 2ae6c2b8d7c2afc4a85506df18177a52, type: 3}
-  direction: 0
+  coinPrefab: {fileID: 3054225444462989516, guid: dec246551f87c014ca080729d39c7fd3, type: 3}
+  playerPos: {fileID: 0}
 --- !u!1001 &6829490903668401879
 PrefabInstance:
   m_ObjectHideFlags: 0

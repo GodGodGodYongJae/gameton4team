@@ -5,16 +5,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 using Random = UnityEngine.Random;
 
 public class GroundController
 {
+    Player player;
 
     GameObject previousGround;
     GameObject currentGround;
     GameObject nextGround;
+    GameObject coinPrefab;
 
     GameScene gameScene;
+    string coins;
 
     Ground ground;
     // 생성할 그라운드 리스트.
@@ -38,7 +42,7 @@ public class GroundController
 
 
     // 처음 지형 생성.
-    public async UniTaskVoid Init()
+    public async UniTaskVoid Init(Action callback = null)
     {
         int idx = 0;
         Vector2 pos = new Vector2(0, Define.GroundPosY);
@@ -67,6 +71,8 @@ public class GroundController
         CameraController cam = Camera.main.GetComponent<CameraController>();
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
+
+        callback?.Invoke();
     }
 
 
@@ -219,12 +225,11 @@ public class GroundController
     //스테이지 클리어 리스너
     private void StageClear(GameEvent eventType, Component Sender, object param)
     {
-        //GameObject.Find("UI_GameScene").GetComponent<UI_GameScene>().Reward();
         if (Define.GameEvent.stageClear == eventType && Utils.EqualSender<GameScene>(Sender))
         {
             GroundGenerator = (GroundGenerator)param; 
             this.ChangeGroundGenerator(GroundGenerator);
-            Init().Forget();
+            Init(() => { Managers.Object.GetSingularObjet("coin").gameObject.SetActive(true); }).Forget();  
 
         }
         

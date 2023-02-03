@@ -14,6 +14,10 @@ using UnityEngine;
 
 public class OrcWarrior : SPUM_Monster
 {
+    public GameObject coinPrefab;
+    public Transform playerPos;
+    Player player;
+
     protected override void Awake()
     {
         base.Awake();
@@ -25,7 +29,6 @@ public class OrcWarrior : SPUM_Monster
         Attackbox.isTrigger = true;
         Attackbox.enabled = false;
     }
-
 
 
     // 리플렉션으로 구현됨 MonsterLove ( FSM 플러그인 사용 ) 
@@ -145,6 +148,8 @@ public class OrcWarrior : SPUM_Monster
         }
 
     }
+
+
 
     #endregion
     //        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x + (direction * -0.5f), transform.position.y));

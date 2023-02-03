@@ -267,4 +267,9 @@ public class ObjectManager
             rtnGo.SetActive(false);
         }
     }
+
+    internal GameObject InstantiateAsync(GameObject gameObject, Vector3 position)
+    {
+        throw new NotImplementedException();
+    }
 }

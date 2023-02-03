@@ -83,7 +83,7 @@ public class GameScene : BaseScene
         _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
         _player = _playerGo.GetComponent<Player>();
 
-
+      await Managers.Object.InstantiateSingle("coin", new Vector2(0, 0));
         #region DI
         //¹«±â DI 
 
