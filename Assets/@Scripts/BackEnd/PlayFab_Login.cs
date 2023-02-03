@@ -30,11 +30,24 @@ public class PlayFab_Login : MonoBehaviour
         Managers.PlayFab.GetUserInventory(() => {
             Debug.Log("Login Success");
             isLogin = true;
+           //StartCoroutine(Test());
             callback?.Invoke();
         });
 
 
     }
+    IEnumerator Test()
+    {
+    
+        Managers.PlayFab.
+            PurchaseItem("Item_Portion_Normal", 50, StringData.Coin, () =>
+        {
+            Debug.Log("구매 완료");
 
+        });
+        yield return new WaitForSeconds(0.1f);
+
+        StartCoroutine(Test());
+    }
 
 }

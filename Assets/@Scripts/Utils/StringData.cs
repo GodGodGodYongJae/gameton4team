@@ -29,6 +29,8 @@ public class StringData
     private const string _dia = "DI";
     public static string Diamond => _dia;
 
+    private const string _publicStore = "Public_Shop";
+    public static string PublicStore => _publicStore;  
     #endregion
 
     public class AdMob

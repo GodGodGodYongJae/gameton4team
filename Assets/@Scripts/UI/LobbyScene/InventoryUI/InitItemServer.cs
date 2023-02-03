@@ -32,6 +32,7 @@ namespace Assets._Scripts.UI.LobbyScene.InventoryUI
                 (userInventory[temp].ItemId.ToString(), (success) => {
                    _inventory.Add((ItemData)success,
                        (int)userInventory[temp].RemainingUses);
+                
                 });
             }
             

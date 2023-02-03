@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
+using Rito.InventorySystem;
 
 #if UNITY_EDITOR
 using PlayFab.PfEditor.Json;
@@ -88,13 +89,14 @@ namespace Assets._Scripts.Manager
         /// <param name="SuccesCallback">성공시 실행시킬 액션</param>
         public void PurchaseItem(string itemId,int price,string vc,Action SuccesCallback)
         {
+   
             _userCurrecy[vc] -= price;
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
                 ItemId = itemId,
                 Price = price,
                 VirtualCurrency = vc
-            }, success => { SuccesCallback.Invoke(); }, error => ErrorLog(error));
+            }, success => { SuccesCallback?.Invoke(); }, error => ErrorLog(error));
         }
         
         /// <summary>
@@ -189,15 +191,41 @@ namespace Assets._Scripts.Manager
             },
                 Success =>
                 {
-                    GetUserInventory(callback);
+                    //ClienetUserInventorySet()
+                    callback?.Invoke();
                 }, error => { ErrorLog(error); });
 
         }
+
+        //public void ClientUseInventory(Inventory inventory)
+        //{
+        //    inventory
+        //}
+
+        //private void ClienetUserInventorySet(int idx,int Quantity)
+        //{
+        //    userInventory.
+        //    //userInventory[idx].RemainingUses += Quantity;
+        //}
         #endregion
         //=========================================================
 
         // ============ Server Inventory Data ===================
         #region .
+       public async UniTask<List<StoreItem>> GetStoreItems(string storeId)
+        {
+            List<StoreItem> storeItems = new List<StoreItem>();
+            bool isComplated = false;
+            PlayFabClientAPI.GetStoreItems(new GetStoreItemsRequest() {
+           StoreId = storeId
+           }, Success => {
+               storeItems = Success.Store;
+               isComplated = true;
+           },error=>ErrorLog(error));
+            await UniTask.WaitUntil(() => { return isComplated == true; });
+            return storeItems;
+        }
+        
         /// <summary>
         /// 아이템 추가 일반적이지 않음, 정말 간혹가다 사용할 때 분당 호출회수 10회 미만일 때 쓸 것.
         /// 만약, 아이템 구매를 해야한다면 PurchaseItem을 사용할 것.
@@ -221,7 +249,7 @@ namespace Assets._Scripts.Manager
                 GeneratePlayStreamEvent = true
             }, clouedResult => {
                 //TestDebugLog(clouedResult);
-                GetUserInventory(callback);
+                callback?.Invoke();
             }, error => ErrorLog(error));
         }
         private string FindItemInstanceItem(string itemid)
