@@ -32,7 +32,7 @@ namespace Assets._Scripts.UI.GameScene
             RespawnQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();            
             AdmobQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
-            LoadAdMobQuantity().Forget();
+            LoadAdMobQuantity();
           
             RespawnData.CreateItem();
             Quantity = Managers.PlayFab.FindItemQuantity(RespawnData.Key);
@@ -50,9 +50,9 @@ namespace Assets._Scripts.UI.GameScene
             AdmobQuantityText.text = str;
         }
 
-        private async UniTaskVoid LoadAdMobQuantity()
+        private void LoadAdMobQuantity()
         {
-            AdmobQuantity = await Managers.PlayFab.GetCurrencyData(StringData.DailyAdmob);
+            AdmobQuantity =  Managers.PlayFab.GetCurrencyData(StringData.DailyAdmob);
         }
 
         private bool isAdMobLoad = false;

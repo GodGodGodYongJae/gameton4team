@@ -24,6 +24,9 @@ public class PlayFab_Login : MonoBehaviour
         Managers.PlayFab.AuthService.Authenticate(Authtypes.Silent);
         await UniTask.WaitUntil(() => { return Managers.PlayFab.AuthService.SessionTicket != null; });
 
+        //최초 1회, 현재 서버에 있는 CurrencyData 받아옴.
+        Managers.PlayFab.SyncCurrencyDataFromServer();
+
         Managers.PlayFab.GetUserInventory(() => {
             Debug.Log("Login Success");
             isLogin = true;
@@ -32,5 +35,6 @@ public class PlayFab_Login : MonoBehaviour
 
 
     }
+
 
 }

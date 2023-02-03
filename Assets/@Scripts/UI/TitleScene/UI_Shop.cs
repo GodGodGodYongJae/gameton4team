@@ -1,3 +1,4 @@
+using Assets._Scripts.Manager;
 using Assets._Scripts.UI.LobbyScene;
 using Cysharp.Threading.Tasks;
 using System.Collections;
@@ -13,25 +14,25 @@ public class UI_Shop : MonoBehaviour
     public UI_Lobby Lobby;
     private void Start()
     {
-        PortionBuyButton.onClick.AddListener(() => { BuyPortion("Item_Portion_Normal",100).Forget(); });
-        RespawnBuyButton.onClick.AddListener(() => { BuyPortion("Item_RespawnCard", 200).Forget(); });   
+        PortionBuyButton.onClick.AddListener(() => { BuyItem("Item_Portion_Normal",100).Forget(); });
+        RespawnBuyButton.onClick.AddListener(() => { BuyItem("Item_RespawnCard", 200).Forget(); });   
     }
     bool isComplated = true;
-    private async UniTaskVoid BuyPortion(string Id, int Price)
+    private void BuyItem(string Id, int Price)
     {
-        if (isComplated == false) return;
-        int coin = await Managers.PlayFab.GetCurrencyData(StringData.Coin);
-        
+        int coin =  Managers.PlayFab.GetCurrencyData(StringData.Coin);
         if(coin >= Price)
         {
-            isComplated = false;
-            Managers.PlayFab.AddItemInventory(Id, 1, () =>
-            {
-                Managers.PlayFab.SetCurrecy(StringData.Coin, -Price);
-                Lobby.LoadCurrecyData();
-                isComplated = true;
-            });
+
+            Managers.PlayFab.PurchaseItem(Id, Price, StringData.Coin, null);
+            Lobby.LoadCurrecyData();
+            //Managers.PlayFab.AddItemInventory(Id, 1, () =>
+            //{
+            //    Managers.PlayFab.SetCurrecy(StringData.Coin, -Price);
+            //    //Lobby.LoadCurrecyData();
+             
+            //});
         }
-        await UniTask.WaitUntil(() => { return isComplated == true; });
+
     }
 }
