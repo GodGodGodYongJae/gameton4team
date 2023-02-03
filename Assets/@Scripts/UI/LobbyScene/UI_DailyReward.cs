@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,10 +35,17 @@ namespace Assets._Scripts.UI.LobbyScene
         //    //}
         //}
 
-        int _currentDaily = 0; 
+        int _currentDaily = 0;
+        [SerializeField]
+        GameObject[] Slots;
         void Start()
         {
             _currentDaily = Managers.PlayFab.GetCurrencyData(StringData.DailyReward);
+            for (int i = 0; i < Slots.Length; i++)
+            {
+               Reward reward =  Slots[i].AddComponent<Reward>();
+               //reward.Init()
+            }
         }
 
     }
