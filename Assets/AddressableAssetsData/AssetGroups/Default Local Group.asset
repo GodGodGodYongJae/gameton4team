@@ -149,7 +149,7 @@ MonoBehaviour:
     m_Address: Ground_test_boss02
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 75d158c58a9594647962e84602ba7180
+  - m_GUID: 8c0a1dd553e86874a89458fcdc29bd7d
     m_Address: UI_TitleScene_BG
     m_ReadOnly: 0
     m_SerializedLabels: []

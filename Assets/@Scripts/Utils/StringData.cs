@@ -20,10 +20,20 @@ public class StringData
     private const string _coin = "CO";
     public static string Coin => _coin;
 
+    // 매일 3회 광고 시청 가능.
+    private const string _dailyRespawnAdmob = "RS";
+
+    public static string DailyAdmob = _dailyRespawnAdmob;
+
+    //출석체크
+    private const string _dailyReward = "DR";
+    public static string DailyReward = _dailyReward; 
 
     private const string _dia = "DI";
     public static string Diamond => _dia;
 
+    private const string _publicStore = "Public_Shop";
+    public static string PublicStore => _publicStore;  
     #endregion
 
     public class AdMob

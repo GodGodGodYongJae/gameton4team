@@ -29,10 +29,11 @@ namespace Assets._Scripts.UI.GameScene
         {
             RespawnButton.onClick.AddListener(() => OnRespawnButton());
             AdMobButton.onClick.AddListener(() => OnAdMob().Forget());
-            RespawnQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+            RespawnQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();            
             AdmobQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
-
+            LoadAdMobQuantity();
+          
             RespawnData.CreateItem();
             Quantity = Managers.PlayFab.FindItemQuantity(RespawnData.Key);
             respawnCardItem = new RespawnCardItem(RespawnData, Quantity);
@@ -42,13 +43,32 @@ namespace Assets._Scripts.UI.GameScene
             this.gameObject.SetActive(false);
         }
 
+        private void OnEnable()
+        {
+            if (AdmobQuantityText == null) return;
+            string str = "Daily : " + AdmobQuantity + " / 3";
+            AdmobQuantityText.text = str;
+        }
+
+        private void LoadAdMobQuantity()
+        {
+            AdmobQuantity =  Managers.PlayFab.GetCurrencyData(StringData.DailyAdmob);
+        }
+
+        private bool isAdMobLoad = false;
         private async UniTaskVoid OnAdMob()
         {
+            if (isAdMobLoad || AdmobQuantity <= 0) return;
+            isAdMobLoad = true;
           await Managers.Admob.RequestAndLoadRewardedAd(StringData.AdMob.Respawn,()=> {
               Player player = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
               player.Respawn();
+              isAdMobLoad=false;
+              AdmobQuantity--;
+              Managers.PlayFab.SetCurrecy(StringData.DailyAdmob, 1);
               this.gameObject.SetActive(false);
           });
+            
         }
 
         private void OnRespawnButton()

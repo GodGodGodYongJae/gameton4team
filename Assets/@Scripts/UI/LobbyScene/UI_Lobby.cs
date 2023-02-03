@@ -59,17 +59,17 @@ namespace Assets._Scripts.UI.LobbyScene
             return true;
         }
         InitItemServer initItemServer;
-       public async void LoadCurrecyData()
+       public void LoadCurrecyData()
         {
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
-            int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
+            int data = Managers.PlayFab.GetCurrencyData(StringData.Energy);
             energyText.text = data.ToString();
             //TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
             // data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
             //DiamondText.text = data.ToString();
 
             TextMeshProUGUI CoinText = GetText((int)Texts.CoinText);
-             data = await Managers.PlayFab.GetCurrencyData(StringData.Coin);
+             data =  Managers.PlayFab.GetCurrencyData(StringData.Coin);
             CoinText.text = data.ToString();
         }
 
@@ -79,7 +79,6 @@ namespace Assets._Scripts.UI.LobbyScene
             GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
             GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
                 GetObject((int)GameObjeects.InventoryUI).SetActive(true);
-                initItemServer.InitItemSet();
             });
         }
 
@@ -88,19 +87,23 @@ namespace Assets._Scripts.UI.LobbyScene
  
         bool isClickStart = false;
 
-        async void OnStartButton()
+         void OnStartButton()
         {
             if (isClickStart) return;
             isClickStart = true;
 
-                int data = await Managers.PlayFab.GetCurrencyData(StringData.Energy);
+                int data = Managers.PlayFab.GetCurrencyData(StringData.Energy);
 
                 if (data >= 5)
                 {
                     Managers.PlayFab.SetCurrecy(StringData.Energy, -5,
                          () =>
                         {
-                            Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+                            // 일단 게임 진입 전 서버에서 Inventory를 새로 받아주고 진입.
+                            Managers.PlayFab.GetUserInventory(() => {
+                                Managers.Scene.ChangeScene(Define.SceneType.GameScene);
+                            });
+                          
 
                         });
                 }
@@ -134,11 +137,11 @@ namespace Assets._Scripts.UI.LobbyScene
             float currentAspectRatio = (float)Screen.width / (float)Screen.height;
             if (currentAspectRatio > fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 0;
+                _canvas.matchWidthOrHeight = 1;
             }
             else if (currentAspectRatio < fixedAspectRatio)
             {
-                _canvas.matchWidthOrHeight = 1;
+                _canvas.matchWidthOrHeight = 0;
             }
         }
     }

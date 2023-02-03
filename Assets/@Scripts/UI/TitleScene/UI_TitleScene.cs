@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
@@ -48,7 +49,7 @@ public class UI_TitleScene : UI_Scene
         login.OnLogin(() =>
         {
             GetText((int)Texts.StartText).text = "Tap To Start!";
-
+       
         });
         
         //Managers.Sound.Play(Sound.Effect, "Sound_Opening");
@@ -56,6 +57,7 @@ public class UI_TitleScene : UI_Scene
         //MatchDisplay();
         return true;
     }
+    
 
     void MatchDisplay()
     {

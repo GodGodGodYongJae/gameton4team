@@ -24,13 +24,32 @@ public class PlayFab_Login : MonoBehaviour
         Managers.PlayFab.AuthService.Authenticate(Authtypes.Silent);
         await UniTask.WaitUntil(() => { return Managers.PlayFab.AuthService.SessionTicket != null; });
 
-        Managers.PlayFab.GetUserInventory(() => {
+        //최초 1회, 현재 서버에 있는 CurrencyData 받아옴.
+        Managers.PlayFab.SyncCurrencyDataFromServer();
+
+        Managers.PlayFab.GetUserInventory();
+
+        Managers.PlayFab.GetServerUserData(() => { 
             Debug.Log("Login Success");
             isLogin = true;
+            //StartCoroutine(Test());
             callback?.Invoke();
         });
 
 
+    }
+    IEnumerator Test()
+    {
+    
+        Managers.PlayFab.
+            PurchaseItem("Item_Portion_Normal", 50, StringData.Coin, () =>
+        {
+            Debug.Log("구매 완료");
+
+        });
+        yield return new WaitForSeconds(0.1f);
+
+        StartCoroutine(Test());
     }
 
 }
