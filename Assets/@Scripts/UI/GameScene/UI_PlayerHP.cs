@@ -26,7 +26,7 @@ public class UI_PlayerHP : MonoBehaviour
                 maxVal = data.maxHp;
                 curVal = data.curHp;
                 float fHp = (float)curVal / (float)maxVal;
-                text.text = curVal.ToString() + " / " + maxVal.ToString();
+                text.text = ((int)curVal) + " / " + (int)maxVal;
                 ChangeSliderValue(fHp);
             }
         }

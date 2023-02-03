@@ -8,5 +8,9 @@ using UnityEngine;
 
 public class Weapon_Sword : WeaponMelee
 {
-   
+    public override UniTaskVoid Attack()
+    {
+        Managers.Sound.PlaySFX("Sword_1");
+        return base.Attack();
+    }
 }

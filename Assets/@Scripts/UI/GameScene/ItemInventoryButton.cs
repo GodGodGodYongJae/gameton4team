@@ -15,7 +15,7 @@ namespace Assets._Scripts.UI.GameScene
     {
         public ItemSlotController.ItemSlot Slot;
         public Image Fillimage;
-        private float coolTime = 60f;
+        private float coolTime = 30f;
         private float CurrentCoolTime = 0f;
         private TextMeshProUGUI coolText;  
         public void ItemUse()
