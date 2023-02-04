@@ -110,7 +110,7 @@ public class Whitewalekr_grenadier : SPUM_Monster
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
         GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.5f));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
-        MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
+        MonsterBulletParabolaShot bullet = bulletGo.GetOrAddComponent<MonsterBulletParabolaShot>();
         bullet.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
 
