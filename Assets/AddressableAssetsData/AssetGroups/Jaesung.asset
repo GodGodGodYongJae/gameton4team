@@ -25,10 +25,6 @@ MonoBehaviour:
     m_Address: Bone_n
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: e20ebf4a5fa52c343a60418a6d21e32c
-    m_Address: Arrow_n
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: dec246551f87c014ca080729d39c7fd3
     m_Address: coin
     m_ReadOnly: 0
@@ -198,7 +194,15 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 7e2b4905b1871b34bb47ba077a4a3c40
+    m_Address: Bombw
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b233f10b46d3a840ae5fbb32a06594c
     m_Address: Bomb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55f21cc46c22c9345838f10dd2448961
+    m_Address: Arrow
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

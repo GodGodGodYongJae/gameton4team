@@ -16,9 +16,6 @@ namespace Assets._Scripts.Game.Weapon
         private float direction = 0;
         float range = 5;
 
-        public float speed = 10.0f;
-        public float height = 5.0f;
-
         public void InitBulletData(Monster monster)
         {
             this.monster = monster;
@@ -29,7 +26,10 @@ namespace Assets._Scripts.Game.Weapon
             if (monster.MonsterData.ProjectileSpeed != 0) this.range = monster.MonsterData.ProjectileSpeed;
             Duration().Forget();
 
+
         }
+
+
         protected override async UniTask Duration()
         {
             await UniTask.Delay((int)AttackDuration);
@@ -61,5 +61,15 @@ namespace Assets._Scripts.Game.Weapon
             }
         }
 
+        protected float Animation;
+
+        private void Update()
+        {
+            Animation += Time.deltaTime;
+            Animation = Animation % 5f;
+
+            transform.position = MathParabola.Parabola(Vector3.zero, Vector3.forward * 10f, 5f, Animation / 5f);
+        }
     }
+
 }
