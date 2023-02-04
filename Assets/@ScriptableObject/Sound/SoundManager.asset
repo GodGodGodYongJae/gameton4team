@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SoundManager
   m_EditorClassIdentifier: 
   _playlist:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 9777b8a336c0b9b47affec53d3e69d7a, type: 3}
+  - {fileID: 8300000, guid: e59ab6cc284dc35468e241be09d9794e, type: 3}

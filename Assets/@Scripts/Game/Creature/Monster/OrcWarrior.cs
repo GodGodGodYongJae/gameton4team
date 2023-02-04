@@ -14,7 +14,6 @@ using UnityEngine;
 
 public class OrcWarrior : SPUM_Monster
 {
-    public GameObject coinPrefab;
     public Transform playerPos;
     Player player;
 

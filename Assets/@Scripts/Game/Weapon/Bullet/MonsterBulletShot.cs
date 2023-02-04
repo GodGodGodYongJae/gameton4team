@@ -12,7 +12,7 @@ namespace Assets._Scripts.Game.Weapon
     {
         private Monster monster;
         private float Damage = 0;
-        private int AttackDuration = 3000;
+        private float AttackDuration = 3000;
         private float direction = 0;
         float range = 5;
         public void InitBulletData(Monster monster)
@@ -21,14 +21,14 @@ namespace Assets._Scripts.Game.Weapon
             this.Damage = monster.MonsterData.AttackDamage;
             this.isInit = true;
             this.direction = Mathf.Clamp(monster.transform.localScale.x, 1, -1);
-            if (monster.MonsterData.Duration != 0) AttackDuration = (int)this.monster.MonsterData.Duration * 1000;
+            if (monster.MonsterData.Duration != 0) AttackDuration = (float)this.monster.MonsterData.Duration * 1000;
             if (monster.MonsterData.ProjectileSpeed != 0) this.range = monster.MonsterData.ProjectileSpeed;
             Duration().Forget();
 
         }
         protected override async UniTask Duration()
         {
-            await UniTask.Delay(AttackDuration);
+            await UniTask.Delay((int)AttackDuration);
             RemoveEffect();
         }
 

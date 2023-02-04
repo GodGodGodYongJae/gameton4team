@@ -11,11 +11,15 @@ using static Define;
 
 public class Coin : MonoBehaviour
 {
+
     string coinName;
     Player player;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       gameObject.SetActive(false);
+        CoinCount.coinAmount += UnityEngine.Random.Range(10, 21);
+        CoinCount.getCoin();
+        gameObject.SetActive(false);
     }
 
     private void Start()
@@ -26,7 +30,7 @@ public class Coin : MonoBehaviour
     public void OnEnable()
     {
         player = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
-        this.transform.position = new Vector2(player.transform.position.x + 3, player.transform.position.y+3);
+        this.transform.position = new Vector2(player.transform.position.x + 3, player.transform.position.y+1);
     }
 
 

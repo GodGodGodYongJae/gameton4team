@@ -178,6 +178,7 @@ public class ObjectManager
             return null;
         }
         return _singualrObject[name];
+
     }
 
     /// <summary>

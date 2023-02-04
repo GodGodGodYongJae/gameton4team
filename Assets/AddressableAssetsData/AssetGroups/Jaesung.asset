@@ -29,6 +29,106 @@ MonoBehaviour:
     m_Address: Arrow_n
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: dec246551f87c014ca080729d39c7fd3
+    m_Address: coin
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f406b6599ab5a243ba1489dbe125fa2
+    m_Address: coins
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 11939db883197e84d94d88c612da2ed4
+    m_Address: PixelAttackFx/Prefebs/Flash_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b7f99ab9a9af1304288fddd0646bcb7b
+    m_Address: Skill_11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a9ec59089f1f4de43bc2c949efc9e991
+    m_Address: Flash_09
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f308fadaf90b39442bfe75814b245392
+    m_Address: Skill_03
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd7e519f36b49754e895446526e777e9
+    m_Address: Flash_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a3490ebaadc77d743996acc4af33224f
+    m_Address: Goblin_bandit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c082b2ddc2f1c0b459ff2c1f35a6ebe5
+    m_Address: Goblin_Mineworker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f05622b6c3ffb74ea522a679710e05f
+    m_Address: Orc_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: de58f9edd84024643822b6907543bf43
+    m_Address: Orc_Archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 77a65cc3a5ad1864590d24ea7731347c
+    m_Address: Orc_Burglar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e28e6051a410af847a74a9fb0d616699
+    m_Address: Orc_Warrior
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0986b7ee3fa82774f837e8415bb22dc0
+    m_Address: Zombie_Bonethrower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e74241e85d1817a4f8872244ac6bf61f
+    m_Address: Zombie_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 86b6120bf06ef6545b71f7a6df18a896
+    m_Address: Zombie_Farmer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd664e03deea1ec46b577fdb96aa83fe
+    m_Address: Zombie_Walker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e633288ab451cda41ad334679f474890
+    m_Address: Skeleton_Archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8eaf630ae4bf36041a098a63246e45d4
+    m_Address: Skeleton_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d7b0324863ae79e4a81eb1f9572e3d5f
+    m_Address: Skeleton_Magician
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 95cef8d62ccaae54aae5ea6858bf4099
+    m_Address: Skeleton_Soldier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b28c09c9c4d32545b998a35a61a29bd
+    m_Address: Goblin_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8dbee05683e03a240ae822af331676af
+    m_Address: Goblin_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39b4ac86a04eb2c48b38eb92ebc75343
+    m_Address: Goblin_mineworker
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c6db0ff3672b29e4da8668292e77625b
+    m_Address: Goblin_thief
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

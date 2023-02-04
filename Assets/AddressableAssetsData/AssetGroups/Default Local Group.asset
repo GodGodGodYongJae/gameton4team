@@ -225,22 +225,6 @@ MonoBehaviour:
     m_Address: Ground_Stage02_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 3b28c09c9c4d32545b998a35a61a29bd
-    m_Address: Goblin_archer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8dbee05683e03a240ae822af331676af
-    m_Address: Goblin_Boss
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 39b4ac86a04eb2c48b38eb92ebc75343
-    m_Address: Goblin_mineworker
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c6db0ff3672b29e4da8668292e77625b
-    m_Address: Goblin_thief
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 941b272e82c49694ea0e40c375971d38
     m_Address: Ork_archer
     m_ReadOnly: 0
@@ -297,8 +281,12 @@ MonoBehaviour:
     m_Address: Flash_03
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: dec246551f87c014ca080729d39c7fd3
-    m_Address: coin
+  - m_GUID: 707739df3eb9e744db3c27835fd8438f
+    m_Address: Goblin_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6096ac2b9f458bf40bedf560eab5a892
+    m_Address: Goblin_Thief
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

@@ -55,18 +55,16 @@ public class LongDistanceMonster : SPUM_Monster
 
     void MOVE_Enter()
     {
-        direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+        sPUM_Prefab.PlayAnimation("1_Run");
+        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
-        sPUM_Prefab.PlayAnimation("1_Run", () => { MoveSync().Forget(); });
-
-
+        MoveSync().Forget();
     }
 
 
 
     async UniTaskVoid MoveSync()
     {
-
         float moveTime = 0;
         while (moveTime < 0.8f && _rigid.velocity.y == 0)
         {
@@ -81,16 +79,11 @@ public class LongDistanceMonster : SPUM_Monster
 
             try
             {
-                if (distance < monsterData.AttackRange / 2)
-                {
-                    Vector2 targetPos = new Vector2(transform.position.x + (direction * 2.5f), transform.position.y);
-                    Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
-                    _rigid.MovePosition(newPos);
-                    await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
-                    moveTime += Time.deltaTime;
-                }
-                else break;
-
+                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
+                Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+                _rigid.MovePosition(newPos);
+                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                moveTime += Time.deltaTime;
             }
             catch
             {
