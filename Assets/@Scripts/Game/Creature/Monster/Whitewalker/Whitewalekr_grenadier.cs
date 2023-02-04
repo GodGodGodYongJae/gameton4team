@@ -13,6 +13,7 @@ public class Whitewalekr_grenadier : SPUM_Monster
 {
     public GameObject arrow;
     public float direction;
+
     protected override void Awake()
     {
         //arrow = GetComponent<GameObject>();
@@ -113,7 +114,6 @@ public class Whitewalekr_grenadier : SPUM_Monster
         MonsterBulletParabolaShot bullet = bulletGo.GetOrAddComponent<MonsterBulletParabolaShot>();
         bullet.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
-
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }

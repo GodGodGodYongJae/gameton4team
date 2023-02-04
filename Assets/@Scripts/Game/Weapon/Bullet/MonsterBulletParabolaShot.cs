@@ -10,21 +10,15 @@ namespace Assets._Scripts.Game.Weapon
 {
     public class MonsterBulletParabolaShot : Bullet
     {
-        Rigidbody2D rigidbody;
         private Monster monster;
         private float Damage = 0;
         private float AttackDuration = 3000;
         private float direction = 0;
         float range = 5;
 
+        public float speed = 10.0f;
+        public float height = 5.0f;
 
-        Player player;
-
-        private void Start()
-        {
-            rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.AddForce(transform.position * range);
-        }
         public void InitBulletData(Monster monster)
         {
             this.monster = monster;
@@ -50,8 +44,6 @@ namespace Assets._Scripts.Game.Weapon
             monster = null;
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             this.gameObject.SetActive(false);
-            player.a = 1;
-
         }
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -67,10 +59,6 @@ namespace Assets._Scripts.Game.Weapon
                 creature.Damage(Damage, monster);
 
             }
-        }
-
-        private void FixedUpdate()
-        {
         }
 
     }
