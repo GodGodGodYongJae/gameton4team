@@ -17,7 +17,9 @@ MonoBehaviour:
   attackDamage: 17
   _visibility: 0
   _attackRange: 2.5
-  _attackDealy: 1.1
+  _attackDealy: 2.51
   _moveDealy: 1
   _moveTime: 1
+  _duration: 0.2
+  _projectileSpeed: 0.1
   _exp: 8

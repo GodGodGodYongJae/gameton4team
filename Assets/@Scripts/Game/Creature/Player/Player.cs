@@ -17,6 +17,10 @@ public sealed partial class Player : Creature
         End
     }
     private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
+
+    private static Action bind;
+    public float a = 1f;
+
     public void PlayerActionAdd(PlayerActionKey key, Action action)
     {
         PlayerAction[key] += action;
@@ -27,6 +31,7 @@ public sealed partial class Player : Creature
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
+        bind = () => { };
         PostEventHp();
         for (int i = 0; i < (int)PlayerActionKey.End; i++)
         {
@@ -36,6 +41,7 @@ public sealed partial class Player : Creature
         Init();
     }
 
+ 
     private void PlayerActionCall(Define.GameEvent eventType, Component Sender, object param)
     {
         if(eventType == Define.GameEvent.playerEvents)

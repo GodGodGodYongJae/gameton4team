@@ -15,6 +15,8 @@ namespace Assets._Scripts.Game.Weapon
         private float AttackDuration = 3000;
         private float direction = 0;
         float range = 5;
+
+        Player player;
         public void InitBulletData(Monster monster)
         {
             this.monster = monster;
@@ -40,6 +42,8 @@ namespace Assets._Scripts.Game.Weapon
             monster = null;
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             this.gameObject.SetActive(false);
+            player.a = 1;
+
         }
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -53,6 +57,7 @@ namespace Assets._Scripts.Game.Weapon
             if (creature.GetType == Creature.Type.Player)
             {
                 creature.Damage(Damage, monster);
+
             }
         }
 

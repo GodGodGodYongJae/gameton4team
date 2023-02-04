@@ -129,6 +129,74 @@ MonoBehaviour:
     m_Address: Goblin_thief
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 52a41ed9ae85a7244a34752b86e69404
+    m_Address: Skill_11_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 18791c2961a03e842be10f0d55f9b235
+    m_Address: Skill_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5b043ee5d40e19546b250c7ecb25b852
+    m_Address: Flash_13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4155bd969125e27479c681dfb3484b25
+    m_Address: Skill_18
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9bb22c90a86012f489f45360d629bfa5
+    m_Address: Flash_12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f836818ebc8d4fa4493a28361f6559e6
+    m_Address: Demon_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4b3d366df5b1d654398b1ae76f46fb3d
+    m_Address: Demon_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aa15903c0962b214d81cdafae8a00992
+    m_Address: Demon_general
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f499eb727a3f8e4e8cc9c75a900ca91
+    m_Address: Demon_magician
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e134ddf959241654eb82b95ad66f8836
+    m_Address: Devil_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d44e3f6b92f95d741a0fc06e74bc24a7
+    m_Address: Devil_executioner
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ad6d551e133c38c49b246b23c9a13e61
+    m_Address: Devil_shielder
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc4ec0391f2142a4f82229a57d709557
+    m_Address: Devil_spearman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 895a89548c4c53c4b83bb49330d7bc0b
+    m_Address: Whiltewalker_archer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 217d55668f08ebe4e8d36ee33478f39d
+    m_Address: Whiltewalker_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 782ad7ee690a5b1448834541c062dfd6
+    m_Address: Whiltewalker_grenadier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2012e159758b3ec4eaee4a8ca52720e6
+    m_Address: Whiltewalker_soldier
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

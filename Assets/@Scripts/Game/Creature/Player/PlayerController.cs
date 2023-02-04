@@ -10,7 +10,6 @@ public partial class Player
     SwipeController SwipeController;
     public Vector2 directionVector;
     PlayerData playerData;
-
     public PlayerData PlayerData => playerData;
 
     public int CurrentExp;
@@ -24,12 +23,14 @@ public partial class Player
         //End
         SwipeController = new SwipeController();
         directionVector = Vector2.right;
+        a = 1;
         PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
         Managers.Events.AddListener(Define.GameEvent.monsterDestroy, MonsterKill);
 
     }
+
 
 
     private void MonsterKill(Define.GameEvent eventType, Component Sender, object param)
@@ -69,7 +70,7 @@ public partial class Player
     #endregion
 
     #region 조작 및 이동관련
-    void Move() => transform.Translate(directionVector * _creatureData.Speed * Time.deltaTime);
+    void Move() => transform.Translate(directionVector * (a *  _creatureData.Speed) * Time.deltaTime);
 
     void Jump() 
     { 
