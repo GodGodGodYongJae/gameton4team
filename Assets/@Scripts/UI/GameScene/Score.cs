@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,16 +16,22 @@ public class Score : MonoBehaviour
         score = 0;
         SetScore();
         bS = FindObjectOfType<BestScore>();
-
+        Managers.Events.AddListener(Define.GameEvent.monsterDestroy, GetKillScore);
     }
 
-    public void GetKillScore()
+    private void GetKillScore(Define.GameEvent eventType, Component Sender, object param)
     {
-        score += 10;
-        SetScore();
-        bS.SetBestScore();
+        if(eventType == Define.GameEvent.monsterDestroy)
+        {
+            score += 10; 
+            SetScore();
+            bS.SetBestScore();
+           
+        }
+        
     }
 
+  
     public void GetDistanceScore()
     {
         score += -1 * (int)GroundController.chatperSize;
