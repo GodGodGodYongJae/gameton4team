@@ -9,6 +9,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using Rito.InventorySystem;
 using UniRx;
+using static Define;
 
 #if UNITY_EDITOR
 using PlayFab.PfEditor.Json;
@@ -201,16 +202,6 @@ namespace Assets._Scripts.Manager
 
         }
 
-        //public void ClientUseInventory(Inventory inventory)
-        //{
-        //    inventory
-        //}
-
-        //private void ClienetUserInventorySet(int idx,int Quantity)
-        //{
-        //    userInventory.
-        //    //userInventory[idx].RemainingUses += Quantity;
-        //}
         #endregion
         //=========================================================
 
@@ -258,6 +249,37 @@ namespace Assets._Scripts.Manager
                 FunctionParameter = new { ItemCode = items.ToArray() },
                 GeneratePlayStreamEvent = true
             }, clouedResult => {
+                //TestDebugLog(clouedResult);
+                callback?.Invoke();
+            }, error => ErrorLog(error));
+        }
+
+
+        /// <summary>
+        /// 아이템 여러개 추가할때 한번에.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="callback"></param>
+        public void AddItemInventory2(Dictionary<ItemData,int> items, Action callback = null)
+        {
+            List<string> SendItemList = new List<string>();
+            foreach (var item in items)
+            {
+                for (int i = 0; i < item.Value; i++)
+                {
+                    ItemData data = item.Key;
+                    SendItemList.Add(data.Key);
+                }
+            }
+
+
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "AddInventory",
+                FunctionParameter = new { ItemCode = SendItemList.ToArray() },
+                GeneratePlayStreamEvent = true
+            }, clouedResult =>
+            {
                 //TestDebugLog(clouedResult);
                 callback?.Invoke();
             }, error => ErrorLog(error));
@@ -451,6 +473,7 @@ namespace Assets._Scripts.Manager
     #endregion
         //**********************************************************
 
+  
 
     private void ErrorLog(PlayFabError error)
         {
