@@ -30,7 +30,7 @@ namespace Assets._Scripts.UI.GameScene
             RespawnButton.onClick.AddListener(() => OnRespawnButton());
             AdMobButton.onClick.AddListener(() => OnAdMob().Forget());
             RespawnQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();            
-            AdmobQuantityText = RespawnButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+            AdmobQuantityText = AdMobButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
 
             LoadAdMobQuantity();
           
@@ -65,7 +65,7 @@ namespace Assets._Scripts.UI.GameScene
               player.Respawn();
               isAdMobLoad=false;
               AdmobQuantity--;
-              Managers.PlayFab.SetCurrecy(StringData.DailyAdmob, 1);
+              Managers.PlayFab.SetCurrecy(StringData.DailyAdmob, -1);
               this.gameObject.SetActive(false);
           });
             

@@ -74,8 +74,9 @@ namespace Assets._Scripts.Manager
                 foreach (var item in Keys)
                 {
                     CurrencyList[item] = result.VirtualCurrency[item];
+
                 }
-             
+                
                 isResult = true;
             },
             (error) => { ErrorLog(error); });
@@ -457,7 +458,20 @@ namespace Assets._Scripts.Manager
         }
 
         #region SampleCode
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
+
+        public void TestDebuge()
+        {
+            PlayFabClientAPI.ExecuteCloudScript(new PlayFab.ClientModels.ExecuteCloudScriptRequest()
+            {
+                FunctionName = "DailyRewardAdd",
+                GeneratePlayStreamEvent = true
+            }, cloudResult => {
+                TestDebugLog(cloudResult);
+            },
+            error => { ErrorLog(error); }
+            );
+        }
         private static void TestDebugLog(ExecuteCloudScriptResult result)
         {
             // CloudScript (Legacy) returns arbitrary results, so you have to evaluate them one step and one parameter at a time

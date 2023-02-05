@@ -35,6 +35,7 @@ public class PlayFab_Login : MonoBehaviour
             //StartCoroutine(Test());
             callback?.Invoke();
         });
+        //Managers.PlayFab.TestDebuge();
 
 
     }
