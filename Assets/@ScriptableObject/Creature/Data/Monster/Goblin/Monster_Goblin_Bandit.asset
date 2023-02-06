@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Goblin_Bandit
   m_EditorClassIdentifier: 
   _maxhp: 25
-  _speed: 2
+  _speed: 1.5
   attackDamage: 9
   _visibility: 0
   _attackRange: 7

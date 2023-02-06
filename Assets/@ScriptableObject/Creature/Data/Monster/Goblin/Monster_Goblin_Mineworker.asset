@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Monster_Goblin_Mineworker
   m_EditorClassIdentifier: 
   _maxhp: 42
-  _speed: 2
+  _speed: 1.5
   attackDamage: 11
   _visibility: 0
   _attackRange: 1.2
   _attackDealy: 1.1
   _moveDealy: 1.5
   _moveTime: 1
+  _duration: 0
+  _projectileSpeed: 0
   _exp: 2

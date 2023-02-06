@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Goblin_Boss
   m_EditorClassIdentifier: 
   _maxhp: 65
-  _speed: 1
+  _speed: 1.5
   attackDamage: 15
   _visibility: 0
   _attackRange: 1.3
