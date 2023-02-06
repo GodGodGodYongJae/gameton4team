@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8077e57da3164aad338d71fcb1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureGenerator: {fileID: 11400000, guid: 1224c7cd8e303d34b829df6ae2656af3, type: 2}
+  CreatureGenerator: {fileID: 11400000, guid: 6a5aa058bce0be141ae9a75452439850, type: 2}
   bossGround: 1
 --- !u!1 &8076345391585427072
 GameObject:

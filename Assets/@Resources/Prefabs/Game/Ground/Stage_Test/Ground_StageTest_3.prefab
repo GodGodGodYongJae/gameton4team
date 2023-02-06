@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 531670560232200444}
   - component: {fileID: 4792535465841887438}
   m_Layer: 0
-  m_Name: Ground_Stage03_Boss
+  m_Name: Ground_StageTest_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -1617698708, guid: 4206c7104320a884dbc69789c67ac52e, type: 3}
+  m_Sprite: {fileID: 1812036917, guid: 57534db5d9108134cbfe3243cc6de783, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 45, y: 5.000976}
+    oldSize: {x: 45, y: 4.1208043}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8077e57da3164aad338d71fcb1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureGenerator: {fileID: 11400000, guid: 90c8ccd8a3eb8ff4d800220b00244e27, type: 2}
-  bossGround: 1
+  CreatureGenerator: {fileID: 11400000, guid: 214e76229493f1e488de7f5b0117f475, type: 2}
+  bossGround: 0
 --- !u!1 &8076345391585427072
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8076345391585427072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,7 +200,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 454851374, guid: 4206c7104320a884dbc69789c67ac52e, type: 3}
+  m_Sprite: {fileID: -399000406, guid: 57534db5d9108134cbfe3243cc6de783, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

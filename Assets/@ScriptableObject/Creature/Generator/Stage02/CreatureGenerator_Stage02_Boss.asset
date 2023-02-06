@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CreatureGenerator_Stage02_Boss
   m_EditorClassIdentifier: 
   spawnMonsterList:
-  - spawnObj: {fileID: 6226460419522732099, guid: d1d98437471995e4db8379193f3476d5, type: 3}
+  - spawnObj: {fileID: 1501808845033141160, guid: e74241e85d1817a4f8872244ac6bf61f, type: 3}
     spawnPos: {x: 0, y: 3}

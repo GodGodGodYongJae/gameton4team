@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Zombie_Farmer
   m_EditorClassIdentifier: 
-  _maxhp: 55
+  _maxhp: 42
   _speed: 1
-  attackDamage: 12
+  attackDamage: 10
   _visibility: 0
   _attackRange: 1.5
   _attackDealy: 1.2
   _moveDealy: 1
-  _moveTime: 1
+  _movementTime: 1
+  _duration: 0
+  _projectileSpeed: 0
   _exp: 3
+  _score: 0

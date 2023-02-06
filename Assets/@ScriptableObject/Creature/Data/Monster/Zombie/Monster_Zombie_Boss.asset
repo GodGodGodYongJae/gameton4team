@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Monster_Zombie_Boss
   m_EditorClassIdentifier: 
   _maxhp: 75
-  _speed: 1
-  attackDamage: 17
+  _speed: 1.4
+  attackDamage: 15
   _visibility: 0
-  _attackRange: 2.5
-  _attackDealy: 2.51
+  _attackRange: 2.1
+  _attackDealy: 1.4
   _moveDealy: 1
-  _moveTime: 1
-  _duration: 0.2
+  _movementTime: 1
+  _duration: 0.3
   _projectileSpeed: 0.1
-  _exp: 8
+  _exp: 6
+  _score: 0
