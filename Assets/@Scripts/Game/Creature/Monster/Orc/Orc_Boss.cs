@@ -70,7 +70,7 @@ public class Orc_Boss : SPUM_Monster
     async UniTaskVoid MoveSync()
     {
         float moveTime = 0;
-        while (moveTime < 0.8f && _rigid.velocity.y == 0)
+        while (moveTime < monsterData.MovementTime && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)
@@ -117,11 +117,12 @@ public class Orc_Boss : SPUM_Monster
         GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, player.transform.position.y + 0.5f));
         bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletStunShot bullet = bulletGo.GetOrAddComponent<MonsterBulletStunShot>();
+        bullet.InitBulletData(this);
+
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         GameObject bulletGo1 = await Managers.Object.InstantiateAsync(arrow2.name, new Vector2(bulletGo.transform.position.x, bulletGo.transform.position.y ));
         bulletGo1.transform.localScale = new Vector2(bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
         MonsterBulletStunShot bullet1 = bulletGo1.GetOrAddComponent<MonsterBulletStunShot>();
-        bullet.InitBulletData(this);
         bullet1.InitBulletData(this);
 
         await UniTask.Delay(TimeSpan.FromSeconds(1.5f));

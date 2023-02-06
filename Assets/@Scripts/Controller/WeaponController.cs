@@ -11,15 +11,17 @@ public class WeaponController
 
     public SPUM_SpriteList root { get; set; }
     private GameObject rHandGo;
+
     private GameScene gameScene;
     public WeaponController(GameScene gameScene)
     {
         this.gameScene = gameScene;
         root = gameScene.Player._root;
         rHandGo =  root._weaponList[2].gameObject;
+
     }
 
-    
+
     public async UniTask<Weapon> WeaponChange(Define.WeaponType type,WeaponData weaponDatas = null)
     {
         bool registered = false;

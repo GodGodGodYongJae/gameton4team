@@ -33,7 +33,7 @@ public class Ground : MonoBehaviour
             {
                 SpawnedList.Remove(creature);
                 if (isBossGround == true)
-                    Managers.Events.PostNotification(Define.GameEvent.stageClear, this, null);
+                Managers.Events.PostNotification(Define.GameEvent.stageClear, this, null);
             }
         }
     }

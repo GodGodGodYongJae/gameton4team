@@ -7,11 +7,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UniRx;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Whitewalekr_archer : SPUM_Monster
 {
     public GameObject arrow;
+    public GameObject warning;
+
     public float direction;
     protected override void Awake()
     {
@@ -65,7 +68,7 @@ public class Whitewalekr_archer : SPUM_Monster
     async UniTaskVoid MoveSync()
     {
         float moveTime = 0;
-        while (moveTime < 0.8f && _rigid.velocity.y == 0)
+        while (moveTime < monsterData.MovementTime && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)
@@ -95,29 +98,33 @@ public class Whitewalekr_archer : SPUM_Monster
 
     void ATTACK_Enter()
     {
-
         AttackAsync().Forget();
     }
 
+
     async UniTaskVoid AttackAsync()
     {
+        float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
+        GameObject bulletGo = await Managers.Object.InstantiateAsync(warning.name, new Vector2(transform.position.x, transform.position.y + 2f));
+        bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
+        warning bullet = bulletGo.GetOrAddComponent<warning>();
+        await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
         string attackString = "2_Attack_Bow";
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
-        float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.5f));
-        bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
-        MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
+        GameObject bulletGo1 = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.3f));
+        bulletGo1.transform.localScale = new Vector2(-1 * bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
+        MonsterBulletParabolaArrowShot bullet1 = bulletGo1.GetOrAddComponent<MonsterBulletParabolaArrowShot>();
         bullet.InitBulletData(this);
+        bullet1.InitBulletData(this);
+
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
 
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }
-
     #endregion
-
 }
