@@ -33,14 +33,6 @@ MonoBehaviour:
     m_Address: Players
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 55b45a36c1e7cf945a75070a9e916269
-    m_Address: SkeletonSpearman2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 78a1f199aac597847ba695ba20adaa43
-    m_Address: TestMonster
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: de6bdcd1a1ae33e4c9c14f85589fb36e
     m_Address: EffectTest
     m_ReadOnly: 0
@@ -59,10 +51,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: ce823efba2b3b574084b58aa241a6416
     m_Address: Weapon_Sword_data
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9f90f933e0860264f80bb6d39e1819e0
-    m_Address: Berserk02
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8fae86f3c5bd6ff46a00e24a76b3b276
@@ -109,52 +97,16 @@ MonoBehaviour:
     m_Address: Flash_06
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 607abc9f1b362ff499eab1eb46315016
-    m_Address: OrcWarrior
+  - m_GUID: 05138660d614ac74a92ab822a719d2b5
+    m_Address: Ground_StageTest_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: d26fc7993567f5741b76fbf4e15c00f5
-    m_Address: SkeletonSpearman
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ff178e3fda90e1e45bba320ecbb7bc43
-    m_Address: Berserk
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: dcc570d48c00a424db7a9386d0140f82
-    m_Address: OrcWarrior2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
-    m_Address: Ground_test01
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bec2dc799139e1248afbb502f90823e9
-    m_Address: Ground_test02
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 0aa378a5500d2444ab62a0fe8b7b48ab
-    m_Address: Ground_test_boss01
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 2665544aac5606c4a8ef8e83ddaca2bd
-    m_Address: Ground_test03
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 52c21aebaf07d554787c274e41b1fd15
-    m_Address: Ground_test04
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: edda85a8b9a43094ca564eeecb704179
-    m_Address: Ground_test_boss02
+  - m_GUID: 872c3fab9bfb2c44ea5aaaada4a17176
+    m_Address: Ground_StageTest_1
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8c0a1dd553e86874a89458fcdc29bd7d
     m_Address: UI_TitleScene_BG
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8d9e6d8869b518346aaa2330fca7d469
-    m_Address: SkeletonArcher
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 2ae6c2b8d7c2afc4a85506df18177a52
@@ -167,38 +119,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 917d0ced354d6754da1af9b77b979fb9
     m_Address: UI_Lobby
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f33903436373b214c9c99579291181af
-    m_Address: Goblin_Archer2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: dadbbdfb8e2bf7f4897d47699566d892
-    m_Address: Goblin_Boss2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bc4d2d0f004928c4fb64df5719a7af10
-    m_Address: Goblin_mineworker2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6c491120c34bf4b468d104c74c21f8fa
-    m_Address: Goblin_thief2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 64c85a842f4d11241ac006c180d513d5
-    m_Address: Zombie1_bonethrower 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d1d98437471995e4db8379193f3476d5
-    m_Address: Zombie1_Boss 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 6abe662e9d612f74daa384a53174b65f
-    m_Address: Zombie1_farmer 1
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: df6ee29b7bf859a42856dcaad0facd19
-    m_Address: Zombie1_walker 1
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 009c26ed87cc3044594f2562a76e7862
@@ -223,38 +143,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: c13d5e1611cff714083a8aa076900963
     m_Address: Ground_Stage02_Boss
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 941b272e82c49694ea0e40c375971d38
-    m_Address: Ork_archer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 81c931b789307fe48ab465c35329a825
-    m_Address: Ork_Boss
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 9b9aafba21dbbb64d9a7231d22bb8aa2
-    m_Address: Ork_thief
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7c71e559c9dcfb848ba1495f2ec7d08f
-    m_Address: Ork_warrior
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: bc9082a9f61efc545858b4870caae563
-    m_Address: Zombie1_bonethrower
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: cc96afb69b41f484286da0847aeec88a
-    m_Address: Zombie1_Boss
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 787c44ac49884aa45bd30d41db27881c
-    m_Address: Zombie1_farmer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b915e67e4c90b0543b4a1f23cd4e6b6a
-    m_Address: Zombie1_walker
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ab937231d0600440fb0d8757568d78d7
@@ -287,6 +175,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 6096ac2b9f458bf40bedf560eab5a892
     m_Address: Goblin_Thief
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75b601535a3bf2f498d9f6f79f836f55
+    m_Address: Ground_StageTest_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
