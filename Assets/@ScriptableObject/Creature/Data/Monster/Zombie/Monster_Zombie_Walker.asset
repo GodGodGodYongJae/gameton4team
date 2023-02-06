@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Zombie_Walker
   m_EditorClassIdentifier: 
-  _maxhp: 30
+  _maxhp: 29
   _speed: 1
   attackDamage: 11
   _visibility: 0
@@ -20,4 +20,6 @@ MonoBehaviour:
   _attackDealy: 1
   _moveDealy: 1
   _moveTime: 1
+  _duration: 0
+  _projectileSpeed: 0
   _exp: 2
