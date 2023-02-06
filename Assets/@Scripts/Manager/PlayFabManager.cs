@@ -473,7 +473,24 @@ namespace Assets._Scripts.Manager
     #endregion
         //**********************************************************
 
-  
+        /// <summary>
+        /// 클라이언트에 해당 아이템이 있는지 체크.
+        /// </summary>
+        /// <param name="itemid"></param>
+        /// <returns></returns>
+        public async UniTask<ItemData> FindGetClientItem(string itemid)
+        {
+            object rtnData = new object();
+            bool isSuccess = false;
+            Managers.Resource.LoadAsync<ScriptableObject>(itemid,
+                success =>
+                {
+                    rtnData = (ItemData)success;
+                    isSuccess = true;
+                });
+            await UniTask.WaitUntil(() => { return isSuccess == true; });
+            return (ItemData)rtnData;
+        }
 
     private void ErrorLog(PlayFabError error)
         {
