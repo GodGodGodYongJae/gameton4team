@@ -50,14 +50,23 @@ namespace Assets._Scripts.UI.LobbyScene
             LoadCurrecyData();
             ButtonInit();
 
-            GetObject((int)GameObjeects.ShopUI).GetComponent<UI_Shop>().Lobby = this;
             GetObject((int)GameObjeects.ShopUI).SetActive(false);
 
              initItemServer = new InitItemServer(this);
 
             MatchDisplay();
+            Managers.Events.AddListener(Define.GameEvent.LobbyCurrency, CurrencySet);
             return true;
         }
+
+        private void CurrencySet(Define.GameEvent eventType, Component Sender, object param)
+        {
+           if(eventType == Define.GameEvent.LobbyCurrency)
+            {
+                LoadCurrecyData();
+            }
+        }
+
         InitItemServer initItemServer;
        public void LoadCurrecyData()
         {

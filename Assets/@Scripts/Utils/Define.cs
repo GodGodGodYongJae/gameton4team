@@ -17,6 +17,7 @@ public class Define
         SpawnMonster,
         playerEvents,
         stageClear,
+        LobbyCurrency
     }
 
     public enum SceneType

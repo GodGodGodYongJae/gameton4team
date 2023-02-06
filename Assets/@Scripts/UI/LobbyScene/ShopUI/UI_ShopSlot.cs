@@ -14,10 +14,9 @@ public class UI_ShopSlot : MonoBehaviour
     public Image Image;
     private int price;
     private string itemId;
-    private UI_Lobby lobby;
-    public void CreateInit(string itemId,string price, string title, Sprite sprite,UI_Lobby lobby)
+
+    public void CreateInit(string itemId,string price, string title, Sprite sprite)
     {
-        this.lobby = lobby;
         this.itemId = itemId;
         BuyButtonText.text = price;
         this.price = int.Parse(price);
@@ -33,7 +32,7 @@ public class UI_ShopSlot : MonoBehaviour
         {
 
             Managers.PlayFab.PurchaseItem(itemId, price, StringData.Coin, null);
-            lobby.LoadCurrecyData();
+            Managers.Events.PostNotification(Define.GameEvent.LobbyCurrency, this);
         }
     }
 
