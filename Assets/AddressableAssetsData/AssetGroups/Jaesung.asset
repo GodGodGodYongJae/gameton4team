@@ -109,22 +109,6 @@ MonoBehaviour:
     m_Address: Skeleton_Soldier
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 3b28c09c9c4d32545b998a35a61a29bd
-    m_Address: Goblin_archer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8dbee05683e03a240ae822af331676af
-    m_Address: Goblin_Boss
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 39b4ac86a04eb2c48b38eb92ebc75343
-    m_Address: Goblin_mineworker
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c6db0ff3672b29e4da8668292e77625b
-    m_Address: Goblin_thief
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 52a41ed9ae85a7244a34752b86e69404
     m_Address: Skill_11_1
     m_ReadOnly: 0

@@ -265,6 +265,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fe498218005a104aa1b0920ec29357d, type: 2}
   - {fileID: 11400000, guid: 7a22032ecb9be1f41a40b88bb9ad0dd9, type: 2}
   - {fileID: 11400000, guid: 5df7ea60a02543148acb1e96cb41672a, type: 2}
+  - {fileID: 11400000, guid: 7ceaad866dfffdd4da101f81baa8b2f3, type: 2}
+  - {fileID: 11400000, guid: 51a8bd97caa2f584fa52639de9c304a1, type: 2}
+  - {fileID: 11400000, guid: 203ce4a8a4840de43bd4d570a89ec9a2, type: 2}
+  - {fileID: 11400000, guid: 4b285e61cbf7660418bd58201b9e1cb4, type: 2}
   _wallObjects:
   - {fileID: 8662862121317373236}
   - {fileID: 1455646297452626265}
