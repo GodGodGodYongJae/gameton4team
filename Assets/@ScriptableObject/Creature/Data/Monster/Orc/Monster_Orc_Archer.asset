@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Orc_Archer
   m_EditorClassIdentifier: 
-  _maxhp: 222
-  _speed: 5
+  _maxhp: 44
+  _speed: 1.4
   attackDamage: 5
   _visibility: 5
   _attackRange: 5
   _attackDealy: 5
   _moveDealy: 5
-  _moveTime: 5
+  _movementTime: 0
   _duration: 5
   _projectileSpeed: 5
-  _exp: 0
+  _exp: 2
+  _score: 0
