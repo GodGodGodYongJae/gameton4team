@@ -474,7 +474,7 @@ namespace Assets._Scripts.Manager
         //**********************************************************
 
         /// <summary>
-        /// 클라이언트에 해당 아이템이 있는지 체크.
+        /// 클라이언트에 해당 아이템이 있는지 체크한후 Scripatble Object ItemData 불러옴
         /// </summary>
         /// <param name="itemid"></param>
         /// <returns></returns>
