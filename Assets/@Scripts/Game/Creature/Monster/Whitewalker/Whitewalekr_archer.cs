@@ -110,6 +110,8 @@ public class Whitewalekr_archer : SPUM_Monster
         warning bullet = bulletGo.GetOrAddComponent<warning>();
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
         string attackString = "2_Attack_Bow";
+        //몬스터 공격 모션이 나오는 동안 비동기 처리해서 다른 행동 하지 못하게 만들기
+
         sPUM_Prefab.PlayAnimation(attackString);
         float frameTime = (attackAnimSync / 60f) * 1000;
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;

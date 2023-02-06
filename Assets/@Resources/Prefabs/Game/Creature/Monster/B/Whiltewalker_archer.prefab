@@ -88,7 +88,7 @@ MonoBehaviour:
   sPUM_Prefab: {fileID: 5624584115561651964}
   attackAnimSync: 0
   arrow: {fileID: 3815760733653880722, guid: 55f21cc46c22c9345838f10dd2448961, type: 3}
-  warning: {fileID: 293938801592043934, guid: ec0198f0f269685478b234dccdf0a737, type: 3}
+  warning: {fileID: 8445674666273437084, guid: 370e3209d55a65f4baa56585cd062c77, type: 3}
   direction: 0
 --- !u!1001 &2421390038081532586
 PrefabInstance:
