@@ -43,7 +43,7 @@ namespace Assets._Scripts.UI.LobbyScene
             _currentDaily = Managers.PlayFab.GetCurrencyData(StringData.DailyReward);
             for (int i = 0; i < Slots.Length; i++)
             {
-               Reward reward =  Slots[i].AddComponent<Reward>();
+               //Reward reward =  Slots[i].AddComponent<Reward>();
                //reward.Init()
             }
         }

@@ -14,7 +14,7 @@ namespace Assets._Scripts.UI.LobbyScene.InventoryUI
         public InitItemServer(UI_Lobby lobby)
         {
             _inventory = lobby.invenUI.Inventory;
-            InitItemSet();
+           // InitItemSet();
         }
       
         /// <summary>

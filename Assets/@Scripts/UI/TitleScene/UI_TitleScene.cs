@@ -54,25 +54,26 @@ public class UI_TitleScene : UI_Scene
         
         //Managers.Sound.Play(Sound.Effect, "Sound_Opening");
         //Screen.SetResolution(Screen.width, (Screen.width / 9) * 16, true);
-        //MatchDisplay();
+        MatchDisplay();
         return true;
     }
-    
+
 
     void MatchDisplay()
     {
         _canvas.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-        float fixedAspectRatio = 9f / 19f;
+        float fixedAspectRatio = 9f / 16f;
         float currentAspectRatio = (float)Screen.width / (float)Screen.height;
-        if(currentAspectRatio > fixedAspectRatio )
-        {
-            _canvas.matchWidthOrHeight = 0;
-        }
-        else if(currentAspectRatio < fixedAspectRatio)
+        if (currentAspectRatio > fixedAspectRatio)
         {
             _canvas.matchWidthOrHeight = 1;
         }
+        else if (currentAspectRatio < fixedAspectRatio)
+        {
+            _canvas.matchWidthOrHeight = 0;
+        }
     }
+
     public void ReadyToStart()
     {
         _isLoaded = true;

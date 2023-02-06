@@ -35,8 +35,6 @@ public class PlayFab_Login : MonoBehaviour
             //StartCoroutine(Test());
             callback?.Invoke();
         });
-
-
     }
     IEnumerator Test()
     {

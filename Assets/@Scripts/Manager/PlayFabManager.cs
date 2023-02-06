@@ -9,6 +9,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 using Rito.InventorySystem;
 using UniRx;
+using static Define;
 
 #if UNITY_EDITOR
 using PlayFab.PfEditor.Json;
@@ -74,8 +75,9 @@ namespace Assets._Scripts.Manager
                 foreach (var item in Keys)
                 {
                     CurrencyList[item] = result.VirtualCurrency[item];
+
                 }
-             
+                
                 isResult = true;
             },
             (error) => { ErrorLog(error); });
@@ -200,16 +202,6 @@ namespace Assets._Scripts.Manager
 
         }
 
-        //public void ClientUseInventory(Inventory inventory)
-        //{
-        //    inventory
-        //}
-
-        //private void ClienetUserInventorySet(int idx,int Quantity)
-        //{
-        //    userInventory.
-        //    //userInventory[idx].RemainingUses += Quantity;
-        //}
         #endregion
         //=========================================================
 
@@ -257,6 +249,37 @@ namespace Assets._Scripts.Manager
                 FunctionParameter = new { ItemCode = items.ToArray() },
                 GeneratePlayStreamEvent = true
             }, clouedResult => {
+                //TestDebugLog(clouedResult);
+                callback?.Invoke();
+            }, error => ErrorLog(error));
+        }
+
+
+        /// <summary>
+        /// 아이템 여러개 추가할때 한번에.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="callback"></param>
+        public void AddItemInventory2(Dictionary<ItemData,int> items, Action callback = null)
+        {
+            List<string> SendItemList = new List<string>();
+            foreach (var item in items)
+            {
+                for (int i = 0; i < item.Value; i++)
+                {
+                    ItemData data = item.Key;
+                    SendItemList.Add(data.Key);
+                }
+            }
+
+
+            PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+            {
+                FunctionName = "AddInventory",
+                FunctionParameter = new { ItemCode = SendItemList.ToArray() },
+                GeneratePlayStreamEvent = true
+            }, clouedResult =>
+            {
                 //TestDebugLog(clouedResult);
                 callback?.Invoke();
             }, error => ErrorLog(error));
@@ -450,6 +473,24 @@ namespace Assets._Scripts.Manager
     #endregion
         //**********************************************************
 
+        /// <summary>
+        /// 클라이언트에 해당 아이템이 있는지 체크한후 Scripatble Object ItemData 불러옴
+        /// </summary>
+        /// <param name="itemid"></param>
+        /// <returns></returns>
+        public async UniTask<ItemData> FindGetClientItem(string itemid)
+        {
+            object rtnData = new object();
+            bool isSuccess = false;
+            Managers.Resource.LoadAsync<ScriptableObject>(itemid,
+                success =>
+                {
+                    rtnData = (ItemData)success;
+                    isSuccess = true;
+                });
+            await UniTask.WaitUntil(() => { return isSuccess == true; });
+            return (ItemData)rtnData;
+        }
 
     private void ErrorLog(PlayFabError error)
         {
@@ -457,7 +498,20 @@ namespace Assets._Scripts.Manager
         }
 
         #region SampleCode
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
+
+        public void TestDebuge()
+        {
+            PlayFabClientAPI.ExecuteCloudScript(new PlayFab.ClientModels.ExecuteCloudScriptRequest()
+            {
+                FunctionName = "DailyRewardAdd",
+                GeneratePlayStreamEvent = true
+            }, cloudResult => {
+                TestDebugLog(cloudResult);
+            },
+            error => { ErrorLog(error); }
+            );
+        }
         private static void TestDebugLog(ExecuteCloudScriptResult result)
         {
             // CloudScript (Legacy) returns arbitrary results, so you have to evaluate them one step and one parameter at a time
