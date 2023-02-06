@@ -10,7 +10,7 @@ public class Score : MonoBehaviour
     BestScore bS;
     public static int score = 0;
     public static int bestScore = 0;
-
+    public MonsterData monsterdata;
     public void Start()
     {
         score = 0;
@@ -23,7 +23,8 @@ public class Score : MonoBehaviour
     {
         if(eventType == Define.GameEvent.monsterDestroy)
         {
-            score += 10; 
+            Monster monster = (Monster)Sender;
+            score += monster.MonsterData.Score;
             SetScore();
             bS.SetBestScore();
            
