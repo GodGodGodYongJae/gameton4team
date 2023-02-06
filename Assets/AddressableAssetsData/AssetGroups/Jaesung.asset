@@ -26,11 +26,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: dec246551f87c014ca080729d39c7fd3
-    m_Address: coin
+    m_Address: coina
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 5f406b6599ab5a243ba1489dbe125fa2
-    m_Address: coins
+  - m_GUID: 03bd8fd4c0bb73a408013923aafa31cc
+    m_Address: coin
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 11939db883197e84d94d88c612da2ed4
@@ -187,6 +187,18 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 55f21cc46c22c9345838f10dd2448961
     m_Address: Arrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec0198f0f269685478b234dccdf0a737
+    m_Address: warning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e9d4143c19529834981ac6821a04aecd
+    m_Address: Boss_Warning
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5f3c7e5ad43ff3146b3dc4d531b7e5de
+    m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

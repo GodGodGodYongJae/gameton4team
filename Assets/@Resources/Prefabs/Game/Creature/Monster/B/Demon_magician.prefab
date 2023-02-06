@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon_magician
       objectReference: {fileID: 0}
+    - target: {fileID: 4610702899712225804, guid: bbfba5e4973ff814d9ee33d7b3ecb85e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 6677352742068219382, guid: bbfba5e4973ff814d9ee33d7b3ecb85e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

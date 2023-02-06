@@ -42,7 +42,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 995ae8054780199468005f8cc8d3fbc0
-    m_Address: Player
+    m_Address: Player1
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 1f978d689b10af14dabe6c3bac7c627e

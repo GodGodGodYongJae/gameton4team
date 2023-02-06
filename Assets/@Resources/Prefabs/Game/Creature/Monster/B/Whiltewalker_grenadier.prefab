@@ -88,6 +88,7 @@ MonoBehaviour:
   sPUM_Prefab: {fileID: 2667449739621949662}
   attackAnimSync: 0
   arrow: {fileID: 1065494192821421989, guid: 5b233f10b46d3a840ae5fbb32a06594c, type: 3}
+  bomb: {fileID: 8680190200876340905, guid: 18791c2961a03e842be10f0d55f9b235, type: 3}
   direction: 0
 --- !u!1001 &6136236654078061322
 PrefabInstance:
@@ -100,6 +101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whiltewalker_grenadier
       objectReference: {fileID: 0}
+    - target: {fileID: 8351152472014279936, guid: b3e8cd065b213fd4b94cfc896fdbb118, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 9101449597712887783, guid: b3e8cd065b213fd4b94cfc896fdbb118, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

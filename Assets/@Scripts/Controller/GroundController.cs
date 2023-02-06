@@ -15,10 +15,8 @@ public class GroundController
     GameObject previousGround;
     GameObject currentGround;
     GameObject nextGround;
-    GameObject coinPrefab;
 
     GameScene gameScene;
-    string coins;
 
     Ground ground;
     // 생성할 그라운드 리스트.
@@ -229,6 +227,7 @@ public class GroundController
         {
             GroundGenerator = (GroundGenerator)param; 
             this.ChangeGroundGenerator(GroundGenerator);
+            CurrentStage.stage();
             Init(() => { Managers.Object.GetSingularObjet("coin").gameObject.SetActive(true); }).Forget();  
 
         }

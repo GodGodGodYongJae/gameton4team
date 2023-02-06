@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whiltewalker_soldier
       objectReference: {fileID: 0}
+    - target: {fileID: 5636884954124546117, guid: 0f2c19a60d473bf43b03a2765186e41b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 7043595445765685650, guid: 0f2c19a60d473bf43b03a2765186e41b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

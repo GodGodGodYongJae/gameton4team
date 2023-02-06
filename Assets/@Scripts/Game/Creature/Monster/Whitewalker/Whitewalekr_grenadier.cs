@@ -12,6 +12,7 @@ using UnityEngine;
 public class Whitewalekr_grenadier : SPUM_Monster
 {
     public GameObject arrow;
+    public GameObject bomb;
     public float direction;
 
     protected override void Awake()
@@ -65,8 +66,9 @@ public class Whitewalekr_grenadier : SPUM_Monster
 
     async UniTaskVoid MoveSync()
     {
+
         float moveTime = 0;
-        while (moveTime < 0.8f && _rigid.velocity.y == 0)
+        while (moveTime < monsterData.MovementTime && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)
@@ -79,11 +81,16 @@ public class Whitewalekr_grenadier : SPUM_Monster
 
             try
             {
-                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
-                Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
-                _rigid.MovePosition(newPos);
-                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
-                moveTime += Time.deltaTime;
+                if (distance < monsterData.AttackRange / 2)
+                {
+                    Vector2 targetPos = new Vector2(transform.position.x + (direction * 2.5f), transform.position.y);
+                    Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+                    _rigid.MovePosition(newPos);
+                    await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                    moveTime += Time.deltaTime;
+                }
+                else break;
+
             }
             catch
             {
@@ -113,6 +120,11 @@ public class Whitewalekr_grenadier : SPUM_Monster
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletParabolaShot bullet = bulletGo.GetOrAddComponent<MonsterBulletParabolaShot>();
         bullet.InitBulletData(this);
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        GameObject bulletGo1 = await Managers.Object.InstantiateAsync(bomb.name, new Vector2(bulletGo.transform.position.x, bulletGo.transform.position.y));
+        bulletGo1.transform.localScale = new Vector2(-1 * bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
+        MonsterBullet bullet1 = bulletGo1.GetOrAddComponent<MonsterBullet>();
+        bullet1.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);

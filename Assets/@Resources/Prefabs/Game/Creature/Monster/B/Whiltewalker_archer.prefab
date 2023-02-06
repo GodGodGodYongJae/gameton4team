@@ -87,7 +87,8 @@ MonoBehaviour:
   _creatureData: {fileID: 11400000, guid: c206ce485b46ee047b868ee72538f103, type: 2}
   sPUM_Prefab: {fileID: 5624584115561651964}
   attackAnimSync: 0
-  arrow: {fileID: 7666614301259727470, guid: 55f21cc46c22c9345838f10dd2448961, type: 3}
+  arrow: {fileID: 3815760733653880722, guid: 55f21cc46c22c9345838f10dd2448961, type: 3}
+  warning: {fileID: 293938801592043934, guid: ec0198f0f269685478b234dccdf0a737, type: 3}
   direction: 0
 --- !u!1001 &2421390038081532586
 PrefabInstance:
@@ -184,6 +185,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whiltewalker_archer
       objectReference: {fileID: 0}
+    - target: {fileID: 7833668610874028596, guid: 2d692364a3ba89640b42e5de18772272, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d692364a3ba89640b42e5de18772272, type: 3}
 --- !u!224 &3798580224148865335 stripped

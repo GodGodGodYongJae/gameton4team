@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7620648495045321865, guid: 550c5922f8adc74419b978850599e448, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 7623711732247329416, guid: 550c5922f8adc74419b978850599e448, type: 3}
       propertyPath: m_Name
       value: Demon_archer
