@@ -15,5 +15,10 @@ MonoBehaviour:
   _groundsPrefab:
   - {fileID: 531670560232200445, guid: 009c26ed87cc3044594f2562a76e7862, type: 3}
   - {fileID: 531670560232200445, guid: c95b046bbb8fc7143b841381b9e31dac, type: 3}
+  - {fileID: 531670560232200445, guid: c95b046bbb8fc7143b841381b9e31dac, type: 3}
+  - {fileID: 531670560232200445, guid: c95b046bbb8fc7143b841381b9e31dac, type: 3}
+  - {fileID: 531670560232200445, guid: 485e5d73afca2764480f0aa659ffaa3d, type: 3}
+  - {fileID: 531670560232200445, guid: 485e5d73afca2764480f0aa659ffaa3d, type: 3}
+  - {fileID: 531670560232200445, guid: 485e5d73afca2764480f0aa659ffaa3d, type: 3}
   - {fileID: 531670560232200445, guid: 88f78f68a9e799a4c950c89dd515e02c, type: 3}
-  _chatperSize: 30
+  _chatperSize: 70

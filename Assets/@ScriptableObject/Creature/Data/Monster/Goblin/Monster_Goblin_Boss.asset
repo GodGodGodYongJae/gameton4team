@@ -19,7 +19,7 @@ MonoBehaviour:
   _attackRange: 1.3
   _attackDealy: 1.4
   _moveDealy: 1
-  _movementTime: 3
+  _movementTime: 4
   _duration: 0.4
   _projectileSpeed: 0.1
-  _exp: 5
+  _exp: 4
