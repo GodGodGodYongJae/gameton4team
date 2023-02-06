@@ -29,6 +29,9 @@ public class MonsterData : CreatureData
     private float _projectileSpeed;
     [SerializeField]
     private int _exp;
+    [SerializeField]
+    private int _score;
+
     public float Visibility => _visibility;
     public float AttackRange => _attackRange;
     public float AttackDealy => _attackDealy;
@@ -39,4 +42,6 @@ public class MonsterData : CreatureData
     public float Duration => _duration;
     public float ProjectileSpeed => _projectileSpeed;
     public int Exp => _exp;
+
+    public int Score => _score;
 }
