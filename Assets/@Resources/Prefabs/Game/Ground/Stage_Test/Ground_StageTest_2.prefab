@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 531670560232200444}
   - component: {fileID: 4792535465841887438}
   m_Layer: 0
-  m_Name: Ground_Stage01_1 1
+  m_Name: Ground_StageTest_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 531670560232200445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -8, z: 0}
-  m_LocalScale: {x: 10, y: 5, z: 1}
+  m_LocalScale: {x: 20, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6274944949821357249}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8077e57da3164aad338d71fcb1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureGenerator: {fileID: 11400000, guid: 932f8dab8c05c5945bf3baf4e2e5b34d, type: 2}
+  CreatureGenerator: {fileID: 11400000, guid: aa8fcef2453ea6e4b9992e3e494fc5a3, type: 2}
   bossGround: 0
 --- !u!1 &8076345391585427072
 GameObject:
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8076345391585427072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

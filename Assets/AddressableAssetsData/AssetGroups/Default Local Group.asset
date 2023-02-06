@@ -97,12 +97,12 @@ MonoBehaviour:
     m_Address: Flash_06
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 1cd1631ea588a134899ef46b76d933b6
-    m_Address: Ground_test01
+  - m_GUID: 05138660d614ac74a92ab822a719d2b5
+    m_Address: Ground_StageTest_2
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 0aa378a5500d2444ab62a0fe8b7b48ab
-    m_Address: Ground_test_boss01
+  - m_GUID: 872c3fab9bfb2c44ea5aaaada4a17176
+    m_Address: Ground_StageTest_1
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 8c0a1dd553e86874a89458fcdc29bd7d
@@ -175,6 +175,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 6096ac2b9f458bf40bedf560eab5a892
     m_Address: Goblin_Thief
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75b601535a3bf2f498d9f6f79f836f55
+    m_Address: Ground_StageTest_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

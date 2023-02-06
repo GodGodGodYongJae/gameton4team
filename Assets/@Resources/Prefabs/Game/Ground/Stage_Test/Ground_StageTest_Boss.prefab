@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 531670560232200444}
   - component: {fileID: 4792535465841887438}
   m_Layer: 0
-  m_Name: Ground_test_01
+  m_Name: Ground_StageTest_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8077e57da3164aad338d71fcb1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureGenerator: {fileID: 11400000, guid: db99337b43faa334fafc1cf3fa25764c, type: 2}
-  bossGround: 0
+  CreatureGenerator: {fileID: 11400000, guid: 1224c7cd8e303d34b829df6ae2656af3, type: 2}
+  bossGround: 1
 --- !u!1 &8076345391585427072
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8076345391585427072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
