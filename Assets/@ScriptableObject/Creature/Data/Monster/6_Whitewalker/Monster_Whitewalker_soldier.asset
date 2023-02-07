@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
+  m_Name: Monster_Whitewalker_soldier
+  m_EditorClassIdentifier: 
+  _maxhp: 113
+  _speed: 1.7
+  attackDamage: 21
+  _visibility: 0
+  _attackRange: 1.3
+  _attackDealy: 2
+  _moveDealy: 1
+  _movementTime: 5
+  _duration: 0
+  _projectileSpeed: 0
+  _exp: 4
+  _score: 80

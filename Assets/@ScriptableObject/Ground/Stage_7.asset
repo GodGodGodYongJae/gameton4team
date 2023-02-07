@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2f1d3d0afda1248a680631cfa17b00, type: 3}
   m_Name: Stage_7
   m_EditorClassIdentifier: 
-  _groundsPrefab: []
-  _chatperSize: 0
+  _groundsPrefab:
+  - {fileID: 531670560232200445, guid: 381ba3d40a370b9489bbe492b8db11eb, type: 3}
+  - {fileID: 531670560232200445, guid: 5352dd18347e3484881eb2cb6cdc83be, type: 3}
+  - {fileID: 531670560232200445, guid: 5352dd18347e3484881eb2cb6cdc83be, type: 3}
+  - {fileID: 531670560232200445, guid: 5352dd18347e3484881eb2cb6cdc83be, type: 3}
+  - {fileID: 531670560232200445, guid: b1d7a741f62c76845bcf1be17cd28a43, type: 3}
+  - {fileID: 531670560232200445, guid: b1d7a741f62c76845bcf1be17cd28a43, type: 3}
+  - {fileID: 531670560232200445, guid: b1d7a741f62c76845bcf1be17cd28a43, type: 3}
+  - {fileID: 531670560232200445, guid: 4ede6db5503d3674faaee0895f413444, type: 3}
+  _chatperSize: 60

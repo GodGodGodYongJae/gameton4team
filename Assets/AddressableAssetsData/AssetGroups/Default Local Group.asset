@@ -213,6 +213,54 @@ MonoBehaviour:
     m_Address: Ground_Stage04_3
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: ba766b0d463f9104393bbc9a6aff7491
+    m_Address: Ground_Stage05_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7d812bfa91fcc5544a8847a6ff142e02
+    m_Address: Ground_Stage05_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a14e85d5503fb4741ad28e1e5b67f7b1
+    m_Address: Ground_Stage05_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d253379a62310ce43956715f1165e130
+    m_Address: Ground_Stage05_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 808002596efd06b4fa1ce2da7d7ac13d
+    m_Address: Ground_Stage06_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9d8b8678b485a784bbc0d2ab207a975a
+    m_Address: Ground_Stage06_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aad278453eb0241489a594f29173a7dc
+    m_Address: Ground_Stage06_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5df450e87c0f8b24195341e26343ab0b
+    m_Address: Ground_Stage06_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 381ba3d40a370b9489bbe492b8db11eb
+    m_Address: Ground_Stage07_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5352dd18347e3484881eb2cb6cdc83be
+    m_Address: Ground_Stage07_2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b1d7a741f62c76845bcf1be17cd28a43
+    m_Address: Ground_Stage07_3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4ede6db5503d3674faaee0895f413444
+    m_Address: Ground_Stage07_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

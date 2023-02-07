@@ -146,35 +146,35 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e134ddf959241654eb82b95ad66f8836
-    m_Address: Devil_Boss
+    m_Address: Evil_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: d44e3f6b92f95d741a0fc06e74bc24a7
-    m_Address: Devil_executioner
+    m_Address: Evil_executioner
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ad6d551e133c38c49b246b23c9a13e61
-    m_Address: Devil_shielder
+    m_Address: Evil_shielder
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: bc4ec0391f2142a4f82229a57d709557
-    m_Address: Devil_spearman
+    m_Address: Evil_spearman
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 895a89548c4c53c4b83bb49330d7bc0b
-    m_Address: Whiltewalker_archer
+    m_Address: Whitewalker_archer
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 217d55668f08ebe4e8d36ee33478f39d
-    m_Address: Whiltewalker_Boss
+    m_Address: Whitewalker_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 782ad7ee690a5b1448834541c062dfd6
-    m_Address: Whiltewalker_grenadier
+    m_Address: Whitewalker_grenadier
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 2012e159758b3ec4eaee4a8ca52720e6
-    m_Address: Whiltewalker_soldier
+    m_Address: Whitewalker_soldier
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 7e2b4905b1871b34bb47ba077a4a3c40
@@ -199,10 +199,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5f3c7e5ad43ff3146b3dc4d531b7e5de
     m_Address: Player
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 370e3209d55a65f4baa56585cd062c77
-    m_Address: symbol_01
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
