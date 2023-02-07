@@ -20,7 +20,7 @@ MonoBehaviour:
   _attackDealy: 1.1
   _moveDealy: 1
   _movementTime: 1
-  _duration: 2.5
+  _duration: 4
   _projectileSpeed: 3
   _exp: 2
   _score: 40
