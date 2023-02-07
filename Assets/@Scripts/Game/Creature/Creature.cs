@@ -79,6 +79,7 @@ public class Creature : MonoBehaviour
         knockBackPos.y += 0.6f;
         rigid.AddForce(knockBackPos * knockBackStrength, ForceMode2D.Impulse);
         ResetKnocback().Forget();
+        Managers.Sound.PlaySFX("Hit");
 
     }
     private async UniTaskVoid ResetKnocback()

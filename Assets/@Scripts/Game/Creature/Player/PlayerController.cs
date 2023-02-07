@@ -99,7 +99,7 @@ public partial class Player
     #region 데미지 관련
 
     bool isDamage = false;
-    public override void Damage(float dmg, Creature Target)
+    public override async void Damage(float dmg, Creature Target)
     {
         if (isDamage == true) return;
         Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Damage);
@@ -113,9 +113,14 @@ public partial class Player
         {
             Time.timeScale = 0;
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlaySFX("Death");
+            Managers.Sound.PlayBGM("Death_bgm");
+
             //animator.SetBool("Death", true);
         }
     }
+
 
     public void Respawn()
     {

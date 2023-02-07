@@ -9,6 +9,11 @@ using UnityEngine;
 public class Weapon_Bow_n : LongDistanceWeapon
 {
     int range = 10;
+    public override UniTaskVoid Attack()
+    {
+        Managers.Sound.PlaySFX("Bow_1");
+        return base.Attack();
+    }
     //BoxCollider2D boxCollider;
     //public override void Start()
     //{

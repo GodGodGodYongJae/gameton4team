@@ -165,8 +165,10 @@ public class UI_GameScene : UI_Scene
         if (slot == null || slotNum == WeaponSlotController.CurrentWeaponSlot) return;
         await GameScene.WeaponController.WeaponChange(slot.Type, slot.weaponData);
         WeaponSlotController.CurrentWeaponSlot = slotNum;
+        Managers.Sound.PlaySFX("Weapon_Selection");
+
     }
-    
+
     public void OnInventoryClick()
     {
         ItemInventoryButton slot = GetButton((int)Buttons.Item_Inventory_Slot1).gameObject.GetComponent<ItemInventoryButton>();

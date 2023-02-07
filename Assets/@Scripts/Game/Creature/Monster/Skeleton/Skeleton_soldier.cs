@@ -144,11 +144,7 @@ public class Skeleton_soldier : SPUM_Monster
     }
 
 
-    public override void Damage(float dmg, Creature Target)
-    {
-        base.Damage(dmg * 0.93f, Target);
-        creatureHPBar.Damage(_hp, _creatureData.MaxHP);
-    }
+
     #endregion
     //        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x + (direction * -0.5f), transform.position.y));
 

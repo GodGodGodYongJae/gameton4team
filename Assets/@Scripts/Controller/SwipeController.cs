@@ -27,8 +27,7 @@ public class SwipeController
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
-
-    }
+}
     void MUpdate()
     {
         if(Input.touchCount > 0)

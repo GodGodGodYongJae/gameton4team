@@ -25,6 +25,7 @@ public class WeaponController
     public async UniTask<Weapon> WeaponChange(Define.WeaponType type,WeaponData weaponDatas = null)
     {
         bool registered = false;
+        Managers.Sound.PlaySFX("Weapon_Selection");
         SpriteRenderer spriteRenderer = rHandGo.GetComponent<SpriteRenderer>();
         BoxCollider2D box = rHandGo.GetComponent<BoxCollider2D>();
         if (box != null) Object.Destroy(box);
