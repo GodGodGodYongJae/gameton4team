@@ -117,7 +117,7 @@ MonoBehaviour:
     m_Address: Flash_16
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 917d0ced354d6754da1af9b77b979fb9
+  - m_GUID: 7861d11ca406b2c41951df81f2ebc218
     m_Address: UI_Lobby
     m_ReadOnly: 0
     m_SerializedLabels: []

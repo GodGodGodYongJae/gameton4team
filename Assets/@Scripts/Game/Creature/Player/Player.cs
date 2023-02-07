@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public sealed partial class Player : Creature
 {
     public enum PlayerActionKey
-    { 
+    {
         None,
         Direction,
         Jump,
@@ -17,10 +17,6 @@ public sealed partial class Player : Creature
         End
     }
     private Dictionary<PlayerActionKey, Action> PlayerAction = new Dictionary<PlayerActionKey, Action>();
-
-    private static Action bind;
-    public float a = 1f;
-
     public void PlayerActionAdd(PlayerActionKey key, Action action)
     {
         PlayerAction[key] += action;
@@ -31,7 +27,6 @@ public sealed partial class Player : Creature
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
-        bind = () => { };
         PostEventHp();
         for (int i = 0; i < (int)PlayerActionKey.End; i++)
         {
@@ -41,10 +36,9 @@ public sealed partial class Player : Creature
         Init();
     }
 
- 
     private void PlayerActionCall(Define.GameEvent eventType, Component Sender, object param)
     {
-        if(eventType == Define.GameEvent.playerEvents)
+        if (eventType == Define.GameEvent.playerEvents)
         {
             PlayerActionKey key = (PlayerActionKey)param;
             PlayerAction[key]?.Invoke();
@@ -66,10 +60,10 @@ public sealed partial class Player : Creature
     public float GetPlayerDamage(int weaponDamage)
     {
         float CriticalSuccess = Random.Range(0.0f, 100.0f);
-        float CriticalDmg = 1;  
+        float CriticalDmg = 1;
         if (CriticalSuccess <= playerData.CriticalProbaility)
-                CriticalDmg = 1.75f;
-            return (playerData.AttackDamage + weaponDamage) * CriticalDmg;
+            CriticalDmg = 1.75f;
+        return (playerData.AttackDamage + weaponDamage) * CriticalDmg;
     }
     #endregion
 }

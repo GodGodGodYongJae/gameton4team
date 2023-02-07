@@ -32,7 +32,6 @@ namespace Assets._Scripts.Game.Weapon
         {
             await UniTask.Delay((int)AttackDuration);
             RemoveEffect();
-            player.a = 1;
 
         }
 
@@ -58,7 +57,7 @@ namespace Assets._Scripts.Game.Weapon
             {
                 player = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
                 creature.Damage(Damage, monster);
-                player.a = 0;
+
             }
         }
     }

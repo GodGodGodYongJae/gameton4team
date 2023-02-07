@@ -10,6 +10,7 @@ public partial class Player
     SwipeController SwipeController;
     public Vector2 directionVector;
     PlayerData playerData;
+
     public PlayerData PlayerData => playerData;
 
     public int CurrentExp;
@@ -19,11 +20,10 @@ public partial class Player
         // DataLoad
         playerData = (PlayerData)_creatureData;
         playerData.AssetLoad();
-        LevelUP();       
+        LevelUP();
         //End
         SwipeController = new SwipeController();
         directionVector = Vector2.right;
-        a = 1;
         PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
@@ -32,14 +32,13 @@ public partial class Player
     }
 
 
-
     private void MonsterKill(Define.GameEvent eventType, Component Sender, object param)
     {
-        if(eventType == Define.GameEvent.monsterDestroy)
+        if (eventType == Define.GameEvent.monsterDestroy)
         {
             Monster monster = (Monster)Sender;
             CurrentExp += monster.MonsterData.Exp;
-            if(CurrentExp >= playerData.ExperiencePoint && playerData.ExperiencePoint != int.MaxValue)
+            if (CurrentExp >= playerData.ExperiencePoint && playerData.ExperiencePoint != int.MaxValue)
             {
 
                 LevelUpText().Forget();
@@ -70,16 +69,13 @@ public partial class Player
     #endregion
 
     #region 조작 및 이동관련
-    void Move() => transform.Translate(directionVector * (a *  _creatureData.Speed) * Time.deltaTime);
+    void Move() => transform.Translate(directionVector * _creatureData.Speed * Time.deltaTime);
 
-    void Jump() 
-    { 
-        if(_rigid.velocity.y == 0)
+    void Jump()
+    {
+        if (_rigid.velocity.y == 0)
         {
-            //Vector2 pos = transform.position;
-            //pos.y += 0.6f;
             _rigid.AddForce(Vector2.up * playerData.JumpForce);
-             //_rigid.velocity = new Vector2(_rigid.velocity.x, playerData.JumpForce );
         }
     }
 
@@ -90,7 +86,7 @@ public partial class Player
         transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
     }
     // 위치 초기화
-    public void InitPosition(float x = 0,float y = 0)
+    public void InitPosition(float x = 0, float y = 0)
     {
         transform.position = new Vector2(x, y);
     }
@@ -106,7 +102,7 @@ public partial class Player
         invincibilityDealy().Forget();
         blinkObject().Forget();
         KnockBack(Target.gameObject);
-        _hp = (_hp - dmg < 0)? 0: _hp-dmg;
+        _hp = (_hp - dmg < 0) ? 0 : _hp - dmg;
         PostEventHp();
 
         if (_hp <= 0)
@@ -136,7 +132,7 @@ public partial class Player
     //무적시간 
     private async UniTaskVoid invincibilityDealy()
     {
-        isDamage = true; 
+        isDamage = true;
         await UniTask.Delay(playerData.InvinvibilityDuration);
         isDamage = false;
     }
@@ -155,7 +151,7 @@ public partial class Player
 
         SPUM_SpriteList spum_List = _root;
         List<List<SpriteRenderer>> AllSpriteList = spum_List.AllSpriteList;
-        
+
         for (int i = 0; i < _blinkCount * 2; i++)
         {
             spriteEnable = !spriteEnable;

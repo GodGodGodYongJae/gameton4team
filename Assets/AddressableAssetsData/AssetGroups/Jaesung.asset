@@ -201,10 +201,6 @@ MonoBehaviour:
     m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 370e3209d55a65f4baa56585cd062c77
-    m_Address: symbol_01
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:

@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: Monster_Devil_boss
   m_EditorClassIdentifier: 
   _maxhp: 60
-  _speed: 5
+  _speed: 1.8
   attackDamage: 15
   _visibility: 1
   _attackRange: 7
   _attackDealy: 2
   _moveDealy: 1
-  _moveTime: 1
+  _movementTime: 0
+  _duration: 0
+  _projectileSpeed: 0
   _exp: 0
+  _score: 0
