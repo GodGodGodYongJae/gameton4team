@@ -72,7 +72,12 @@ public class Goblin_Boss : SPUM_Monster
             if (distance <= monsterData.AttackRange)
             {
                 if (attackDealy <= 0)
+                {
+                    moveTime = monsterData.MovementTime;
+                    attackDealy = monsterData.AttackDealy;
                     fsm.ChangeState(States.ATTACK);
+
+                }
                 else
                     fsm.ChangeState(States.IDLE);
             }
