@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1572033376881552791}
   - component: {fileID: 2851896593355905166}
   m_Layer: 7
-  m_Name: Orc_Boss
+  m_Name: Ork_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

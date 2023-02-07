@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4747482037920797577}
   - component: {fileID: 3095667970059496119}
   m_Layer: 7
-  m_Name: Orc_Warrior
+  m_Name: Ork_Warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

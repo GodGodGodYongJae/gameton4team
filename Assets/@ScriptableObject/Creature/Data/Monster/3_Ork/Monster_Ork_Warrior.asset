@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_Orc_Warrior
+  m_Name: Monster_Ork_Warrior
   m_EditorClassIdentifier: 
   _maxhp: 51
   _speed: 1.4
-  attackDamage: 10
+  attackDamage: 12
   _visibility: 0
-  _attackRange: 0
-  _attackDealy: 0
-  _moveDealy: 0
-  _movementTime: 0
+  _attackRange: 1.2
+  _attackDealy: 1.3
+  _moveDealy: 1
+  _movementTime: 4
   _duration: 0
   _projectileSpeed: 0
   _exp: 2
-  _score: 0
+  _score: 40

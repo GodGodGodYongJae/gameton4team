@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
-  m_Name: Monster_Orc_Burglar
+  m_Name: Monster_Ork_Boss
   m_EditorClassIdentifier: 
-  _maxhp: 57
-  _speed: 1.4
-  attackDamage: 0
+  _maxhp: 85
+  _speed: 1.5
+  attackDamage: 18
   _visibility: 0
-  _attackRange: 0
-  _attackDealy: 0
-  _moveDealy: 0
-  _movementTime: 0
-  _duration: 0
-  _projectileSpeed: 0
-  _exp: 3
-  _score: 0
+  _attackRange: 4
+  _attackDealy: 3
+  _moveDealy: 1
+  _movementTime: 1
+  _duration: 1.5
+  _projectileSpeed: 0.1
+  _exp: 8
+  _score: 160

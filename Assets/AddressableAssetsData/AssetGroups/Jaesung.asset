@@ -62,19 +62,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 5f05622b6c3ffb74ea522a679710e05f
-    m_Address: Orc_Boss
+    m_Address: Ork_Boss
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: de58f9edd84024643822b6907543bf43
-    m_Address: Orc_Archer
+    m_Address: Ork_Archer
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 77a65cc3a5ad1864590d24ea7731347c
-    m_Address: Orc_Burglar
+    m_Address: Ork_Burglar
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e28e6051a410af847a74a9fb0d616699
-    m_Address: Orc_Warrior
+    m_Address: Ork_Warrior
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 0986b7ee3fa82774f837e8415bb22dc0
