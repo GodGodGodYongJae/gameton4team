@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Skeleton_Boss
   m_EditorClassIdentifier: 
-  _maxhp: 42
+  _maxhp: 120
   _speed: 1.7
   attackDamage: 21
   _visibility: 0
