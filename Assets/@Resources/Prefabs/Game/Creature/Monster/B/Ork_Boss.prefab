@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _creatureData: {fileID: 11400000, guid: 6698101e306da94418e414913c1774d5, type: 2}
   sPUM_Prefab: {fileID: 8064931155110089878}
-  attackAnimSync: 0
+  attackAnimSync: 1
   arrow: {fileID: 2192690552741630273, guid: 52a41ed9ae85a7244a34752b86e69404, type: 3}
   arrow2: {fileID: 2192690552741630273, guid: b7f99ab9a9af1304288fddd0646bcb7b, type: 3}
   direction: 0

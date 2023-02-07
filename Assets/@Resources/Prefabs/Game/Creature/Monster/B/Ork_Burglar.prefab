@@ -87,6 +87,7 @@ MonoBehaviour:
   _creatureData: {fileID: 11400000, guid: 03ce62c7ef59d3b43857c7f280574ebb, type: 2}
   sPUM_Prefab: {fileID: 1969757153871387174}
   attackAnimSync: 0
+  playerPos: {fileID: 0}
 --- !u!1001 &5223378667294947623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -386,6 +387,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6961218030948482367, guid: 5ea99c48b6645744fbf00f032776133a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab937231d0600440fb0d8757568d78d7, type: 2}
     - target: {fileID: 6968415825062245714, guid: 5ea99c48b6645744fbf00f032776133a, type: 3}
       propertyPath: m_Layer
       value: 7

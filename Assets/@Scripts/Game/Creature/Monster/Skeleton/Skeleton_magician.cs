@@ -71,7 +71,12 @@ public class Skeleton_magician : SPUM_Monster
             if (distance <= monsterData.AttackRange)
             {
                 if (attackDealy <= 0)
+                {
+                    moveTime = monsterData.MovementTime;
+                    attackDealy = monsterData.AttackDealy;
                     fsm.ChangeState(States.ATTACK);
+
+                }
                 else
                     fsm.ChangeState(States.IDLE);
             }
@@ -108,8 +113,8 @@ public class Skeleton_magician : SPUM_Monster
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.5f));
-        bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
+        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x  +(2* -Bulletdirection), transform.position.y + 0.5f));
+        bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
         bullet.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
@@ -117,7 +122,6 @@ public class Skeleton_magician : SPUM_Monster
         this.attackDealy = monsterData.AttackDealy;
         fsm.ChangeState(States.IDLE);
     }
-
     #endregion
 
 }
