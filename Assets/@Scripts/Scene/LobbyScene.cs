@@ -24,6 +24,7 @@ namespace Assets._Scripts.Scene
             Managers.UI.ShowSceneUI<UI_Lobby>(callback: (LobbyScene) =>
             {
                 _lobbySceneUI = LobbyScene;
+
             });
             return true;
         }

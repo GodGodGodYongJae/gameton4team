@@ -2850,7 +2850,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2068728961530463566}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -6844,7 +6844,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8532435690617562584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7688,6 +7688,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7560c1eb35bfe82418f4bb05d9ed0de2, type: 3}
+--- !u!1 &2068728961530463566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1981353360108214954, guid: 7560c1eb35bfe82418f4bb05d9ed0de2, type: 3}
+  m_PrefabInstance: {fileID: 561459451783077860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5959907522824546068 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6160761790749898992, guid: 7560c1eb35bfe82418f4bb05d9ed0de2, type: 3}
