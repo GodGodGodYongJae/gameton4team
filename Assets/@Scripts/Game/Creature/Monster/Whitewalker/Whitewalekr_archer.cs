@@ -74,7 +74,11 @@ public class Whitewalekr_archer : SPUM_Monster
             if (distance <= monsterData.AttackRange)
             {
                 if (attackDealy <= 0)
+                {
+                    moveTime = monsterData.MovementTime;
+                    attackDealy = monsterData.AttackDealy;
                     fsm.ChangeState(States.ATTACK);
+                }
                 else
                     fsm.ChangeState(States.IDLE);
             }
@@ -104,11 +108,13 @@ public class Whitewalekr_archer : SPUM_Monster
 
     async UniTaskVoid AttackAsync()
     {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.8f));
+
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
         GameObject bulletGo = await Managers.Object.InstantiateAsync(warning.name, new Vector2(transform.position.x, transform.position.y + 2f));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         warning bullet = bulletGo.GetOrAddComponent<warning>();
-        await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
+        await UniTask.Delay(TimeSpan.FromSeconds(0.8f));
         string attackString = "2_Attack_Bow";
         //몬스터 공격 모션이 나오는 동안 비동기 처리해서 다른 행동 하지 못하게 만들기
 

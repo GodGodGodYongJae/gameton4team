@@ -110,7 +110,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 52a41ed9ae85a7244a34752b86e69404
-    m_Address: Skill_11_1
+    m_Address: Skill_11_2
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 18791c2961a03e842be10f0d55f9b235
@@ -199,6 +199,10 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 5f3c7e5ad43ff3146b3dc4d531b7e5de
     m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 370e3209d55a65f4baa56585cd062c77
+    m_Address: symbol_01
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
