@@ -16,10 +16,11 @@ MonoBehaviour:
   _speed: 5
   attackDamage: 15
   _visibility: 1
-  _attackRange: 7
+  _attackRange: 7.58
   _attackDealy: 1
   _moveDealy: 1
-  _moveTime: 1
+  _movementTime: 0.8
   _duration: 1
   _projectileSpeed: 0
   _exp: 0
+  _score: 0

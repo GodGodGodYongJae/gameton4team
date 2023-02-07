@@ -79,18 +79,14 @@ public class Whitewalekr_grenadier : SPUM_Monster
                     fsm.ChangeState(States.IDLE);
             }
 
+
             try
             {
-                if (distance < monsterData.AttackRange / 2)
-                {
-                    Vector2 targetPos = new Vector2(transform.position.x + (direction * 2.5f), transform.position.y);
-                    Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
-                    _rigid.MovePosition(newPos);
-                    await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
-                    moveTime += Time.deltaTime;
-                }
-                else break;
-
+                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
+                Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+                _rigid.MovePosition(newPos);
+                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                moveTime += Time.deltaTime;
             }
             catch
             {
