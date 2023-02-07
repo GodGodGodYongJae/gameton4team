@@ -52,6 +52,5 @@ namespace Assets._Scripts.Game.Weapon
                 creature.Damage(Damage, monster);
             }
         }
-
     }
 }

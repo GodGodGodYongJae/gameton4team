@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734a154a4f348d84bac953144acbaf68, type: 3}
+  m_Name: CreatureGenerator_Stage01_3
+  m_EditorClassIdentifier: 
+  spawnMonsterList:
+  - spawnObj: {fileID: 8694590177774437540, guid: 6096ac2b9f458bf40bedf560eab5a892, type: 3}
+    spawnPos: {x: -4, y: 3}
+  - spawnObj: {fileID: 7507520579014706024, guid: a3490ebaadc77d743996acc4af33224f, type: 3}
+    spawnPos: {x: -1, y: 3}
+  - spawnObj: {fileID: 6951673055639592139, guid: c082b2ddc2f1c0b459ff2c1f35a6ebe5, type: 3}
+    spawnPos: {x: 4, y: 3}

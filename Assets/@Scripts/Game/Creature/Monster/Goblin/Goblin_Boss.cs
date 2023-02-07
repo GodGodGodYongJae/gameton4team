@@ -66,7 +66,7 @@ public class Goblin_Boss : SPUM_Monster
     async UniTaskVoid MoveSync()
     {
         float moveTime = 0;
-        while (moveTime < 0.8f && _rigid.velocity.y == 0)
+        while (moveTime < monsterData.MovementTime && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)

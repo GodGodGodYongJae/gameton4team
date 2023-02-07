@@ -16,7 +16,7 @@ namespace Assets._Scripts.Game.Weapon
         private float direction = 0;
         float range = 5;
 
-        Player player;
+
         public void InitBulletData(Monster monster)
         {
             this.monster = monster;
@@ -26,8 +26,8 @@ namespace Assets._Scripts.Game.Weapon
             if (monster.MonsterData.Duration != 0) AttackDuration = (float)this.monster.MonsterData.Duration * 1000;
             if (monster.MonsterData.ProjectileSpeed != 0) this.range = monster.MonsterData.ProjectileSpeed;
             Duration().Forget();
-
         }
+
         protected override async UniTask Duration()
         {
             await UniTask.Delay((int)AttackDuration);
@@ -42,8 +42,6 @@ namespace Assets._Scripts.Game.Weapon
             monster = null;
             transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
             this.gameObject.SetActive(false);
-            player.a = 1;
-
         }
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -57,7 +55,6 @@ namespace Assets._Scripts.Game.Weapon
             if (creature.GetType == Creature.Type.Player)
             {
                 creature.Damage(Damage, monster);
-
             }
         }
 

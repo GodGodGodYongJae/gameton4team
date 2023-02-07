@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Goblin_Boss
   m_EditorClassIdentifier: 
-  _maxhp: 65
+  _maxhp: 55
   _speed: 1.5
-  attackDamage: 15
+  attackDamage: 10
   _visibility: 0
   _attackRange: 1.3
-  _attackDealy: 1.3
+  _attackDealy: 1.4
   _moveDealy: 1
-  _moveTime: 1
+  _movementTime: 4
   _duration: 0.4
   _projectileSpeed: 0.1
-  _exp: 5
+  _exp: 4
+  _score: 0

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Monster_Whitewalker_archer
   m_EditorClassIdentifier: 
   _maxhp: 60
-  _speed: 5
+  _speed: 3
   attackDamage: 15
   _visibility: 1
-  _attackRange: 7
-  _attackDealy: 2
+  _attackRange: 1
+  _attackDealy: 3
   _moveDealy: 1
-  _moveTime: 1
+  _moveTime: 3
+  _duration: 0
+  _projectileSpeed: 7
   _exp: 0

@@ -5,6 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using DG.Tweening;
+using static UnityEngine.GraphicsBuffer;
+using Unity.VisualScripting;
+using System.Collections;
+using Cysharp.Threading.Tasks.CompilerServices;
 
 namespace Assets._Scripts.Game.Weapon
 {
@@ -24,9 +29,10 @@ namespace Assets._Scripts.Game.Weapon
             this.direction = Mathf.Clamp(monster.transform.localScale.x, 1, -1);
             if (monster.MonsterData.Duration != 0) AttackDuration = (float)this.monster.MonsterData.Duration * 1000;
             if (monster.MonsterData.ProjectileSpeed != 0) this.range = monster.MonsterData.ProjectileSpeed;
+            startPos = transform.position;
+            endPos = startPos + new Vector3(direction * 5, 0, 0);
+            StartCoroutine("BulletMove");
             Duration().Forget();
-
-
         }
 
 
@@ -57,19 +63,43 @@ namespace Assets._Scripts.Game.Weapon
             if (creature.GetType == Creature.Type.Player)
             {
                 creature.Damage(Damage, monster);
-
             }
         }
 
-        protected float Animation;
+        private Vector3 startPos, endPos;
+        //땅에 닫기까지 걸리는 시간
+        protected float timer;
+        protected float timeToFloor;
 
-        private void Update()
+
+        protected static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
         {
-            Animation += Time.deltaTime;
-            Animation = Animation % 5f;
+            Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
 
-            transform.position = MathParabola.Parabola(Vector3.zero, Vector3.forward * 10f, 5f, Animation / 5f);
+            var mid = Vector3.Lerp(start, end, t);
+
+            return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
         }
-    }
 
+        protected IEnumerator BulletMove()
+        {
+            timer = 0;
+            while (transform.position.y >= startPos.y)
+            {
+                timer += Time.deltaTime;
+                Vector3 tempPos = Parabola(startPos, endPos, 5, timer);
+                transform.position = tempPos;
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        /*
+        private void Start()
+        {
+            startPos = transform.position;
+            endPos = startPos + new Vector3(direction * 5, 0, 0);
+            StartCoroutine("BulletMove");
+        }
+        */
+    }
 }

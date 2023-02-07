@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Monster_Orc_Boss
   m_EditorClassIdentifier: 
   _maxhp: 28
-  _speed: 1
+  _speed: 1.5
   attackDamage: 10
   _visibility: 0
   _attackRange: 4
   _attackDealy: 4
   _moveDealy: 1
-  _moveTime: 1
+  _movementTime: 0
   _duration: 1.5
-  _projectileSpeed: 0.01
-  _exp: 2
+  _projectileSpeed: 0.1
+  _exp: 8
+  _score: 0
