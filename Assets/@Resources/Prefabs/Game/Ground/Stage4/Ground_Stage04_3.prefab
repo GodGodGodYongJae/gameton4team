@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 531670560232200444}
   - component: {fileID: 4792535465841887438}
   m_Layer: 0
-  m_Name: Ground_Stage03_1
+  m_Name: Ground_Stage04_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f8077e57da3164aad338d71fcb1bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreatureGenerator: {fileID: 11400000, guid: 279e36304b18bc44eb947feb1da16867, type: 2}
+  CreatureGenerator: {fileID: 11400000, guid: c30869f6780182840b3a6dd962847d50, type: 2}
   bossGround: 0
 --- !u!1 &8076345391585427072
 GameObject:

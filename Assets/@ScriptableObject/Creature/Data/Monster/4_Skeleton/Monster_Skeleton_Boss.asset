@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Monster_Skeleton_Boss
   m_EditorClassIdentifier: 
   _maxhp: 42
-  _speed: 2.03
-  attackDamage: 11
+  _speed: 1.7
+  attackDamage: 21
   _visibility: 0
   _attackRange: 2.82
   _attackDealy: 1.1
