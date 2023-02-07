@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Skeleton_Archer
   m_EditorClassIdentifier: 
-  _maxhp: 1
-  _speed: 1
-  attackDamage: 0
-  _visibility: 1.56
-  _attackRange: 2.22
-  _attackDealy: 1.49
-  _moveDealy: 1.59
-  _movementTime: 0
-  _duration: 2.79
-  _projectileSpeed: 3.52
-  _exp: 44
-  _score: 2
+  _maxhp: 53
+  _speed: 1.5
+  attackDamage: 11
+  _visibility: 0
+  _attackRange: 6
+  _attackDealy: 1.1
+  _moveDealy: 1
+  _movementTime: 1
+  _duration: 3
+  _projectileSpeed: 3.5
+  _exp: 2
+  _score: 40
