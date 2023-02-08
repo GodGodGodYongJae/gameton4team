@@ -14,7 +14,7 @@ public class BackGroundChangeController : MonoBehaviour
 
     void Start()
     {
-        max_backgroundNum= 0;
+        max_backgroundNum = 0;
         for (int i = 0; i < Layer_Object.Length; i++)
         {
             Layer_Object[i] = GameObject.Find("Layer_" + i);
@@ -58,11 +58,10 @@ public class BackGroundChangeController : MonoBehaviour
         ChangeSprite();
     }
 
-   public void Stage1()
+    public void Stage1()
     {
-            Debug.Log("d");
-            backgroundNum = 3;
-            ChangeSprite();
-        }
+        backgroundNum = backgroundNum + 1;
+        ChangeSprite();
     }
+}
 

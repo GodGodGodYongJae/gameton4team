@@ -42,8 +42,12 @@ public class CurrentStage : MonoBehaviour
     public void StageBackGroundChange()
     {
         if(currentStage == 2) 
-        {
             BackGroundChangeController.stage();
-        }
+        else if (currentStage == 3)
+            BackGroundChangeController.stage();
+        else if(currentStage == 5)
+            BackGroundChangeController.stage();
+        else if(currentStage == 7)
+            BackGroundChangeController.stage();
     }
 }
