@@ -8,18 +8,17 @@ public class UI_Time : MonoBehaviour
     public void StopButton()
     {
         Managers.Sound.PlaySFX("Touch");
-
         if(isTime == true)
         {
+           Managers.Sound.PauseBGM();
             Time.timeScale = 0;
             isTime = false;
-            Managers.Sound.PauseBGM();
         }
         else if(isTime == false)
         {
+            Managers.Sound.ResumeBGM();
             Time.timeScale = 1;
             isTime = true;
-            Managers.Sound.ResumeBGM();
         }
     }
 }

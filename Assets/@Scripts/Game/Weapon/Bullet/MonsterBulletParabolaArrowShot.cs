@@ -89,9 +89,17 @@ namespace Assets._Scripts.Game.Weapon
                 timer += Time.deltaTime;
                 Vector3 tempPos = Parabola(startPos, endPos, 0.5f, timer);
                 transform.position = tempPos;
-                transform.DORotate(new Vector3(0,0,(-1 * direction) * 20), 2, 0);
+                Rotate().Forget();
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        async UniTaskVoid Rotate()
+        {
+            await transform.DORotate(new Vector3(0, 0, (direction) * 10), 0.3f, 0);
+
+            await transform.DORotate(new Vector3(0, 0, (-1 * direction) * 25), 0.2f, 0);
+
         }
     }
 }

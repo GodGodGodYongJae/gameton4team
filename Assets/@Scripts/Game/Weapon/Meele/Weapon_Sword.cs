@@ -10,7 +10,7 @@ public class Weapon_Sword : WeaponMelee
 {
     public override UniTaskVoid Attack()
     {
-        Managers.Sound.PlaySFX("Sword_1");
+        Managers.Sound.PlaySFX("Sword");
         return base.Attack();
     }
 }

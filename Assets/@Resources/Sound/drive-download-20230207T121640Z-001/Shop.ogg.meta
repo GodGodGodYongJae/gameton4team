@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/@Resources/Sound/drive-download-20230207T121640Z-001/Shop.ogg.meta
 guid: ba6cadbea5a684b41858b7e23ce0b53b
+=======
+guid: b33251b330ade0b4fadbb508aa42ee44
+>>>>>>> levelDesign:Assets/@Resources/Sound/drive-download-20230203T150810Z-001/Shop.ogg.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

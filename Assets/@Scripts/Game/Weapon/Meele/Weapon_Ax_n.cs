@@ -14,7 +14,7 @@ public class Weapon_Ax_n : WeaponMelee
     }
     public override UniTaskVoid Attack()
     {
-        Managers.Sound.PlaySFX("Axe_1");
+        Managers.Sound.PlaySFX("Axe");
         return base.Attack();
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734a154a4f348d84bac953144acbaf68, type: 3}
+  m_Name: CreatureGenerator_Stage07_Boss
+  m_EditorClassIdentifier: 
+  spawnMonsterList:
+  - spawnObj: {fileID: 3641040660067210575, guid: 5f499eb727a3f8e4e8cc9c75a900ca91, type: 3}
+    spawnPos: {x: -3, y: 4}
+  - spawnObj: {fileID: 8760263760021883993, guid: 4b3d366df5b1d654398b1ae76f46fb3d, type: 3}
+    spawnPos: {x: 0, y: 4}
+  - spawnObj: {fileID: 2867436732645254060, guid: f836818ebc8d4fa4493a28361f6559e6, type: 3}
+    spawnPos: {x: 3, y: 4}

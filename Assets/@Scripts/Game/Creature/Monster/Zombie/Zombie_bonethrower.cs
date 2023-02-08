@@ -9,6 +9,9 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
+
+
+
 public class Zombie_bonethrower : SPUM_Monster
 {
     public GameObject arrow;
@@ -18,6 +21,7 @@ public class Zombie_bonethrower : SPUM_Monster
         //arrow = GetComponent<GameObject>();
         base.Awake();
         fsm = new StateMachine<States>(this);
+
     }
 
 
@@ -51,43 +55,44 @@ public class Zombie_bonethrower : SPUM_Monster
         }
     }
 
-
     void MOVE_Enter()
     {
-        sPUM_Prefab.PlayAnimation("1_Run");
-        float direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
+        direction = (transform.position.x > target.transform.position.x) ? Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x) * -1;
         transform.localScale = new Vector2(direction, transform.localScale.y);
-        MoveSync().Forget();
+        sPUM_Prefab.PlayAnimation("1_Run", () => { MoveSync().Forget(); });
+
+
     }
 
 
 
     async UniTaskVoid MoveSync()
     {
+
         float moveTime = 0;
-        while (moveTime < monsterData.MovementTime && _rigid.velocity.y == 0)
+        while (moveTime < 0.8f && _rigid.velocity.y == 0)
         {
             float distance = Vector2.Distance(transform.position, target.transform.position);
             if (distance <= monsterData.AttackRange)
             {
                 if (attackDealy <= 0)
-                {
-                    moveTime = monsterData.MovementTime;
-                    attackDealy = monsterData.AttackDealy;
                     fsm.ChangeState(States.ATTACK);
-
-                }
                 else
                     fsm.ChangeState(States.IDLE);
             }
 
             try
             {
-                Vector2 targetPos = new Vector2(target.transform.position.x, transform.position.y);
-                Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
-                _rigid.MovePosition(newPos);
-                await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
-                moveTime += Time.deltaTime;
+                if (distance < monsterData.AttackRange / 2)
+                {
+                    Vector2 targetPos = new Vector2(transform.position.x + (direction * 2.5f), transform.position.y);
+                    Vector2 newPos = Vector2.MoveTowards(_rigid.position, targetPos, _creatureData.Speed * Time.deltaTime);
+                    _rigid.MovePosition(newPos);
+                    await UniTask.WaitForFixedUpdate(cancellationToken: movects.Token);
+                    moveTime += Time.deltaTime;
+                }
+                else break;
+
             }
             catch
             {

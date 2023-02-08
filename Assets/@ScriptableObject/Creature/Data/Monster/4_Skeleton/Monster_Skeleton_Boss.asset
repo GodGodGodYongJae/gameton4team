@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxhp: 120
   _speed: 1.7
-  attackDamage: 21
+  attackDamage: 20
   _visibility: 0
-  _attackRange: 2.82
+  _attackRange: 2
   _attackDealy: 1.1
   _moveDealy: 1.5
   _movementTime: 2

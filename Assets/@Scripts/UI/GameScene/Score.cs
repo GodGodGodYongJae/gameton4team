@@ -35,7 +35,7 @@ public class Score : MonoBehaviour
   
     public void GetDistanceScore()
     {
-        score += -1 * (int)GroundController.chatperSize;
+        score += (int)GroundController.chatperSize;
         SetScore();
         bS.SetBestScore();
     }
