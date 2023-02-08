@@ -42,7 +42,7 @@ namespace Assets._Scripts.UI.LobbyScene
                 return false;
             //Bind
             BindText(typeof(Texts));
-            BindButton(typeof(Buttons));
+            //BindButton(typeof(Buttons));
             BindObject(typeof(GameObjeects));
             //Bind End 
             invenUI = GetObject((int)GameObjeects.InventoryUI).GetComponent<Rito.InventorySystem.InventoryUI>();
@@ -53,7 +53,7 @@ namespace Assets._Scripts.UI.LobbyScene
             GetObject((int)GameObjeects.ShopUI).SetActive(false);
 
              initItemServer = new InitItemServer(this);
-
+            Managers.Sound.PlayBGM("Lobby");
             MatchDisplay();
             Managers.Events.AddListener(Define.GameEvent.LobbyCurrency, CurrencySet);
             return true;
@@ -86,9 +86,9 @@ namespace Assets._Scripts.UI.LobbyScene
         {
             GetObject((int)GameObjeects.StartButton).BindEvent(OnStartButton);
             GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
-            GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
-                GetObject((int)GameObjeects.InventoryUI).SetActive(true);
-            });
+            //GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
+            //    GetObject((int)GameObjeects.InventoryUI).SetActive(true);
+            //});
         }
 
         #region ButtonCallback
@@ -132,9 +132,9 @@ namespace Assets._Scripts.UI.LobbyScene
 
         void OnEnergyPlus()
         {
-            Managers.PlayFab.SetCurrecy(StringData.Energy, 5,()=> {
-                LoadCurrecyData();
-            });
+            //Managers.PlayFab.SetCurrecy(StringData.Energy, 5,()=> {
+            //    LoadCurrecyData();
+            //});
             
         }
         #endregion

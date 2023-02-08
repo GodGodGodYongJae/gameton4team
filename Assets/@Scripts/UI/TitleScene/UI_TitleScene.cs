@@ -52,7 +52,7 @@ public class UI_TitleScene : UI_Scene
        
         });
         
-        //Managers.Sound.Play(Sound.Effect, "Sound_Opening");
+
         //Screen.SetResolution(Screen.width, (Screen.width / 9) * 16, true);
         MatchDisplay();
         return true;

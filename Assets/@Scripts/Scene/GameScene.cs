@@ -37,6 +37,7 @@ public class GameScene : BaseScene
     public WeaponController WeaponController => weaponController;
 
     private int StageIdx = 0;
+    public int StageIndex => StageIdx;
     protected override bool Init()
     {
 

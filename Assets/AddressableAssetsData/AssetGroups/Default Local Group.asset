@@ -181,10 +181,6 @@ MonoBehaviour:
     m_Address: Ground_Stage01_3
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: b6721e1eaf88c0742bc5a91a9a802066
-    m_Address: Ground_Stage02_3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 3d9ed93309330da47be95f5f94b6a3db
     m_Address: Ground_StageTest_3
     m_ReadOnly: 0
