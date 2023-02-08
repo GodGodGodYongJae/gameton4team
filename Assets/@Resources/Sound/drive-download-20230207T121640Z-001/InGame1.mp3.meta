@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/@Resources/Sound/drive-download-20230207T121640Z-001/InGame1.mp3.meta
 guid: 500b4e8fd0acf10459521011fbc58048
+=======
+guid: c9bd35d571071b746b22c63d6a0b347c
+>>>>>>> levelDesign:Assets/@Resources/Sound/drive-download-20230203T150810Z-001/InGame1.mp3.meta
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

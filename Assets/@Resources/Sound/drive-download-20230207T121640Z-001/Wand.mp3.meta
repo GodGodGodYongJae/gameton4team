@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/@Resources/Sound/drive-download-20230207T121640Z-001/Death.mp3.meta
-guid: 150eef2441e370d4d83b9cbe38734721
-=======
-guid: 471b9326a3e894a46bacadc484bb500f
->>>>>>> levelDesign:Assets/@Resources/Sound/drive-download-20230203T150810Z-001/Death.mp3.meta
+guid: bd8401f84cb9ac24b8d69a228e2f1d9a
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6
