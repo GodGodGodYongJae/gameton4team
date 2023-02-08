@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,25 @@ using UnityEngine;
 public class BackGroundChangeController : MonoBehaviour
 {
     [Header("BackgroundNum 0 -> 3")]
-    public int backgroundNum;
+    public static int backgroundNum = 0;
     public Sprite[] Layer_Sprites;
     private GameObject[] Layer_Object = new GameObject[5];
-    private int max_backgroundNum = 3;
+    private int max_backgroundNum = 5;
+    public static Action stage;
+
     void Start()
     {
+        max_backgroundNum= 0;
         for (int i = 0; i < Layer_Object.Length; i++)
         {
             Layer_Object[i] = GameObject.Find("Layer_" + i);
         }
         ChangeSprite();
+    }
+
+    private void Awake()
+    {
+        stage = () => { Stage1(); };
     }
 
     void Update()
@@ -48,4 +57,12 @@ public class BackGroundChangeController : MonoBehaviour
         if (backgroundNum < 0) backgroundNum = max_backgroundNum;
         ChangeSprite();
     }
-}
+
+   public void Stage1()
+    {
+            Debug.Log("d");
+            backgroundNum = 3;
+            ChangeSprite();
+        }
+    }
+
