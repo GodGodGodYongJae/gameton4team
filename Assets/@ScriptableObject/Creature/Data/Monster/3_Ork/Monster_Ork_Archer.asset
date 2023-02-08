@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Ork_Archer
   m_EditorClassIdentifier: 
   _maxhp: 40
-  _speed: 1.4
+  _speed: 1.2
   attackDamage: 8
   _visibility: 0
   _attackRange: 8
