@@ -116,15 +116,7 @@ namespace Assets._Scripts.Manager
                         int idx = FindItemIdx(success.Items[i].ItemId);
                         userInventory[idx].RemainingUses = success.Items[i].RemainingUses;
                     }
-                    //if (userInventory.)
-                    //{
-                    //    int idx = userInventory.IndexOf(success.Items[i]);
-                    //    userInventory[idx].RemainingUses += success.Items[i].RemainingUses;
-                    //}
-                    //else
-                    //{
-                    //    userInventory.Add(success.Items[i]);
-                    //}
+
                 }
                 SuccesCallback?.Invoke(); }, error => ErrorLog(error));
         }
