@@ -117,10 +117,6 @@ MonoBehaviour:
     m_Address: Flash_16
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 917d0ced354d6754da1af9b77b979fb9
-    m_Address: UI_Lobby
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 009c26ed87cc3044594f2562a76e7862
     m_Address: Ground_Stage01_1
     m_ReadOnly: 0
@@ -259,6 +255,18 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 4ede6db5503d3674faaee0895f413444
     m_Address: Ground_Stage07_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7861d11ca406b2c41951df81f2ebc218
+    m_Address: UI_Lobby
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ea525d7bff8a2b24da3800a6352d4684
+    m_Address: SoundData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c08af329c50220947a79f558e16cbe49
+    m_Address: Ground_Stage02_3
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

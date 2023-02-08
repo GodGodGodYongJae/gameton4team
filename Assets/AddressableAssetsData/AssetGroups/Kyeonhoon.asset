@@ -21,10 +21,6 @@ MonoBehaviour:
     m_Address: LevelUpText
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: ea525d7bff8a2b24da3800a6352d4684
-    m_Address: SoundData
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 897024395e0a9ac42a9ecf30a030bdd6
     m_Address: Item_Portion_Normal
     m_ReadOnly: 0

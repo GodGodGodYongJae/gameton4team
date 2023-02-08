@@ -15,5 +15,3 @@ MonoBehaviour:
   spawnMonsterList:
   - spawnObj: {fileID: 2499841605153295385, guid: 217d55668f08ebe4e8d36ee33478f39d, type: 3}
     spawnPos: {x: 0, y: 4}
-  - spawnObj: {fileID: 7259187421418317452, guid: 782ad7ee690a5b1448834541c062dfd6, type: 3}
-    spawnPos: {x: 3, y: 4}
