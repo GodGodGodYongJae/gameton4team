@@ -21,6 +21,6 @@ MonoBehaviour:
   _moveDealy: 1
   _movementTime: 1
   _duration: 2.4
-  _projectileSpeed: 5
+  _projectileSpeed: 1.7
   _exp: 5
   _score: 100
