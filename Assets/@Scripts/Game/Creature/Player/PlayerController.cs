@@ -23,7 +23,6 @@ public partial class Player
         //End
         SwipeController = new SwipeController();
         directionVector = Vector2.right;
-        a = 1;
         PlayerActionAdd(PlayerActionKey.Direction, ChangeDirection);
         PlayerActionAdd(PlayerActionKey.Jump, Jump);
         Managers.FixedUpdateAction += Move;
@@ -70,7 +69,7 @@ public partial class Player
     #endregion
 
     #region 조작 및 이동관련
-    void Move() => transform.Translate(directionVector * (a *  _creatureData.Speed) * Time.deltaTime);
+    void Move() => transform.Translate(directionVector * (  _creatureData.Speed) * Time.deltaTime);
 
     void Jump() 
     { 
