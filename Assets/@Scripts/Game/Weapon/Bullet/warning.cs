@@ -46,7 +46,7 @@ namespace Assets._Scripts.Game.Weapon
 
         private void Update()
         {
-            transform.position = monster.transform.position;
+            transform.position = this.monster.transform.position;
         }
     }
 }

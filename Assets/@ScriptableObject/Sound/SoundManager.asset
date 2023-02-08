@@ -13,5 +13,20 @@ MonoBehaviour:
   m_Name: SoundManager
   m_EditorClassIdentifier: 
   _playlist:
-  - {fileID: 8300000, guid: 9777b8a336c0b9b47affec53d3e69d7a, type: 3}
-  - {fileID: 8300000, guid: e59ab6cc284dc35468e241be09d9794e, type: 3}
+  - {fileID: 8300000, guid: c60163fe28bac23429b498ce9ebd5473, type: 3}
+  - {fileID: 8300000, guid: 63f317d65df870d42962e5f5dd0effdf, type: 3}
+  - {fileID: 8300000, guid: 9f7ee4b7afb4af74da6982a8d5b4dda9, type: 3}
+  - {fileID: 8300000, guid: fe9df8c4daff4054cae905e1d3b34554, type: 3}
+  - {fileID: 8300000, guid: bd8401f84cb9ac24b8d69a228e2f1d9a, type: 3}
+  - {fileID: 8300000, guid: c9bd35d571071b746b22c63d6a0b347c, type: 3}
+  - {fileID: 8300000, guid: 8fdaf6fe46fe4064d8ef0122acf09e6e, type: 3}
+  - {fileID: 8300000, guid: 9cba3ccd72596454bba744409a16dcc0, type: 3}
+  - {fileID: 8300000, guid: f46616dd92096f4418d8a2ea89db017b, type: 3}
+  - {fileID: 8300000, guid: b33251b330ade0b4fadbb508aa42ee44, type: 3}
+  - {fileID: 8300000, guid: 66f434c10e041ce46a40c9146f96e242, type: 3}
+  - {fileID: 8300000, guid: 9bc55f9ff064c7f46a3e81840a0f008f, type: 3}
+  - {fileID: 8300000, guid: 471b9326a3e894a46bacadc484bb500f, type: 3}
+  - {fileID: 8300000, guid: 2251a78f81a4ff542b0145d59f430429, type: 3}
+  - {fileID: 8300000, guid: be7e750bd0105bd48925f7faabac8f3c, type: 3}
+  - {fileID: 8300000, guid: 1e01a7169b9334848ae2ede517e808b9, type: 3}
+  - {fileID: 8300000, guid: 73a7fd8bcee8de1459fd7f616cdb368c, type: 3}

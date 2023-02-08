@@ -17,6 +17,7 @@ public class Coin : MonoBehaviour
     {
         CoinCount.coinAmount += UnityEngine.Random.Range(10, 21);
         CoinCount.getCoin();
+        Managers.Sound.PlaySFX("coin");
         gameObject.SetActive(false);
     }
 

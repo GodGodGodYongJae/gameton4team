@@ -12,4 +12,9 @@ public class Weapon_Ax_n : WeaponMelee
         base.Start();
         effectoDir = -1;
     }
+    public override UniTaskVoid Attack()
+    {
+        Managers.Sound.PlaySFX("Axe");
+        return base.Attack();
+    }
 }

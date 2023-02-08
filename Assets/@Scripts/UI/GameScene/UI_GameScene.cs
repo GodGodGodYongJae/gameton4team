@@ -146,6 +146,7 @@ public class UI_GameScene : UI_Scene
 
     public void SyncInventoryInfo()
     {
+
         for (int i = 0; i < WeaponSlotController.SlotList.Count; i++)
         {
             GameObject invenSlot = GetButton(i).gameObject;
