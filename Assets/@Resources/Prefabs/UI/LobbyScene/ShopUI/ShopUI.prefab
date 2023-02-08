@@ -301,7 +301,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slot: {fileID: 3775684999166182038, guid: 4fc20885ea00d7940b352bdc2b6fce8d, type: 3}
   Content: {fileID: 2907529002128249689}
-  Lobby: {fileID: 0}
+  PortionQunatityText: {fileID: 0}
+  RespawnQunatityText: {fileID: 0}
 --- !u!1 &2187207621580407424
 GameObject:
   m_ObjectHideFlags: 0

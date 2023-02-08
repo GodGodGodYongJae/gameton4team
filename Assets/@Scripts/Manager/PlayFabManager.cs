@@ -92,16 +92,41 @@ namespace Assets._Scripts.Manager
         /// <param name="price">가격은 Catalog에 있는 가격으로 해야함</param>
         /// <param name="vc">재화 String</param>
         /// <param name="SuccesCallback">성공시 실행시킬 액션</param>
-        public void PurchaseItem(string itemId,int price,string vc,Action SuccesCallback)
+        public void PurchaseItem(string itemId,int price,string vc,Action SuccesCallback, string StoreId = null)
         {
    
             _userCurrecy[vc] -= price;
+            if (StoreId == null) StoreId = StringData.PublicStore;
             PlayFabClientAPI.PurchaseItem(new PurchaseItemRequest()
             {
                 ItemId = itemId,
                 Price = price,
-                VirtualCurrency = vc
-            }, success => { SuccesCallback?.Invoke(); }, error => ErrorLog(error));
+                VirtualCurrency = vc,
+                StoreId = StoreId
+            }, success => {
+                for (int i = 0; i < success.Items.Count; i++)
+                {
+                    int haveQuantity = FindItemQuantity(success.Items[i].ItemId);
+                    if(haveQuantity == 0)
+                    {
+                        userInventory.Add(success.Items[i]);
+                    }
+                    else
+                    {
+                        int idx = FindItemIdx(success.Items[i].ItemId);
+                        userInventory[idx].RemainingUses = success.Items[i].RemainingUses;
+                    }
+                    //if (userInventory.)
+                    //{
+                    //    int idx = userInventory.IndexOf(success.Items[i]);
+                    //    userInventory[idx].RemainingUses += success.Items[i].RemainingUses;
+                    //}
+                    //else
+                    //{
+                    //    userInventory.Add(success.Items[i]);
+                    //}
+                }
+                SuccesCallback?.Invoke(); }, error => ErrorLog(error));
         }
         
         /// <summary>
@@ -156,6 +181,21 @@ namespace Assets._Scripts.Manager
 
             return rtn;
         }
+
+        public int FindItemIdx(string itemid)
+        {
+            int rtn = -1;
+            for (int i = 0; i < userInventory.Count; i++)
+            {
+                if (userInventory[i].ItemId == itemid)
+                {
+                    rtn = i;
+                    break;
+                }
+            }
+            return rtn;
+        }
+
 
         /// <summary>
         /// 현재 인벤토리 가져오기.

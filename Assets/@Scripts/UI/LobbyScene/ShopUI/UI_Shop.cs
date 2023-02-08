@@ -2,8 +2,10 @@ using Assets._Scripts.Manager;
 using Assets._Scripts.UI.LobbyScene;
 using Cysharp.Threading.Tasks;
 using PlayFab.ClientModels;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,10 +16,23 @@ public class UI_Shop : MonoBehaviour
     [SerializeField]
     GameObject Content;
 
+    [SerializeField]
+    TextMeshProUGUI PortionQunatityText;
+    [SerializeField]
+    TextMeshProUGUI RespawnQunatityText;
+
+
+    //List<ItemInstance> userInventory;
+
+
+
     private void Start()
     {
         LoadShopItems().Forget();
+        //userInventory = Managers.PlayFab.userInventory;
+
     }
+  
 
     private async UniTaskVoid LoadShopItems()
     {
