@@ -199,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c49ba47fc469f84896b03d720ce6764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundNum: 0
   Layer_Sprites:
   - {fileID: 21300000, guid: e76d36f467e913c4f8de4ce19d4b9ae6, type: 3}
   - {fileID: 21300000, guid: 59ed37f964ee0484bbecb0081f7e3f83, type: 3}
