@@ -205,6 +205,10 @@ MonoBehaviour:
     m_Address: symbol_01
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 4fde746489f36914f985275092dab446
+    m_Address: ParabolaArrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: fad499e3ed91d444ca41092311f55448, type: 2}
   m_SchemaSet:
