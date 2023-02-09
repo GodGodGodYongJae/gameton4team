@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19f6bd4c7272df4398df5ffc1aa578a, type: 3}
   m_Name: Monster_Ork_Warrior
   m_EditorClassIdentifier: 
-  _maxhp: 44
+  _maxhp: 48
   _speed: 1.2
   attackDamage: 10
   _visibility: 0

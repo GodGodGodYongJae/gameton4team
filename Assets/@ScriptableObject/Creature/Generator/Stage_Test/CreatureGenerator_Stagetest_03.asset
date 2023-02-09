@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 734a154a4f348d84bac953144acbaf68, type: 3}
-  m_Name: CreatureGenerator_Stage03_2
+  m_Name: CreatureGenerator_Stagetest_03
   m_EditorClassIdentifier: 
   spawnMonsterList:
-  - spawnObj: {fileID: 1779269178051258612, guid: e28e6051a410af847a74a9fb0d616699, type: 3}
+  - spawnObj: {fileID: 8760263760021883993, guid: 4b3d366df5b1d654398b1ae76f46fb3d, type: 3}
     spawnPos: {x: -4, y: 3}
-  - spawnObj: {fileID: 3048118674441016071, guid: 77a65cc3a5ad1864590d24ea7731347c, type: 3}
-    spawnPos: {x: -0.5, y: 3}
-  - spawnObj: {fileID: 1779269178051258612, guid: e28e6051a410af847a74a9fb0d616699, type: 3}
-    spawnPos: {x: 4, y: 3}
