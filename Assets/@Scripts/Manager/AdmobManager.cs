@@ -49,16 +49,16 @@ namespace Assets._Scripts.Manager
             // the next Update() loop.
             MobileAdsEventExecutor.ExecuteInUpdate(() =>
             {
-           
+
             });
         }
         private void ExceptionTestDevice(List<String> deviceIds)
         {
-        #if UNITY_IPHONE
+#if UNITY_IPHONE
                         deviceIds.Add("96e23e80653bb28980d3f40beb58915c");
-        #elif UNITY_ANDROID
-                    deviceIds.Add("75EF8D155528C04DACBBA6F36F433035");
-        #endif
+#elif UNITY_ANDROID
+            deviceIds.Add("75EF8D155528C04DACBBA6F36F433035");
+#endif
         }
         private AdRequest CreateAdRequest()
         {
@@ -67,13 +67,13 @@ namespace Assets._Scripts.Manager
                 .Build();
         }
 
-       
+
         #region REWARD ADS
-        public async UniTask<bool> RequestAndLoadRewardedAd(string id,Action callback = null)
+        public async UniTask<bool> RequestAndLoadRewardedAd(string id, Action callback = null)
         {
             bool isRegister = false;
-            RewardedAd.Load(id, CreateAdRequest(), 
-                (RewardedAd ad, LoadAdError loadError) => 
+            RewardedAd.Load(id, CreateAdRequest(),
+                (RewardedAd ad, LoadAdError loadError) =>
                 {
                     //Exception 처리
                     if (loadError != null)
@@ -90,7 +90,7 @@ namespace Assets._Scripts.Manager
                         return;
                     }
                     rewardedAd = ad;
-                   
+
                     ad.OnAdFullScreenContentOpened += () =>
                     {
                         Debug.Log("Rewarded ad opening.");

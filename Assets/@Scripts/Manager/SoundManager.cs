@@ -456,7 +456,16 @@ public class SoundManager : MonoBehaviour
     /// <param name="callback">재생이 끝나면 콜백할 액션</param>
     public AudioSource PlaySFX(string clip, Vector2 location, float duration, float volume, bool singleton = false, float pitch = 1f, Action callback = null)
     {
-        return PlaySFX(GetClipFromPlaylist(clip), location, duration, volume, singleton, pitch, callback);
+        try
+        {
+            return PlaySFX(GetClipFromPlaylist(clip), location, duration, volume, singleton, pitch, callback);
+        }
+        catch 
+        {
+
+            return null;
+        }
+    
     }
 
     /// <summary>
@@ -1535,6 +1544,7 @@ public class SoundManager : MonoBehaviour
     /// <returns>The AudioClip from the pool or null if no matching name can be found</returns>
     public AudioClip GetClipFromPlaylist(string clip_name)
     {
+
         for (int i = 0; i < _playlist.Count; i++)
         {
             if (clip_name == _playlist[i].name)

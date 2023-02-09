@@ -10,7 +10,6 @@ public class BackGroundChangeController : MonoBehaviour
     public Sprite[] Layer_Sprites;
     private GameObject[] Layer_Object = new GameObject[5];
     private int max_backgroundNum = 5;
-    public static Action stagechange;
 
     void Start()
     {
@@ -19,23 +18,52 @@ public class BackGroundChangeController : MonoBehaviour
         {
             Layer_Object[i] = GameObject.Find("Layer_" + i);
         }
-        ChangeSprite();
+
+        Managers.Events.AddListener(Define.GameEvent.stageClear, ClearEvents);
+        //ChangeSprite();
     }
 
-    private void Awake()
+    private void ClearEvents(Define.GameEvent eventType, Component Sender, object param)
     {
-        stagechange = () => { Stage1(); };
+        if (Define.GameEvent.stageClear == eventType && Utils.EqualSender<GameScene>(Sender))
+        {
+
+            GameScene gameScene = (GameScene)Sender;
+            int currentStage = gameScene.StageIndex;
+
+            if (currentStage == 1)
+                Stage1();
+            else if (currentStage == 2)
+                Stage1();
+            else if (currentStage == 4)
+                Stage1();
+            else if (currentStage == 6)
+                Stage1();
+
+        }
     }
 
     void ChangeSprite()
     {
+        Debug.Log("test1");
+        Debug.Log(Layer_Sprites[backgroundNum * 5].name);
         Layer_Object[0].GetComponent<SpriteRenderer>().sprite = Layer_Sprites[backgroundNum * 5];
+
+        Debug.Log("test2"+ "," + backgroundNum * 5);
         for (int i = 1; i < Layer_Object.Length; i++)
         {
+            Debug.Log("test3"+","+ Layer_Object.Length);
             Sprite changeSprite = Layer_Sprites[backgroundNum * 5 + i];
+
+            Debug.Log("test4" + "," + Layer_Object.Length);
             Layer_Object[i].GetComponent<SpriteRenderer>().sprite = changeSprite;
-            Layer_Object[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = changeSprite;
-            Layer_Object[i].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = changeSprite;
+
+            Debug.Log("test5" + "," + Layer_Object.Length);
+            Debug.Log("test5-1" + "," + Layer_Object[i].transform.Find("1").name);
+            Layer_Object[i].transform.Find("1").GetComponent<SpriteRenderer>().sprite = changeSprite;
+
+            Debug.Log("test6" + "," + Layer_Object.Length);
+            Layer_Object[i].transform.Find("2").GetComponent<SpriteRenderer>().sprite = changeSprite;
         }
     }
 

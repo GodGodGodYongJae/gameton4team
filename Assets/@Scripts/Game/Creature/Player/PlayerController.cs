@@ -113,12 +113,12 @@ public partial class Player
             Time.timeScale = 0;
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
             Managers.Sound.PlaySFX("Death");
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("Death_Bgm");
+            //Managers.Sound.PlayBGM("Death_Bgm");
             //animator.SetBool("Death", true);
         }
     }
 
+    private AudioClip respawnClip;
     public void Respawn()
     {
         Time.timeScale = 1;
