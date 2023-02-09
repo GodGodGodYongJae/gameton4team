@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Demon_Boss
   m_EditorClassIdentifier: 
   _maxhp: 140
-  _speed: 2
+  _speed: 1.6
   attackDamage: 35
   _visibility: 0
   _attackRange: 2.4

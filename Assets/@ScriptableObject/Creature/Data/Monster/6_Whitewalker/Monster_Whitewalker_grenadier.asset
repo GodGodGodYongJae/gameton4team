@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Monster_Whitewalker_grenadier
   m_EditorClassIdentifier: 
   _maxhp: 103
-  _speed: 1.7
-  attackDamage: 22
+  _speed: 1.5
+  attackDamage: 21
   _visibility: 0
   _attackRange: 8
-  _attackDealy: 1
+  _attackDealy: 2.2
   _moveDealy: 1
   _movementTime: 0.8
   _duration: 1
