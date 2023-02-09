@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class CurrentStage : MonoBehaviour
 {
     Text text;
-    public int currentStage = 1;
+    public int currentStage;
     private void Start()
     {
+        currentStage = 1;
         text = GetComponent<Text>();
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
 

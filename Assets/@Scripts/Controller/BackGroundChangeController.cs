@@ -6,7 +6,7 @@ using UnityEngine;
 public class BackGroundChangeController : MonoBehaviour
 {
     [Header("BackgroundNum 0 -> 3")]
-    public static int backgroundNum = 0;
+    public int backgroundNum = 0;
     public Sprite[] Layer_Sprites;
     private GameObject[] Layer_Object = new GameObject[5];
     private int max_backgroundNum = 5;
