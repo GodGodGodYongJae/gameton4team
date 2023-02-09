@@ -46,9 +46,9 @@ namespace Assets._Scripts.Manager
         /// <summary>
         /// 서버에서 데이터를 동기화 해야할 때.
         /// </summary>
-        public void SyncCurrencyDataFromServer()
+        public void SyncCurrencyDataFromServer(Action callback = null)
         {
-             GetCurrencyDataBackEnd(_userCurrecy).Forget();
+             GetCurrencyDataBackEnd(_userCurrecy,callback).Forget();
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Assets._Scripts.Manager
 
         //================== Server Currecy Data ======================
         #region .
-        private async UniTaskVoid GetCurrencyDataBackEnd(Dictionary<string, int> CurrencyList)
+        private async UniTaskVoid GetCurrencyDataBackEnd(Dictionary<string, int> CurrencyList,Action callback = null)
         {
             bool isResult = false;
             PlayFabClientAPI.GetUserInventory(new PlayFab.ClientModels.GetUserInventoryRequest(),
@@ -82,7 +82,7 @@ namespace Assets._Scripts.Manager
             },
             (error) => { ErrorLog(error); });
             await UniTask.WaitUntil(() => { return isResult == true; });
-            
+            callback?.Invoke();
         }
 
         /// <summary>

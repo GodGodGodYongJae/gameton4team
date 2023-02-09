@@ -112,9 +112,8 @@ public partial class Player
         {
             Time.timeScale = 0;
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
-         respawnClip = Managers.Sound.CurrentMusicClip;
             Managers.Sound.PlaySFX("Death");
-            Managers.Sound.PlayBGM("Death_Bgm");
+            //Managers.Sound.PlayBGM("Death_Bgm");
             //animator.SetBool("Death", true);
         }
     }
@@ -122,7 +121,6 @@ public partial class Player
     private AudioClip respawnClip;
     public void Respawn()
     {
-        Managers.Sound.PlayBGM(respawnClip);
         Time.timeScale = 1;
         AddHp(playerData.MaxHP);
     }

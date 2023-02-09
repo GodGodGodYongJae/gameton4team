@@ -196,8 +196,8 @@ public class UI_GameScene : UI_Scene
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => {
                 Time.timeScale = 1;
-                Managers.Scene.ChangeScene(Define.SceneType.Lobby);
                Managers.OnDestorys();
+                Managers.Scene.ChangeScene(Define.SceneType.Lobby);
             });
         }
     }
