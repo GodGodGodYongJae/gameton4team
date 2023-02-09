@@ -18,9 +18,9 @@ MonoBehaviour:
   _visibility: 0
   _attackRange: 5
   _attackDealy: 2
-  _moveDealy: 1.78
+  _moveDealy: 1.7
   _movementTime: 1
-  _duration: 2.4
-  _projectileSpeed: 1.7
+  _duration: 1.7
+  _projectileSpeed: 3.5
   _exp: 5
   _score: 100

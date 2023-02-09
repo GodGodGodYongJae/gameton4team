@@ -16,6 +16,6 @@ MonoBehaviour:
   - spawnObj: {fileID: 6021795691463997402, guid: 95cef8d62ccaae54aae5ea6858bf4099, type: 3}
     spawnPos: {x: -4, y: 3}
   - spawnObj: {fileID: 6175994265337450840, guid: d7b0324863ae79e4a81eb1f9572e3d5f, type: 3}
-    spawnPos: {x: -1, y: 3}
+    spawnPos: {x: 0, y: 3}
   - spawnObj: {fileID: 6208900629245611390, guid: e633288ab451cda41ad334679f474890, type: 3}
-    spawnPos: {x: 3.5, y: 3}
+    spawnPos: {x: 5, y: 3}
