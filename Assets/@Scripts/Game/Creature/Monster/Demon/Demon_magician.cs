@@ -114,7 +114,7 @@ public class Demon_magician : SPUM_Monster
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
         GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.5f));
-        bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
+        bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
         bullet.InitBulletData(this);
         await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
