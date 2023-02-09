@@ -106,6 +106,7 @@ public class WeaponData : ScriptableObject
     public int MaxTargets => maxTagets;
     public void AssetLoad()
     {
+        CSVData.Clear();
         data = CSVReader.Read(asset);
         for (int i = 0; i < data.Count; i++)
         {

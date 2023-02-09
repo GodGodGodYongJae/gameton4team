@@ -48,7 +48,7 @@ namespace Assets._Scripts.UI.LobbyScene
                 {       if (RewardItems.Count > 0)
                     
                     Managers.PlayFab.AddItemInventory2(RewardItems);
-                    Managers.PlayFab.SetCurrecy(StringData.Coin, RewardCoin);
+                    Managers.PlayFab.SetCurrecy(StringData.Coin, RewardCoin,()=> { Managers.Events.PostNotification(Define.GameEvent.LobbyCurrency, this); });
                     Managers.PlayFab.SetServerPlayerData(Manager.PlayFabManager.PlayerData.dailyReward, NeedReward.ToString());
                     Managers.Events.PostNotification(Define.GameEvent.LobbyCurrency, this);
                 });

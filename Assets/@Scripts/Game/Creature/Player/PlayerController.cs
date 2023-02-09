@@ -114,11 +114,11 @@ public partial class Player
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, this, PlayerActionKey.Death);
             Managers.Sound.PlaySFX("Death");
             Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("Death_Bgm");
-            //animator.SetBool("Death", true);
+            Managers.Sound.PlayBGM("Death_bgm");
         }
     }
 
+    private AudioClip respawnClip;
     public void Respawn()
     {
         Time.timeScale = 1;

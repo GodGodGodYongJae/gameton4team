@@ -1,5 +1,5 @@
 ﻿ID,dev_name,Char_Level,Char_Experience_Point,Char_Lv_Up_Stat,Char_Health_Point,Char_Attack,Char_Critical,Char_Critical_Probability
-1,레벨1,1,10,0,1000,10,5,0.2
+1,레벨1,1,10,0,1,10,5,0.2
 2,레벨2,2,20,1,1020,11,6,0.4
 3,레벨3,3,30,1,1040,12,7,0.6
 4,레벨4,4,40,1,105,13,8,0.8

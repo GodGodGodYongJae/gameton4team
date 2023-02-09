@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CurrentStage : MonoBehaviour
 {
     Text text;
-    public static int currentStage = 1;
+    public int currentStage = 1;
     private void Start()
     {
         text = GetComponent<Text>();
@@ -37,7 +37,7 @@ public class CurrentStage : MonoBehaviour
             Managers.Sound.PlayBGM("InGame2");
         }
 
-        if (currentStage == 7)
+        else if (currentStage == 7)
         {
             
             Managers.Sound.StopBGM();
@@ -45,5 +45,27 @@ public class CurrentStage : MonoBehaviour
         }
     }
 
-    
+    public void RespawnStageBgmChange()
+    {
+        if(currentStage <= 3)
+        {
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame1");
+        }
+
+        else if (currentStage == 4)
+        {
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame2");
+        }
+
+        else if (currentStage == 7)
+        {
+
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame3");
+        }
+    }
+
+
 }

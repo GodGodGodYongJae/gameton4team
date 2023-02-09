@@ -47,12 +47,14 @@ namespace Assets._Scripts.UI.LobbyScene
             //Bind End 
             invenUI = GetObject((int)GameObjeects.InventoryUI).GetComponent<Rito.InventorySystem.InventoryUI>();
             GetObject((int)GameObjeects.InventoryUI).SetActive(false);
-            LoadCurrecyData();
+            Managers.PlayFab.SyncCurrencyDataFromServer(()=> { LoadCurrecyData(); });
+
             ButtonInit();
 
             GetObject((int)GameObjeects.ShopUI).SetActive(false);
 
              initItemServer = new InitItemServer(this);
+
             Managers.Sound.PlayBGM("Lobby");
             MatchDisplay();
             Managers.Events.AddListener(Define.GameEvent.LobbyCurrency, CurrencySet);

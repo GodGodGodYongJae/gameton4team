@@ -15,7 +15,9 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CoinCount.coinAmount += UnityEngine.Random.Range(10, 21);
+        int CoinAmmount = UnityEngine.Random.Range(10, 21);
+        CoinCount.coinAmount += CoinAmmount;
+        Managers.PlayFab.SetCurrecy(StringData.Coin, CoinAmmount);
         CoinCount.getCoin();
         Managers.Sound.PlaySFX("coin");
         gameObject.SetActive(false);
