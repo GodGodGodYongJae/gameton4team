@@ -229,6 +229,7 @@ public class GroundController
             this.ChangeGroundGenerator(GroundGenerator);
             CurrentStage.stage();
             Managers.Sound.PlaySFX("Weapon");
+            
             Init(() => { Managers.Object.GetSingularObjet("coin").gameObject.SetActive(true); }).Forget();  
 
         }

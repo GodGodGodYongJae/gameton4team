@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CurrentStage : MonoBehaviour
 {
     Text text;
-    public static int currentStage = 1;
+    public int currentStage = 1;
     public static Action stage;
     private void Start()
     {
@@ -42,12 +42,12 @@ public class CurrentStage : MonoBehaviour
     public void StageBackGroundChange()
     {
         if(currentStage == 2) 
-            BackGroundChangeController.stage();
+            BackGroundChangeController.stagechange();
         else if (currentStage == 3)
-            BackGroundChangeController.stage();
+            BackGroundChangeController.stagechange();
         else if(currentStage == 5)
-            BackGroundChangeController.stage();
+            BackGroundChangeController.stagechange();
         else if(currentStage == 7)
-            BackGroundChangeController.stage();
+            BackGroundChangeController.stagechange();
     }
 }

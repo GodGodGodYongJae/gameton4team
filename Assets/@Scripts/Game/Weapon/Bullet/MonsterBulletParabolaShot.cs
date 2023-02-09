@@ -87,7 +87,7 @@ namespace Assets._Scripts.Game.Weapon
             while (transform.position.y >= startPos.y)
             {
                 timer += Time.deltaTime;
-                Vector3 tempPos = Parabola(startPos, endPos, 5, timer);
+                Vector3 tempPos = Parabola(startPos, endPos, 8, timer);
                 transform.position = tempPos;
                 yield return new WaitForEndOfFrame();
             }
