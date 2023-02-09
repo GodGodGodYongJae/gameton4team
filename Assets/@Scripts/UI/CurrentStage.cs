@@ -46,27 +46,6 @@ public class CurrentStage : MonoBehaviour
         }
     }
 
-    public void RespawnStageBgmChange()
-    {
-        if(currentStage <= 3)
-        {
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("InGame1");
-        }
-
-        else if (currentStage == 4)
-        {
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("InGame2");
-        }
-
-        else if (currentStage == 7)
-        {
-
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("InGame3");
-        }
-    }
 
 
 }
