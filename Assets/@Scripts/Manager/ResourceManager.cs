@@ -16,6 +16,35 @@ public class ResourceManager
     Dictionary<string, AsyncOperationHandle> _handles = new Dictionary<string, AsyncOperationHandle>();
     public int HandlesCount = 0;
 
+    Dictionary<string, UnityEngine.Object> _staticResources = new Dictionary<string, Object>();
+
+    //비동기 리소스 진행 상황.
+    Dictionary<string, AsyncOperationHandle> _statichandles = new Dictionary<string, AsyncOperationHandle>();
+    public int staticHandlesCount = 0;
+    public void LoadAsyncStatic<T>(string key, Action<T> callback = null) where T : UnityEngine.Object
+    {
+        //캐시 확인.
+        if (_staticResources.TryGetValue(key, out Object resource))
+        {
+            callback?.Invoke(resource as T);
+            return;
+        }
+        //로딩은 시작했지만 완료되지 않았다면, 콜백만 추가.
+        if (_statichandles.ContainsKey(key))
+        {
+            _statichandles[key].Completed += (op) => { callback?.Invoke(op.Result as T); };
+        }
+        //리소스 비동기 로딩 시작.
+        _statichandles.Add(key, Addressables.LoadAssetAsync<T>(key));
+        staticHandlesCount++;
+        _statichandles[key].Completed += (op) =>
+        {
+            _staticResources.Add(key, op.Result as UnityEngine.Object);
+            callback?.Invoke(op.Result as T);
+            staticHandlesCount--;
+        };
+    }
+
     public void LoadAsync<T>(string key, Action<T> callback = null) where T: UnityEngine.Object
     {
         //캐시 확인.
@@ -61,6 +90,7 @@ public class ResourceManager
             Addressables.Release(handle);
 
         _handles.Clear();
+     
     }
     #region 프리팹
     public void Instantiate(string key, Transform parent = null, Action<GameObject> callback = null)

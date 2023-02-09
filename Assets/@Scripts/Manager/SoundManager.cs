@@ -106,6 +106,8 @@ public class SoundManager : MonoBehaviour
     {
         Initialise().Forget();
     }
+
+  
     /// <summary>
     /// 오디오매니저 초기화 함수
     /// </summary>
@@ -114,7 +116,7 @@ public class SoundManager : MonoBehaviour
         //gameObject.name = "AudioManager";
 
         bool isRegister = false;
-        Managers.Resource.LoadAsync<ScriptableObject>(StringData.Sound, (success) =>
+        Managers.Resource.LoadAsyncStatic<ScriptableObject>(StringData.Sound, (success) =>
         {
             SoundData data = (SoundData)success;
             _playlist = data.Playlist;

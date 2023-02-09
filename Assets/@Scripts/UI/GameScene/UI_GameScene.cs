@@ -198,6 +198,7 @@ public class UI_GameScene : UI_Scene
                 Time.timeScale = 1;
                Managers.OnDestorys();
                 Managers.Scene.ChangeScene(Define.SceneType.Lobby);
+
             });
         }
     }

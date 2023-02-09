@@ -35,8 +35,10 @@ public class Managers : Singleton<Managers>
         UpdateAction = null;
         Object.RemoveAll();
         Events.RemoveAll();
-       // Resource.Clear();
         Monster.Clear();
+        Resource.Clear();
+
+
     }
 
     protected override void Awake()
