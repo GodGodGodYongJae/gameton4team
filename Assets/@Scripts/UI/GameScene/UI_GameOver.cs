@@ -23,6 +23,7 @@ namespace Assets._Scripts.UI.GameScene
 
         public RespawnCardItemData RespawnData;
         private RespawnCardItem respawnCardItem;
+        CurrentStage currentStage;
         int Quantity;
         int AdmobQuantity;
         private void Start()
@@ -77,6 +78,8 @@ namespace Assets._Scripts.UI.GameScene
             respawnCardItem.Use();
             RespawnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
+            Managers.Sound.StopBGM();
+            currentStage.RespawnStageBgmChange();
         }
     }
 }
