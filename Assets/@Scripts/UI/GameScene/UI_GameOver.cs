@@ -79,7 +79,6 @@ namespace Assets._Scripts.UI.GameScene
             RespawnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
             Managers.Sound.StopBGM();
-            currentStage.RespawnStageBgmChange();
         }
     }
 }
