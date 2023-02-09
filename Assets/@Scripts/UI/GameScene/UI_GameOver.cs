@@ -78,7 +78,7 @@ namespace Assets._Scripts.UI.GameScene
             respawnCardItem.Use();
             RespawnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            Managers.Sound.StopBGM();
+           
         }
     }
 }
