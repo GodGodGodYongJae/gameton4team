@@ -9,7 +9,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
-public class Devil_spearman : SPUM_Monster
+public class Evil_spearman : SPUM_Monster
 {
     Player player;
 
