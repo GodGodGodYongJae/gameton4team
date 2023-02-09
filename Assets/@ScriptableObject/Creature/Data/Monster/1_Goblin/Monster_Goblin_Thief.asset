@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Monster_Goblin_Thief
   m_EditorClassIdentifier: 
   _maxhp: 14
-  _speed: 1.2
+  _speed: 1.4
   attackDamage: 4
   _visibility: 0
-  _attackRange: 1
-  _attackDealy: 1.1
+  _attackRange: 1.1
+  _attackDealy: 1
   _moveDealy: 1
   _movementTime: 2
   _duration: 0
