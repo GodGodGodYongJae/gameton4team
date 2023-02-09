@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnMonsterList:
   - spawnObj: {fileID: 5872385810425004895, guid: bc4ec0391f2142a4f82229a57d709557, type: 3}
-    spawnPos: {x: -3, y: 3}
+    spawnPos: {x: -4, y: 3}
   - spawnObj: {fileID: 6846388378365084587, guid: d44e3f6b92f95d741a0fc06e74bc24a7, type: 3}
     spawnPos: {x: -1, y: 3}
   - spawnObj: {fileID: 6846388378365084587, guid: d44e3f6b92f95d741a0fc06e74bc24a7, type: 3}
-    spawnPos: {x: 2, y: 3}
+    spawnPos: {x: 3, y: 3}
