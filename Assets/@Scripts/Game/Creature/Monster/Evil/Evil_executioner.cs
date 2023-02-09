@@ -9,7 +9,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
-public class Devil_executioner : SPUM_Monster
+public class Evil_executioner : SPUM_Monster
 {
     public Transform playerPos;
     Player player;

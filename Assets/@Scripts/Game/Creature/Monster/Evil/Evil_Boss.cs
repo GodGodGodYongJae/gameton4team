@@ -9,7 +9,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
-public class Devil_Boss : SPUM_Monster
+public class Evil_Boss : SPUM_Monster
 {
     [SerializeField]
     BoxCollider2D AttackBox;
