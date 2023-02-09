@@ -135,9 +135,9 @@ TextureImporter:
         x: 0
         y: 0
         width: 670
-        height: 95
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,11 +154,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 95
+        y: 63
         width: 670
-        height: 152
+        height: 185
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,6 +183,7 @@ TextureImporter:
     nameFileIdTable:
       KakaoTalk_20230208_231409893_1: 1886105597
       KakaoTalk_20230208_231409893_0: 204120382
+      KakaoTalk_20230208_231409893_2: 1171740438
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

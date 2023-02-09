@@ -9,7 +9,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 
-public class Devil_shielder : SPUM_Monster
+public class Evil_shielder : SPUM_Monster
 {
     public Transform playerPos;
     Player player;
