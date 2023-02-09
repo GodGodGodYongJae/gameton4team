@@ -62,6 +62,7 @@ public class PlayerData : CreatureData
     private Dictionary<int, CharacterCSVDATA> CSVData = new Dictionary<int, CharacterCSVDATA>();
     public void AssetLoad()
     {
+        CSVData.Clear();
         data = CSVReader.Read(asset);
 
         for (int i = 0; i < data.Count; i++)
