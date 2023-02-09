@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Monster_Whitewalker_archer
   m_EditorClassIdentifier: 
   _maxhp: 89
-  _speed: 1.7
-  attackDamage: 18
+  _speed: 1.5
+  attackDamage: 17
   _visibility: 0
   _attackRange: 5
   _attackDealy: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Evil_shielder
   m_EditorClassIdentifier: 
   _maxhp: 67
-  _speed: 1.6
+  _speed: 1.4
   attackDamage: 17
   _visibility: 0
   _attackRange: 1

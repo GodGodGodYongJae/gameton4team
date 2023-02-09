@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Monster_Demon_archer
   m_EditorClassIdentifier: 
   _maxhp: 91
-  _speed: 2
+  _speed: 1.6
   attackDamage: 21
   _visibility: 0
   _attackRange: 5
-  _attackDealy: 2.5
+  _attackDealy: 2
   _moveDealy: 1
   _movementTime: 1
   _duration: 1.6

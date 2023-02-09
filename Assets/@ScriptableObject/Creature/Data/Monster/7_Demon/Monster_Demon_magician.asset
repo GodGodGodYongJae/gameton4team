@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Demon_magician
   m_EditorClassIdentifier: 
   _maxhp: 105
-  _speed: 2
+  _speed: 1.6
   attackDamage: 30
   _visibility: 0
   _attackRange: 3.2

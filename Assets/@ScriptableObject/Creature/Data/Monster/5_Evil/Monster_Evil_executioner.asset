@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Monster_Evil_executioner
   m_EditorClassIdentifier: 
   _maxhp: 77
-  _speed: 1.6
+  _speed: 1.4
   attackDamage: 19
   _visibility: 0
   _attackRange: 1.6
