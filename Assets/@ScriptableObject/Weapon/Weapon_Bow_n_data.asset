@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68515561b2dd7143938afc731f2e700, type: 3}
   m_Name: Weapon_Bow_n_data
   m_EditorClassIdentifier: 
-  asset: {fileID: 4900000, guid: b40bd4c8a58b8f54cb28a55842c687a7, type: 3}
+  asset: {fileID: 4900000, guid: fd1ced0097d41c842b8bbc09c8333f49, type: 3}
   uiImage: {fileID: 21300000, guid: b92c786def55a124e84490965ca1ac7e, type: 3}
   displayName: "\uD65C"
   attackDmg: 4
