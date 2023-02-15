@@ -85,8 +85,12 @@ public partial class Player
 
     void ChangeDirection()
     {
-        directionVector = directionVector * -1;
-        transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+        if(Time.timeScale == 1)
+        {
+            directionVector = directionVector * -1;
+            transform.localScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
+
+        }
     }
     // 위치 초기화
     public void InitPosition(float x = 0,float y = 0)
@@ -171,7 +175,5 @@ public partial class Player
         }
 
     }
-
-
     #endregion
 }

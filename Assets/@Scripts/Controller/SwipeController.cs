@@ -30,33 +30,36 @@ public class SwipeController
 }
     void MUpdate()
     {
-        if(Input.touchCount > 0)
+        if(Time.timeScale == 1)
         {
-            Touch touch = Input.GetTouch(0);
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
 
-            if (IsPointerOverUIObject())
-            {
-                return;
-            }
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                touchBeganPos = touch.position;
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                touchEndPos = touch.position;
-                touchDif = (touchEndPos - touchBeganPos);
-                if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x) && Mathf.Abs(touchDif.y) > swipeSensitivity)
+                if (IsPointerOverUIObject())
                 {
-                    ActionKey = Player.PlayerActionKey.Jump;
+                    return;
                 }
-                else
-                {
 
-                    ActionKey = Player.PlayerActionKey.Direction;
+                if (touch.phase == TouchPhase.Began)
+                {
+                    touchBeganPos = touch.position;
                 }
-                Managers.Events.PostNotification(Define.GameEvent.playerEvents, null, ActionKey);
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    touchEndPos = touch.position;
+                    touchDif = (touchEndPos - touchBeganPos);
+                    if (touchDif.y > 0 && Mathf.Abs(touchDif.y) > Mathf.Abs(touchDif.x) && Mathf.Abs(touchDif.y) > swipeSensitivity)
+                    {
+                        ActionKey = Player.PlayerActionKey.Jump;
+                    }
+                    else
+                    {
+
+                        ActionKey = Player.PlayerActionKey.Direction;
+                    }
+                    Managers.Events.PostNotification(Define.GameEvent.playerEvents, null, ActionKey);
+                }
             }
         }
     }
