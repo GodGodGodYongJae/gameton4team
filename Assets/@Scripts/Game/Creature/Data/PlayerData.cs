@@ -71,7 +71,6 @@ public class PlayerData : CreatureData
             characterData.ExperiencePoint = (int)data[i]["Char_Experience_Point"];
             characterData.HealthPoint = float.Parse(data[i]["Char_Health_Point"].ToString());
             characterData.AttackDamage = float.Parse(data[i]["Char_Attack"].ToString());
-            characterData.CriticalDamage = float.Parse(data[i]["Char_Critical"].ToString());
             characterData.CriticalProbaility = float.Parse(data[i]["Char_Critical_Probability"].ToString());
             CSVData.Add(i + 1, characterData);
         }
