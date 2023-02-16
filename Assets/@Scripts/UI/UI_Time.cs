@@ -32,13 +32,6 @@ public class UI_Time : MonoBehaviour
             settingUI.SetActive(false);
         }
     }
-
-    public GameObject soundEffectIcon1;
-    public GameObject soundEffectIcon2;
-    public GameObject soundBgmIcon1;
-    public GameObject soundBgmIcon2;
-
-
     public void StopSoundBgm()
     {
         Managers.Sound.PlaySFX("Touch");
@@ -46,15 +39,11 @@ public class UI_Time : MonoBehaviour
         {
             Managers.Sound.PauseBGM();
             soundBgm = false;
-            soundBgmIcon1.SetActive(false);
-            soundBgmIcon2.SetActive(true);
         }
         else if(soundBgm == false)
         {
             Managers.Sound.ResumeBGM();
             soundBgm = true;
-            soundBgmIcon1.SetActive(true);
-            soundBgmIcon2.SetActive(false);
         }
     }
 
@@ -65,15 +54,11 @@ public class UI_Time : MonoBehaviour
         {
             Managers.Sound.IsSoundOn = false;
             soundEffect = false;
-            soundEffectIcon1.SetActive(false);
-            soundEffectIcon2.SetActive(true);
         }
         else if (soundEffect == false)
         {
             Managers.Sound.IsSoundOn = true;
             soundEffect = true;
-            soundEffectIcon1.SetActive(true);
-            soundEffectIcon2.SetActive(false);
         }
     }
 
