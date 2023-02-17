@@ -7,6 +7,7 @@ using PlayFab.MultiplayerModels;
 using System.Diagnostics;
 using Assets._Scripts.UI.LobbyScene;
 using System;
+using Cysharp.Threading.Tasks;
 
 public class UI_ShopSlot : MonoBehaviour
 {
@@ -16,6 +17,14 @@ public class UI_ShopSlot : MonoBehaviour
     public Image Image;
     private int price;
     private string itemId;
+
+    [SerializeField]
+    Button rewardButton;
+    [SerializeField]
+    bool isRewardButton;
+    [SerializeField]
+    int rewardQuantity;
+
     public void CreateInit(string itemId,string price, string title, Sprite sprite)
     {
         this.itemId = itemId;
@@ -25,6 +34,25 @@ public class UI_ShopSlot : MonoBehaviour
         Image.sprite = sprite;
 
         haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
+        if(isRewardButton == true)
+        {
+            rewardButton.onClick.AddListener(() => { OnReward().Forget(); });
+        }
+    }
+
+    bool isRewardLoad = false;
+    public async UniTaskVoid OnReward()
+    {
+        if (isRewardLoad == true) return;
+        isRewardLoad = true;
+        await Managers.Admob.RequestAndLoadRewardedAd(StringData.AdMob.Portion, () => {
+             Managers.PlayFab.AddItemInventory(itemId, rewardQuantity ,() => {
+                 haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
+                 isRewardLoad = false;
+            });
+        });
+        //await UniTask.WaitUntil(() => isRewardLoad == false);
+
     }
 
     public void OnBuyButton()

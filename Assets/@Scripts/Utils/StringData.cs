@@ -39,6 +39,9 @@ public class StringData
     public class AdMob
     {
         private const string _respwan = "ca-app-pub-8904224703245079/8096563976";
-        public static string Respawn => _respwan; 
+        public static string Respawn => _respwan;
+        private const string _portion = "ca-app-pub-8904224703245079/5188538458";
+        public static string Portion => _portion;
+
     }
 }
