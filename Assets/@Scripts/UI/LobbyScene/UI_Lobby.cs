@@ -17,6 +17,7 @@ namespace Assets._Scripts.UI.LobbyScene
         EnergyPlus,
         InventoryUI,
         ShopUI,
+        ShowEnergyUI,
     }
 
     enum Buttons
@@ -52,6 +53,7 @@ namespace Assets._Scripts.UI.LobbyScene
             ButtonInit();
 
             GetObject((int)GameObjeects.ShopUI).SetActive(false);
+            GetObject((int)GameObjeects.ShowEnergyUI).SetActive(false);
 
              initItemServer = new InitItemServer(this);
 
@@ -128,8 +130,7 @@ namespace Assets._Scripts.UI.LobbyScene
 
         private void ShowNotEnoughEnergyMessage()
         {
-            Debug.Log("Not enough energy to start game");
-
+            GetObject((int)GameObjeects.ShowEnergyUI).SetActive(true);
         }
 
         void OnEnergyPlus()
