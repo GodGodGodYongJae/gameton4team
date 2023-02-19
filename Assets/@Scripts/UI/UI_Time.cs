@@ -32,6 +32,13 @@ public class UI_Time : MonoBehaviour
             settingUI.SetActive(false);
         }
     }
+
+    public GameObject SoundEffect1;
+    public GameObject SoundEffect2;
+    public GameObject SoundBgm1;
+    public GameObject SoundBgm2;
+
+
     public void StopSoundBgm()
     {
         Managers.Sound.PlaySFX("Touch");
@@ -39,11 +46,15 @@ public class UI_Time : MonoBehaviour
         {
             Managers.Sound.PauseBGM();
             soundBgm = false;
+            SoundBgm1.SetActive(false);
+            SoundBgm2.SetActive(true);
         }
         else if(soundBgm == false)
         {
             Managers.Sound.ResumeBGM();
             soundBgm = true;
+            SoundBgm1.SetActive(true);
+            SoundBgm2.SetActive(false);
         }
     }
 
@@ -54,14 +65,24 @@ public class UI_Time : MonoBehaviour
         {
             Managers.Sound.IsSoundOn = false;
             soundEffect = false;
+            SoundEffect1.SetActive(false);
+            SoundEffect2.SetActive(true);
         }
         else if (soundEffect == false)
         {
             Managers.Sound.IsSoundOn = true;
             soundEffect = true;
+            SoundEffect1.SetActive(true);
+            SoundEffect2.SetActive(false);
         }
     }
 
+    public void Lobby()
+    {
+        Time.timeScale = 1;
+        Managers.OnDestorys();
+        Managers.Scene.ChangeScene(Define.SceneType.Lobby);
+    }
     public void Quit()
     {
         #if UNITY_EDITOR
