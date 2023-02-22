@@ -19,17 +19,18 @@ public class TitleScene : BaseScene
             return false;
 
         SceneType = SceneType.TitleScene;
-
         Managers.UI.ShowSceneUI<UI_TitleScene>(callback: (titleSceneUI) =>
         {
             _titleSceneUI = titleSceneUI;
         });
 
+
+        DownloadAssetsAsync().Forget();
         WaitLoad().Forget();
-        DownloadAssetsAsync();
         return true;
     }
-    private  void DownloadAssetsAsync()
+    int loadCount = 0;
+    private async UniTaskVoid DownloadAssetsAsync()
     {
 
         var setting = AddressableAssetSettingsDefaultObject.Settings;
@@ -38,34 +39,26 @@ public class TitleScene : BaseScene
             var group = setting.FindGroup("Default Local Group");
             if (group != null)
             {
-                //foreach (var entri in group.entries)
-                //{
-                //    Managers.Resource.LoadAsync<GameObject>(entri.address,(success) => { 
-
-                //    });
-
-                //}
-
-                
+                int ass = group.entries.Count;
                 for (int i = 0; i < group.entries.Count; i++)
                 {
                     var entry = group.entries.ElementAt(i);
                     Type entriType = entry.MainAssetType;
 
-                    var Resources = typeof(ResourceManager).GetMethod("LoadAsync");
+                    var Resources = typeof(ResourceManager).GetMethod("LoadAsync2");
                     var refs = Resources.MakeGenericMethod(entriType);
-                    refs.Invoke(Managers.Resource, new object[] { entry.address, null }) ;
-                    //Managers.Resource.LoadAsync<GameObject>(entriType, entriGroup[i].address, (success) =>
-                    //{
+                    refs.Invoke(Managers.Resource, new object[] { entry.address, 
+                        (Action)(() => { loadCount++; }) 
+                    });
 
-                    //});
-                    //Managers.Resource.LoadAsync< testa[i].MainAssetType >()
-                    
                 }
-              
+                await UniTask.WaitUntil(() => { return group.entries.Count <= loadCount; });
+
+               
             }
         }
-        Debug.Log("Success!@!@~@~@~");
+       
+   
     }
     async UniTaskVoid WaitLoad()
     {

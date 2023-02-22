@@ -232,7 +232,7 @@ public class ObjectManager
             folderObjectList.Remove(AssetName);
             objectPoolList.Remove(AssetName);
             poolList.Remove(AssetName);
-            Managers.Resource.Release(AssetName);
+            //Managers.Resource.Release(AssetName);
         }
     }
     /// <summary>

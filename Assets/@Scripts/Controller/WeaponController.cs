@@ -34,14 +34,13 @@ public class WeaponController
         if (weapon != null)
         {
             weapon.ChangeWeaponFixedUpdateDelete();
-            Managers.Resource.Release(type.ToString());
-            Managers.Resource.Release(type.ToString()+"_data");
             Object.Destroy(weapon);
         } 
 
-        Managers.Resource.LoadAsync<Sprite>(type.ToString(), (success) =>
+        Managers.Resource.LoadAsync<Texture2D>(type.ToString(), (success) =>
         {
-            spriteRenderer.sprite = success;
+            Rect rect = new Rect(0, 0, success.width, success.height);
+            spriteRenderer.sprite = Sprite.Create(success, rect, new Vector2(0.5f, 0.5f));
             box = rHandGo.AddComponent<BoxCollider2D>();
             box.isTrigger = true;
             registered = true;

@@ -69,7 +69,7 @@ public class GameScene : BaseScene
 
             //TODO UI나 무기 교체 로직 다 진행하면 됨.
 
-            this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx])).Forget();
+            this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx]));
         }
 
     }
@@ -102,17 +102,18 @@ public class GameScene : BaseScene
         WeaponSlotController.WeaponSlot weaponSlot = new WeaponSlotController.WeaponSlot(weapon.weaponData);
         weaponSlot.Type = WeaponType.Weapon_Sword;
         WeaponSlotController.NewWeapon(weaponSlot);
+
         _gameSceneUI.SyncInventoryInfo();
         //_gameSceneUI.OpenWeaponSelectBox().Forget();
         Managers.Sound.PlayBGM("InGame1");
 
          //지형 등록
          ////차후 Data 불러와서, 바꿔야 함.
-         WaitLoadGround(() => _groundController.Init().Forget()).Forget();
+         WaitLoadGround(() => _groundController.Init().Forget());
 
     }
 
-    async UniTaskVoid WaitLoadGround(Action callback = null)
+     void WaitLoadGround(Action callback = null)
     {
 
         _groundController.ClearPrevStageData();

@@ -56,8 +56,6 @@ public class ResourceManager
 
     public void LoadAsync<T>(string key, Action<T> callback = null) where T: UnityEngine.Object
     {
-
-        Debug.Log(key + "들어옴");
         //캐시 확인.
         if (_resources.TryGetValue(key, out Object resource))
         {
@@ -80,7 +78,29 @@ public class ResourceManager
         };
     }
 
-
+    public void LoadAsync2<T>(string key, Action callback = null) where T : UnityEngine.Object
+    {
+        //캐시 확인.
+        if (_resources.TryGetValue(key, out Object resource))
+        {
+            callback?.Invoke();
+            return;
+        }
+        //로딩은 시작했지만 완료되지 않았다면, 콜백만 추가.
+        if (_handles.ContainsKey(key))
+        {
+            _handles[key].Completed += (op) => { callback?.Invoke(); };
+        }
+        //리소스 비동기 로딩 시작.
+        _handles.Add(key, Addressables.LoadAssetAsync<T>(key));
+        HandlesCount++;
+        _handles[key].Completed += (op) =>
+        {
+            _resources.Add(key, op.Result as UnityEngine.Object);
+            callback?.Invoke();
+            HandlesCount--;
+        };
+    }
     public void Release(string key)
     {
         if (_resources.TryGetValue(key, out Object resource) == false)

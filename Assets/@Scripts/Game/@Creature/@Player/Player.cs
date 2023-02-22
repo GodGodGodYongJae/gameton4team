@@ -37,6 +37,7 @@ public class Player : Creature
         DataInit();
         ActionInit();
         HelperInit();
+
     }
 
     public void Respawn()

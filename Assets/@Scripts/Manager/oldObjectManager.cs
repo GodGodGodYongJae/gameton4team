@@ -253,7 +253,7 @@ namespace Assets._Scripts.Manager
                 _folderObjectList.Remove(AssetName);
                 _objectPoolList.Remove(AssetName);
                 _poolList.Remove(AssetName);
-                Managers.Resource.Release(AssetName);
+                //Managers.Resource.Release(AssetName);
             }
         }
         /// <summary>

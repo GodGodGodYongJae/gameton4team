@@ -36,7 +36,7 @@ public class Managers : Singleton<Managers>
         Object.RemoveAll();
         Events.RemoveAll();
         Monster.Clear();
-        Resource.Clear();
+        //Resource.Clear();
 
 
     }

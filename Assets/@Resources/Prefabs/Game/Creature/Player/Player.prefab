@@ -102,9 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creatureData: {fileID: 11400000, guid: 294159585ad6afc449300646ffdfa891, type: 2}
-  directionVector: {x: 0, y: 0}
-  CurrentExp: 0
-  _root: {fileID: 1142243215866576390}
 --- !u!1 &4379045947225205968
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,10 +172,10 @@ PrefabInstance:
     - target: {fileID: 4768346472352819735, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 17d8e0a10ebd33a4bb114715a2cf5bf5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4768346472352819735, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7204466529143459346, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
       propertyPath: m_Pivot.x
@@ -270,17 +267,6 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 26ffa10eafef1de43b955c9ca29ca1f6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
---- !u!114 &1142243215866576390 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3683785277019262994, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
-  m_PrefabInstance: {fileID: 4379045945310948884}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baea2e9758e554909b2367e396d9c5a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2190446798313000180 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2495971487493202656, guid: 8a020fbbfd15c2240b50ddc6e50482f3, type: 3}
