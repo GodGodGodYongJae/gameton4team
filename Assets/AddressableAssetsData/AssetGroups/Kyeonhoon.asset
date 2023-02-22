@@ -17,16 +17,16 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 9c2467244531b5540a920cfe156ecd11
   m_SerializeEntries:
-  - m_GUID: e791ffb613ddaba4eb93be61a9befdf1
-    m_Address: LevelUpText
+  - m_GUID: d1646bccb661a374088c4e740c0a1cbd
+    m_Address: UI_TitleScene
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 897024395e0a9ac42a9ecf30a030bdd6
-    m_Address: Item_Portion_Normal
+  - m_GUID: 1d576b714af1bb040afcf6330aafce47
+    m_Address: UI_TitleScene_BG2
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: e5ed88728b069694f97fb9ffe360cee4
-    m_Address: Item_RespawnCard
+  - m_GUID: 8c0a1dd553e86874a89458fcdc29bd7d
+    m_Address: UI_TitleScene_BG
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

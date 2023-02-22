@@ -45,8 +45,8 @@ public class SPUM_Prefabs : MonoBehaviour
     // 이름으로 애니메이션 실행
     public void PlayAnimation(string name, Action callback = null){
 
-       // Debug.Log("CODE RUN : "+name);
-        
+        // Debug.Log("CODE RUN : "+name);
+        if (!_anim.enabled) return;
         foreach (var animationName in _nameToHashPair)
         {
             if(animationName.Key.ToLower().Contains(name.ToLower()) ){

@@ -44,6 +44,10 @@ public class TitleScene : BaseScene
                 {
                     var entry = group.entries.ElementAt(i);
                     Type entriType = entry.MainAssetType;
+                    if(entriType == typeof(Texture2D))
+                    {
+                        entriType = typeof(Sprite);
+                    }
 
                     var Resources = typeof(ResourceManager).GetMethod("LoadAsync2");
                     var refs = Resources.MakeGenericMethod(entriType);

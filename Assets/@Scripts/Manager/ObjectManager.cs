@@ -134,14 +134,14 @@ public class ObjectManager
 
             GameObject folder = new GameObject();
             folder.name = "@" + AssetName;
-            folder.transform.parent = _root.transform;
+            folder.transform.SetParent(_root.transform,true);
             folderObjectList.Add(AssetName, folder);
 
             for (int i = 0; i < ammount; i++)
             {
                 GameObject inst = Object.Instantiate(success);
                 inst.SetActive(false);
-                inst.transform.parent = folder.transform;
+                inst.transform.SetParent(folder.transform,true);
                 rtnList.Add(inst);
             }
             poolList.Add(AssetName, rtnList);
@@ -203,7 +203,7 @@ public class ObjectManager
 
             inst = Object.Instantiate(sucess);
             inst.SetActive(false);
-            inst.transform.parent = folder.transform;
+            inst.transform.SetParent(folder.transform,true);
 
             poolList[name].Add(inst);
         });
@@ -245,7 +245,7 @@ public class ObjectManager
         string rtnGoAddressable = rtnGo.name.Replace("(Clone)", "").Trim();
         if (folderObjectList.TryGetValue(rtnGoAddressable, out Parentfolder))
         {
-            rtnGo.transform.parent = Parentfolder.transform;
+            rtnGo.transform.SetParent(Parentfolder.transform,true);
             rtnGo.SetActive(false);
         }
     }

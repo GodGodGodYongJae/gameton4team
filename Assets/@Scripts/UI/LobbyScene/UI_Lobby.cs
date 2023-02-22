@@ -135,10 +135,11 @@ namespace Assets._Scripts.UI.LobbyScene
 
         void OnEnergyPlus()
         {
-            //Managers.PlayFab.SetCurrecy(StringData.Energy, 5,()=> {
-            //    LoadCurrecyData();
-            //});
-            
+            Managers.PlayFab.SetCurrecy(StringData.Energy, 5, () =>
+            {
+                LoadCurrecyData();
+            });
+
         }
         #endregion
 

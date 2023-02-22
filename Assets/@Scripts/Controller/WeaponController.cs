@@ -37,10 +37,9 @@ public class WeaponController
             Object.Destroy(weapon);
         } 
 
-        Managers.Resource.LoadAsync<Texture2D>(type.ToString(), (success) =>
+        Managers.Resource.LoadAsync<Sprite>(type.ToString(), (success) =>
         {
-            Rect rect = new Rect(0, 0, success.width, success.height);
-            spriteRenderer.sprite = Sprite.Create(success, rect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = success;
             box = rHandGo.AddComponent<BoxCollider2D>();
             box.isTrigger = true;
             registered = true;
