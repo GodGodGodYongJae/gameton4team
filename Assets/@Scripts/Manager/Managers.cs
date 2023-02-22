@@ -56,11 +56,13 @@ public class Managers : Singleton<Managers>
 
     private void Update()
     {
-        UpdateAction?.Invoke();
+        if(Time.timeScale > 0)
+            UpdateAction?.Invoke();
     }
     private void FixedUpdate()
     {
-        FixedUpdateAction?.Invoke();
+        if (Time.timeScale > 0)
+            FixedUpdateAction?.Invoke();
     }
 
 }

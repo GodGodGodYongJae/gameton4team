@@ -56,13 +56,15 @@ public class Creature : MonoBehaviour
     }
 
     private int blinkCount = 3;
+    Color blinkRedColor = Color.red;
+    Color blinkClearColor = Color.white;
     protected virtual async UniTaskVoid blinkObject()
     {
         for (int i = 0; i < blinkCount; i++)
         {
-            _sprite.enabled = false;
+            _sprite.color = blinkRedColor;
             await UniTask.Delay(150, cancellationToken: cts.Token);
-            _sprite.enabled = true;
+            _sprite.color = blinkClearColor;
             await UniTask.Delay(150, cancellationToken: cts.Token);
         }
         _sprite.enabled = true;
@@ -70,23 +72,21 @@ public class Creature : MonoBehaviour
 
     private int knockBackStrength = 6, knockBackdelay = 150;
 
-    protected void KnockBack(GameObject sender)
+    public void KnockBack(GameObject sender)
     {
-        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-        if (rigid == null) Debug.LogError("해당 Object에, rigid body가 없습니다." + gameObject.name);
+        if (_rigid == null) Debug.LogError("해당 Object에, rigid body가 없습니다." + gameObject.name);
         ResetKnocback().Forget();
         Vector2 knockBackPos = (transform.position - sender.transform.position).normalized;
         knockBackPos.y += 0.6f;
-        rigid.AddForce(knockBackPos * knockBackStrength, ForceMode2D.Impulse);
+        _rigid.AddForce(knockBackPos * knockBackStrength, ForceMode2D.Impulse);
         ResetKnocback().Forget();
         Managers.Sound.PlaySFX("Hit");
 
     }
     private async UniTaskVoid ResetKnocback()
     {
-        Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         await UniTask.Delay(knockBackdelay, cancellationToken: cts.Token);
-        rigid.velocity = Vector2.zero;
+        _rigid.velocity = Vector2.zero;
     }
     #endregion
 }

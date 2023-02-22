@@ -18,26 +18,26 @@ public class UI_Level : MonoBehaviour
 
     public void Start()
     {
-        Debug.Log("EventRegis");
-        Managers.Events.AddListener(Define.GameEvent.playerExpChange, SETExp);
+        Managers.Events.AddListener(Define.GameEvent.playerExpChange, SetExp);
     }
 
-    private void SETExp(Define.GameEvent eventType, Component Sender, object param)
+    private void SetExp(Define.GameEvent eventType, Component Sender, object param)
     {
 
-        if(eventType == Define.GameEvent.playerExpChange && Utils.EqualSender<Player>(Sender))
+        if(eventType == Define.GameEvent.playerExpChange )
         {
             Player p = (Player)Sender;
             PlayerData data = p.PlayerData;
             string expText = "";
+            float currentExp = (float)param;
             if(data.ExperiencePoint == int.MaxValue)
             {
                 expText = "MAX!";
             }
             else
             {
-                expbar.value = (float)p.CurrentExp / (float)data.ExperiencePoint;
-                expText = p.CurrentExp + " / " + data.ExperiencePoint;
+                expbar.value = currentExp / (float)data.ExperiencePoint;
+                expText = currentExp + " / " + data.ExperiencePoint;
             }
             Exp.text = expText;
             Lv.text = "LV." + data.Level;

@@ -16,7 +16,7 @@ public class WeaponController
     public WeaponController(GameScene gameScene)
     {
         this.gameScene = gameScene;
-        root = gameScene.Player._root;
+        root = gameScene.Player.GetSPUMSpriteList;
         rHandGo =  root._weaponList[2].gameObject;
 
     }

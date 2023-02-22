@@ -97,7 +97,7 @@ public class CameraController : MonoBehaviour
     {
         if(isStop == true)
         {    //camera 포지션 잡기.
-            _cameraPosition.x = (_player.GetPlayerLeft() > 0) ? _player.Speed : -_player.Speed;
+            _cameraPosition.x = (_player.DirectionVector().x > 0) ? _player.Speed : -_player.Speed;
             transform.position = Vector3.Lerp(transform.position, _playerTransform.position + _cameraPosition, Time.deltaTime * _cameraMoveSpeed);
         }
         

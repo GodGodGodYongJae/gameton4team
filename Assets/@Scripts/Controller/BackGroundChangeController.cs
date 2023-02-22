@@ -45,24 +45,14 @@ public class BackGroundChangeController : MonoBehaviour
 
     void ChangeSprite()
     {
-        Debug.Log("test1");
         Debug.Log(Layer_Sprites[backgroundNum * 5].name);
         Layer_Object[0].GetComponent<SpriteRenderer>().sprite = Layer_Sprites[backgroundNum * 5];
 
-        Debug.Log("test2"+ "," + backgroundNum * 5);
         for (int i = 1; i < Layer_Object.Length; i++)
         {
-            Debug.Log("test3"+","+ Layer_Object.Length);
             Sprite changeSprite = Layer_Sprites[backgroundNum * 5 + i];
-
-            Debug.Log("test4" + "," + Layer_Object.Length);
             Layer_Object[i].GetComponent<SpriteRenderer>().sprite = changeSprite;
-
-            Debug.Log("test5" + "," + Layer_Object.Length);
-            Debug.Log("test5-1" + "," + Layer_Object[i].transform.Find("1").name);
             Layer_Object[i].transform.Find("1").GetComponent<SpriteRenderer>().sprite = changeSprite;
-
-            Debug.Log("test6" + "," + Layer_Object.Length);
             Layer_Object[i].transform.Find("2").GetComponent<SpriteRenderer>().sprite = changeSprite;
         }
     }
