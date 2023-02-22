@@ -23,10 +23,10 @@ public abstract class Weapon : MonoBehaviour
     {
 
     }
-    public virtual async UniTaskVoid InitWeapon()
+    public void InitWeapon()
     {
         weaponData.DataInit();
-        await Managers.Object.RegisterObject(weaponData.Effect.name, 5);
+         Managers.Object.RegisterObject(weaponData.Effect.name, 5);
         Attack().Forget();
     }
 

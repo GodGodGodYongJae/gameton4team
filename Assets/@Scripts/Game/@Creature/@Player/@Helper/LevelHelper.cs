@@ -46,7 +46,7 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
         /// <returns></returns>
         private async UniTaskVoid LevelUpText()
         {
-            await Managers.Object.InstantiateAsync("LevelUpText", transform.position);
+            Managers.Object.InstantiateAsync("LevelUpText", transform.position);
         }
 
         /// <summary>

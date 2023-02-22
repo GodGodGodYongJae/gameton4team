@@ -34,7 +34,7 @@ public class LongDistanceWeapon : Weapon
         if (this == null) return;
 
         effectPos = (Vector2)player.transform.position + new Vector2(weaponData.EffectPos.x * direction, weaponData.EffectPos.y);
-        GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
+        GameObject effectGo = Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
         effectGo.transform.localScale = new Vector2(-1 * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
         BulletShot bulletshot = effectGo.GetOrAddComponent<BulletShot>();
         bulletshot.InitBulletData(weaponData, player, this);

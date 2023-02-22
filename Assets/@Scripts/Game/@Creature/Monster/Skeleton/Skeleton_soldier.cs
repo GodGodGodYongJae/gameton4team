@@ -114,7 +114,7 @@ public class Skeleton_soldier : SPUM_Monster
         //float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         //await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
         //float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        //GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, transform.position);
+        //GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, transform.position);
         //bulletGo.transform.localScale = new Vector2(bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         //MonsterBullet bullet = bulletGo.GetOrAddComponent<MonsterBullet>();
         //bullet.InitBulletData(this);
@@ -146,6 +146,6 @@ public class Skeleton_soldier : SPUM_Monster
 
 
     #endregion
-    //        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x + (direction * -0.5f), transform.position.y));
+    //        GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x + (direction * -0.5f), transform.position.y));
 
 }

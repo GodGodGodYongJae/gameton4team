@@ -26,10 +26,10 @@ public class MonsterManager
         List<GameObject> getHealthBarList = Managers.Object.GetPoolObject(StringData.HealthBar);
         if (getHealthBarList == null)
         {
-            await Managers.Object.RegisterObject(StringData.HealthBar, Define.PoolHpBar);
+           Managers.Object.RegisterObject(StringData.HealthBar, Define.PoolHpBar);
         }
 
-        GameObject go = await Managers.Object.InstantiateAsync(AssetName, Spawnpos);
+        GameObject go = Managers.Object.InstantiateAsync(AssetName, Spawnpos);
         Managers.Events.PostNotification(Define.GameEvent.SpawnMonster, null, go.GetComponent<Creature>());
         SpawnedList.AddLast(go.GetComponent<Creature>());
         return go;

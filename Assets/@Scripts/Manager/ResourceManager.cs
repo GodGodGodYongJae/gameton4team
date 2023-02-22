@@ -45,10 +45,21 @@ public class ResourceManager
         };
     }
 
+    public void LoadResource<T>(string key, Action<T> callback = null) where T : UnityEngine.Object
+    {
+        if (_resources.TryGetValue(key, out Object resource))
+        {
+            callback?.Invoke(resource as T);
+            return;
+        }
+    }
+
     public void LoadAsync<T>(string key, Action<T> callback = null) where T: UnityEngine.Object
     {
+
+        Debug.Log(key + "들어옴");
         //캐시 확인.
-        if(_resources.TryGetValue(key, out Object resource))
+        if (_resources.TryGetValue(key, out Object resource))
         {
             callback?.Invoke(resource as T);
             return;
@@ -68,6 +79,7 @@ public class ResourceManager
             HandlesCount--;
         };
     }
+
 
     public void Release(string key)
     {

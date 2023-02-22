@@ -81,10 +81,10 @@ public class GameScene : BaseScene
             await UniTask.NextFrame();
 
         //Player 생성.
-        _playerGo = await Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
+        _playerGo = Managers.Object.InstantiateSingle(StringData.Player, new Vector2(0, 0));
         _player = _playerGo.GetComponent<Player>();
 
-      await Managers.Object.InstantiateSingle("coin", new Vector2(0, 0));
+        Managers.Object.InstantiateSingle("coin", new Vector2(0, 0));
         #region DI
         //무기 DI 
 
@@ -119,7 +119,7 @@ public class GameScene : BaseScene
 
         foreach (var item in _groundGenerator[StageIdx].Grounds)
         {
-            await Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);
+           Managers.Object.RegisterObject(item.name, Define.PoolGroundSize);
         }
         callback?.Invoke();
     }

@@ -214,7 +214,7 @@ public class GroundController
 
     async UniTask<GameObject> CreateGround(Vector2 pos, string name, Action<UniTask> callback = null)
     {
-        GameObject go = await Managers.Object.InstantiateAsync(name, pos);
+        GameObject go = Managers.Object.InstantiateAsync(name, pos);
         grounds.AddLast(go);
         callback?.Invoke(UniTask.CompletedTask);
         return go;

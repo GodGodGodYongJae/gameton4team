@@ -69,7 +69,7 @@ public class WeaponController
         }
        
         await UniTask.WaitUntil(() => { return registered == true; });
-         weapon.InitWeapon().Forget();
+        weapon.InitWeapon();
         return weapon;
     }
 }

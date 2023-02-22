@@ -35,7 +35,7 @@ public class WeaponMelee : Weapon
         
             if (this == null) return;
             Vector2 effectPos = playerPos + new Vector2(weaponData.EffectPos.x * direction, weaponData.EffectPos.y);
-            GameObject effectGo = await Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
+            GameObject effectGo = Managers.Object.InstantiateAsync(weaponData.Effect.name, effectPos);
             effectGo.transform.localScale = new Vector2(effectoDir * effectGo.transform.localScale.x * direction, effectGo.transform.localScale.y);
             PlayerBullet bullet = effectGo.GetOrAddComponent<PlayerBullet>();
             bullet.InitBulletData(weaponData, player);

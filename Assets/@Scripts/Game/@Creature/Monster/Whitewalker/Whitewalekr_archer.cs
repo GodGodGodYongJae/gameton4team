@@ -125,7 +125,7 @@ public class Whitewalekr_archer : SPUM_Monster
     async UniTaskVoid AttackAsync()
     {
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(warning.name, new Vector2(transform.position.x, transform.position.y + 2.5f));
+        GameObject bulletGo = Managers.Object.InstantiateAsync(warning.name, new Vector2(transform.position.x, transform.position.y + 2.5f));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         warning bullet = bulletGo.GetOrAddComponent<warning>();
         bullet.InitBulletData(this);
@@ -138,7 +138,7 @@ public class Whitewalekr_archer : SPUM_Monster
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
         await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
-        GameObject bulletGo1 = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.3f));
+        GameObject bulletGo1 = Managers.Object.InstantiateAsync(arrow.name, new Vector2(transform.position.x, transform.position.y + 0.3f));
         bulletGo1.transform.localScale = new Vector2(-1 * bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
         MonsterBulletParabolaArrowShot bullet1 = bulletGo1.GetOrAddComponent<MonsterBulletParabolaArrowShot>();
         bullet1.InitBulletData(this);

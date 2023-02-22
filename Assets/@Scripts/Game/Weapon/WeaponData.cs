@@ -45,7 +45,7 @@ public class WeaponData : ScriptableObject
     public string DisplayName => displayName;
     public async UniTask<GameObject> EffectSpawnAsync(Vector2 pos)
     {
-        GameObject effect = await Managers.Object.InstantiateAsync(skilEffect.name, pos);
+        GameObject effect = Managers.Object.InstantiateAsync(skilEffect.name, pos);
         return effect;
     }
 

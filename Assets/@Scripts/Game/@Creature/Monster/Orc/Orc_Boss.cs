@@ -120,12 +120,12 @@ public class Orc_Boss : SPUM_Monster
         //몬스터 공격 모션이 나오는 동안 비동기 처리해서 다른 행동 하지 못하게 만들기
 
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        GameObject bulletGo = await Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, player.transform.position.y));
+        GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, player.transform.position.y));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletStunShot bullet = bulletGo.GetOrAddComponent<MonsterBulletStunShot>();
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
-        GameObject bulletGo1 = await Managers.Object.InstantiateAsync(arrow2.name, new Vector2(bulletGo.transform.position.x, bulletGo.transform.position.y));
+        GameObject bulletGo1 = Managers.Object.InstantiateAsync(arrow2.name, new Vector2(bulletGo.transform.position.x, bulletGo.transform.position.y));
         bulletGo1.transform.localScale = new Vector2(-1 * bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
         MonsterBulletStunShot bullet1 = bulletGo1.GetOrAddComponent<MonsterBulletStunShot>();
         bullet.InitBulletData(this);
