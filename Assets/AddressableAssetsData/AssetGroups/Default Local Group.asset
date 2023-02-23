@@ -20,8 +20,7 @@ MonoBehaviour:
   - m_GUID: 1bd7676ae6aa053468793bf86d81e303
     m_Address: UI_GameScene
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
+    m_SerializedLabels: []
   - m_GUID: 1d1836c79bb7e6c44916161b2ee8f8b6
     m_Address: Players
     m_ReadOnly: 0
@@ -300,8 +299,7 @@ MonoBehaviour:
   - m_GUID: 7861d11ca406b2c41951df81f2ebc218
     m_Address: UI_Lobby
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
+    m_SerializedLabels: []
   - m_GUID: ea525d7bff8a2b24da3800a6352d4684
     m_Address: SoundData
     m_ReadOnly: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ public class UI_TitleScene : UI_Scene
 
     private CanvasScaler _canvas;
     private PlayFab_Login login;
+    public TextMeshProUGUI statusText;
     public override bool Init()
     {
         _canvas = this.GetComponent<CanvasScaler>();
@@ -31,6 +33,7 @@ public class UI_TitleScene : UI_Scene
 
         BindObject(typeof(LoadAssetGameObjects));
         BindText(typeof(Texts));
+        statusText = GetText((int)Texts.StartText);
         login = gameObject.GetOrAddComponent<PlayFab_Login>();
 
         GetObject((int)LoadAssetGameObjects.BG).BindEvent(OnClickBG);
@@ -46,11 +49,7 @@ public class UI_TitleScene : UI_Scene
             });
         }
 
-        login.OnLogin(() =>
-        {
-            GetText((int)Texts.StartText).text = "Tap To Start!";
-       
-        });
+
         
 
         //Screen.SetResolution(Screen.width, (Screen.width / 9) * 16, true);
@@ -76,8 +75,14 @@ public class UI_TitleScene : UI_Scene
 
     public void ReadyToStart()
     {
-        _isLoaded = true;
-        GetText((int)Texts.StartText).enabled = true;
+        login.OnLogin(() =>
+        {
+            GetText((int)Texts.StartText).text = "Tap To Start!";
+            _isLoaded = true;
+            GetText((int)Texts.StartText).enabled = true;
+
+        });
+
     }
 
     #region EventHandler

@@ -16,7 +16,7 @@ public class UI_Level : MonoBehaviour
     private Text Exp;
 
 
-    public void Start()
+    public void Awake()
     {
         Managers.Events.AddListener(Define.GameEvent.playerExpChange, SetExp);
     }

@@ -25,26 +25,20 @@ public class TitleScene : BaseScene
         Managers.UI.ShowSceneUI<UI_TitleScene>(callback: (titleSceneUI) =>
         {
             _titleSceneUI = titleSceneUI;
+            LoadDatas().Forget();
+            WaitLoad().Forget();
         });
 
 
-        LoadDatas().Forget();
-        WaitLoad().Forget();
+
         return true;
     }
     int loadCount = 0;
 
     async UniTaskVoid WaitLoad()
     {
-        //while (Managers.Data.Loaded() == false)
-        //    yield return null;
-
-        while (Managers.UI.SceneUI == null && LoadSuccess == false)
-            await UniTask.NextFrame();
-
-        //while (Managers.Game.IsLoaded == false)
-        //    yield return null;
-
+        await UniTask.WaitUntil(() => { return LoadSuccess == true; });
+        Debug.Log("Load Complated");
             _titleSceneUI.ReadyToStart();
     }
     // 어드레서블의 Label을 얻어올 수 있는 필드.
@@ -68,17 +62,16 @@ public class TitleScene : BaseScene
         {
             string Key = _locations[i].PrimaryKey;
             Type type = _locations[i].ResourceType;
-            if (type == typeof(Texture2D))
-            {
-                type = typeof(Sprite);
-            }
+            if (type == typeof(Texture2D)) { loadCount++; continue; }
+         
             var Resources = typeof(ResourceManager).GetMethod("LoadAsync2");
             var refs = Resources.MakeGenericMethod(type);
-            bool loadWait = false;
+            bool WaitLoadData = false;
+            _titleSceneUI.statusText.text = "Wait! Load [" + Key + "] Data";
             refs.Invoke(Managers.Resource, new object[] { Key,
-                        (Action)(() => { loadCount++;loadWait = true; })
-                    });
-            await UniTask.WaitUntil(() => { return loadWait == true; });
+                        (Action)(() => { loadCount++; WaitLoadData = true; })
+                    });;
+            await UniTask.WaitUntil(() => { return WaitLoadData == true; });
         }
         await UniTask.WaitUntil(() => { return _locations.Count <= loadCount; });
         //var location = _locations[UnityEngine.Random.Range(0, _locations.Count)];

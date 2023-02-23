@@ -15,7 +15,7 @@ public class SwipeController
     {
         touchBeganPos = Vector2.zero;
         touchDif = Vector2.zero; ;
-        swipeSensitivity = 120.0f;
+        swipeSensitivity = 70.0f;
     }
 
     private bool IsPointerOverUIObject()
@@ -45,6 +45,7 @@ public class SwipeController
                 {
                     ActionKey = Player.PlayerActionKey.Jump;
                     Managers.Events.PostNotification(Define.GameEvent.playerEvents, null, ActionKey);
+                    return;
                 }
                
             }

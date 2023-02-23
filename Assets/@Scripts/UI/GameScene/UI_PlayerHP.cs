@@ -10,7 +10,7 @@ public class UI_PlayerHP : MonoBehaviour
     Slider slider;
     public Text text;
     float maxVal, curVal;
-    void Start()
+    void Awake()
     {
         slider = GetComponent<Slider>();
         Managers.Events.AddListener(Define.GameEvent.playerHealthChange, ChangePlayerHP);

@@ -34,6 +34,9 @@ public class SPUM_Monster : Monster
     protected StateMachine<States> fsm;
 
     protected Collider2D Attackbox;
+
+    private Color blinkRedColor = Color.red;
+    private Color blinkClearColor = Color.white;
     protected override void Awake()
     {
         base.Awake();
@@ -86,9 +89,15 @@ public class SPUM_Monster : Monster
             List<SpriteRenderer> spriteList = item;
             foreach (var item2 in spriteList)
             {
-                item2.enabled = enable;
+                item2.color = returnToBlinkColor(enable);
             }
+
         }
+    }
+
+    private Color returnToBlinkColor(bool cur)
+    {
+        return cur ?  blinkClearColor:blinkRedColor;
     }
 }
 

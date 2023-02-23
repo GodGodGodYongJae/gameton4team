@@ -52,10 +52,11 @@ public class GameScene : BaseScene
         {
             _gameSceneUI = gameSceneUI;
             _gameSceneUI.InitGameScene(this);
+            WaitLoad().Forget();
         });
 
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
-        WaitLoad().Forget();
+
         return true;
     }
 
