@@ -245,7 +245,7 @@ public class ObjectManager
         string rtnGoAddressable = rtnGo.name.Replace("(Clone)", "").Trim();
         if (folderObjectList.TryGetValue(rtnGoAddressable, out Parentfolder))
         {
-            rtnGo.transform.SetParent(Parentfolder.transform,true);
+            rtnGo.transform.SetParent(Parentfolder.transform);
             rtnGo.SetActive(false);
         }
     }

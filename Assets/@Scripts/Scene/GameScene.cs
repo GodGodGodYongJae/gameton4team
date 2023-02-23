@@ -31,7 +31,7 @@ public class GameScene : BaseScene
     public Player Player { get { return _player; } }
     
     GroundController _groundController;
-
+    CameraController cameraController;
     public GroundController GroundContoroller => _groundController;
     public WeaponSlotController WeaponSlotController => weaponSlotController;
     public WeaponController WeaponController => weaponController;
@@ -66,10 +66,13 @@ public class GameScene : BaseScene
             if (_groundGenerator.Length - 1 > StageIdx)
                 StageIdx++;
 
+            cameraController.FadeInOut(
+                () => {
+                    //TODO UI나 무기 교체 로직 다 진행하면 됨.
+                    this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx]));
+                });
 
-            //TODO UI나 무기 교체 로직 다 진행하면 됨.
-
-            this.WaitLoadGround(() => Managers.Events.PostNotification(Define.GameEvent.stageClear, this, _groundGenerator[StageIdx]));
+           
         }
 
     }
@@ -92,9 +95,9 @@ public class GameScene : BaseScene
         //지형 DI
         _groundController = new GroundController(this, _groundGenerator[StageIdx]);
         //카메라 DI
-        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+        cameraController = Camera.main.GetComponent<CameraController>();
         cameraController.Init(this);
-
+        cameraController.FadeInOut();
         #endregion
 
         //플레이어 무기 슬롯 & 실제 등록.

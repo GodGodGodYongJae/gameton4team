@@ -1,14 +1,17 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.AddressableAssets;
-using UnityEditor.AddressableAssets.Settings;
-using UnityEngine;
-using UnityEngine.AddressableAssets;
-using static Define;
 
+using UnityEngine;
+using static Define;
+using UnityEngine.AddressableAssets;
+using System.Collections.Generic;
+using UnityEngine.ResourceManagement.ResourceLocations;
+using static UnityEngine.EventSystems.EventTrigger;
+
+#if UNITY_EDITOR
+using UnityEditor.AddressableAssets;
+#endif
 
 public class TitleScene : BaseScene
 {
@@ -25,14 +28,66 @@ public class TitleScene : BaseScene
         });
 
 
-        DownloadAssetsAsync().Forget();
+        LoadDatas().Forget();
         WaitLoad().Forget();
         return true;
     }
     int loadCount = 0;
+
+    async UniTaskVoid WaitLoad()
+    {
+        //while (Managers.Data.Loaded() == false)
+        //    yield return null;
+
+        while (Managers.UI.SceneUI == null && LoadSuccess == false)
+            await UniTask.NextFrame();
+
+        //while (Managers.Game.IsLoaded == false)
+        //    yield return null;
+
+            _titleSceneUI.ReadyToStart();
+    }
+    // 어드레서블의 Label을 얻어올 수 있는 필드.
+    public AssetLabelReference assetLabel;
+
+    private IList<IResourceLocation> _locations;
+    bool LoadSuccess = false;
+    private async UniTaskVoid LoadDatas()
+    {
+        bool waitLoad = false;
+        Addressables.LoadResourceLocationsAsync(assetLabel.labelString).Completed +=
+            (handle) =>
+            {
+                _locations = handle.Result;
+                waitLoad = true;
+            };
+
+        await UniTask.WaitUntil(() => { return waitLoad == true; });
+
+        for (int i = 0; i < _locations.Count; i++)
+        {
+            string Key = _locations[i].PrimaryKey;
+            Type type = _locations[i].ResourceType;
+            if (type == typeof(Texture2D))
+            {
+                type = typeof(Sprite);
+            }
+            var Resources = typeof(ResourceManager).GetMethod("LoadAsync2");
+            var refs = Resources.MakeGenericMethod(type);
+            bool loadWait = false;
+            refs.Invoke(Managers.Resource, new object[] { Key,
+                        (Action)(() => { loadCount++;loadWait = true; })
+                    });
+            await UniTask.WaitUntil(() => { return loadWait == true; });
+        }
+        await UniTask.WaitUntil(() => { return _locations.Count <= loadCount; });
+        //var location = _locations[UnityEngine.Random.Range(0, _locations.Count)];
+        LoadSuccess = true;
+    }
+
+#if UNITY_EDITOR
     private async UniTaskVoid DownloadAssetsAsync()
     {
-
         var setting = AddressableAssetSettingsDefaultObject.Settings;
         if (setting != null)
         {
@@ -44,37 +99,21 @@ public class TitleScene : BaseScene
                 {
                     var entry = group.entries.ElementAt(i);
                     Type entriType = entry.MainAssetType;
-                    if(entriType == typeof(Texture2D))
+                    if (entriType == typeof(Texture2D))
                     {
                         entriType = typeof(Sprite);
                     }
 
                     var Resources = typeof(ResourceManager).GetMethod("LoadAsync2");
                     var refs = Resources.MakeGenericMethod(entriType);
-                    refs.Invoke(Managers.Resource, new object[] { entry.address, 
-                        (Action)(() => { loadCount++; }) 
+                    refs.Invoke(Managers.Resource, new object[] { entry.address,
+                        (Action)(() => { loadCount++; })
                     });
 
                 }
                 await UniTask.WaitUntil(() => { return group.entries.Count <= loadCount; });
-
-               
             }
         }
-       
-   
     }
-    async UniTaskVoid WaitLoad()
-    {
-        //while (Managers.Data.Loaded() == false)
-        //    yield return null;
-
-        while (Managers.UI.SceneUI == null)
-            await UniTask.NextFrame();
-
-        //while (Managers.Game.IsLoaded == false)
-        //    yield return null;
-
-            _titleSceneUI.ReadyToStart();
-    }
+#endif
 }

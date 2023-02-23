@@ -52,7 +52,6 @@ public class Monster : Creature
         Collider2D box = GetComponent<Collider2D>();
         Vector2 pos = Vector2.zero;
         HPCanvas = Managers.Object.InstantiateAsync(StringData.HealthBar, pos);
-        //pos += new Vector2(box.bounds.extents.x + box.bounds.center.x, box.bounds.extents.y + box.bounds.center.y);
         HPCanvas.transform.parent = this.transform;
         HPCanvas.transform.position = pos;
         RectTransform rect = HPCanvas.GetComponent<RectTransform>();

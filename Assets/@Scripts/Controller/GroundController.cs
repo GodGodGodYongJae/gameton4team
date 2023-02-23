@@ -28,13 +28,14 @@ public class GroundController
 
     GroundGenerator GroundGenerator;
     bool isBossSpawned = false;
-
+    CameraController cam;
     // 생성자 GameScene DI 주입.
     public GroundController(GameScene gameScene, GroundGenerator GroundGenerator)
     {
         this.gameScene = gameScene;
         this.GroundGenerator = GroundGenerator;
         ChangeGroundGenerator(GroundGenerator);
+        cam = Camera.main.GetComponent<CameraController>();
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
     }
 
@@ -44,13 +45,13 @@ public class GroundController
     {
         int idx = 0;
         Vector2 pos = new Vector2(0, Define.GroundPosY);
-        await CreateGround(pos, groundList[idx].name);
+         CreateGround(pos, groundList[idx].name);
         LinkedListNode<GameObject> iter = grounds.First;
 
         GameObject go;
         for (int i = 1; i < Define.PoolGroundSize; i++)
         {
-            go = await CreateGround(pos, groundList[idx].name);
+            go = CreateGround(pos, groundList[idx].name);
             pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value),pos.y);
             go.transform.position = pos;
             iter = iter.Next;
@@ -66,10 +67,10 @@ public class GroundController
         float initPosX = this.grounds.First.Next.Next.Value.transform.position.x;
         float initPosY = this.grounds.First.Next.Next.Value.transform.position.y;
         gameScene.Player.InitPosition(initPosX,initPosY+2);
-        CameraController cam = Camera.main.GetComponent<CameraController>();
+        
         cam.SetPositionX(initPosX);
         Managers.FixedUpdateAction += CheckNextBound;
-
+        cam.FadeInOut();
         callback?.Invoke();
     }
 
@@ -83,7 +84,7 @@ public class GroundController
         {
             if (chatperSize > 0)
             {
-                PushNextGround().Forget();
+                PushNextGround();
                 return;
             }
   
@@ -92,7 +93,7 @@ public class GroundController
                 if(isBossSpawned == false)
                 {
                     isBossSpawned = true;
-                    PushNextGround().Forget();
+                    PushNextGround();
                 }
                 else
                 {
@@ -108,7 +109,7 @@ public class GroundController
         }
   
     }
-    async UniTaskVoid PushNextGround()
+    void PushNextGround()
     {
         CurrentGroundIdx();
         previousGround.SetActive(false);
@@ -120,7 +121,7 @@ public class GroundController
 
         LinkedListNode<GameObject> iter = grounds.Last;
         Vector2 pos = iter.Value.transform.position;
-        GameObject go = await CreateGround(pos, groundList[idx].name);
+        GameObject go = CreateGround(pos, groundList[idx].name);
         pos = new Vector2(SpawnPosMath(iter.Value, iter.Next.Value), pos.y);
         go.transform.position = pos;
         chatperSize -= ExtendSize(go);
@@ -212,7 +213,7 @@ public class GroundController
         return 0;
     }
 
-    async UniTask<GameObject> CreateGround(Vector2 pos, string name, Action<UniTask> callback = null)
+    GameObject CreateGround(Vector2 pos, string name, Action<UniTask> callback = null)
     {
         GameObject go = Managers.Object.InstantiateAsync(name, pos);
         grounds.AddLast(go);
@@ -229,7 +230,7 @@ public class GroundController
             this.ChangeGroundGenerator(GroundGenerator);
 
             Managers.Sound.PlaySFX("Weapon");
-            Init(() => { Managers.Object.GetSingularObjet("coin").gameObject.SetActive(true); }).Forget();  
+            Init(() => { Managers.Object.GetSingularObjet("coin").gameObject.SetActive(true);}).Forget();  
 
         }
         

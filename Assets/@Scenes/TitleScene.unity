@@ -656,6 +656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneType: 3
+  assetLabel:
+    m_LabelString: default
 --- !u!4 &2104249474
 Transform:
   m_ObjectHideFlags: 0

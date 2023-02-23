@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
 {
@@ -32,6 +33,13 @@ public class CameraController : MonoBehaviour
     Transform _prevWall;
     Transform _nextWall;
     BoxCollider2D Cambox;
+
+    //[SerializeField]
+    //PostProcessingProfile ppf;
+    [SerializeField]
+    Light2D _light;
+
+
     public void Init(GameScene gameScene)
     {
        _cam = this.GetComponent<Camera>();
@@ -51,6 +59,7 @@ public class CameraController : MonoBehaviour
        Cambox.isTrigger = true;
        Cambox.size = new Vector2(_width,_height)*2;
 
+        _light.intensity = 0;
        Managers.FixedUpdateAction += CameraUpdate;//LimitCameraArea; 
 
     }
@@ -135,5 +144,21 @@ public class CameraController : MonoBehaviour
         Gizmos.DrawWireCube(_center, _mapSize * 2);
     }
 
+    /// <summary>
+    /// 페이드 인 아웃
+    /// </summary>
+    public void FadeInOut(Action callback = null)
+    {
+        bool fade = (_light.intensity > 0) ? true : false;
+        
+        if(fade)
+        {
+            DOTween.To(() => _light.intensity, x => _light.intensity = x, 0, 0.5f).OnComplete(() => { callback?.Invoke(); });
+        }
+        else
+        {
+            DOTween.To(() => _light.intensity, x => _light.intensity = x, 1, 2f).OnComplete(() => { callback?.Invoke(); }); ;
+        }
 
+    }
 }
