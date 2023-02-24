@@ -123,12 +123,12 @@ public class Orc_Boss : SPUM_Monster
         GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, player.transform.position.y));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
         MonsterBulletStunShot bullet = bulletGo.GetOrAddComponent<MonsterBulletStunShot>();
+        bullet.InitBulletData(this);
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         GameObject bulletGo1 = Managers.Object.InstantiateAsync(arrow2.name, new Vector2(bulletGo.transform.position.x, bulletGo.transform.position.y));
         bulletGo1.transform.localScale = new Vector2(-1 * bulletGo1.transform.localScale.x * Bulletdirection, bulletGo1.transform.localScale.y);
         MonsterBulletStunShot bullet1 = bulletGo1.GetOrAddComponent<MonsterBulletStunShot>();
-        bullet.InitBulletData(this);
         bullet1.InitBulletData(this);
 
         //await UniTask.Delay((int)endFrameTime, cancellationToken: cts.Token);
