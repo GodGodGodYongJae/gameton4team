@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Remoting.Channels;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -68,8 +69,8 @@ namespace Assets._Scripts.UI.GameScene
               AdmobQuantity--;
               Managers.PlayFab.SetCurrecy(StringData.DailyAdmob, -1);
               this.gameObject.SetActive(false);
-              Managers.Sound.StopBGM();
-              Managers.Sound.PlayBGM("InGame2");
+              CurrentStage.bgm();
+
           });
             
         }
@@ -80,8 +81,7 @@ namespace Assets._Scripts.UI.GameScene
             respawnCardItem.Use();
             RespawnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("InGame2");
+            CurrentStage.bgm();
         }
     }
 }

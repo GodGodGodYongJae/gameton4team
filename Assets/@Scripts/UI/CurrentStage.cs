@@ -7,12 +7,13 @@ public class CurrentStage : MonoBehaviour
 {
     Text text;
     public int currentStage;
+    public static Action bgm;
     private void Start()
     {
         currentStage = 1;
         text = GetComponent<Text>();
         Managers.Events.AddListener(Define.GameEvent.stageClear, StageClear);
-
+        bgm = () => { StageBgmChange(); };
     }
 
     private void StageClear(Define.GameEvent eventType, Component Sender, object param)
@@ -41,6 +42,25 @@ public class CurrentStage : MonoBehaviour
         else if (currentStage == 7)
         {
             
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame3");
+        }
+    }
+
+    public void RespawnBgmChange()
+    {
+        if(currentStage <= 3)
+        {
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame1");
+        }
+        else if(currentStage <= 6)
+        {
+            Managers.Sound.StopBGM();
+            Managers.Sound.PlayBGM("InGame2");
+        }
+        else if(currentStage == 7)
+        {
             Managers.Sound.StopBGM();
             Managers.Sound.PlayBGM("InGame3");
         }
