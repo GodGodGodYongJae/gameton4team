@@ -34,9 +34,12 @@ public class SPUM_SpriteList : MonoBehaviour
     public List<string> _weaponListString = new List<string>();
     public List<string> _backListString = new List<string>();
 
+
+    public bool isLoadComplated = false;
     private void Awake()
     {
         SyncList();
+        isLoadComplated = true;
     }
 
     public void Reset()

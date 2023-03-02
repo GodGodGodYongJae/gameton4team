@@ -16,11 +16,17 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
         public SPUM_SpriteList root;
         private const int blinkCount = 3;
         private Color blinkRedColor = Color.red;
-        private Color blinkClearColor = Color.white;
+        private Dictionary<SpriteRenderer,Color> blinkOriginColorList = new Dictionary<SpriteRenderer,Color>();
         private AudioClip respawnClip;
-        private Color returnToBlinkColor(bool cur)
+        private Color returnToBlinkColor(bool cur,SpriteRenderer spriteId)
         {
-            return cur ? blinkRedColor : blinkClearColor;
+            Color color = Color.white;
+            if (blinkOriginColorList.ContainsKey(spriteId))
+            {
+                color = blinkOriginColorList[spriteId];
+            }
+           
+            return cur ? blinkRedColor : color ;
         }
         #endregion
         public DamageHelper(Player player) : base(player)
@@ -29,6 +35,26 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
             PostEventHp();
         }
 
+        public void InitResource()
+        {
+            List<List<SpriteRenderer>> AllSpriteList = root.AllSpriteList;
+            foreach (var item in AllSpriteList)
+            {
+                List<SpriteRenderer> spriteList = item;
+                foreach (var item2 in spriteList)
+                {
+
+                    try
+                    {
+                        blinkOriginColorList.Add(item2, item2.color);
+                    }
+                    catch
+                    {
+                    }
+                   
+                }
+            }
+        }
         #region 데미지 이벤트
 
         public void Damage(float Dmg, Creature Sender)
@@ -72,7 +98,7 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
                     List<SpriteRenderer> spriteList = item;
                     foreach (var item2 in spriteList)
                     {
-                        item2.color = returnToBlinkColor(spriteColor);
+                        item2.color = returnToBlinkColor(spriteColor,item2);
                     }
                 }
                 await UniTask.Delay(150);

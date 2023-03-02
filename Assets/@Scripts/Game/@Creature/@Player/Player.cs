@@ -39,7 +39,11 @@ public class Player : Creature
         HelperInit();
 
     }
-
+    private void Start()
+    {
+        DamageHelper d = (DamageHelper)PlayerHelper[PlayerHelperKey.Damage];
+        d.InitResource();
+    }
     public void Respawn()
     {
         IDamageHelper helper = (IDamageHelper)PlayerHelper[PlayerHelperKey.Damage];
