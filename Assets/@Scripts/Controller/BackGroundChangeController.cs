@@ -32,13 +32,13 @@ public class BackGroundChangeController : MonoBehaviour
             int currentStage = gameScene.StageIndex;
 
             if (currentStage == 1)
-                Stage1();
+                StageChange();
             else if (currentStage == 2)
-                Stage1();
+                StageChange();
             else if (currentStage == 4)
-                Stage1();
+                StageChange();
             else if (currentStage == 6)
-                Stage1();
+                StageChange();
 
         }
     }
@@ -57,7 +57,8 @@ public class BackGroundChangeController : MonoBehaviour
         }
     }
 
-    public void Stage1()
+
+    public void StageChange()
     {
         backgroundNum = backgroundNum + 1;
         ChangeSprite();

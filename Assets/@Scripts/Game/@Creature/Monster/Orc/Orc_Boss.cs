@@ -1,13 +1,9 @@
 using Assets._Scripts.Game.Weapon;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
+
 using MonsterLove.StateMachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UniRx;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class Orc_Boss : SPUM_Monster
@@ -115,12 +111,12 @@ public class Orc_Boss : SPUM_Monster
         float frameTime = (attackAnimSync / 60f) * 1000;
         float endFrameTime = (sPUM_Prefab.GetAnimFrmae(attackString) / 60f) * 1000f - frameTime;
         await UniTask.Delay((int)frameTime, cancellationToken: cts.Token);
-        //¸ó½ºÅÍ °ø°Ý ¸ð¼ÇÀÌ ³ª¿À´Â µ¿¾È ºñµ¿±â Ã³¸®ÇØ¼­ ´Ù¸¥ Çàµ¿ ÇÏÁö ¸øÇÏ°Ô ¸¸µé±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ñµ¿±ï¿½ Ã³ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ù¸ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
         float Bulletdirection = Mathf.Clamp(transform.localScale.x, -1, 1);
-        GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, player.transform.position.y));
+        GameObject bulletGo = Managers.Object.InstantiateAsync(arrow.name, new Vector2(player.transform.position.x, -2.4f));
         bulletGo.transform.localScale = new Vector2(-1 * bulletGo.transform.localScale.x * Bulletdirection, bulletGo.transform.localScale.y);
-        MonsterBulletStunShot bullet = bulletGo.GetOrAddComponent<MonsterBulletStunShot>();
+        MonsterBulletShot bullet = bulletGo.GetOrAddComponent<MonsterBulletShot>();
         bullet.InitBulletData(this);
 
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
