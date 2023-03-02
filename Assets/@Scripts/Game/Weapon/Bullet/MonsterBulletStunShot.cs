@@ -15,7 +15,6 @@ namespace Assets._Scripts.Game.Weapon
         private float AttackDuration = 3000;
         private float direction = 0;
         float range = 5;
-        Player player;
 
         public void InitBulletData(Monster monster)
         {
@@ -55,7 +54,7 @@ namespace Assets._Scripts.Game.Weapon
 
             if (creature.GetType == Creature.Type.Player)
             {
-                player = Managers.Object.GetSingularObjet(StringData.Player).GetComponent<Player>();
+                
                 creature.Damage(Damage, monster);
 
             }

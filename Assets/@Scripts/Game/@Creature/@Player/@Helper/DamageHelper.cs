@@ -17,6 +17,7 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
         private const int blinkCount = 3;
         private Color blinkRedColor = Color.red;
         private Color blinkClearColor = Color.white;
+        private AudioClip respawnClip;
         private Color returnToBlinkColor(bool cur)
         {
             return cur ? blinkRedColor : blinkClearColor;
@@ -82,6 +83,7 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
         private void Death()
         {
             Time.timeScale = 0;
+            respawnClip = Managers.Sound.CurrentMusicClip;
             Managers.Events.PostNotification(Define.GameEvent.playerEvents, player, PlayerActionKey.Death);
             Managers.Sound.PlaySFX("Death");
             Managers.Sound.PlayBGM("Death_bgm");
@@ -112,6 +114,7 @@ namespace Assets._Scripts.Game._Creature._Player._Helper
         {
             Time.timeScale = 1;
             AddHp(playerData.MaxHP);
+            Managers.Sound.PlayBGM(respawnClip);
         }
 
 

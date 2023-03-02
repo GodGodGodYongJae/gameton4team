@@ -62,6 +62,7 @@ public class UI_GameScene : UI_Scene
 
     public GameObject WeaponSelectObj;
     public List<GameObject> CardSlotList;
+    public SelectWeaponUI selectWeaponUI;
     public override bool Init()
     {
         canvas = this.GetComponent<Canvas>();
@@ -92,7 +93,7 @@ public class UI_GameScene : UI_Scene
         Managers.Events.AddListener(Define.GameEvent.playerEvents, UIEvent);
 
         ButtonSet();
-        SelectWeaponUI selectWeaponUI = new SelectWeaponUI(this);
+        selectWeaponUI = new SelectWeaponUI(this);
         return true;
     }
     //임시 데이터 넣기. 나중에 PlayFab 에서 아이템 이나 Equip Manager가 만들어지면 삭제 

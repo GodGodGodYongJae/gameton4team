@@ -18,7 +18,6 @@ public class Orc_Boss : SPUM_Monster
     public float direction;
     protected override void Awake()
     {
-        //arrow = GetComponent<GameObject>();
         base.Awake();
         fsm = new StateMachine<States>(this);
     }
@@ -78,7 +77,6 @@ public class Orc_Boss : SPUM_Monster
                 {
                     moveTime = monsterData.MovementTime;
                     attackDealy = monsterData.AttackDealy;
-                    Debug.Log("d");
                     fsm.ChangeState(States.ATTACK);
                 }
                 else

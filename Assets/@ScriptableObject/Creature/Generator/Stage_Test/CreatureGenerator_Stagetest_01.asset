@@ -13,9 +13,5 @@ MonoBehaviour:
   m_Name: CreatureGenerator_Stagetest_01
   m_EditorClassIdentifier: 
   spawnMonsterList:
-  - spawnObj: {fileID: 7259187421418317452, guid: 782ad7ee690a5b1448834541c062dfd6, type: 3}
-    spawnPos: {x: -4, y: 3}
-  - spawnObj: {fileID: 1501808845033141160, guid: e74241e85d1817a4f8872244ac6bf61f, type: 3}
-    spawnPos: {x: -1, y: 3}
-  - spawnObj: {fileID: 2288193139745546878, guid: 8eaf630ae4bf36041a098a63246e45d4, type: 3}
+  - spawnObj: {fileID: 8240783996770576200, guid: 1ff94eaaa4f361b4aa7bc460bfb87b2d, type: 3}
     spawnPos: {x: 4, y: 3}

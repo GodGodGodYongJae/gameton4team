@@ -108,7 +108,7 @@ public class GameScene : BaseScene
         WeaponSlotController.NewWeapon(weaponSlot);
 
         _gameSceneUI.SyncInventoryInfo();
-        //_gameSceneUI.OpenWeaponSelectBox().Forget();
+        //_gameSceneUI.selectWeaponUI.OpenWeaponSelectBox().Forget();
         Managers.Sound.PlayBGM("InGame1");
 
          //지형 등록

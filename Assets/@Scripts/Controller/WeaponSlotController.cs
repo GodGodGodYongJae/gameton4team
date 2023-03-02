@@ -52,13 +52,7 @@ namespace Assets._Scripts.Controller
                 ChangeSlotWeapon(CurrentWeaponSlot, slot);
             Debug.Log(Slot.Count + "SLot Count");
         }
-        public void testFunc()
-        {
-            for (int i = 0; i < Slot.Count; i++)
-            {
-                Debug.Log(Slot[i].Type+"CurrentSlot ");
-            }
-        }
+
         /// <summary>
         /// 해당 슬롯에 해당 Type의 무기로 교체
         /// </summary>

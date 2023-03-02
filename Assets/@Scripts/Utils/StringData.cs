@@ -40,8 +40,8 @@ public class StringData
     {
         private const string _respwan = "ca-app-pub-8904224703245079/8096563976";
         public static string Respawn => _respwan;
-        private const string _portion = "ca-app-pub-8904224703245079/5188538458";
-        public static string Portion => _portion;
 
+        private const string _energy = "ca-app-pub-8904224703245079/1682942676";
+        public static string Energy => _energy;
     }
 }

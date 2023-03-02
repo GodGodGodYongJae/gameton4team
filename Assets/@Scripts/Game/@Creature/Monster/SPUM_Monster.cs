@@ -35,8 +35,8 @@ public class SPUM_Monster : Monster
 
     protected Collider2D Attackbox;
 
-    private Color blinkRedColor = Color.red;
-    private Color blinkClearColor = Color.white;
+    protected Color blinkRedColor = Color.red;
+    protected Color blinkClearColor = Color.white;
     protected override void Awake()
     {
         base.Awake();

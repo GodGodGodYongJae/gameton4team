@@ -25,14 +25,15 @@ public class UI_ShopSlot : MonoBehaviour
     [SerializeField]
     int rewardQuantity;
 
-    public void CreateInit(string itemId,string price, string title, Sprite sprite)
+    private string admobCode;
+    public void CreateInit(string itemId,string price, string title,string AdmobCode ,Sprite sprite)
     {
         this.itemId = itemId;
         BuyButtonText.text = price;
         this.price = int.Parse(price);
         TitleText.text = title;
         Image.sprite = sprite;
-
+        admobCode = AdmobCode;
         haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
         if(isRewardButton == true)
         {
@@ -45,11 +46,11 @@ public class UI_ShopSlot : MonoBehaviour
     {
         if (isRewardLoad == true) return;
         isRewardLoad = true;
-        await Managers.Admob.RequestAndLoadRewardedAd(StringData.AdMob.Portion, () => {
+        await Managers.Admob.RequestAndLoadRewardedAd(admobCode, () => {
              Managers.PlayFab.AddItemInventory(itemId, rewardQuantity ,() => {
-                 haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
+                 haveQuantityText.text = ( 1 + Managers.PlayFab.FindItemQuantity(itemId)).ToString();
                  isRewardLoad = false;
-            });
+             });
         });
         //await UniTask.WaitUntil(() => isRewardLoad == false);
 

@@ -11,6 +11,7 @@ public abstract class ItemData : ScriptableObject
     public string Name => _name;
     public string Tooltip => _tooltip;
     public Sprite IconSprite => _iconSprite;
+    public string ItemAdmobCode => _itemShopAdmobCode;
 
     [SerializeField] private int _id;
     [SerializeField] private string _key; //서버에서 불러올 Key 값 
@@ -18,7 +19,7 @@ public abstract class ItemData : ScriptableObject
     [Multiline]
     [SerializeField] private string _tooltip; // 아이템 설명
     [SerializeField] private Sprite _iconSprite; // 아이템 아이콘
-
+    [SerializeField] private string _itemShopAdmobCode; // 아이템 리워드 코드
     /// <summary> 타입에 맞는 새로운 아이템 생성 </summary>
     public abstract Item CreateItem();
 

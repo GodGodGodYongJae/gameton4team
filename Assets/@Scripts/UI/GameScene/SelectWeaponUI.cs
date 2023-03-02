@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Define;
 using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
@@ -11,15 +12,16 @@ using Random = System.Random;
     public class SelectWeaponUI
     {
         UI_GameScene gameScene;
-
+    RandomNumberGenerator<Define.WeaponType> WeaponRandom;
         public SelectWeaponUI(UI_GameScene gameScene)
         {
             this.gameScene = gameScene;
             WeaponSelect = gameScene.WeaponSelectObj;
             CardSlot = gameScene.CardSlotList;
             WeaponSlotController = gameScene.WeaponSlotController;
+
             Managers.Events.AddListener(Define.GameEvent.stageClear, StageClearEvent);
-         
+            
         }
 
 
@@ -69,13 +71,13 @@ using Random = System.Random;
             private List<T> _generatedNumbers;
             private List<T> _upgradSlotList;
             private Random _random;
-            private int _End;
+            private int _end;
 
             public RandomNumberGenerator( int End)
             {
-                    _generatedNumbers = new List<T>();
+                _generatedNumbers = new List<T>();
                 _upgradSlotList = new List<T>();
-                    _End = End;
+                _end = End;
             }
             public void AddException(T type)
             {
@@ -87,14 +89,14 @@ using Random = System.Random;
             }
             public T Run()
             {
-                if( _generatedNumbers.Count == _End) return default(T);
+                if( _generatedNumbers.Count == _end) return default(T);
                 _random = new Random(Guid.NewGuid().GetHashCode());
-                int randomNumber = _random.Next(_End);
+                int randomNumber = _random.Next(_end);
                 if(_upgradSlotList.Count == 0)
                 {
                     while (_generatedNumbers.Contains((T)(object)randomNumber))
                     {
-                        randomNumber = _random.Next(_End);
+                        randomNumber = _random.Next(_end);
                     }
                     _generatedNumbers.Add((T)(object)randomNumber);
                     return (T)(object)randomNumber;
@@ -102,7 +104,7 @@ using Random = System.Random;
 
                 while (!_upgradSlotList.Contains((T)(object)randomNumber))
                 {
-                    randomNumber = _random.Next(_End);
+                    randomNumber = _random.Next(_end);
                     return (T)(object)randomNumber;
                 }
                 return (T)(object)randomNumber;
@@ -114,39 +116,44 @@ using Random = System.Random;
         #region OpenCard 
         GameObject CurrentSlotCard;
         bool isCheck = false;
-        private async UniTaskVoid OpenWeaponSelectBox()
+     
+         public async UniTaskVoid OpenWeaponSelectBox()
         {
-            Time.timeScale = 0;
-            WeaponSelect.SetActive(true);
-
-            RandomNumberGenerator<Define.WeaponType> WeaponRandom = new RandomNumberGenerator<Define.WeaponType>((int)Define.WeaponType.End);
+            WeaponRandom = new RandomNumberGenerator<Define.WeaponType>((int)Define.WeaponType.End);
             WeaponRandom.AddException(Define.WeaponType.None);
-
-            bool isMaxSlot = (WeaponSlotController.SlotList.Count >= WeaponSlotController.SlotSize) ? true : false;
+            bool isMaxSlot = (WeaponSlotController.SlotList.Count >= WeaponSlotController.SlotSize-1) ? true : false;
 
             if(isMaxSlot)
             {
-                for (int i = 0; i < WeaponSlotController.SlotSize; i++)
+                for (int i = 0; i < WeaponSlotController.SlotList.Count; i++)
                 {
-                    WeaponRandom.AddUpgrade(WeaponSlotController.SlotList[i].Type);
+                    CurrentSlotCard = CardSlot[i];
+                    WeaponSlotController.WeaponSlot slot = WeaponSlotController.GetWeapon(WeaponSlotController.SlotList[i].Type);
+                    RandUpgradeSelect(slot);
+                //WeaponRandom.AddUpgrade();
                 }
-             
-            }
 
-            for (int i = 0; i < _selectCardNum; i++)
+            }
+            else
             {
-                CurrentSlotCard = CardSlot[i];
-                isCheck = false;
-                
-                WeaponSlotController.WeaponSlot GetSlot = await RandWeaponSelect(WeaponRandom.Run());
-                if (isCheck == true)
+                for (int i = 0; i < _selectCardNum; i++)
                 {
-                    RandUpgradeSelect(GetSlot);
+                    CurrentSlotCard = CardSlot[i];
+                    isCheck = false;
+
+                    WeaponSlotController.WeaponSlot GetSlot = await RandWeaponSelect(WeaponRandom.Run());
+                    if (isCheck == true)
+                    {
+                        RandUpgradeSelect(GetSlot);
+                    }
+
+                    WeaponRandom.AddException(GetSlot.Type);
                 }
-
-                WeaponRandom.AddException(GetSlot.Type);
             }
+            
 
+            Time.timeScale = 0;
+            WeaponSelect.SetActive(true);
 
         }
 
@@ -246,7 +253,7 @@ using Random = System.Random;
         {
             Time.timeScale = 1;
             this.WeaponSelect.SetActive(false);
-
+            //OpenWeaponSelectBox().Forget();
             if (ChooseSlotWeapon.UpgradeType == WeaponData.UpgradeType.NewWeapon)
             {
                 WeaponSlotController.NewWeapon(ChooseSlotWeapon.WeaponSlot);

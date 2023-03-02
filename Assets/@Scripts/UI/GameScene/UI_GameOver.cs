@@ -68,8 +68,6 @@ namespace Assets._Scripts.UI.GameScene
               AdmobQuantity--;
               Managers.PlayFab.SetCurrecy(StringData.DailyAdmob, -1);
               this.gameObject.SetActive(false);
-              Managers.Sound.StopBGM();
-              Managers.Sound.PlayBGM("InGame2");
           });
             
         }
@@ -80,8 +78,6 @@ namespace Assets._Scripts.UI.GameScene
             respawnCardItem.Use();
             RespawnButton.gameObject.SetActive(false);
             this.gameObject.SetActive(false);
-            Managers.Sound.StopBGM();
-            Managers.Sound.PlayBGM("InGame2");
         }
     }
 }

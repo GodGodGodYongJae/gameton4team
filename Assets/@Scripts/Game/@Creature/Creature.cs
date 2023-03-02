@@ -56,15 +56,15 @@ public class Creature : MonoBehaviour
     }
 
     private int blinkCount = 3;
-    Color blinkRedColor = Color.red;
-    Color blinkClearColor = Color.white;
+    Color CreatureblinkRedColor = Color.red;
+    Color CreatureblinkClearColor = Color.white;
     protected virtual async UniTaskVoid blinkObject()
     {
         for (int i = 0; i < blinkCount; i++)
         {
-            _sprite.color = blinkRedColor;
+            _sprite.color = CreatureblinkRedColor;
             await UniTask.Delay(150, cancellationToken: cts.Token);
-            _sprite.color = blinkClearColor;
+            _sprite.color = CreatureblinkClearColor;
             await UniTask.Delay(150, cancellationToken: cts.Token);
         }
         _sprite.enabled = true;

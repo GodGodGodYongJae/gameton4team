@@ -274,14 +274,12 @@ namespace Assets._Scripts.Manager
                 items.Add(itemCode);
             }
 
-
             PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
             {
                 FunctionName = "AddInventory",
                 FunctionParameter = new { ItemCode = items.ToArray() },
                 GeneratePlayStreamEvent = true
             }, clouedResult => {
-                //TestDebugLog(clouedResult);
                 callback?.Invoke();
             }, error => ErrorLog(error));
         }

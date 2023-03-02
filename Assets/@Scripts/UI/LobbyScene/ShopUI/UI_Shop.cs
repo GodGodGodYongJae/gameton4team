@@ -41,7 +41,7 @@ public class UI_Shop : MonoBehaviour
         {
            ItemData data = await Managers.PlayFab.FindGetClientItem(item.ItemId);
            UI_ShopSlot shopSlot = Instantiate(Slot, Content.transform).GetComponent<UI_ShopSlot>();
-            shopSlot.CreateInit(item.ItemId,item.VirtualCurrencyPrices["CO"].ToString(), data.Name, data.IconSprite);
+            shopSlot.CreateInit(item.ItemId,item.VirtualCurrencyPrices["CO"].ToString(), data.Name,data.ItemAdmobCode ,data.IconSprite);
         }
     }
 
