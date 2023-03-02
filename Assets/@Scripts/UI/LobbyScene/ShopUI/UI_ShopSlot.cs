@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using PlayFab.MultiplayerModels;
-using System.Diagnostics;
-using Assets._Scripts.UI.LobbyScene;
-using System;
 using Cysharp.Threading.Tasks;
 
 public class UI_ShopSlot : MonoBehaviour
@@ -25,7 +21,14 @@ public class UI_ShopSlot : MonoBehaviour
     [SerializeField]
     int rewardQuantity;
 
+    string MaxRewardQuantity;
+
+    [SerializeField]
+    Text reawrdQuantityText;
+
     private string admobCode;
+    private string rewardId;
+    private string PlacementId;
     public void CreateInit(string itemId,string price, string title,string AdmobCode ,Sprite sprite)
     {
         this.itemId = itemId;
@@ -37,20 +40,39 @@ public class UI_ShopSlot : MonoBehaviour
         haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
         if(isRewardButton == true)
         {
-            rewardButton.onClick.AddListener(() => { OnReward().Forget(); });
+            Managers.PlayFab.GetAdPlacements(admobCode, (success) => {
+                rewardQuantity = (int)success.AdPlacements[0].PlacementViewsRemaining;
+                MaxRewardQuantity = success.AdPlacements[0].RewardDescription;
+                rewardId = success.AdPlacements[0].RewardId;
+                PlacementId = success.AdPlacements[0].PlacementId;
+                ChangeRewardQuantityText();
+                rewardButton.onClick.AddListener(() => { OnReward().Forget(); });
+            });
         }
     }
 
     bool isRewardLoad = false;
     public async UniTaskVoid OnReward()
     {
+        if (rewardQuantity <= 0) return;
+
         if (isRewardLoad == true) return;
         isRewardLoad = true;
-        await Managers.Admob.RequestAndLoadRewardedAd(admobCode, () => {
-             Managers.PlayFab.AddItemInventory(itemId, rewardQuantity ,() => {
-                 haveQuantityText.text = ( 1 + Managers.PlayFab.FindItemQuantity(itemId)).ToString();
-                 isRewardLoad = false;
-             });
+        await Managers.Admob.RequestAndLoadRewardedAd(StringData.AdMob.ItemReward, () => {
+
+            Managers.PlayFab.RewardAdActivity(PlacementId, rewardId, (success) => {
+                rewardQuantity = (int)success.PlacementViewsRemaining;
+                ChangeRewardQuantityText();
+                Managers.PlayFab.GetUserInventory(() =>
+                {
+                    haveQuantityText.text = Managers.PlayFab.FindItemQuantity(itemId).ToString();
+                });
+                isRewardLoad = false;
+            });
+             //Managers.PlayFab.AddItemInventory(itemId, rewardQuantity ,() => {
+             //    haveQuantityText.text = ( 1 + Managers.PlayFab.FindItemQuantity(itemId)).ToString();
+             //    isRewardLoad = false;
+             //});
         });
         //await UniTask.WaitUntil(() => isRewardLoad == false);
 
@@ -70,4 +92,9 @@ public class UI_ShopSlot : MonoBehaviour
         }
     }
 
+
+    private void ChangeRewardQuantityText()
+    {
+        reawrdQuantityText.text ="±¤°íº¸±â"+ System.Environment.NewLine + rewardQuantity + " / " + MaxRewardQuantity;
+    }
 }

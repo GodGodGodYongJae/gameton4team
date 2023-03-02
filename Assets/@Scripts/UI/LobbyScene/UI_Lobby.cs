@@ -14,7 +14,7 @@ namespace Assets._Scripts.UI.LobbyScene
     enum GameObjeects 
     {
         StartButton,
-        EnergyPlus,
+        //EnergyPlus,
         InventoryUI,
         ShopUI,
         ShowEnergyUI,
@@ -76,7 +76,7 @@ namespace Assets._Scripts.UI.LobbyScene
         {
             TextMeshProUGUI energyText = GetText((int)Texts.EnergyText);
             int data = Managers.PlayFab.GetCurrencyData(StringData.Energy);
-            energyText.text = data.ToString();
+            energyText.text = data.ToString() + " / " + 30;
             //TextMeshProUGUI DiamondText = GetText((int)Texts.DiamondText);
             // data = await Managers.PlayFab.GetCurrencyData(StringData.Diamond);
             //DiamondText.text = data.ToString();
@@ -89,7 +89,7 @@ namespace Assets._Scripts.UI.LobbyScene
         void ButtonInit()
         {
             GetObject((int)GameObjeects.StartButton).BindEvent(OnStartButton);
-            GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
+            //GetObject((int)GameObjeects.EnergyPlus).BindEvent(OnEnergyPlus);
             //GetButton((int)Buttons.InventoryBtn).onClick.AddListener(() => {
             //    GetObject((int)GameObjeects.InventoryUI).SetActive(true);
             //});

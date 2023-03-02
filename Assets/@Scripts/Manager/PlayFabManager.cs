@@ -60,6 +60,11 @@ namespace Assets._Scripts.Manager
         {
             return _userCurrecy[id];
         }
+        public int SetClientCurrencyData(string id,int data)
+        {
+            _userCurrecy[id] = data;
+            return _userCurrecy[id];
+        }
         #endregion
         //=============================================================
 
@@ -498,11 +503,33 @@ namespace Assets._Scripts.Manager
             PlayerDatas[data] = value;
         }
         #endregion
-    //--------------------------------------
+        //--------------------------------------
 
-    #endregion
+        #endregion
         //**********************************************************
 
+        //*********************  Admob ***************************
+        #region .
+
+        public void GetAdPlacements(string AppId,Action<GetAdPlacementsResult> callback = null)
+        {
+            PlayFabClientAPI.GetAdPlacements(new GetAdPlacementsRequest
+            {
+                AppId = AppId
+            }, success => {
+                callback?.Invoke(success);    
+            }, error => { this.ErrorLog(error); });
+        }
+        public void RewardAdActivity(string PlacementId,string RewardID,Action<RewardAdActivityResult> callback = null)
+        {
+            PlayFabClientAPI.RewardAdActivity(new RewardAdActivityRequest {
+                PlacementId = PlacementId,
+                RewardId = RewardID
+            }, Succeess => { callback?.Invoke(Succeess); }, 
+            error => { this.ErrorLog(error); });
+        }
+        #endregion
+        //********************************************************
         /// <summary>
         /// 클라이언트에 해당 아이템이 있는지 체크한후 Scripatble Object ItemData 불러옴
         /// </summary>

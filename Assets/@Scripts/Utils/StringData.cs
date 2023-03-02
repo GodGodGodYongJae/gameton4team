@@ -43,5 +43,8 @@ public class StringData
 
         private const string _energy = "ca-app-pub-8904224703245079/1682942676";
         public static string Energy => _energy;
+
+        private const string _itemReward = "ca-app-pub-8904224703245079/8700998351";
+        public static string ItemReward => _itemReward; 
     }
 }
